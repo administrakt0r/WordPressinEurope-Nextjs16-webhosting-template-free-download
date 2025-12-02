@@ -56,15 +56,15 @@ export function Footer() {
                         <h3 className="font-bold font-heading text-foreground mb-4">Resources & Support</h3>
                         <ul className="space-y-2">
                             {[
-                                "Learning Portal",
-                                "Client Zone",
-                                "Order Free Hosting",
-                                "Uptime Status",
-                                "About Us",
+                                { label: "Learning Portal", href: "https://wp.wpineu.com/learning-portal" },
+                                { label: "Clients Zone", href: "https://clients.wpineu.com" },
+                                { label: "Order Free Hosting", href: "https://clients.wpineu.com/order/free-wordpress-hosting" },
+                                { label: "Uptime Status", href: "https://uptime.wpineu.com/" },
+                                { label: "About Us", href: "https://wp.wpineu.com/about-wpineu/" },
                             ].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                                        {item}
+                                <li key={item.label}>
+                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                                        {item.label}
                                     </Link>
                                 </li>
                             ))}
@@ -93,7 +93,7 @@ export function Footer() {
 
                 <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-muted-foreground text-center md:text-left">
-                        Copyright © 2025 WPinEU. All rights reserved.
+                        Copyright © 2025 WPinEU. All rights reserved. WPinEU is not part of WordPress.com or WordPress.org
                     </p>
                     <div className="flex items-center gap-1 text-sm text-muted-foreground">
                         <span>Made with</span>
