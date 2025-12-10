@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Server } from "lucide-react";
-import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -29,7 +28,7 @@ export function Navbar() {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -37,7 +36,7 @@ export function Navbar() {
         <nav
             aria-label="Main navigation"
             className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+                "fixed top-0 left-0 right-0 z-50 transition-colors duration-200",
                 isScrolled
                     ? "bg-slate-900/80 backdrop-blur-md shadow-sm py-4"
                     : "bg-transparent py-6"
@@ -54,7 +53,7 @@ export function Navbar() {
 
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group" aria-label="WPinEU Home">
-                    <div className="bg-primary text-white p-2 rounded-lg group-hover:scale-105 transition-transform">
+                    <div className="bg-primary text-white p-2 rounded-lg group-hover:scale-105 transition-transform duration-200">
                         <Server size={24} />
                     </div>
                     <div className="flex flex-col">
@@ -73,10 +72,10 @@ export function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+                            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-150 relative group"
                         >
                             {link.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-150 group-hover:w-full" />
                         </Link>
                     ))}
                 </div>
@@ -85,13 +84,13 @@ export function Navbar() {
                 <div className="hidden md:flex items-center gap-4">
                     <Link
                         href="https://clients.wpineu.com/"
-                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150"
                     >
                         Sign In
                     </Link>
                     <Link
                         href="https://clients.wpineu.com/order/free-wordpress-hosting"
-                        className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:shadow-lg hover:-translate-y-0.5"
+                        className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
                     >
                         Get Started
                     </Link>
@@ -101,7 +100,7 @@ export function Navbar() {
                 <div className="flex items-center gap-4 md:hidden">
                     <Link
                         href="https://clients.wpineu.com/order/free-wordpress-hosting"
-                        className="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-bold transition-all"
+                        className="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-bold transition-all duration-200"
                     >
                         Get Started
                     </Link>
@@ -117,55 +116,42 @@ export function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Menu */}
-            <LazyMotion features={domAnimation} strict>
-                <AnimatePresence>
-                    {isMobileMenuOpen && (
-                        <m.div
-                            id="mobile-menu"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{
-                                duration: 0.25,
-                                ease: [0.4, 0, 0.2, 1]
-                            }}
-                            className="md:hidden bg-slate-900 border-t border-gray-800 overflow-hidden"
-                            role="navigation"
-                            aria-label="Mobile navigation"
-                        >
-                            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-                                {navLinks.map((link) => (
-                                    <Link
-                                        key={link.name}
-                                        href={link.href}
-                                        className="text-base font-medium text-foreground py-2 border-b border-gray-800 last:border-0"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                    >
-                                        {link.name}
-                                    </Link>
-                                ))}
-                                <div className="flex flex-col gap-3 mt-4">
-                                    <Link
-                                        href="https://clients.wpineu.com/"
-                                        className="w-full text-center py-3 rounded-lg border border-gray-700 font-medium"
-                                    >
-                                        Sign In
-                                    </Link>
-                                    <Link
-                                        href="https://clients.wpineu.com/order/free-wordpress-hosting"
-                                        className="w-full text-center py-3 rounded-lg bg-primary text-white font-medium"
-                                    >
-                                        Get Started
-                                    </Link>
-                                    <div className="flex justify-center pt-4 border-t border-gray-800">
-                                    </div>
-                                </div>
-                            </div>
-                        </m.div>
-                    )}
-                </AnimatePresence>
-            </LazyMotion>
+            {/* Mobile Menu - No animation, instant show/hide */}
+            {isMobileMenuOpen && (
+                <div
+                    id="mobile-menu"
+                    className="md:hidden bg-slate-900 border-t border-gray-800"
+                    role="navigation"
+                    aria-label="Mobile navigation"
+                >
+                    <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className="text-base font-medium text-foreground py-2 border-b border-gray-800 last:border-0"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                        <div className="flex flex-col gap-3 mt-4">
+                            <Link
+                                href="https://clients.wpineu.com/"
+                                className="w-full text-center py-3 rounded-lg border border-gray-700 font-medium"
+                            >
+                                Sign In
+                            </Link>
+                            <Link
+                                href="https://clients.wpineu.com/order/free-wordpress-hosting"
+                                className="w-full text-center py-3 rounded-lg bg-primary text-white font-medium"
+                            >
+                                Get Started
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            )}
         </nav>
     );
 }
