@@ -3,10 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Server } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-
 
 export function cn(...inputs: (string | undefined | null | false)[]) {
     return twMerge(clsx(inputs));
@@ -119,48 +118,54 @@ export function Navbar() {
             </div>
 
             {/* Mobile Menu */}
-            <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <motion.div
-                        id="mobile-menu"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-slate-900 border-t border-gray-800 overflow-hidden"
-                        role="navigation"
-                        aria-label="Mobile navigation"
-                    >
-                        <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="text-base font-medium text-foreground py-2 border-b border-gray-800 last:border-0"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                            <div className="flex flex-col gap-3 mt-4">
-                                <Link
-                                    href="https://clients.wpineu.com/"
-                                    className="w-full text-center py-3 rounded-lg border border-gray-700 font-medium"
-                                >
-                                    Sign In
-                                </Link>
-                                <Link
-                                    href="https://clients.wpineu.com/order/free-wordpress-hosting"
-                                    className="w-full text-center py-3 rounded-lg bg-primary text-white font-medium"
-                                >
-                                    Get Started
-                                </Link>
-                                <div className="flex justify-center pt-4 border-t border-gray-800">
+            <LazyMotion features={domAnimation} strict>
+                <AnimatePresence>
+                    {isMobileMenuOpen && (
+                        <m.div
+                            id="mobile-menu"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{
+                                duration: 0.25,
+                                ease: [0.4, 0, 0.2, 1]
+                            }}
+                            className="md:hidden bg-slate-900 border-t border-gray-800 overflow-hidden"
+                            role="navigation"
+                            aria-label="Mobile navigation"
+                        >
+                            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+                                {navLinks.map((link) => (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        className="text-base font-medium text-foreground py-2 border-b border-gray-800 last:border-0"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                ))}
+                                <div className="flex flex-col gap-3 mt-4">
+                                    <Link
+                                        href="https://clients.wpineu.com/"
+                                        className="w-full text-center py-3 rounded-lg border border-gray-700 font-medium"
+                                    >
+                                        Sign In
+                                    </Link>
+                                    <Link
+                                        href="https://clients.wpineu.com/order/free-wordpress-hosting"
+                                        className="w-full text-center py-3 rounded-lg bg-primary text-white font-medium"
+                                    >
+                                        Get Started
+                                    </Link>
+                                    <div className="flex justify-center pt-4 border-t border-gray-800">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                        </m.div>
+                    )}
+                </AnimatePresence>
+            </LazyMotion>
         </nav>
     );
 }

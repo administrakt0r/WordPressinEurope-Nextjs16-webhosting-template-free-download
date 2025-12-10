@@ -45,10 +45,63 @@
   --font-outfit: 'Outfit', sans-serif;
 }
 
+/* Smooth scrolling for the entire document */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter);
+  /* Prevent layout shift and enable smooth rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* GPU acceleration for animated elements */
+.gpu-accelerated,
+[class*="transition"],
+[class*="animate"],
+[class*="hover:"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Smooth transitions for interactive elements */
+a, button, [role="button"] {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Optimize will-change for frequently animated properties */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Smoother backdrop blur performance */
+[class*="backdrop-blur"] {
+  transform: translateZ(0);
 }
 
 h1,
