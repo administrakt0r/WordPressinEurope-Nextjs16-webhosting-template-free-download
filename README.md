@@ -104,7 +104,7 @@ This repository contains the **source code** for the WPinEU.com website - a mode
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/wpineu.git
+   git clone https://github.com/administrakt0r/wpineu.git
    cd wpineu
    ```
 
