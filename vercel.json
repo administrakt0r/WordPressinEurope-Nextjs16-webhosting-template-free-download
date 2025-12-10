@@ -1,0 +1,15 @@
+{
+    "installCommand": "npm install",
+    "redirects": [
+        {
+            "source": "/wp/:path*",
+            "destination": "https://wp.wpineu.com/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/wp",
+            "destination": "https://wp.wpineu.com/",
+            "permanent": true
+        }
+    ]
+}
