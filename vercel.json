@@ -1,5 +1,5 @@
 {
-    "installCommand": "npm install",
+    "installCommand": "pnpm install --frozen-lockfile",
     "redirects": [
         {
             "source": "/wp/:path*",
