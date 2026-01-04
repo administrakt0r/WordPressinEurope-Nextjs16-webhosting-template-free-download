@@ -26,7 +26,7 @@ export function About() {
                                 <div>
                                     <h3 className="text-xl font-bold font-heading text-foreground mb-2">Our Story</h3>
                                     <p className="text-muted-foreground leading-relaxed">
-                            WP in EU started from a belief that learning web development shouldn&apos;t depend on your budget. I saw that many talented people across the EU wanted to learn WordPress but couldn&apos;t afford quality hosting. That&apos;s when I decided to create a space where anyone can learn, build, and grow — completely free of charge.
+                                        WP in EU started from a belief that learning web development shouldn&apos;t depend on your budget. I saw that many talented people across the EU wanted to learn WordPress but couldn&apos;t afford quality hosting. That&apos;s when I decided to create a space where anyone can learn, build, and grow — completely free of charge.
                                     </p>
                                 </div>
                             </div>
