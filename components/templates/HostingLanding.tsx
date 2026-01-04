@@ -30,7 +30,7 @@ interface HostingLandingProps {
     children?: React.ReactNode;
 }
 
-export function HostingLanding({ title, description, heroTitle, heroSubtitle, children }: HostingLandingProps) {
+export function HostingLanding({ heroTitle, heroSubtitle, children }: HostingLandingProps) {
     return (
         <>
             <HostingHero heroTitle={heroTitle} heroSubtitle={heroSubtitle} />

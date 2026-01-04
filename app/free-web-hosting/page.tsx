@@ -36,7 +36,7 @@ export default function FreeWebHosting() {
                             </div>
                             <h3 className="text-xl font-bold mb-2">Free Subdomain</h3>
                             <p className="text-muted-foreground">
-                                Don't have a domain yet? No problem. Use our free subdomain to get your website online instantly.
+                                Don&apos;t have a domain yet? No problem. Use our free subdomain to get your website online instantly.
                             </p>
                         </div>
 

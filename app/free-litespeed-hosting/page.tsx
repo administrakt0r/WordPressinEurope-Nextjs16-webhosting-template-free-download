@@ -56,10 +56,10 @@ const litespeedFeatures = [
 ];
 
 const techLogos = [
-    { name: "WordPress", logo: "/wordpress-logo.svg" },
-    { name: "LiteSpeed", logo: "/litespeed.svg" },
-    { name: "cPanel", logo: "/cPanel.svg" },
-    { name: "CloudLinux", logo: "/cloudlinux.svg" },
+    { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
+    { name: "LiteSpeed", logo: "/litespeed.svg", width: 800, height: 800 },
+    { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
+    { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
 ];
 
 export default function FreeLiteSpeedHosting() {
