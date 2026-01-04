@@ -26,7 +26,7 @@ export function About() {
                                 <div>
                                     <h3 className="text-xl font-bold font-heading text-foreground mb-2">Our Story</h3>
                                     <p className="text-muted-foreground leading-relaxed">
-                                        WP in EU started from a belief that learning web development shouldn't depend on your budget. I saw that many talented people across the EU wanted to learn WordPress but couldn't afford quality hosting. That's when I decided to create a space where anyone can learn, build, and grow — completely free of charge.
+                            WP in EU started from a belief that learning web development shouldn&apos;t depend on your budget. I saw that many talented people across the EU wanted to learn WordPress but couldn&apos;t afford quality hosting. That&apos;s when I decided to create a space where anyone can learn, build, and grow — completely free of charge.
                                     </p>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@ export function About() {
                                 <div>
                                     <h3 className="text-xl font-bold font-heading text-foreground mb-2">Sustainable Impact</h3>
                                     <p className="text-muted-foreground mb-4">
-                                        Our mission goes beyond free hosting — it's about building opportunities. Through WP in EU, we aim to:
+                                        Our mission goes beyond free hosting — it&apos;s about building opportunities. Through WP in EU, we aim to:
                                     </p>
                                     <ul className="space-y-2">
                                         {[
@@ -69,7 +69,7 @@ export function About() {
                                     <h3 className="text-xl font-bold font-heading text-foreground">Commitment</h3>
                                 </div>
                                 <p className="text-muted-foreground leading-relaxed">
-                                    We are committed to maintaining this service as a free educational resource for the EU community. Our infrastructure is powered by professional-grade servers, and we maintain the same standards you'd expect from premium hosting providers.
+                                    We are committed to maintaining this service as a free educational resource for the EU community. Our infrastructure is powered by professional-grade servers, and we maintain the same standards you&apos;d expect from premium hosting providers.
                                 </p>
                             </div>
 

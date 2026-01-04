@@ -90,7 +90,7 @@ export function Navbar() {
                     </Link>
                     <Link
                         href="https://clients.wpineu.com/order/free-wordpress-hosting"
-                        className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+                        className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-slate-900"
                     >
                         Get Started
                     </Link>

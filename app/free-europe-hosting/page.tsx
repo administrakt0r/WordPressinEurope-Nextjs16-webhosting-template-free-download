@@ -46,7 +46,7 @@ export default function FreeEuropeHosting() {
                             </div>
                             <h3 className="text-xl font-bold mb-2">GDPR Compliance</h3>
                             <p className="text-muted-foreground">
-                                We adhere strictly to EU data protection laws (GDPR), ensuring that your data and your users' data is handled legally and securely.
+                                We adhere strictly to EU data protection laws (GDPR), ensuring that your data and your users&apos; data is handled legally and securely.
                             </p>
                         </div>
 
