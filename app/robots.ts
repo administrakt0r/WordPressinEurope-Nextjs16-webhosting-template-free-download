@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const REVALIDATE_SECONDS = 86400;
+// const REVALIDATE_SECONDS = 86400;
 
 // export const revalidate = REVALIDATE_SECONDS;
 

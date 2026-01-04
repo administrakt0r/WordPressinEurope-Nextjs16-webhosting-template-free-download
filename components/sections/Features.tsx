@@ -1,7 +1,6 @@
 "use client";
 
 import {
-    Cpu,
     Shield,
     Zap,
     Globe,
@@ -10,6 +9,7 @@ import {
     LayoutDashboard,
     Lock
 } from "lucide-react";
+import Image from "next/image";
 import { FeatureCard } from "./FeatureCard";
 
 const features = [
@@ -46,11 +46,11 @@ const features = [
 ];
 
 const technologies = [
-    { name: "WordPress", logo: "/wordpress-logo.svg" },
-    { name: "cPanel", logo: "/cPanel.svg" },
-    { name: "LiteSpeed", logo: null },
-    { name: "CloudLinux", logo: "/cloudlinux.svg" },
-    { name: "Softaculous", logo: "/Softaculous.svg" },
+    { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
+    { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
+    { name: "LiteSpeed", logo: null, width: 0, height: 0 },
+    { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
+    { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
 ];
 
 export function Features() {
@@ -65,14 +65,18 @@ export function Features() {
                     </h2>
                     <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
                         {technologies.map((tech) => (
-                            <div key={tech.name} className="group">
+                            <div key={tech.name} className="group flex items-center justify-center">
                                 {tech.logo ? (
-                                    <img
-                                        src={tech.logo}
-                                        alt={tech.name}
-                                        className="h-10 md:h-12 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
-                                        loading="lazy"
-                                    />
+                                    <div className="relative h-10 md:h-12 w-auto">
+                                         <Image
+                                            src={tech.logo}
+                                            alt={tech.name}
+                                            width={tech.width}
+                                            height={tech.height}
+                                            className="h-full w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                                            style={{ objectFit: 'contain' }}
+                                        />
+                                    </div>
                                 ) : (
                                     <span className="text-lg md:text-xl font-bold text-slate-400 hover:text-primary transition-colors cursor-default">
                                         {tech.name}

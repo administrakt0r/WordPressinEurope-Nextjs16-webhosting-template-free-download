@@ -31,7 +31,7 @@ export default function SupportPage() {
                 <div className="container mx-auto px-4 md:px-6 relative z-10">
                     <div className="text-center max-w-3xl mx-auto">
                         <h1 className="text-5xl md:text-6xl font-bold font-heading text-white leading-tight mb-6">
-                            We're Here to <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Help</span>
+                            We&apos;re Here to <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Help</span>
                         </h1>
                         <p className="text-xl text-slate-300 leading-relaxed">
                             Have questions about your hosting? Need technical assistance? Our support team is ready to help you succeed.
@@ -51,7 +51,7 @@ export default function SupportPage() {
                             </div>
                             <h3 className="text-2xl font-bold text-white mb-3">Email Support</h3>
                             <p className="text-slate-400 mb-6">
-                                Send us an email and we'll get back to you as soon as possible.
+                                Send us an email and we&apos;ll get back to you as soon as possible.
                             </p>
                             <a
                                 href="mailto:support@wpineu.com"
@@ -161,7 +161,7 @@ export default function SupportPage() {
                             <div className="bg-slate-900 rounded-xl p-6 border border-slate-800">
                                 <h3 className="text-xl font-bold text-white mb-3">What if I need help with WordPress?</h3>
                                 <p className="text-slate-400">
-                                    Contact us at <a href="mailto:support@wpineu.com" className="text-blue-400 hover:text-blue-300">support@wpineu.com</a> with your questions. We're here to help you succeed with your WordPress site.
+                                    Contact us at <a href="mailto:support@wpineu.com" className="text-blue-400 hover:text-blue-300">support@wpineu.com</a> with your questions. We&apos;re here to help you succeed with your WordPress site.
                                 </p>
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download } from "lucide-react";
+import Image from "next/image";
 
 interface ServiceFeature {
     iconName: string;
@@ -13,7 +14,7 @@ interface ServiceDescriptionProps {
     subtitle: string;
     description: string;
     features: ServiceFeature[];
-    techLogos?: { name: string; logo: string }[];
+    techLogos?: { name: string; logo: string; width?: number; height?: number }[];
 }
 
 const iconMap: Record<string, React.ElementType> = {
@@ -72,12 +73,14 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                         </h3>
                         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
                             {techLogos.map((tech) => (
-                                <div key={tech.name} className="group">
-                                    <img
+                                <div key={tech.name} className="group relative h-10 md:h-12 w-auto flex items-center">
+                                    <Image
                                         src={tech.logo}
                                         alt={tech.name}
-                                        className="h-10 md:h-12 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
-                                        loading="lazy"
+                                        width={tech.width || 100}
+                                        height={tech.height || 100}
+                                        className="h-full w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                                        style={{ objectFit: 'contain', width: 'auto', height: '100%' }}
                                     />
                                 </div>
                             ))}

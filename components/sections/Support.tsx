@@ -28,7 +28,7 @@ export function Support() {
                             Need a Custom Web Solution?
                         </h2>
                         <p className="text-slate-300 text-lg mb-10 leading-relaxed">
-                            Beyond our free hosting, we specialize in creating tailor-made web solutions. If your project requires custom development, unique features, or dedicated support, we're here to help. Let's build something amazing together.
+                            Beyond our free hosting, we specialize in creating tailor-made web solutions. If your project requires custom development, unique features, or dedicated support, we&apos;re here to help. Let&apos;s build something amazing together.
                         </p>
                         <Link
                             href="mailto:support@wpineu.com"
