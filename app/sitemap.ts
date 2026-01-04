@@ -1,8 +1,6 @@
 import { MetadataRoute } from 'next'
 
-const REVALIDATE_SECONDS = 86400
-
-export const revalidate = REVALIDATE_SECONDS
+export const revalidate = 86400
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://wpineu.com'
