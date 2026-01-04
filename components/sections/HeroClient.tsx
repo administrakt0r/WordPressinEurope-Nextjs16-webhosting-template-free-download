@@ -14,7 +14,8 @@ export function HeroClient() {
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] bg-blue-900/20 rounded-full blur-[100px]" />
 
                 {/* Grid Pattern */}
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
+                {/* Localized noise.svg to reduce external network requests and improve reliability */}
+                <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20" />
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
             </div>
 

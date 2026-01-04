@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 
-export const revalidate = 86400;
+const REVALIDATE_SECONDS = 86400;
+
+// export const revalidate = REVALIDATE_SECONDS;
 
 export default function robots(): MetadataRoute.Robots {
     return {
