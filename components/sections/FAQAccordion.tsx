@@ -1,9 +1,7 @@
 "use client";
 
 import { useState, useId } from "react";
-// Optimization: Use LazyMotion and m components to reduce initial bundle size.
-// domMax is used here because we need support for layout animations (height: "auto").
-import { LazyMotion, domMax, m, AnimatePresence } from "framer-motion";
+import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 
 interface FAQItem {
@@ -20,7 +18,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
     const accordionId = useId();
 
     return (
-        <LazyMotion features={domMax}>
+        <LazyMotion features={domAnimation} strict>
             <div className="max-w-3xl mx-auto mb-20">
                 <div className="space-y-4">
                     {faqs.map((faq, index) => {
