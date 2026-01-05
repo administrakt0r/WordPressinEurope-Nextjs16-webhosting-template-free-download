@@ -2,7 +2,8 @@
 
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import Link from "next/link";
-import { Check, ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
 const features = [
     "1 GB SSD disk space (RAID 10 NVMe)",
@@ -44,8 +45,8 @@ export function PricingCard() {
                     <p className="text-sm text-muted-foreground mb-8">No credit card required</p>
 
                     <Link
-                        href="https://clients.wpineu.com/order/free-wordpress-hosting"
-                        className="group flex items-center justify-center gap-2 w-full bg-primary hover:bg-blue-700 text-white text-center py-4 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 mb-8"
+                        href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
+                        className="block w-full bg-primary hover:bg-blue-700 text-white text-center py-4 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 mb-8"
                     >
                         Get Started Free Now
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -55,7 +56,7 @@ export function PricingCard() {
                         {features.map((feature) => (
                             <div key={feature} className="flex items-start gap-3">
                                 <div className="p-1 rounded-full bg-green-900/30 text-green-400 mt-0.5">
-                                    <Check size={14} strokeWidth={3} />
+                                    <Check size={14} strokeWidth={3} aria-hidden="true" />
                                 </div>
                                 <span className="text-foreground text-sm font-medium">{feature}</span>
                             </div>

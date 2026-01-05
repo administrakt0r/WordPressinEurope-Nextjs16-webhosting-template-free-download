@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X, Server } from "lucide-react";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
 export function cn(...inputs: (string | undefined | null | false)[]) {
     return twMerge(clsx(inputs));
@@ -15,9 +16,9 @@ const navLinks = [
     { name: "Features", href: "#features" },
     { name: "About", href: "#about" },
     { name: "Support", href: "/support" },
-    { name: "Blog", href: "https://wp.wpineu.com" },
-    { name: "Uptime", href: "https://uptime.wpineu.com" },
-    { name: "Clients", href: "https://clients.wpineu.com/" },
+    { name: "Blog", href: EXTERNAL_LINKS.BLOG },
+    { name: "Uptime", href: EXTERNAL_LINKS.UPTIME },
+    { name: "Clients", href: EXTERNAL_LINKS.CLIENT_PORTAL },
 ];
 
 export function Navbar() {
@@ -83,13 +84,13 @@ export function Navbar() {
                 {/* CTA Buttons */}
                 <div className="hidden md:flex items-center gap-4">
                     <Link
-                        href="https://clients.wpineu.com/"
+                        href={EXTERNAL_LINKS.CLIENT_PORTAL}
                         className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150"
                     >
                         Sign In
                     </Link>
                     <Link
-                        href="https://clients.wpineu.com/order/free-wordpress-hosting"
+                        href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                         className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-slate-900"
                     >
                         Get Started
@@ -99,7 +100,7 @@ export function Navbar() {
                 {/* Mobile Menu Button & Theme Toggle */}
                 <div className="flex items-center gap-4 md:hidden">
                     <Link
-                        href="https://clients.wpineu.com/order/free-wordpress-hosting"
+                        href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                         className="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-bold transition-all duration-200"
                     >
                         Get Started
@@ -137,13 +138,13 @@ export function Navbar() {
                         ))}
                         <div className="flex flex-col gap-3 mt-4">
                             <Link
-                                href="https://clients.wpineu.com/"
+                                href={EXTERNAL_LINKS.CLIENT_PORTAL}
                                 className="w-full text-center py-3 rounded-lg border border-gray-700 font-medium"
                             >
                                 Sign In
                             </Link>
                             <Link
-                                href="https://clients.wpineu.com/order/free-wordpress-hosting"
+                                href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                                 className="w-full text-center py-3 rounded-lg bg-primary text-white font-medium"
                             >
                                 Get Started

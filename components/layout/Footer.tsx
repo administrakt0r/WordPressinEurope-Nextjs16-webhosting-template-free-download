@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
 export function Footer() {
     return (
@@ -56,11 +57,11 @@ export function Footer() {
                         <h3 className="font-bold font-heading text-foreground mb-4">Resources & Support</h3>
                         <ul className="space-y-2">
                             {[
-                                { label: "Learning Portal", href: "https://wp.wpineu.com/learning-portal" },
-                                { label: "Clients Zone", href: "https://clients.wpineu.com" },
-                                { label: "Order Free Hosting", href: "https://clients.wpineu.com/order/free-wordpress-hosting" },
-                                { label: "Uptime Status", href: "https://uptime.wpineu.com/" },
-                                { label: "About Us", href: "https://wp.wpineu.com/about-wpineu/" },
+                                { label: "Learning Portal", href: EXTERNAL_LINKS.LEARNING_PORTAL },
+                                { label: "Clients Zone", href: EXTERNAL_LINKS.CLIENT_PORTAL },
+                                { label: "Order Free Hosting", href: EXTERNAL_LINKS.ORDER_FREE_HOSTING },
+                                { label: "Uptime Status", href: EXTERNAL_LINKS.UPTIME },
+                                { label: "About Us", href: EXTERNAL_LINKS.ABOUT },
                             ].map((item) => (
                                 <li key={item.label}>
                                     <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -76,10 +77,10 @@ export function Footer() {
                         <h3 className="font-bold font-heading text-foreground mb-4">Legal & Policies</h3>
                         <ul className="space-y-2">
                             {[
-                                { label: "Privacy Policy", href: "https://wp.wpineu.com/privacy-policy" },
-                                { label: "Terms of Service", href: "https://wp.wpineu.com/terms-of-service" },
-                                { label: "Service Level Agreement", href: "https://wp.wpineu.com/service-level-agreement" },
-                                { label: "Report Abuse", href: "https://wp.wpineu.com/report-abuse" },
+                                { label: "Privacy Policy", href: EXTERNAL_LINKS.PRIVACY_POLICY },
+                                { label: "Terms of Service", href: EXTERNAL_LINKS.TERMS_SERVICE },
+                                { label: "Service Level Agreement", href: EXTERNAL_LINKS.SLA },
+                                { label: "Report Abuse", href: EXTERNAL_LINKS.REPORT_ABUSE },
                             ].map((item) => (
                                 <li key={item.label}>
                                     <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
