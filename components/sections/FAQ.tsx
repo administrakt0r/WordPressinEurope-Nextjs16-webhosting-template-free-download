@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { FAQAccordion } from "./FAQAccordion";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
 const faqs = [
     {
@@ -56,7 +57,7 @@ export function FAQ() {
                             Dive into our comprehensive learning portal for WordPress and web development. Stay updated with the latest news, tutorials, and resources.
                         </p>
                         <Link
-                            href="#"
+                            href={EXTERNAL_LINKS.LEARNING_PORTAL}
                             className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
                         >
                             Start Learning
