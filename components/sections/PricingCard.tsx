@@ -2,7 +2,7 @@
 
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 
 const features = [
