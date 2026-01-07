@@ -124,7 +124,7 @@ export function Features() {
                             <div className="space-y-6">
                                 <div className="flex gap-4">
                                     <div className="p-2 rounded-lg bg-white/10 backdrop-blur-sm h-fit">
-                                        <Zap size={24} className="text-yellow-400" />
+                                        <Zap size={24} className="text-yellow-400" aria-hidden="true" />
                                     </div>
                                     <div>
                                         <h3 className="text-xl font-bold mb-2">Unleash Peak Performance</h3>
@@ -136,7 +136,7 @@ export function Features() {
 
                                 <div className="flex gap-4">
                                     <div className="p-2 rounded-lg bg-white/10 backdrop-blur-sm h-fit">
-                                        <Lock size={24} className="text-yellow-400" />
+                                        <Lock size={24} className="text-yellow-400" aria-hidden="true" />
                                     </div>
                                     <div>
                                         <h3 className="text-xl font-bold mb-2">Ironclad Security</h3>

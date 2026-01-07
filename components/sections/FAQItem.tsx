@@ -43,7 +43,7 @@ const FAQItem = memo(function FAQItem({
                         isOpen ? "bg-primary text-white" : "bg-slate-800 text-slate-500"
                     } transition-colors`}
                 >
-                    {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                    {isOpen ? <Minus size={20} aria-hidden="true" /> : <Plus size={20} aria-hidden="true" />}
                 </div>
             </button>
             <AnimatePresence>

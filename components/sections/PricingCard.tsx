@@ -49,7 +49,7 @@ export function PricingCard() {
                         className="group flex items-center justify-center gap-2 w-full bg-primary hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 mb-8"
                     >
                         Get Started Free Now
-                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </Link>
 
                     <div className="space-y-4">

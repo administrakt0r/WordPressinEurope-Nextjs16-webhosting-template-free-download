@@ -26,7 +26,7 @@ export function Pricing() {
                     <div className="lg:pt-12">
                         <div className="bg-yellow-900/10 rounded-2xl p-8 border border-yellow-900/20">
                             <div className="w-12 h-12 rounded-xl bg-yellow-900/30 text-yellow-400 flex items-center justify-center mb-6">
-                                <Heart size={24} fill="currentColor" />
+                                <Heart size={24} fill="currentColor" aria-hidden="true" />
                             </div>
                             <h3 className="text-xl font-bold font-heading text-foreground mb-3">
                                 Support & Grow
@@ -39,7 +39,7 @@ export function Pricing() {
                                 className="inline-flex items-center gap-2 text-yellow-400 font-bold text-sm hover:underline"
                             >
                                 Contribute to Our Mission
-                                <ArrowRight size={16} />
+                                <ArrowRight size={16} aria-hidden="true" />
                             </Link>
                         </div>
                     </div>
