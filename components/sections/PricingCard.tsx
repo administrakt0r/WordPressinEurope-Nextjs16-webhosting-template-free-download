@@ -46,7 +46,7 @@ export function PricingCard() {
 
                     <Link
                         href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                        className="group flex items-center justify-center gap-2 w-full bg-primary hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 mb-8"
+                        className="group flex items-center justify-center gap-2 w-full bg-primary hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 mb-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                     >
                         Get Started Free Now
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
