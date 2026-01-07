@@ -1,0 +1,104 @@
+import { describe, it, expect } from 'vitest';
+import nextConfig from '@/next.config';
+
+interface Header {
+    key: string;
+    value: string;
+}
+
+interface HeaderConfig {
+    source: string;
+    headers: Header[];
+}
+
+describe('Security Headers', () => {
+  it('should have strict CSP', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    // We are looking for headers applied to all paths
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const cspHeader = globalHeaders.headers.find((h: Header) => h.key === 'Content-Security-Policy');
+    expect(cspHeader).toBeDefined();
+    if (cspHeader) {
+        expect(cspHeader.value).toContain('upgrade-insecure-requests');
+        expect(cspHeader.value).toContain("object-src 'none'");
+        expect(cspHeader.value).toContain("frame-ancestors 'none'");
+    }
+  });
+
+  it('should have strict Permissions-Policy', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const permissionsHeader = globalHeaders.headers.find((h: Header) => h.key === 'Permissions-Policy');
+    expect(permissionsHeader).toBeDefined();
+    if (permissionsHeader) {
+        expect(permissionsHeader.value).toContain('camera=()');
+        expect(permissionsHeader.value).toContain('microphone=()');
+    }
+  });
+
+  it('should have strict HSTS', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const hstsHeader = globalHeaders.headers.find((h: Header) => h.key === 'Strict-Transport-Security');
+    expect(hstsHeader).toBeDefined();
+    if (hstsHeader) {
+        expect(hstsHeader.value).toContain('max-age=63072000');
+        expect(hstsHeader.value).toContain('includeSubDomains');
+    }
+  });
+
+  it('should have X-Content-Type-Options set to nosniff', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const nosniffHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-Content-Type-Options');
+    expect(nosniffHeader).toBeDefined();
+    if (nosniffHeader) {
+        expect(nosniffHeader.value).toBe('nosniff');
+    }
+  });
+
+  it('should have X-Frame-Options set to DENY', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const xFrameOptionsHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-Frame-Options');
+    expect(xFrameOptionsHeader).toBeDefined();
+    if (xFrameOptionsHeader) {
+        expect(xFrameOptionsHeader.value).toBe('DENY');
+    }
+  });
+});
