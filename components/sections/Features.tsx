@@ -10,6 +10,7 @@ import {
     Lock
 } from "lucide-react";
 import Image from "next/image";
+import { LazyMotion, domAnimation } from "framer-motion";
 import { FeatureCard } from "./FeatureCard";
 
 const features = [
@@ -56,9 +57,10 @@ const technologies = [
 export function Features() {
     return (
         <section id="features" className="py-20 bg-slate-950">
-            <div className="container mx-auto px-4 md:px-6">
+            <LazyMotion features={domAnimation} strict>
+                <div className="container mx-auto px-4 md:px-6">
 
-                {/* Tech Stack */}
+                    {/* Tech Stack */}
                 <div className="text-center mb-20">
                     <h2 className="text-2xl font-bold font-heading text-foreground mb-8">
                         Powered By Industry-Leading Technologies
@@ -182,6 +184,7 @@ export function Features() {
                     </div>
                 </div>
             </div>
+            </LazyMotion>
         </section>
     );
 }
