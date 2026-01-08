@@ -21,7 +21,7 @@ export function About() {
                         <div className="space-y-8">
                             <div className="flex gap-4">
                                 <div className="p-3 rounded-xl bg-blue-900/20 text-blue-400 h-fit">
-                                    <Lightbulb size={24} />
+                                    <Lightbulb size={24} aria-hidden="true" />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold font-heading text-foreground mb-2">Our Story</h3>
@@ -33,7 +33,7 @@ export function About() {
 
                             <div className="flex gap-4">
                                 <div className="p-3 rounded-xl bg-green-900/20 text-green-400 h-fit">
-                                    <Globe2 size={24} />
+                                    <Globe2 size={24} aria-hidden="true" />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold font-heading text-foreground mb-2">Sustainable Impact</h3>
@@ -64,7 +64,7 @@ export function About() {
                             <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800">
                                 <div className="flex items-center gap-4 mb-4">
                                     <div className="p-3 rounded-lg bg-yellow-900/30 text-yellow-400">
-                                        <Users size={24} />
+                                        <Users size={24} aria-hidden="true" />
                                     </div>
                                     <h3 className="text-xl font-bold font-heading text-foreground">Commitment</h3>
                                 </div>
@@ -76,7 +76,7 @@ export function About() {
                             <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800">
                                 <div className="flex items-center gap-4 mb-4">
                                     <div className="p-3 rounded-lg bg-blue-900/30 text-blue-400">
-                                        <ShieldCheck size={24} />
+                                        <ShieldCheck size={24} aria-hidden="true" />
                                     </div>
                                     <h3 className="text-xl font-bold font-heading text-foreground">Privacy & Security</h3>
                                 </div>

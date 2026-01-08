@@ -22,7 +22,7 @@ export function Support() {
 
                     <div className="relative z-10 max-w-3xl mx-auto">
                         <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm text-white flex items-center justify-center mx-auto mb-8">
-                            <Code2 size={32} />
+                            <Code2 size={32} aria-hidden="true" />
                         </div>
                         <h2 className="text-3xl md:text-4xl font-bold font-heading mb-6">
                             Need a Custom Web Solution?
@@ -34,7 +34,7 @@ export function Support() {
                             href="mailto:support@wpineu.com"
                             className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
                         >
-                            <Mail size={18} />
+                            <Mail size={18} aria-hidden="true" />
                             Contact Us
                         </Link>
                     </div>
@@ -57,7 +57,7 @@ export function Support() {
                                 <span className="font-medium text-muted-foreground group-hover:text-primary transition-colors">
                                     {resource.name}
                                 </span>
-                                <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                                <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
                             </a>
                         ))}
                     </div>

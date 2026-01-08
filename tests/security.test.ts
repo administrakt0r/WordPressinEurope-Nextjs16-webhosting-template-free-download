@@ -102,6 +102,23 @@ describe('Security Headers', () => {
     }
   });
 
+  it('should have X-Permitted-Cross-Domain-Policies set to none', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const crossDomainHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-Permitted-Cross-Domain-Policies');
+    expect(crossDomainHeader).toBeDefined();
+    if (crossDomainHeader) {
+        expect(crossDomainHeader.value).toBe('none');
+    }
+  });
+
   it('should have Cross-Origin-Opener-Policy set to same-origin', async () => {
     if (!nextConfig.headers) {
       throw new Error('nextConfig.headers is undefined');
@@ -119,7 +136,7 @@ describe('Security Headers', () => {
     }
   });
 
-  it('should have X-Permitted-Cross-Domain-Policies set to none', async () => {
+  it('should have Cross-Origin-Resource-Policy set to same-origin', async () => {
     if (!nextConfig.headers) {
       throw new Error('nextConfig.headers is undefined');
     }
@@ -129,10 +146,10 @@ describe('Security Headers', () => {
 
     if (!globalHeaders) return;
 
-    const permHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-Permitted-Cross-Domain-Policies');
-    expect(permHeader).toBeDefined();
-    if (permHeader) {
-        expect(permHeader.value).toBe('none');
+    const corpHeader = globalHeaders.headers.find((h: Header) => h.key === 'Cross-Origin-Resource-Policy');
+    expect(corpHeader).toBeDefined();
+    if (corpHeader) {
+        expect(corpHeader.value).toBe('same-origin');
     }
   });
 });
