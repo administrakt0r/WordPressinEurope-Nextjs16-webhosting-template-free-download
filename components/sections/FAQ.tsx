@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { FAQAccordion } from "./FAQAccordion";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
 const faqs = [
     {
@@ -58,7 +59,7 @@ export function FAQ() {
                         </p>
                         <Link
                             href={EXTERNAL_LINKS.LEARNING_PORTAL}
-                            className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-600 focus-visible:outline-none"
+                            className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
                         >
                             Start Learning
                             <ArrowRight size={18} />
