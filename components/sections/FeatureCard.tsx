@@ -1,7 +1,8 @@
 "use client";
 
-import { LazyMotion, domAnimation, m } from "framer-motion";
+import { m } from "framer-motion";
 import { LucideIcon } from "lucide-react";
+import { memo } from "react";
 
 interface FeatureCardProps {
     icon: LucideIcon;
@@ -10,7 +11,8 @@ interface FeatureCardProps {
     index: number;
 }
 
-export function FeatureCard({ icon: Icon, title, description, index }: FeatureCardProps) {
+// ⚡ Performance: Memoized to prevent unnecessary re-renders when parent updates
+export const FeatureCard = memo(function FeatureCard({ icon: Icon, title, description, index }: FeatureCardProps) {
     return (
         <LazyMotion features={domAnimation} strict>
             <m.div
@@ -36,4 +38,4 @@ export function FeatureCard({ icon: Icon, title, description, index }: FeatureCa
             </m.div>
         </LazyMotion>
     );
-}
+});

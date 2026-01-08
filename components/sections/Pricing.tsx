@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Heart, ArrowRight } from "lucide-react";
+import { EXTERNAL_LINKS } from "@/lib/links";
 import { PricingCard } from "./PricingCard";
 
 export function Pricing() {
@@ -35,7 +36,7 @@ export function Pricing() {
                                 Help us keep this project alive and get more resources in return. Any amount helps! Contributors can receive higher resources.
                             </p>
                             <Link
-                                href="#"
+                                href={EXTERNAL_LINKS.CLIENT_PORTAL}
                                 className="inline-flex items-center gap-2 text-yellow-400 font-bold text-sm hover:underline"
                             >
                                 Contribute to Our Mission

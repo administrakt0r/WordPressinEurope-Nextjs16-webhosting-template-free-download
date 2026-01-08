@@ -1,5 +1,6 @@
 "use client";
 
+import { LazyMotion, domAnimation } from "framer-motion";
 import {
     Shield,
     Zap,
@@ -55,10 +56,12 @@ const technologies = [
 
 export function Features() {
     return (
-        <section id="features" className="py-20 bg-slate-950">
-            <div className="container mx-auto px-4 md:px-6">
+        // ⚡ Performance: Hoisted LazyMotion provider to parent to avoid multiple context creations
+        <LazyMotion features={domAnimation} strict>
+            <section id="features" className="py-20 bg-slate-950">
+                <div className="container mx-auto px-4 md:px-6">
 
-                {/* Tech Stack */}
+                    {/* Tech Stack */}
                 <div className="text-center mb-20">
                     <h2 className="text-2xl font-bold font-heading text-foreground mb-8">
                         Powered By Industry-Leading Technologies
@@ -98,17 +101,19 @@ export function Features() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {features.map((feature, index) => (
-                            <FeatureCard
-                                key={feature.title}
-                                icon={feature.icon}
-                                title={feature.title}
-                                description={feature.description}
-                                index={index}
-                            />
-                        ))}
-                    </div>
+                    <LazyMotion features={domAnimation} strict>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {features.map((feature, index) => (
+                                <FeatureCard
+                                    key={feature.title}
+                                    icon={feature.icon}
+                                    title={feature.title}
+                                    description={feature.description}
+                                    index={index}
+                                />
+                            ))}
+                        </div>
+                    </LazyMotion>
                 </div>
 
                 {/* Advantage Section */}
@@ -183,5 +188,6 @@ export function Features() {
                 </div>
             </div>
         </section>
+        </LazyMotion>
     );
 }
