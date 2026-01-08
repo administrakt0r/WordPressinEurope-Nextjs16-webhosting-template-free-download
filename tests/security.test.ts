@@ -101,4 +101,38 @@ describe('Security Headers', () => {
         expect(xFrameOptionsHeader.value).toBe('DENY');
     }
   });
+
+  it('should have Cross-Origin-Opener-Policy set to same-origin', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const coopHeader = globalHeaders.headers.find((h: Header) => h.key === 'Cross-Origin-Opener-Policy');
+    expect(coopHeader).toBeDefined();
+    if (coopHeader) {
+        expect(coopHeader.value).toBe('same-origin');
+    }
+  });
+
+  it('should have X-Permitted-Cross-Domain-Policies set to none', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const permHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-Permitted-Cross-Domain-Policies');
+    expect(permHeader).toBeDefined();
+    if (permHeader) {
+        expect(permHeader.value).toBe('none');
+    }
+  });
 });
