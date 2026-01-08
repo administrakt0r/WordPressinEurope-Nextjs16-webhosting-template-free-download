@@ -26,8 +26,18 @@ export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
+        let ticking = false;
+        // Optimize scroll performance using requestAnimationFrame
+        // This decouples the scroll event firing rate from React state updates,
+        // preventing main thread blocking during rapid scrolling.
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    setIsScrolled(window.scrollY > 20);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         };
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
