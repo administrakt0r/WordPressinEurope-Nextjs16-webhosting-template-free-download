@@ -152,4 +152,19 @@ describe('Security Headers', () => {
         expect(corpHeader.value).toBe('same-origin');
     }
   });
+
+  it('should not have duplicate headers', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const keys = globalHeaders.headers.map((h: Header) => h.key);
+    const uniqueKeys = new Set(keys);
+    expect(keys.length).toBe(uniqueKeys.size);
+  });
 });
