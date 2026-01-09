@@ -65,7 +65,7 @@ export function Navbar() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group" aria-label="WPinEU Home">
                     <div className="bg-primary text-white p-2 rounded-lg group-hover:scale-105 transition-transform duration-200">
-                        <Server size={24} />
+                        <Server size={24} aria-hidden="true" />
                     </div>
                     <div className="flex flex-col">
                         <span className="text-xl font-bold font-heading leading-none text-foreground">
@@ -122,7 +122,7 @@ export function Navbar() {
                         aria-expanded={isMobileMenuOpen}
                         aria-controls="mobile-menu"
                     >
-                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isMobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
                     </button>
                 </div>
             </div>
