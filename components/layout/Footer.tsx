@@ -98,7 +98,8 @@ export function Footer() {
                     </p>
                     <div className="flex items-center gap-1 text-sm text-muted-foreground">
                         <span>Made with</span>
-                        <Heart size={14} className="text-red-500 fill-red-500" />
+                    <span className="sr-only">love</span>
+                    <Heart size={14} className="text-red-500 fill-red-500" aria-hidden="true" />
                         <span>in Zagreb, Croatia</span>
                     </div>
                 </div>
