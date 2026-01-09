@@ -1,6 +1,6 @@
 "use client";
 
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { m } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 import { memo } from "react";
 

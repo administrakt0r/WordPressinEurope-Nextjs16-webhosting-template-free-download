@@ -101,19 +101,17 @@ export function Features() {
                         </p>
                     </div>
 
-                    <LazyMotion features={domAnimation} strict>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {features.map((feature, index) => (
-                                <FeatureCard
-                                    key={feature.title}
-                                    icon={feature.icon}
-                                    title={feature.title}
-                                    description={feature.description}
-                                    index={index}
-                                />
-                            ))}
-                        </div>
-                    </LazyMotion>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {features.map((feature, index) => (
+                            <FeatureCard
+                                key={feature.title}
+                                icon={feature.icon}
+                                title={feature.title}
+                                description={feature.description}
+                                index={index}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 {/* Advantage Section */}
