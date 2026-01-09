@@ -11,3 +11,7 @@
 ## 2026-01-05 - [Decorative Icons & Screen Reader Noise]
 **Learning:** The design makes heavy use of Lucide icons for visual polish (stars, feature icons, button arrows). Without `aria-hidden="true"`, screen readers announce each icon filename or name (e.g., "Star Star Star Star Star"), creating significant auditory clutter.
 **Action:** Always add `aria-hidden="true"` to icons that are purely decorative or where the meaning is already conveyed by adjacent text.
+
+## 2026-02-09 - [Icon-Replaced Text Patterns]
+**Learning:** Using an icon (like a Heart) to replace a word in a sentence (e.g., "Made with [Heart] in...") creates a semantic gap for screen readers, who hear "Made with in...".
+**Action:** When an icon replaces a word, always include the word in a `.sr-only` span and hide the icon with `aria-hidden="true"`, rather than relying on the icon's visual meaning.
