@@ -1,5 +1,3 @@
-"use client";
-
 import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download } from "lucide-react";
 import Image from "next/image";
 
