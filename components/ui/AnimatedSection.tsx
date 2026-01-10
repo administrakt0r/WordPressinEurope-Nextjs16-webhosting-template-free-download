@@ -1,6 +1,6 @@
 "use client";
 
-import { LazyMotion, domAnimation, m } from "framer-motion";
+import { m } from "framer-motion";
 
 interface AnimatedSectionProps {
     children: React.ReactNode;
@@ -9,6 +9,13 @@ interface AnimatedSectionProps {
     className?: string;
 }
 
+/**
+ * AnimatedSection
+ *
+ * Renders a motion div with entry animations.
+ * ⚡ Performance: Expects a parent <LazyMotion> provider to be present in the tree.
+ * Do not use this component without wrapping it (or a parent) in LazyMotion.
+ */
 export function AnimatedSection({ children, direction = "up", delay = 0, className = "" }: AnimatedSectionProps) {
     const offset = 15; // Reduced from 20 for smoother feel
 
@@ -31,16 +38,14 @@ export function AnimatedSection({ children, direction = "up", delay = 0, classNa
     };
 
     return (
-        <LazyMotion features={domAnimation} strict>
-            <m.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={variants}
-                className={className}
-            >
-                {children}
-            </m.div>
-        </LazyMotion>
+        <m.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={variants}
+            className={className}
+        >
+            {children}
+        </m.div>
     );
 }
