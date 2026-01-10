@@ -12,7 +12,7 @@ interface HostingHeroProps {
 
 export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
     return (
-        <LazyMotion features={domAnimation}>
+        <LazyMotion features={domAnimation} strict>
             <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
                 {/* Dynamic Background */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
