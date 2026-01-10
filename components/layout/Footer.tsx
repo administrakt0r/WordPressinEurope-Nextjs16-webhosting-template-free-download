@@ -11,7 +11,7 @@ export function Footer() {
                     <div className="space-y-4">
                         <Link href="/" className="flex items-center gap-2 group">
                             <div className="bg-primary text-white p-2 rounded-lg">
-                                <Server size={20} />
+                                <Server size={20} aria-hidden="true" />
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-lg font-bold font-heading leading-none text-foreground">
@@ -23,7 +23,7 @@ export function Footer() {
                             WordPress in Europe - A free WordPress hosting initiative providing high-quality hosting solutions for users across Europe.
                         </p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Mail size={16} />
+                            <Mail size={16} aria-hidden="true" />
                             <a href="mailto:support@wpineu.com" className="hover:text-primary transition-colors">
                                 support@wpineu.com
                             </a>
