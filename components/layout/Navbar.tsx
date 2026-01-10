@@ -63,7 +63,11 @@ export function Navbar() {
                 </a>
 
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group" aria-label="WPinEU Home">
+                <Link
+                    href="/"
+                    className="flex items-center gap-2 group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    aria-label="WPinEU Home"
+                >
                     <div className="bg-primary text-white p-2 rounded-lg group-hover:scale-105 transition-transform duration-200">
                         <Server size={24} aria-hidden="true" />
                     </div>
@@ -83,7 +87,7 @@ export function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-150 relative group"
+                            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-150 relative group focus-visible:outline-none focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:rounded-sm"
                         >
                             {link.name}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-150 group-hover:w-full" />
@@ -95,13 +99,13 @@ export function Navbar() {
                 <div className="hidden md:flex items-center gap-4">
                     <Link
                         href={EXTERNAL_LINKS.CLIENT_PORTAL}
-                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150"
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                         Sign In
                     </Link>
                     <Link
                         href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                        className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-slate-900"
+                        className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-background"
                     >
                         Get Started
                     </Link>
@@ -116,7 +120,7 @@ export function Navbar() {
                         Get Started
                     </Link>
                     <button
-                        className="p-2 text-foreground"
+                        className="p-2 text-foreground rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                         aria-expanded={isMobileMenuOpen}
@@ -140,7 +144,7 @@ export function Navbar() {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-base font-medium text-foreground py-2 border-b border-gray-800 last:border-0"
+                                className="text-base font-medium text-foreground py-2 border-b border-gray-800 last:border-0 focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {link.name}
@@ -149,7 +153,7 @@ export function Navbar() {
                         <div className="flex flex-col gap-3 mt-4">
                             <Link
                                 href={EXTERNAL_LINKS.CLIENT_PORTAL}
-                                className="w-full text-center py-3 rounded-lg border border-gray-700 font-medium"
+                                className="w-full text-center py-3 rounded-lg border border-gray-700 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                             >
                                 Sign In
                             </Link>

@@ -15,3 +15,7 @@
 ## 2026-02-09 - [Icon-Replaced Text Patterns]
 **Learning:** Using an icon (like a Heart) to replace a word in a sentence (e.g., "Made with [Heart] in...") creates a semantic gap for screen readers, who hear "Made with in...".
 **Action:** When an icon replaces a word, always include the word in a `.sr-only` span and hide the icon with `aria-hidden="true"`, rather than relying on the icon's visual meaning.
+
+## 2026-02-18 - [Semantic Focus Ring Offsets]
+**Learning:** Hardcoding focus ring offsets (e.g., `ring-offset-slate-900`) creates visual artifacts when the background changes (e.g., light mode or transparent headers). The design system's theme capabilities are underutilized here.
+**Action:** Use semantic tokens like `focus-visible:ring-offset-background` instead of fixed colors to ensure focus indicators remain visible and aesthetically consistent across different themes and background contexts.
