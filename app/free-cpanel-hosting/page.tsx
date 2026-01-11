@@ -1,6 +1,7 @@
 import { HostingLanding } from "@/components/templates/HostingLanding";
 import { ServiceDescription } from "@/components/sections/ServiceDescription";
 import { Metadata } from "next";
+import { safeJsonLd } from "@/lib/security";
 
 export const metadata: Metadata = {
     title: "Free cPanel Hosting | WPinEU",
@@ -67,7 +68,7 @@ export default function FreeCpanelHosting() {
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
             />
             <HostingLanding
                 title="Free cPanel Hosting"
