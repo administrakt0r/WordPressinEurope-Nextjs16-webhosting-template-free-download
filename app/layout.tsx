@@ -86,6 +86,7 @@ const jsonLd = {
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Providers } from "@/components/Providers";
 
 export default function RootLayout({
   children,
@@ -101,13 +102,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main id="main-content" className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <Providers>
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main id="main-content" className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import { LazyMotion, domAnimation } from "framer-motion";
 import {
     Shield,
     Zap,
@@ -56,12 +55,10 @@ const technologies = [
 
 export function Features() {
     return (
-        // ⚡ Performance: Hoisted LazyMotion provider to parent to avoid multiple context creations
-        <LazyMotion features={domAnimation} strict>
-            <section id="features" className="py-20 bg-slate-950">
-                <div className="container mx-auto px-4 md:px-6">
+        <section id="features" className="py-20 bg-slate-950">
+            <div className="container mx-auto px-4 md:px-6">
 
-                    {/* Tech Stack */}
+                {/* Tech Stack */}
                 <div className="text-center mb-20">
                     <h2 className="text-2xl font-bold font-heading text-foreground mb-8">
                         Powered By Industry-Leading Technologies
@@ -186,6 +183,5 @@ export function Features() {
                 </div>
             </div>
         </section>
-        </LazyMotion>
     );
 }
