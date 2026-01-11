@@ -86,6 +86,7 @@ const jsonLd = {
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { safeJsonLd } from "@/lib/security";
 
 export default function RootLayout({
   children,
@@ -99,7 +100,7 @@ export default function RootLayout({
       >
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
         />
         <div className="flex flex-col min-h-screen">
           <Navbar />
