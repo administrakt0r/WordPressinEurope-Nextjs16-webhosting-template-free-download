@@ -1,6 +1,6 @@
 "use client";
 
-import { LazyMotion, domAnimation, m } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
@@ -18,16 +18,15 @@ const features = [
 
 export function PricingCard() {
     return (
-        <LazyMotion features={domAnimation} strict>
-            <m.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden"
-            >
-                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-yellow-400" />
+        <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden"
+        >
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-yellow-400" />
 
-                <div className="p-8 md:p-12">
+            <div className="p-8 md:p-12">
                     <div className="flex justify-between items-start mb-8">
                         <div>
                             <h3 className="text-2xl font-bold font-heading text-foreground">Completely FREE</h3>
@@ -61,9 +60,8 @@ export function PricingCard() {
                                 <span className="text-foreground text-sm font-medium">{feature}</span>
                             </div>
                         ))}
-                    </div>
                 </div>
-            </m.div>
-        </LazyMotion>
+            </div>
+        </m.div>
     );
 }

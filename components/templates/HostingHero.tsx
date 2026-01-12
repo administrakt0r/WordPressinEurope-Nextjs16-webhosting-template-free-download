@@ -1,7 +1,7 @@
 "use client";
 
 // Optimization: Use LazyMotion and m components to reduce initial bundle size by code-splitting animations.
-import { LazyMotion, domAnimation, m } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Check, Star, Server, Zap, Shield, Globe } from "lucide-react";
 
@@ -12,10 +12,9 @@ interface HostingHeroProps {
 
 export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
     return (
-        <LazyMotion features={domAnimation} strict>
-            <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
-                {/* Dynamic Background */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
+            {/* Dynamic Background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     {/* Gradient Orbs */}
                     <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px]" />
                     <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px]" />
@@ -191,9 +190,8 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
                             {/* Glow Effects */}
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/10 rounded-full blur-3xl -z-10" />
                         </m.div>
-                    </div>
                 </div>
-            </section>
-        </LazyMotion>
+            </div>
+        </section>
     );
 }
