@@ -68,7 +68,7 @@ export function FAQ() {
                             className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
                         >
                             Start Learning
-                            <ArrowRight size={18} />
+                            <ArrowRight size={18} aria-hidden="true" />
                         </Link>
                     </div>
                 </div>
