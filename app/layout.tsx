@@ -86,6 +86,7 @@ const jsonLd = {
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { BackToTop } from "@/components/ui/BackToTop";
 import { safeJsonLd } from "@/lib/security";
 
 export default function RootLayout({
@@ -108,6 +109,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <BackToTop />
         </div>
       </body>
     </html>

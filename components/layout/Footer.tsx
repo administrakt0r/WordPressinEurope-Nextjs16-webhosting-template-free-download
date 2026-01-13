@@ -64,7 +64,12 @@ export function Footer() {
                                 { label: "About Us", href: EXTERNAL_LINKS.ABOUT },
                             ].map((item) => (
                                 <li key={item.label}>
-                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                                    <Link
+                                        href={item.href}
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         {item.label}
                                     </Link>
                                 </li>
@@ -83,7 +88,12 @@ export function Footer() {
                                 { label: "Report Abuse", href: EXTERNAL_LINKS.REPORT_ABUSE },
                             ].map((item) => (
                                 <li key={item.label}>
-                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                                    <Link
+                                        href={item.href}
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         {item.label}
                                     </Link>
                                 </li>
