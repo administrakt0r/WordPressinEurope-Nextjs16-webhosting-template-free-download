@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
 export function Hero() {
     return (
@@ -39,7 +40,7 @@ export function Hero() {
 
                         <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mb-12">
                             <Link
-                                href="https://clients.wpineu.com/order/free-wordpress-hosting"
+                                href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                                 className="group relative inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 hover:shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                             >
                                 <span className="relative z-10">Get Started Now</span>
@@ -56,7 +57,7 @@ export function Hero() {
 
                         <div className="flex items-center justify-center lg:justify-start gap-6 pt-8 border-t border-slate-800/50">
                             <div className="flex flex-col">
-                                <div className="flex items-center gap-1 text-yellow-400 mb-1">
+                                <div className="flex items-center gap-1 text-yellow-400 mb-1" aria-label="Rated 5 out of 5 stars">
                                     {[1, 2, 3, 4, 5].map((i) => (
                                         <Star key={i} size={16} fill="currentColor" aria-hidden="true" />
                                     ))}
@@ -136,8 +137,8 @@ export function Hero() {
                                     </div>
                                 </div>
                                 <Link
-                                    href="https://clients.wpineu.com/order/free-wordpress-hosting"
-                                    className="h-10 px-6 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-600/20 text-white font-bold text-sm transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                                    href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
+                                    className="h-10 px-6 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-600/20 text-white font-bold text-sm transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                                 >
                                     Order Now
                                 </Link>
