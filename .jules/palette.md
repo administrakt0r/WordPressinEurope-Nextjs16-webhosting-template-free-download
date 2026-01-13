@@ -19,3 +19,7 @@
 ## 2026-02-18 - [Semantic Focus Ring Offsets]
 **Learning:** Hardcoding focus ring offsets (e.g., `ring-offset-slate-900`) creates visual artifacts when the background changes (e.g., light mode or transparent headers). The design system's theme capabilities are underutilized here.
 **Action:** Use semantic tokens like `focus-visible:ring-offset-background` instead of fixed colors to ensure focus indicators remain visible and aesthetically consistent across different themes and background contexts.
+
+## 2025-05-18 - [Nested Dark Theme Focus Rings]
+**Learning:** Semantic tokens like `ring-offset-background` often resolve to the global body color (e.g., `slate-900`), which fails to create a visible "gap" when used on components with darker backgrounds (e.g., `slate-950`). This makes the focus ring look like a double border instead of a separated ring.
+**Action:** When working with nested dark sections, explicitly match the `ring-offset-{color}` utility to the section's background color (e.g., `ring-offset-slate-950`) instead of relying on the global semantic variable.
