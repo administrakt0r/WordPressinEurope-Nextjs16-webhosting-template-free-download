@@ -29,20 +29,21 @@ export const PricingCard = memo(function PricingCard() {
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-yellow-400" />
 
             <div className="p-8 md:p-12">
-                <div className="flex justify-between items-start mb-8">
+                <div className="flex justify-between items-start mb-8 gap-4">
                     <div>
                         <h3 className="text-2xl font-bold font-heading text-foreground">Completely FREE</h3>
                         <p className="text-muted-foreground mt-1">Perfect for Businesses & Blogs</p>
                     </div>
-                    <div className="bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
-                        Free Forever
-                    </div>
-
-                <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-5xl font-bold text-foreground">€0.00</span>
-                    <span className="text-muted-foreground font-medium">/mo</span>
                 </div>
-                <p className="text-sm text-muted-foreground mb-8">No credit card required</p>
+
+                    <div className="text-right">
+                        <div className="flex items-baseline gap-1 mb-2">
+                            <span className="text-5xl font-bold text-foreground">€0.00</span>
+                            <span className="text-muted-foreground font-medium">/mo</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">No credit card required</p>
+                    </div>
+                </div>
 
                 <Link
                     href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
