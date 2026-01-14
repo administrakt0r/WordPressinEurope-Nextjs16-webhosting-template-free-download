@@ -36,28 +36,30 @@ export function PricingCard() {
                             Free Forever
                         </div>
                     </div>
-
-                    <div className="flex items-baseline gap-1 mb-2">
-                        <span className="text-5xl font-bold text-foreground">€0.00</span>
-                        <span className="text-muted-foreground font-medium">/mo</span>
+                    <div className="bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                        Free Forever
                     </div>
-                    <p className="text-sm text-muted-foreground mb-8">No credit card required</p>
+                </div>
 
-                    <Link
-                        href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                        className="group flex items-center justify-center gap-2 w-full bg-primary hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 mb-8"
-                    >
-                        Get Started Free Now
-                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                    </Link>
+                <div className="flex items-baseline gap-1 mb-2">
+                    <span className="text-5xl font-bold text-foreground">€0.00</span>
+                    <span className="text-muted-foreground font-medium">/mo</span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-8">No credit card required</p>
 
-                    <div className="space-y-4">
-                        {features.map((feature) => (
-                            <div key={feature} className="flex items-start gap-3">
-                                <div className="p-1 rounded-full bg-green-900/30 text-green-400 mt-0.5">
-                                    <Check size={14} strokeWidth={3} aria-hidden="true" />
-                                </div>
-                                <span className="text-foreground text-sm font-medium">{feature}</span>
+                <Link
+                    href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
+                    className="group flex items-center justify-center gap-2 w-full bg-primary hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 mb-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                >
+                    Get Started Free Now
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                </Link>
+
+                <div className="space-y-4">
+                    {features.map((feature) => (
+                        <div key={feature} className="flex items-start gap-3">
+                            <div className="p-1 rounded-full bg-green-900/30 text-green-400 mt-0.5">
+                                <Check size={14} strokeWidth={3} aria-hidden="true" />
                             </div>
                         ))}
                 </div>

@@ -3,13 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Server } from "lucide-react";
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 import { EXTERNAL_LINKS } from "@/lib/links";
-
-export function cn(...inputs: (string | undefined | null | false)[]) {
-    return twMerge(clsx(inputs));
-}
+import { cn } from "@/lib/utils";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -24,6 +19,18 @@ const navLinks = [
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    // UX: Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isMobileMenuOpen]);
 
     useEffect(() => {
         let ticking = false;
@@ -135,31 +142,36 @@ export function Navbar() {
             {isMobileMenuOpen && (
                 <div
                     id="mobile-menu"
-                    className="md:hidden bg-slate-900 border-t border-gray-800"
+                    className="md:hidden fixed inset-0 top-[var(--navbar-height,72px)] bg-slate-950 z-40 overflow-y-auto"
                     role="navigation"
                     aria-label="Mobile navigation"
+                    style={{
+                        '--navbar-height': isScrolled ? '72px' : '88px',
+                    } as React.CSSProperties}
                 >
-                    <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+                    <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-base font-medium text-foreground py-2 border-b border-gray-800 last:border-0 focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all"
+                                className="text-lg font-medium text-foreground py-3 border-b border-gray-800/50 last:border-0 focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {link.name}
                             </Link>
                         ))}
-                        <div className="flex flex-col gap-3 mt-4">
+                        <div className="flex flex-col gap-4 mt-6">
                             <Link
                                 href={EXTERNAL_LINKS.CLIENT_PORTAL}
-                                className="w-full text-center py-3 rounded-lg border border-gray-700 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                className="w-full text-center py-3.5 rounded-lg border border-gray-700 font-medium hover:bg-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Sign In
                             </Link>
                             <Link
                                 href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                                className="w-full text-center py-3 rounded-lg bg-primary text-white font-medium"
+                                className="w-full text-center py-3.5 rounded-lg bg-primary text-white font-medium hover:bg-blue-700 transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Get Started
                             </Link>
