@@ -36,10 +36,6 @@ export function PricingCard() {
                             Free Forever
                         </div>
                     </div>
-                    <div className="bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
-                        Free Forever
-                    </div>
-                </div>
 
                 <div className="flex items-baseline gap-1 mb-2">
                     <span className="text-5xl font-bold text-foreground">€0.00</span>
@@ -61,7 +57,9 @@ export function PricingCard() {
                             <div className="p-1 rounded-full bg-green-900/30 text-green-400 mt-0.5">
                                 <Check size={14} strokeWidth={3} aria-hidden="true" />
                             </div>
-                        ))}
+                            <span className="text-muted-foreground">{feature}</span>
+                        </div>
+                    ))}
                 </div>
             </div>
         </m.div>
