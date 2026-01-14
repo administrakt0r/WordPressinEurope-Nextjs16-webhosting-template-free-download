@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Check, Star, Server, Zap, Shield, Globe } from "lucide-react";
 import { HeroAnimator } from "./HeroAnimator";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
 interface HostingHeroProps {
     heroTitle: React.ReactNode;
@@ -33,7 +34,7 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
 
             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mb-12">
                 <Link
-                    href="https://clients.wpineu.com/order/free-wordpress-hosting"
+                    href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                     className="group relative inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all hover:shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1 overflow-hidden"
                 >
                     <span className="relative z-10">Get Started Now</span>
