@@ -17,6 +17,7 @@ const features = [
     "NO advertisements or hidden fees"
 ];
 
+// PERF: Memoize the component to prevent unnecessary re-renders
 export const PricingCard = memo(function PricingCard() {
     return (
         <m.div
@@ -58,7 +59,7 @@ export const PricingCard = memo(function PricingCard() {
                             <div className="p-1 rounded-full bg-green-900/30 text-green-400 mt-0.5">
                                 <Check size={14} strokeWidth={3} aria-hidden="true" />
                             </div>
-                            <span className="text-slate-300 text-sm">{feature}</span>
+                            <span className="text-muted-foreground">{feature}</span>
                         </div>
                     ))}
                 </div>

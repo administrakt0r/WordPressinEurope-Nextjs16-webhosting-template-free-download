@@ -13,11 +13,7 @@ export function BackToTop() {
     const toggleVisibility = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          if (window.scrollY > 300) {
-            setIsVisible(true);
-          } else {
-            setIsVisible(false);
-          }
+          setIsVisible(window.scrollY > 300);
           ticking = false;
         });
         ticking = true;
@@ -41,7 +37,7 @@ export function BackToTop() {
       tabIndex={isVisible ? undefined : -1}
       aria-hidden={!isVisible}
       className={cn(
-        "fixed bottom-8 right-8 z-50 p-3 bg-primary text-white rounded-full shadow-lg hover:bg-blue-700 hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-slate-950",
+        "fixed bottom-8 right-8 z-50 p-3 bg-primary text-white rounded-full shadow-lg hover:bg-blue-700 hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-slate-950",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       )}
       aria-label="Back to top"

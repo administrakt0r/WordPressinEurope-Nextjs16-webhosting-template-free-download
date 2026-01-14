@@ -117,6 +117,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <BackToTop />
           </div>
           <BackToTop />
         </Providers>
