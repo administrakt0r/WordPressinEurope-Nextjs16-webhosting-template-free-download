@@ -1,9 +1,5 @@
 import { MetadataRoute } from 'next'
 
-// const REVALIDATE_SECONDS = 86400
-
-// export const revalidate = REVALIDATE_SECONDS
-
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://wpineu.com'
     const lastModified = new Date().toISOString()
@@ -16,13 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1,
         },
         {
-            url: `${baseUrl}/free-ssd-hosting`,
+            url: `${baseUrl}/free-wordpress-hosting`,
             lastModified,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/free-redis-hosting`,
+            url: `${baseUrl}/free-cpanel-hosting`,
             lastModified,
             changeFrequency: 'monthly',
             priority: 0.8,
@@ -34,7 +30,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/free-wordpress-hosting`,
+            url: `${baseUrl}/free-redis-hosting`,
+            lastModified,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/free-ssd-hosting`,
+            lastModified,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/free-europe-hosting`,
+            lastModified,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/free-web-hosting`,
             lastModified,
             changeFrequency: 'monthly',
             priority: 0.8,

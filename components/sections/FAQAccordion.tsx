@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useId, useCallback } from "react";
-import { LazyMotion, domAnimation } from "framer-motion";
 import { FAQItem } from "./FAQItem";
 
 interface FAQItemData {
@@ -23,22 +22,20 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
     }, []);
 
     return (
-        <LazyMotion features={domAnimation} strict>
-            <div className="max-w-3xl mx-auto mb-20">
-                <div className="space-y-4">
-                    {faqs.map((faq, index) => (
-                        <FAQItem
-                            key={index}
-                            question={faq.question}
-                            answer={faq.answer}
-                            isOpen={openIndex === index}
-                            onToggle={handleToggle}
-                            accordionId={accordionId}
-                            index={index}
-                        />
-                    ))}
-                </div>
+        <div className="max-w-3xl mx-auto mb-20">
+            <div className="space-y-4">
+                {faqs.map((faq, index) => (
+                    <FAQItem
+                        key={index}
+                        question={faq.question}
+                        answer={faq.answer}
+                        isOpen={openIndex === index}
+                        onToggle={handleToggle}
+                        accordionId={accordionId}
+                        index={index}
+                    />
+                ))}
             </div>
-        </LazyMotion>
+        </div>
     );
 }
