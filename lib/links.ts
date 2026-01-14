@@ -16,4 +16,4 @@ export const EXTERNAL_LINKS = {
     TERMS_SERVICE: "https://wp.wpineu.com/terms-of-service",
     SLA: "https://wp.wpineu.com/service-level-agreement",
     REPORT_ABUSE: "https://wp.wpineu.com/report-abuse",
-};
+} as const;
