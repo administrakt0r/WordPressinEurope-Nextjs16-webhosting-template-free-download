@@ -1,13 +1,11 @@
 import { Users, Lightbulb, ShieldCheck, Globe2 } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { LazyMotion, domAnimation } from "framer-motion";
 
 export function About() {
     return (
-        <LazyMotion features={domAnimation} strict>
-            <section id="about" className="py-20 bg-slate-950 overflow-hidden">
-                <div className="container mx-auto px-4 md:px-6">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <section id="about" className="py-20 bg-slate-950 overflow-hidden">
+            <div className="container mx-auto px-4 md:px-6">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
                         {/* Text Content */}
                         <AnimatedSection direction="left">
                             <h2 className="text-3xl md:text-4xl font-bold font-heading text-foreground mb-6">
@@ -94,6 +92,5 @@ export function About() {
                     </div>
                 </div>
             </section>
-        </LazyMotion>
     );
 }

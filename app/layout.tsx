@@ -110,14 +110,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
         />
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main id="main-content" className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-          <BackToTop />
-        </div>
+        <Providers>
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main id="main-content" className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );
