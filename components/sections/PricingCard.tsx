@@ -33,10 +33,6 @@ export const PricingCard = memo(function PricingCard() {
                         <h3 className="text-2xl font-bold font-heading text-foreground">Completely FREE</h3>
                         <p className="text-muted-foreground mt-1">Perfect for Businesses & Blogs</p>
                     </div>
-                    <div className="bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
-                        Free Forever
-                    </div>
-                </div>
 
                 <div className="flex items-baseline gap-1 mb-2">
                     <span className="text-5xl font-bold text-foreground">€0.00</span>
