@@ -86,7 +86,10 @@ const jsonLd = {
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { BackToTop } from "@/components/ui/BackToTop";
+import { safeJsonLd } from "@/lib/security";
 import { Providers } from "@/components/Providers";
+import { BackToTop } from "@/components/ui/BackToTop";
 
 export default function RootLayout({
   children,
@@ -98,18 +101,27 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-slate-950 text-slate-50 transition-colors duration-300`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-6 py-3 bg-white text-blue-600 font-bold rounded-lg shadow-lg ring-2 ring-blue-500 ring-offset-2 ring-offset-slate-950 transition-transform"
+        >
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
         />
         <Providers>
+          <BackToTop />
           <div className="flex flex-col min-h-screen">
             <Navbar />
             <main id="main-content" className="flex-grow">
               {children}
             </main>
             <Footer />
+            <BackToTop />
           </div>
+          <BackToTop />
         </Providers>
       </body>
     </html>

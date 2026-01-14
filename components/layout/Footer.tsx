@@ -9,7 +9,7 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* Brand Column */}
                     <div className="space-y-4">
-                        <Link href="/" className="flex items-center gap-2 group">
+                        <Link href="/" className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg">
                             <div className="bg-primary text-white p-2 rounded-lg">
                                 <Server size={20} aria-hidden="true" />
                             </div>
@@ -24,7 +24,7 @@ export function Footer() {
                         </p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <Mail size={16} aria-hidden="true" />
-                            <a href="mailto:support@wpineu.com" className="hover:text-primary transition-colors">
+                            <a href="mailto:support@wpineu.com" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm">
                                 support@wpineu.com
                             </a>
                         </div>
@@ -44,7 +44,7 @@ export function Footer() {
                                 { label: "Free Europe Hosting", href: "/free-europe-hosting" },
                             ].map((item) => (
                                 <li key={item.label}>
-                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm">
                                         {item.label}
                                     </Link>
                                 </li>
@@ -64,7 +64,12 @@ export function Footer() {
                                 { label: "About Us", href: EXTERNAL_LINKS.ABOUT },
                             ].map((item) => (
                                 <li key={item.label}>
-                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                                    <Link
+                                        href={item.href}
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         {item.label}
                                     </Link>
                                 </li>
@@ -83,7 +88,12 @@ export function Footer() {
                                 { label: "Report Abuse", href: EXTERNAL_LINKS.REPORT_ABUSE },
                             ].map((item) => (
                                 <li key={item.label}>
-                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                                    <Link
+                                        href={item.href}
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         {item.label}
                                     </Link>
                                 </li>

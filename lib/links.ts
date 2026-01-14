@@ -4,7 +4,6 @@ export const EXTERNAL_LINKS = {
     ORDER_FREE_HOSTING: "https://clients.wpineu.com/order/free-wordpress-hosting",
 
     // WordPress Info & Blogs
-    WP_PORTAL: "https://wp.wpineu.com",
     BLOG: "https://wp.wpineu.com",
     LEARNING_PORTAL: "https://wp.wpineu.com/learning-portal",
     ABOUT: "https://wp.wpineu.com/about-wpineu/",
@@ -17,4 +16,4 @@ export const EXTERNAL_LINKS = {
     TERMS_SERVICE: "https://wp.wpineu.com/terms-of-service",
     SLA: "https://wp.wpineu.com/service-level-agreement",
     REPORT_ABUSE: "https://wp.wpineu.com/report-abuse",
-};
+} as const;
