@@ -112,6 +112,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
         />
         <Providers>
+          <BackToTop />
           <div className="flex flex-col min-h-screen">
             <Navbar />
             <main id="main-content" className="flex-grow">
