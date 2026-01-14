@@ -38,6 +38,7 @@ export const PricingCard = memo(function PricingCard() {
                     <span className="text-5xl font-bold text-foreground">€0.00</span>
                     <span className="text-muted-foreground font-medium">/mo</span>
                 </div>
+                </div>
                 <p className="text-sm text-muted-foreground mb-8">No credit card required</p>
 
                 <Link
