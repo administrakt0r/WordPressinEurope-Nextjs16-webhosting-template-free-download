@@ -33,6 +33,7 @@ export const PricingCard = memo(function PricingCard() {
                         <h3 className="text-2xl font-bold font-heading text-foreground">Completely FREE</h3>
                         <p className="text-muted-foreground mt-1">Perfect for Businesses & Blogs</p>
                     </div>
+                </div>
 
                 <div className="flex items-baseline gap-1 mb-2">
                     <span className="text-5xl font-bold text-foreground">€0.00</span>

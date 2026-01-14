@@ -88,6 +88,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { safeJsonLd } from "@/lib/security";
 import { Providers } from "@/components/Providers";
+import { BackToTop } from "@/components/ui/BackToTop";
 
 export default function RootLayout({
   children,
@@ -117,6 +118,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
+          <BackToTop />
         </Providers>
       </body>
     </html>
