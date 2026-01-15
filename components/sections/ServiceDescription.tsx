@@ -46,11 +46,11 @@ export function ServiceDescription({ title, subtitle, description, features, tec
 
                 {/* Features Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                    {features.map((feature, index) => {
+                    {features.map((feature) => {
                         const Icon = iconMap[feature.iconName];
                         return (
                             <div
-                                key={index}
+                                key={feature.title}
                                 className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-blue-500/50 transition-all"
                             >
                                 <div className="w-12 h-12 rounded-lg bg-blue-900/30 text-blue-400 flex items-center justify-center mb-4">
@@ -77,8 +77,7 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                                         alt={tech.name}
                                         width={tech.width || 100}
                                         height={tech.height || 100}
-                                        className="h-full w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
-                                        style={{ objectFit: 'contain', width: 'auto', height: '100%' }}
+                                        className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                                     />
                                 </div>
                             ))}
