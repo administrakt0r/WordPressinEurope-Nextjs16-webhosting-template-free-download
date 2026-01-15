@@ -71,8 +71,7 @@ export function Features() {
                                             alt={tech.name}
                                             width={tech.width}
                                             height={tech.height}
-                                            className="h-full w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
-                                            style={{ objectFit: 'contain' }}
+                                            className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                                         />
                                     </div>
                                 ) : (
