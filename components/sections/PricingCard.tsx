@@ -52,16 +52,16 @@ export const PricingCard = memo(function PricingCard() {
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </Link>
 
-                <div className="space-y-4">
+                <ul className="space-y-4" aria-label="Hosting features">
                     {features.map((feature) => (
-                        <div key={feature} className="flex items-start gap-3">
+                        <li key={feature} className="flex items-start gap-3">
                             <div className="p-1 rounded-full bg-green-900/30 text-green-400 mt-0.5">
                                 <Check size={14} strokeWidth={3} aria-hidden="true" />
                             </div>
                             <span className="text-muted-foreground">{feature}</span>
-                        </div>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </div>
         </m.div>
     );
