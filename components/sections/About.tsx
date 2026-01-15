@@ -1,6 +1,13 @@
 import { Users, Lightbulb, ShieldCheck, Globe2 } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
+const IMPACT_GOALS = [
+    "Support long-term learning and digital growth",
+    "Help people develop practical skills for real careers",
+    "Encourage economic independence through technology",
+    "Strengthen digital literacy across EU communities"
+];
+
 export function About() {
     return (
         <section id="about" className="py-20 bg-slate-950 overflow-hidden">
@@ -41,12 +48,7 @@ export function About() {
                                             Our mission goes beyond free hosting — it&apos;s about building opportunities. Through WP in EU, we aim to:
                                         </p>
                                         <ul className="space-y-2">
-                                            {[
-                                                "Support long-term learning and digital growth",
-                                                "Help people develop practical skills for real careers",
-                                                "Encourage economic independence through technology",
-                                                "Strengthen digital literacy across EU communities"
-                                            ].map((item) => (
+                                            {IMPACT_GOALS.map((item) => (
                                                 <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
                                                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                                                     {item}
