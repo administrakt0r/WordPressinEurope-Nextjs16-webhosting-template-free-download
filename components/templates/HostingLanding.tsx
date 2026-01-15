@@ -23,8 +23,6 @@ const Support = dynamic(() => import("@/components/sections/Support").then(mod =
 });
 
 interface HostingLandingProps {
-    title: string;
-    description: string;
     heroTitle: React.ReactNode;
     heroSubtitle: string;
     children?: React.ReactNode;

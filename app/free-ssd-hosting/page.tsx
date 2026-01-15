@@ -70,8 +70,6 @@ export default function FreeSSDHosting() {
                 dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
             />
             <HostingLanding
-                title="Free SSD NVMe Hosting"
-                description="Enterprise-grade NVMe SSD storage"
                 heroTitle={
                     <>
                         Blazing Fast <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">SSD NVMe</span> Hosting

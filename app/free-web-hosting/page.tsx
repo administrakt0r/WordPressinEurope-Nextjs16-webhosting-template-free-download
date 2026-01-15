@@ -11,8 +11,6 @@ export const metadata: Metadata = {
 export default function FreeWebHosting() {
     return (
         <HostingLanding
-            title="Free Web Hosting"
-            description="Reliable and secure Free Web Hosting for your projects."
             heroTitle={
                 <>
                     Reliable <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-200">Free Web Hosting</span>
