@@ -53,7 +53,16 @@ const technologies = [
 
 export function Features() {
     return (
-        <section id="features" className="py-20 bg-slate-950">
+        <section
+            id="features"
+            className="py-20 bg-slate-950"
+            // ⚡ Performance: content-visibility skips rendering work when off-screen
+            // contain-intrinsic-size prevents scrollbar jumps (estimated height)
+            style={{
+                contentVisibility: "auto",
+                containIntrinsicSize: "1px 1200px"
+            }}
+        >
             <div className="container mx-auto px-4 md:px-6">
 
                 {/* Tech Stack */}
@@ -71,6 +80,7 @@ export function Features() {
                                             alt={tech.name}
                                             width={tech.width}
                                             height={tech.height}
+                                            sizes="(max-width: 768px) 100px, 150px"
                                             className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                                         />
                                     </div>
