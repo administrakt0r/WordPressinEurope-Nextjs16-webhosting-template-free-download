@@ -27,3 +27,7 @@
 ## 2025-05-23 - [Star Rating Accessibility Patterns]
 **Learning:** Visual star ratings implemented as a sequence of icons are often treated by screen readers as individual images ("Star, Star, Star..."). This fails to convey the *aggregate* value (e.g., "Rated 5 out of 5 stars").
 **Action:** Wrap star rating collections in a container with `role="img"` and a descriptive `aria-label` summarizing the score, while hiding individual star icons from assistive technology.
+
+## 2025-05-24 - [Semantic Lists for Feature Grids]
+**Learning:** Rendering lists of features (e.g., in pricing cards) as a series of `div`s prevents screen readers from announcing them as a list (e.g., "List of 8 items"). This forces users to navigate item by item without knowing the scope.
+**Action:** Always use `<ul>` and `<li>` for feature lists, even if the visual design doesn't look like a traditional bulleted list.
