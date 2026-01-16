@@ -2,6 +2,31 @@ import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 
+const HOSTING_SERVICES = [
+    { label: "Free WordPress Hosting", href: "/free-wordpress-hosting" },
+    { label: "Free Web Hosting", href: "/free-web-hosting" },
+    { label: "Free LiteSpeed Hosting", href: "/free-litespeed-hosting" },
+    { label: "Free cPanel Hosting", href: "/free-cpanel-hosting" },
+    { label: "Free Redis Hosting", href: "/free-redis-hosting" },
+    { label: "Free SSD Hosting", href: "/free-ssd-hosting" },
+    { label: "Free Europe Hosting", href: "/free-europe-hosting" },
+];
+
+const RESOURCES = [
+    { label: "Learning Portal", href: EXTERNAL_LINKS.LEARNING_PORTAL },
+    { label: "Clients Zone", href: EXTERNAL_LINKS.CLIENT_PORTAL },
+    { label: "Order Free Hosting", href: EXTERNAL_LINKS.ORDER_FREE_HOSTING },
+    { label: "Uptime Status", href: EXTERNAL_LINKS.UPTIME },
+    { label: "About Us", href: EXTERNAL_LINKS.ABOUT },
+];
+
+const LEGAL_LINKS = [
+    { label: "Privacy Policy", href: EXTERNAL_LINKS.PRIVACY_POLICY },
+    { label: "Terms of Service", href: EXTERNAL_LINKS.TERMS_SERVICE },
+    { label: "Service Level Agreement", href: EXTERNAL_LINKS.SLA },
+    { label: "Report Abuse", href: EXTERNAL_LINKS.REPORT_ABUSE },
+];
+
 export function Footer() {
     return (
         <footer className="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
@@ -34,15 +59,7 @@ export function Footer() {
                     <div>
                         <h3 className="font-bold font-heading text-foreground mb-4">Hosting Services</h3>
                         <ul className="space-y-2">
-                            {[
-                                { label: "Free WordPress Hosting", href: "/free-wordpress-hosting" },
-                                { label: "Free Web Hosting", href: "/free-web-hosting" },
-                                { label: "Free LiteSpeed Hosting", href: "/free-litespeed-hosting" },
-                                { label: "Free cPanel Hosting", href: "/free-cpanel-hosting" },
-                                { label: "Free Redis Hosting", href: "/free-redis-hosting" },
-                                { label: "Free SSD Hosting", href: "/free-ssd-hosting" },
-                                { label: "Free Europe Hosting", href: "/free-europe-hosting" },
-                            ].map((item) => (
+                            {HOSTING_SERVICES.map((item) => (
                                 <li key={item.label}>
                                     <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm">
                                         {item.label}
@@ -56,13 +73,7 @@ export function Footer() {
                     <div>
                         <h3 className="font-bold font-heading text-foreground mb-4">Resources & Support</h3>
                         <ul className="space-y-2">
-                            {[
-                                { label: "Learning Portal", href: EXTERNAL_LINKS.LEARNING_PORTAL },
-                                { label: "Clients Zone", href: EXTERNAL_LINKS.CLIENT_PORTAL },
-                                { label: "Order Free Hosting", href: EXTERNAL_LINKS.ORDER_FREE_HOSTING },
-                                { label: "Uptime Status", href: EXTERNAL_LINKS.UPTIME },
-                                { label: "About Us", href: EXTERNAL_LINKS.ABOUT },
-                            ].map((item) => (
+                            {RESOURCES.map((item) => (
                                 <li key={item.label}>
                                     <Link
                                         href={item.href}
@@ -81,12 +92,7 @@ export function Footer() {
                     <div>
                         <h3 className="font-bold font-heading text-foreground mb-4">Legal & Policies</h3>
                         <ul className="space-y-2">
-                            {[
-                                { label: "Privacy Policy", href: EXTERNAL_LINKS.PRIVACY_POLICY },
-                                { label: "Terms of Service", href: EXTERNAL_LINKS.TERMS_SERVICE },
-                                { label: "Service Level Agreement", href: EXTERNAL_LINKS.SLA },
-                                { label: "Report Abuse", href: EXTERNAL_LINKS.REPORT_ABUSE },
-                            ].map((item) => (
+                            {LEGAL_LINKS.map((item) => (
                                 <li key={item.label}>
                                     <Link
                                         href={item.href}
