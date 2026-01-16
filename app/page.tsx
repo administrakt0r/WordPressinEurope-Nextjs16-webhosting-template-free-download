@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Features } from "@/components/sections/Features";
 import { Metadata } from "next";
 import { safeJsonLd } from "@/lib/security";
+import { WEBSITE_JSON_LD, SERVICE_JSON_LD } from "@/lib/json-ld";
 
 // Dynamic imports for below-the-fold components
 const Pricing = dynamic(() => import("@/components/sections/Pricing").then(mod => ({ default: mod.Pricing })), {
@@ -29,54 +30,16 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "WPinEU",
-  "url": "https://wpineu.com",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://wpineu.com/?s={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-};
-
-const serviceJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Free WordPress Hosting",
-  "provider": {
-    "@type": "Organization",
-    "name": "WPinEU"
-  },
-  "areaServed": "Europe",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Hosting Services",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Free WordPress Hosting Plan"
-        },
-        "price": "0.00",
-        "priceCurrency": "EUR"
-      }
-    ]
-  }
-};
-
 export default function Home() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(WEBSITE_JSON_LD) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(serviceJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(SERVICE_JSON_LD) }}
       />
       <Hero />
       <Features />
