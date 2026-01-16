@@ -10,7 +10,16 @@ const IMPACT_GOALS = [
 
 export function About() {
     return (
-        <section id="about" className="py-20 bg-slate-950 overflow-hidden">
+        <section
+            id="about"
+            className="py-20 bg-slate-950 overflow-hidden"
+            // ⚡ Performance: content-visibility skips rendering work when off-screen
+            // contain-intrinsic-size prevents scrollbar jumps (estimated height)
+            style={{
+                contentVisibility: "auto",
+                containIntrinsicSize: "1px 800px"
+            }}
+        >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                         {/* Text Content */}
