@@ -1,7 +1,3 @@
-"use client";
-
-import { memo } from "react";
-import { m } from "framer-motion";
 import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
@@ -17,14 +13,10 @@ const features = [
     "NO advertisements or hidden fees"
 ];
 
-// PERF: Memoize the component to prevent unnecessary re-renders
-export const PricingCard = memo(function PricingCard() {
+export function PricingCard() {
     return (
-        <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden"
+        <div
+            className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden animate-slide-up"
         >
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-yellow-400" />
 
@@ -63,6 +55,6 @@ export const PricingCard = memo(function PricingCard() {
                     ))}
                 </ul>
             </div>
-        </m.div>
+        </div>
     );
-});
+}

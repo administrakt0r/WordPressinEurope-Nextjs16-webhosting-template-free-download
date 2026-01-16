@@ -65,29 +65,11 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "WPinEU",
-  "url": "https://wpineu.com",
-  "logo": "https://wpineu.com/wpineulogo.png",
-  "description": "Free WordPress hosting provider in Europe with cPanel and LiteSpeed.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Zagreb",
-    "addressCountry": "HR"
-  },
-  "foundingDate": "2025-07-10",
-  "founder": {
-    "@type": "Person",
-    "name": "WPinEU Team"
-  }
-};
-
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/ui/BackToTop";
 import { safeJsonLd } from "@/lib/security";
+import { ORGANIZATION_JSON_LD } from "@/lib/json-ld";
 import { Providers } from "@/components/Providers";
 
 export default function RootLayout({
@@ -108,7 +90,7 @@ export default function RootLayout({
         </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(ORGANIZATION_JSON_LD) }}
         />
         <Providers>
           <div className="flex flex-col min-h-screen">
