@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 
+const STARS = [1, 2, 3, 4, 5];
+
 export function Hero() {
     return (
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
@@ -58,7 +60,7 @@ export function Hero() {
                         <div className="flex items-center justify-center lg:justify-start gap-6 pt-8 border-t border-slate-800/50">
                             <div className="flex flex-col">
                                 <div className="flex items-center gap-1 text-yellow-400 mb-1" role="img" aria-label="Rated 5 out of 5 stars">
-                                    {[1, 2, 3, 4, 5].map((i) => (
+                                    {STARS.map((i) => (
                                         <Star key={i} size={16} fill="currentColor" aria-hidden="true" />
                                     ))}
                                 </div>

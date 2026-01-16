@@ -71,8 +71,6 @@ export default function FreeCpanelHosting() {
                 dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
             />
             <HostingLanding
-                title="Free cPanel Hosting"
-                description="Industry-leading control panel"
                 heroTitle={
                     <>
                         Free <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-200">cPanel</span> Hosting

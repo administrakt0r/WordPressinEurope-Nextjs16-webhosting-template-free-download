@@ -71,8 +71,6 @@ export default function FreeWordPressHosting() {
                 dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
             />
             <HostingLanding
-                title="Free WordPress Hosting"
-                description="Complete WordPress hosting with cPanel"
                 heroTitle={
                     <>
                         Ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Free WordPress</span> Hosting
