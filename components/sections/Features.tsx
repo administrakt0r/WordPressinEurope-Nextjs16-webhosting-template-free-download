@@ -62,7 +62,7 @@ export const Features = memo(function Features() {
             style={{
                 contentVisibility: "auto",
                 containIntrinsicSize: "1px 1200px"
-            }}
+            } as React.CSSProperties}
         >
             <div className="container mx-auto px-4 md:px-6">
 

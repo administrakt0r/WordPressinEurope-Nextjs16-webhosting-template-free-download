@@ -12,7 +12,6 @@ export default function Error({
 }) {
   useEffect(() => {
     // In a real production app, you would log this to Sentry or similar
-    // console.error(error);
   }, [error]);
 
   return (
