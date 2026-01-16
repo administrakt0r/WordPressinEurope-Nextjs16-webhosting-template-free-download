@@ -58,6 +58,7 @@ export const Support = memo(function Support() {
                                 <span className="font-medium text-muted-foreground group-hover:text-primary transition-colors">
                                     {resource.name}
                                 </span>
+                                <span className="sr-only">(opens in a new tab)</span>
                                 <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
                             </a>
                         ))}
