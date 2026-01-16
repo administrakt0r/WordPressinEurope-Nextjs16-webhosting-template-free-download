@@ -7,19 +7,19 @@ import { WEBSITE_JSON_LD, SERVICE_JSON_LD } from "@/lib/json-ld";
 
 // Dynamic imports for below-the-fold components
 const Pricing = dynamic(() => import("@/components/sections/Pricing").then(mod => ({ default: mod.Pricing })), {
-  loading: () => <div className="min-h-screen" />
+  loading: () => <section className="py-20 bg-slate-900 min-h-[800px]" />
 });
 
 const About = dynamic(() => import("@/components/sections/About").then(mod => ({ default: mod.About })), {
-  loading: () => <div className="min-h-screen" />
+  loading: () => <section className="py-20 bg-slate-950 min-h-[600px]" />
 });
 
 const FAQ = dynamic(() => import("@/components/sections/FAQ").then(mod => ({ default: mod.FAQ })), {
-  loading: () => <div className="min-h-screen" />
+  loading: () => <section className="py-20 bg-slate-900 min-h-[600px]" />
 });
 
 const Support = dynamic(() => import("@/components/sections/Support").then(mod => ({ default: mod.Support })), {
-  loading: () => <div className="min-h-screen" />
+  loading: () => <section className="py-20 bg-slate-950 min-h-[400px]" />
 });
 
 export const metadata: Metadata = {
