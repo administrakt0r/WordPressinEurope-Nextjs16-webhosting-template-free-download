@@ -71,8 +71,6 @@ export default function FreeLiteSpeedHosting() {
                 dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
             />
             <HostingLanding
-                title="Free LiteSpeed Hosting"
-                description="LiteSpeed Web Server for WordPress"
                 heroTitle={
                     <>
                         Powered by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-300">LiteSpeed</span> Server

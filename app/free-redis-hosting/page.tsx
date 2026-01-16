@@ -70,8 +70,6 @@ export default function FreeRedisHosting() {
                 dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
             />
             <HostingLanding
-                title="Free Redis Hosting"
-                description="Redis Object Caching for WordPress"
                 heroTitle={
                     <>
                         Turbocharged with <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-300">Redis Cache</span>

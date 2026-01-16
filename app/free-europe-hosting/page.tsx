@@ -11,8 +11,6 @@ export const metadata: Metadata = {
 export default function FreeEuropeHosting() {
     return (
         <HostingLanding
-            title="Free Europe Hosting"
-            description="Low latency hosting located in the heart of Europe."
             heroTitle={
                 <>
                     Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-200">Free Europe Hosting</span>
