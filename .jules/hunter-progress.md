@@ -8,6 +8,8 @@
 [2026-01-15] [components/sections/Features.tsx] Fixed inline styles to use Tailwind classes
 [2026-01-22] [app/layout.tsx] Removed duplicate rendering of BackToTop component
 [2026-01-22] [components/templates/HostingLanding.tsx] Removed unused props (title, description) and updated 7 usages
+[2026-01-16] [app/layout.tsx] Restored BackToTop component usage (unused import fixed)
+[2026-01-16] [components/sections/ServiceDescription.tsx] Refactored duplicate code to use ServiceFeatureCard (unused variable fixed)
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
