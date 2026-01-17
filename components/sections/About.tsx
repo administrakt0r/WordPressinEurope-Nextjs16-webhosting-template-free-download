@@ -22,7 +22,7 @@ export function About() {
                                 WP in EU is an educational initiative created to make learning web development more accessible to everyone. We provide free, reliable cPanel hosting to help beginners and aspiring developers gain real, hands-on experience.
                             </p>
                             <p className="text-muted-foreground mb-8 leading-relaxed">
-                                The project was founded on July 10, 2025, in Zagreb, Croatia, by Marko S. (administraktor.com) with one simple goal — to help people across Europe start their WordPress journey without financial barriers.
+                                The project was founded on July 10, 2025, in Zagreb, Croatia, by Marko S. (<a href="https://administraktor.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">administraktor.com</a>) with one simple goal — to help people across Europe start their WordPress journey without financial barriers.
                             </p>
 
                             <div className="space-y-8">

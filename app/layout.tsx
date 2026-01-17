@@ -71,6 +71,8 @@ import { BackToTop } from "@/components/ui/BackToTop";
 import { safeJsonLd } from "@/lib/security";
 import { ORGANIZATION_JSON_LD } from "@/lib/json-ld";
 import { Providers } from "@/components/Providers";
+import { ORGANIZATION_JSON_LD } from "@/lib/json-ld";
+import { JsonLd } from "@/components/JsonLd";
 
 export default function RootLayout({
   children,
