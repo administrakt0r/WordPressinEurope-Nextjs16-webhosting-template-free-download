@@ -82,6 +82,7 @@ export function Footer() {
                                         rel="noopener noreferrer"
                                     >
                                         {item.label}
+                                        <span className="sr-only">(opens in a new tab)</span>
                                     </Link>
                                 </li>
                             ))}
@@ -101,6 +102,7 @@ export function Footer() {
                                         rel="noopener noreferrer"
                                     >
                                         {item.label}
+                                        <span className="sr-only">(opens in a new tab)</span>
                                     </Link>
                                 </li>
                             ))}
