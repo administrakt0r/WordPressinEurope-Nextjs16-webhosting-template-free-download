@@ -33,7 +33,7 @@ const FAQItem = memo(function FAQItem({
                 aria-controls={panelId}
                 aria-expanded={isOpen}
                 onClick={() => onToggle(index)}
-                className="w-full flex items-center justify-between p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
+                className="w-full flex items-center justify-between p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset hover:bg-slate-900/50 transition-colors duration-200"
             >
                 <span className="font-bold font-heading text-foreground text-lg pr-8">
                     {question}

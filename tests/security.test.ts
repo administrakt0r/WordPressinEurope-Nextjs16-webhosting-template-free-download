@@ -29,6 +29,8 @@ describe('Security Headers', () => {
         expect(cspHeader.value).toContain('upgrade-insecure-requests');
         expect(cspHeader.value).toContain("object-src 'none'");
         expect(cspHeader.value).toContain("frame-ancestors 'none'");
+        expect(cspHeader.value).toContain("frame-src 'none'");
+        expect(cspHeader.value).toContain("img-src 'self' data: https://images.unsplash.com");
     }
   });
 

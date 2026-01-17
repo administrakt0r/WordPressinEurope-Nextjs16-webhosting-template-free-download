@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Server } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { cn } from "@/lib/utils";
@@ -16,7 +17,8 @@ const navLinks = [
     { name: "Clients", href: EXTERNAL_LINKS.CLIENT_PORTAL },
 ];
 
-export function Navbar() {
+export const Navbar = memo(function Navbar() {
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -82,16 +84,32 @@ export function Navbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex items-center gap-8 bg-slate-800/50 px-8 py-2 rounded-full border border-white/20 backdrop-blur-sm shadow-sm" role="navigation" aria-label="Primary navigation">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-150 relative group focus-visible:outline-none focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:rounded-sm"
-                        >
-                            {link.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-150 group-hover:w-full" />
-                        </Link>
-                    ))}
+                    {navLinks.map((link) => {
+                        const isActive =
+                            pathname === link.href ||
+                            (link.href !== "/" &&
+                                pathname?.startsWith(`${link.href}/`) &&
+                                !link.href.startsWith("http") &&
+                                !link.href.startsWith("#"));
+
+                        return (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                aria-current={isActive ? "page" : undefined}
+                                className={cn(
+                                    "text-sm font-medium transition-colors duration-150 relative group focus-visible:outline-none focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:rounded-sm",
+                                    isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
+                                )}
+                            >
+                                {link.name}
+                                <span className={cn(
+                                    "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-150",
+                                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                                )} />
+                            </Link>
+                        );
+                    })}
                 </div>
 
                 {/* CTA Buttons */}
@@ -142,16 +160,29 @@ export function Navbar() {
                     } as React.CSSProperties}
                 >
                     <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="text-lg font-medium text-foreground py-3 border-b border-gray-800/50 last:border-0 focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
+                        {navLinks.map((link) => {
+                            const isActive =
+                                pathname === link.href ||
+                                (link.href !== "/" &&
+                                    pathname?.startsWith(`${link.href}/`) &&
+                                    !link.href.startsWith("http") &&
+                                    !link.href.startsWith("#"));
+
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    aria-current={isActive ? "page" : undefined}
+                                    className={cn(
+                                        "text-lg font-medium py-3 border-b border-gray-800/50 last:border-0 focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all",
+                                        isActive ? "text-primary pl-2" : "text-foreground"
+                                    )}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    {link.name}
+                                </Link>
+                            );
+                        })}
                         <div className="flex flex-col gap-4 mt-6">
                             <Link
                                 href={EXTERNAL_LINKS.CLIENT_PORTAL}
@@ -173,4 +204,4 @@ export function Navbar() {
             )}
         </nav>
     );
-}
+});
