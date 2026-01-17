@@ -1,6 +1,5 @@
 import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle } from "lucide-react";
 import Image from "next/image";
-import { memo } from "react";
 
 interface ServiceFeature {
     iconName: string;
@@ -30,8 +29,7 @@ const iconMap: Record<string, React.ElementType> = {
     Download,
 };
 
-// PERF: Memoize Feature Card to prevent re-renders
-const ServiceFeatureCard = memo(function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
+function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
     const Icon = iconMap[feature.iconName] || Circle;
     return (
         <div
@@ -44,7 +42,7 @@ const ServiceFeatureCard = memo(function ServiceFeatureCard({ feature }: { featu
             <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
         </div>
     );
-});
+}
 
 export function ServiceDescription({ title, subtitle, description, features, techLogos }: ServiceDescriptionProps) {
     return (
@@ -82,6 +80,7 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                                         alt={tech.name}
                                         width={tech.width || 100}
                                         height={tech.height || 100}
+                                        sizes="(max-width: 768px) 100px, 150px"
                                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                                     />
                                 </div>
