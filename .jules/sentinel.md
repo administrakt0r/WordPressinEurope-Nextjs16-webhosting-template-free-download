@@ -3,7 +3,7 @@
 **Learning:** Next.js static analysis for segment configuration seems to require literal values or direct assignment in these specific files (Route Handlers/Metadata files) in this version/configuration.
 **Prevention:** Use literal values for segment configuration exports like `revalidate`, or inline the value directly.
 
-## 2025-02-14 - CSP Tightening for Static Site
-**Vulnerability:** Loose Content Security Policy (CSP) allowing any `https:` images and missing `connect-src`.
-**Learning:** Since the site is purely static (no API routes) and only uses Unsplash for external images (configured in `next.config.ts`), we can enforce a much stricter CSP. We restricted `img-src` to `self` `data:` and `https://images.unsplash.com`.
-**Prevention:** Regularly review external asset usage and tighten CSP to the minimum required.
+## 2025-02-14 - CSP Image Sources and Next.js
+**Vulnerability:** Permissive `img-src https:` allowed loading images from any domain.
+**Learning:** Next.js `next/image` proxies requests, so `img-src 'self'` is sufficient for optimized images. However, restricting `img-src` to specific domains (like `images.unsplash.com`) adds depth to defense by preventing loading of malicious pixels via standard `<img>` tags or unoptimized images.
+**Prevention:** Always explicitly list allowed image domains in CSP `img-src`, even if `next.config.ts` `remotePatterns` is configured.
