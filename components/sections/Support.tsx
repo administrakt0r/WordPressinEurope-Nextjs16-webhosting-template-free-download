@@ -1,6 +1,5 @@
 
 
-import { memo } from "react";
 import Link from "next/link";
 import { Mail, ArrowUpRight, Code2 } from "lucide-react";
 
@@ -11,7 +10,7 @@ const resources = [
     { name: "minify.click", url: "https://minify.click" },
 ];
 
-export const Support = memo(function Support() {
+export function Support() {
     return (
         <section id="support" className="py-20 bg-slate-950">
             <div className="container mx-auto px-4 md:px-6">
@@ -67,4 +66,4 @@ export const Support = memo(function Support() {
             </div>
         </section>
     );
-});
+}
