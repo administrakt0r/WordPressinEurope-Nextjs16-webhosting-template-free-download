@@ -20,7 +20,7 @@ export default function Error({
        {/* Background Elements */}
        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[20%] right-[20%] w-[40%] h-[40%] bg-red-600/5 rounded-full blur-[100px]" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+          <div className="absolute inset-0 bg-grid-pattern" />
       </div>
 
       <div className="relative z-10 bg-slate-900/50 backdrop-blur-sm p-8 rounded-3xl border border-red-900/20 shadow-xl max-w-md w-full">
