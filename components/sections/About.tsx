@@ -10,7 +10,15 @@ const IMPACT_GOALS = [
 
 export function About() {
     return (
-        <section id="about" className="py-20 bg-slate-950 overflow-hidden">
+        <section
+            id="about"
+            className="py-20 bg-slate-950 overflow-hidden"
+            // ⚡ Performance: content-visibility skips rendering work when off-screen
+            style={{
+                contentVisibility: "auto",
+                containIntrinsicSize: "1px 600px"
+            }}
+        >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                         {/* Text Content */}
@@ -22,7 +30,7 @@ export function About() {
                                 WP in EU is an educational initiative created to make learning web development more accessible to everyone. We provide free, reliable cPanel hosting to help beginners and aspiring developers gain real, hands-on experience.
                             </p>
                             <p className="text-muted-foreground mb-8 leading-relaxed">
-                                The project was founded on July 10, 2025, in Zagreb, Croatia, by Marko S. (administraktor.com) with one simple goal — to help people across Europe start their WordPress journey without financial barriers.
+                                The project was founded on July 10, 2025, in Zagreb, Croatia, by Marko S. (<a href="https://administraktor.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">administraktor.com</a>) with one simple goal — to help people across Europe start their WordPress journey without financial barriers.
                             </p>
 
                             <div className="space-y-8">

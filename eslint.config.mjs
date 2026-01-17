@@ -8,6 +8,10 @@ const eslintConfig = defineConfig([
   {
     rules: {
       "react/jsx-no-target-blank": "error",
+      "react/no-danger": "warn",
+      "react/no-unescaped-entities": "error",
+      "no-eval": "error",
+      "no-implied-eval": "error",
     },
   },
   // Override default ignores of eslint-config-next.

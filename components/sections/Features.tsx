@@ -1,4 +1,3 @@
-import { memo } from "react";
 import {
     Shield,
     Zap,
@@ -52,7 +51,7 @@ const technologies = [
     { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
 ];
 
-export const Features = memo(function Features() {
+export function Features() {
     return (
         <section
             id="features"
@@ -192,4 +191,4 @@ export const Features = memo(function Features() {
             </div>
         </section>
     );
-});
+}

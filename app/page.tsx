@@ -2,24 +2,24 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/Hero";
 import { Features } from "@/components/sections/Features";
 import { Metadata } from "next";
-import { safeJsonLd } from "@/lib/security";
 import { WEBSITE_JSON_LD, SERVICE_JSON_LD } from "@/lib/json-ld";
+import { JsonLd } from "@/components/JsonLd";
 
 // Dynamic imports for below-the-fold components
 const Pricing = dynamic(() => import("@/components/sections/Pricing").then(mod => ({ default: mod.Pricing })), {
-  loading: () => <div className="min-h-screen" />
+  loading: () => <section className="py-20 bg-slate-900 min-h-[800px]" />
 });
 
 const About = dynamic(() => import("@/components/sections/About").then(mod => ({ default: mod.About })), {
-  loading: () => <div className="min-h-screen" />
+  loading: () => <section className="py-20 bg-slate-950 min-h-[600px]" />
 });
 
 const FAQ = dynamic(() => import("@/components/sections/FAQ").then(mod => ({ default: mod.FAQ })), {
-  loading: () => <div className="min-h-screen" />
+  loading: () => <section className="py-20 bg-slate-900 min-h-[600px]" />
 });
 
 const Support = dynamic(() => import("@/components/sections/Support").then(mod => ({ default: mod.Support })), {
-  loading: () => <div className="min-h-screen" />
+  loading: () => <section className="py-20 bg-slate-950 min-h-[400px]" />
 });
 
 export const metadata: Metadata = {
@@ -33,14 +33,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(WEBSITE_JSON_LD) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(SERVICE_JSON_LD) }}
-      />
+      <JsonLd data={WEBSITE_JSON_LD} />
+      <JsonLd data={SERVICE_JSON_LD} />
       <Hero />
       <Features />
       <Pricing />
