@@ -9,6 +9,7 @@ export function Pricing() {
             id="pricing"
             className="py-20 bg-slate-900"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
+            // contain-intrinsic-size prevents scrollbar jumps (estimated height)
             style={{
                 contentVisibility: "auto",
                 containIntrinsicSize: "1px 800px"
