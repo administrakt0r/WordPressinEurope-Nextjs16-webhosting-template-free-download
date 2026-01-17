@@ -6,22 +6,31 @@ import { cn } from "@/lib/utils";
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     let ticking = false;
 
-    const toggleVisibility = () => {
+    const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setIsVisible(window.scrollY > 300);
+          const currentScroll = window.scrollY;
+          const height = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = height > 0 ? (currentScroll / height) * 100 : 0;
+
+          setIsVisible(currentScroll > 300);
+          setScrollProgress(progress);
           ticking = false;
         });
         ticking = true;
       }
     };
 
-    window.addEventListener("scroll", toggleVisibility, { passive: true });
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Trigger once on mount to set initial state
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
@@ -31,18 +40,51 @@ export function BackToTop() {
     });
   };
 
+  // Circumference of the circle (r=18) -> 2 * PI * 18 ≈ 113.1
+  // We use a normalized stroke-dasharray approach with pathLength
+
   return (
     <button
       onClick={scrollToTop}
       tabIndex={isVisible ? undefined : -1}
       aria-hidden={!isVisible}
+      title="Back to top"
       className={cn(
-        "fixed bottom-8 right-8 z-50 p-3 bg-primary text-white rounded-full shadow-lg hover:bg-blue-700 hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-slate-950",
+        "fixed bottom-8 right-8 z-50 p-2 bg-slate-950 text-white rounded-full shadow-lg hover:bg-slate-900 hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-slate-950 group flex items-center justify-center",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       )}
       aria-label="Back to top"
     >
-      <ArrowUp size={24} aria-hidden="true" />
+      {/* Progress Circle */}
+      <div className="absolute inset-0 rounded-full border border-slate-800" />
+      <svg
+        className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none"
+        viewBox="0 0 36 36"
+        aria-hidden="true"
+      >
+        {/* Background track - optional if we want a full ring */}
+        <path
+          className="text-slate-800"
+          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+        />
+        {/* Progress indicator */}
+        <path
+          className="text-primary transition-all duration-100 ease-out"
+          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeDasharray={`${scrollProgress}, 100`}
+        />
+      </svg>
+
+      {/* Icon */}
+      <div className="relative z-10 p-1">
+        <ArrowUp size={20} aria-hidden="true" className="text-primary-foreground group-hover:scale-110 transition-transform duration-300" />
+      </div>
     </button>
   );
 }
