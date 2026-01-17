@@ -10,6 +10,9 @@
 [2026-01-22] [components/templates/HostingLanding.tsx] Removed unused props (title, description) and updated 7 usages
 [2026-01-16] [app/layout.tsx] Restored BackToTop component usage (unused import fixed)
 [2026-01-16] [components/sections/ServiceDescription.tsx] Refactored duplicate code to use ServiceFeatureCard (unused variable fixed)
+[2026-01-17] [components/templates/HostingHero.tsx] Replaced inline grid pattern with bg-grid-pattern utility class
+[2026-01-17] [app/not-found.tsx] Replaced inline grid pattern with bg-grid-pattern utility class
+[2026-01-17] [app/error.tsx] Replaced inline grid pattern with bg-grid-pattern utility class
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->

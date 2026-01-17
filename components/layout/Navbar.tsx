@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Server } from "lucide-react";
@@ -17,7 +17,7 @@ const navLinks = [
     { name: "Clients", href: EXTERNAL_LINKS.CLIENT_PORTAL },
 ];
 
-export function Navbar() {
+export const Navbar = memo(function Navbar() {
     const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -204,4 +204,4 @@ export function Navbar() {
             )}
         </nav>
     );
-}
+});
