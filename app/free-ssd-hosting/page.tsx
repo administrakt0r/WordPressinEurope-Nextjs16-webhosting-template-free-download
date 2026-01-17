@@ -1,5 +1,5 @@
 import { HostingLanding } from "@/components/templates/HostingLanding";
-import { ServiceDescription } from "@/components/sections/ServiceDescription";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { safeJsonLd } from "@/lib/security";
 
@@ -16,6 +16,10 @@ export const metadata: Metadata = {
         url: "https://wpineu.com/free-ssd-hosting",
     }
 };
+
+const ServiceDescription = dynamic(() =>
+    import("@/components/sections/ServiceDescription").then((mod) => mod.ServiceDescription)
+);
 
 const jsonLd = {
     "@context": "https://schema.org",
