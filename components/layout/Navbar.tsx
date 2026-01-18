@@ -117,12 +117,14 @@ export const Navbar = memo(function Navbar() {
                     <Link
                         href={EXTERNAL_LINKS.CLIENT_PORTAL}
                         className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        aria-label="Sign in to client portal"
                     >
                         Sign In
                     </Link>
                     <Link
                         href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                         className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-background"
+                        aria-label="Get started with free hosting"
                     >
                         Get Started
                     </Link>
@@ -133,6 +135,7 @@ export const Navbar = memo(function Navbar() {
                     <Link
                         href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                         className="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-bold transition-all duration-200"
+                        aria-label="Get started with free hosting"
                     >
                         Get Started
                     </Link>
@@ -188,6 +191,7 @@ export const Navbar = memo(function Navbar() {
                                 href={EXTERNAL_LINKS.CLIENT_PORTAL}
                                 className="w-full text-center py-3.5 rounded-lg border border-gray-700 font-medium hover:bg-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                                 onClick={() => setIsMobileMenuOpen(false)}
+                                aria-label="Sign in to client portal"
                             >
                                 Sign In
                             </Link>
@@ -195,6 +199,7 @@ export const Navbar = memo(function Navbar() {
                                 href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                                 className="w-full text-center py-3.5 rounded-lg bg-primary text-white font-medium hover:bg-blue-700 transition-colors"
                                 onClick={() => setIsMobileMenuOpen(false)}
+                                aria-label="Get started with free hosting"
                             >
                                 Get Started
                             </Link>
