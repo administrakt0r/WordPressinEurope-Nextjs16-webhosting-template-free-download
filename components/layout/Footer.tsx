@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const HOSTING_SERVICES = [
     { label: "Free WordPress Hosting", href: "/free-wordpress-hosting" },
@@ -75,15 +76,12 @@ export function Footer() {
                         <ul className="space-y-2">
                             {RESOURCES.map((item) => (
                                 <li key={item.label}>
-                                    <Link
+                                    <ExternalLink
                                         href={item.href}
                                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
                                     >
                                         {item.label}
-                                        <span className="sr-only">(opens in a new tab)</span>
-                                    </Link>
+                                    </ExternalLink>
                                 </li>
                             ))}
                         </ul>
@@ -95,15 +93,12 @@ export function Footer() {
                         <ul className="space-y-2">
                             {LEGAL_LINKS.map((item) => (
                                 <li key={item.label}>
-                                    <Link
+                                    <ExternalLink
                                         href={item.href}
                                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
                                     >
                                         {item.label}
-                                        <span className="sr-only">(opens in a new tab)</span>
-                                    </Link>
+                                    </ExternalLink>
                                 </li>
                             ))}
                         </ul>
