@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/Hero";
 import { Features } from "@/components/sections/Features";
 import { Metadata } from "next";
-import { safeJsonLd } from "@/lib/security";
+import { JsonLd } from "@/components/JsonLd";
 import { WEBSITE_JSON_LD, SERVICE_JSON_LD } from "@/lib/json-ld";
 
 // Dynamic imports for below-the-fold components
@@ -33,14 +33,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(WEBSITE_JSON_LD) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(SERVICE_JSON_LD) }}
-      />
+      <JsonLd data={WEBSITE_JSON_LD} />
+      <JsonLd data={SERVICE_JSON_LD} />
       <Hero />
       <Features />
       <Pricing />
