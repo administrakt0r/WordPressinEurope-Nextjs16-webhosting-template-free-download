@@ -1,7 +1,7 @@
 import { HostingLanding } from "@/components/templates/HostingLanding";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
-import { safeJsonLd } from "@/lib/security";
+import { JsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "Free SSD NVMe Hosting in Europe | WPinEU",
@@ -69,10 +69,7 @@ const techLogos = [
 export default function FreeSSDHosting() {
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
-            />
+            <JsonLd data={jsonLd} />
             <HostingLanding
                 heroTitle={
                     <>
