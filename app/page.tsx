@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/Hero";
 import { Features } from "@/components/sections/Features";
 import { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
 import { WEBSITE_JSON_LD, SERVICE_JSON_LD } from "@/lib/json-ld";
 import { JsonLd } from "@/components/JsonLd";
 

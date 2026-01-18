@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/Providers";
+import { JsonLd } from "@/components/JsonLd";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { ORGANIZATION_JSON_LD } from "@/lib/json-ld";
 import { JsonLd } from "@/components/JsonLd";
