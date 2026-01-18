@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { safeJsonLd } from "@/lib/security";
 import { Providers } from "@/components/Providers";
 import { ORGANIZATION_JSON_LD } from "@/lib/json-ld";
+import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
 import "./accessibility.css";
 
@@ -86,10 +86,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: safeJsonLd(ORGANIZATION_JSON_LD) }}
-        />
+        <JsonLd data={ORGANIZATION_JSON_LD} />
         <Providers>
           <div className="flex flex-col min-h-screen">
             <Navbar />
