@@ -13,6 +13,9 @@
 [2026-02-23] [app/error.tsx] Removed dead code (commented out console.log)
 [2026-02-23] [app/layout.tsx] Fixed import order (imports after export)
 [2026-02-23] [components/sections/Features.tsx] Fixed type safety for non-standard CSS properties
+[2026-02-24] [app/layout.tsx] Removed duplicate JsonLd import and used component instead of raw script
+[2026-02-24] [app/page.tsx] Removed duplicate JsonLd import
+[2026-02-24] [components/JsonLd.tsx] Added eslint-disable for dangerouslySetInnerHTML
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
