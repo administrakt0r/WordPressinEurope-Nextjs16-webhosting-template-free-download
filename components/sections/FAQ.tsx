@@ -62,6 +62,7 @@ export function FAQ() {
                         fill
                         className="object-cover opacity-10 mix-blend-overlay"
                         sizes="(max-width: 768px) 100vw, 1200px"
+                        quality={60}
                     />
 
                     <div className="relative z-10 max-w-2xl mx-auto">

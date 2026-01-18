@@ -78,10 +78,7 @@ body {
 }
 
 /* GPU acceleration for animated elements */
-.gpu-accelerated,
-[class*="transition"],
-[class*="animate"],
-[class*="hover:"] {
+.gpu-accelerated {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
