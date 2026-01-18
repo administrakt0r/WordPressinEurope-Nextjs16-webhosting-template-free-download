@@ -6,7 +6,6 @@ import { Providers } from "@/components/Providers";
 import { JsonLd } from "@/components/JsonLd";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { ORGANIZATION_JSON_LD } from "@/lib/json-ld";
-import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
 import "./accessibility.css";
 
@@ -83,10 +82,7 @@ export default function RootLayout({
         className={`${inter.variable} ${outfit.variable} antialiased bg-slate-950 text-slate-50 transition-colors duration-300`}
       >
         <SkipLink />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: safeJsonLd(ORGANIZATION_JSON_LD) }}
-        />
+        <JsonLd data={ORGANIZATION_JSON_LD} />
         <Providers>
           <div className="flex flex-col min-h-screen">
             <Navbar />
