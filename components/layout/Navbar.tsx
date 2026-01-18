@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Server } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { cn } from "@/lib/utils";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -92,6 +93,21 @@ export const Navbar = memo(function Navbar() {
                                 !link.href.startsWith("http") &&
                                 !link.href.startsWith("#"));
 
+                        if (link.href.startsWith("http")) {
+                            return (
+                                <ExternalLink
+                                    key={link.name}
+                                    href={link.href}
+                                    className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-150 relative group focus-visible:outline-none focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:rounded-sm"
+                                >
+                                    {link.name}
+                                    <span className={cn(
+                                        "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-150 w-0 group-hover:w-full"
+                                    )} />
+                                </ExternalLink>
+                            );
+                        }
+
                         return (
                             <Link
                                 key={link.name}
@@ -114,31 +130,31 @@ export const Navbar = memo(function Navbar() {
 
                 {/* CTA Buttons */}
                 <div className="hidden md:flex items-center gap-4">
-                    <Link
+                    <ExternalLink
                         href={EXTERNAL_LINKS.CLIENT_PORTAL}
                         className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         aria-label="Sign in to client portal"
                     >
                         Sign In
-                    </Link>
-                    <Link
+                    </ExternalLink>
+                    <ExternalLink
                         href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                         className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-background"
                         aria-label="Get started with free hosting"
                     >
                         Get Started
-                    </Link>
+                    </ExternalLink>
                 </div>
 
                 {/* Mobile Menu Button & Theme Toggle */}
                 <div className="flex items-center gap-4 md:hidden">
-                    <Link
+                    <ExternalLink
                         href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                         className="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-bold transition-all duration-200"
                         aria-label="Get started with free hosting"
                     >
                         Get Started
-                    </Link>
+                    </ExternalLink>
                     <button
                         className="p-2 text-foreground rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -171,6 +187,19 @@ export const Navbar = memo(function Navbar() {
                                     !link.href.startsWith("http") &&
                                     !link.href.startsWith("#"));
 
+                            if (link.href.startsWith("http")) {
+                                return (
+                                    <ExternalLink
+                                        key={link.name}
+                                        href={link.href}
+                                        className="text-lg font-medium py-3 border-b border-gray-800/50 last:border-0 text-foreground focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {link.name}
+                                    </ExternalLink>
+                                );
+                            }
+
                             return (
                                 <Link
                                     key={link.name}
@@ -187,22 +216,22 @@ export const Navbar = memo(function Navbar() {
                             );
                         })}
                         <div className="flex flex-col gap-4 mt-6">
-                            <Link
+                            <ExternalLink
                                 href={EXTERNAL_LINKS.CLIENT_PORTAL}
                                 className="w-full text-center py-3.5 rounded-lg border border-gray-700 font-medium hover:bg-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 aria-label="Sign in to client portal"
                             >
                                 Sign In
-                            </Link>
-                            <Link
+                            </ExternalLink>
+                            <ExternalLink
                                 href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                                 className="w-full text-center py-3.5 rounded-lg bg-primary text-white font-medium hover:bg-blue-700 transition-colors"
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 aria-label="Get started with free hosting"
                             >
                                 Get Started
-                            </Link>
+                            </ExternalLink>
                         </div>
                     </div>
                 </div>

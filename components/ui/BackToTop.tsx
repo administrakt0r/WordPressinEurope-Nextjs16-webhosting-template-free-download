@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const pathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
     let ticking = false;
@@ -18,8 +18,20 @@ export function BackToTop() {
           const height = document.documentElement.scrollHeight - window.innerHeight;
           const progress = height > 0 ? (currentScroll / height) * 100 : 0;
 
-          setIsVisible(currentScroll > 300);
-          setScrollProgress(progress);
+          // Optimization: Direct DOM manipulation to avoid re-renders on every scroll frame
+          if (pathRef.current) {
+            pathRef.current.style.strokeDasharray = `${progress}, 100`;
+          }
+
+          // Only trigger state update if visibility changes
+          const shouldBeVisible = currentScroll > 300;
+          setIsVisible((prev) => {
+            if (prev !== shouldBeVisible) {
+              return shouldBeVisible;
+            }
+            return prev;
+          });
+
           ticking = false;
         });
         ticking = true;
@@ -72,12 +84,13 @@ export function BackToTop() {
         />
         {/* Progress indicator */}
         <path
+          ref={pathRef}
           className="text-primary transition-all duration-100 ease-out"
           d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
           fill="none"
           stroke="currentColor"
           strokeWidth="3"
-          strokeDasharray={`${scrollProgress}, 100`}
+          strokeDasharray="0, 100"
         />
       </svg>
 
