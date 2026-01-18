@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const HOSTING_SERVICES = [
     { label: "Free WordPress Hosting", href: "/free-wordpress-hosting" },
@@ -34,7 +35,7 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* Brand Column */}
                     <div className="space-y-4">
-                        <Link href="/" className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg">
+                        <Link href="/" className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg" aria-label="WPinEU Home">
                             <div className="bg-primary text-white p-2 rounded-lg">
                                 <Server size={20} aria-hidden="true" />
                             </div>
@@ -75,15 +76,12 @@ export function Footer() {
                         <ul className="space-y-2">
                             {RESOURCES.map((item) => (
                                 <li key={item.label}>
-                                    <Link
+                                    <ExternalLink
                                         href={item.href}
                                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
                                     >
                                         {item.label}
-                                        <span className="sr-only">(opens in a new tab)</span>
-                                    </Link>
+                                    </ExternalLink>
                                 </li>
                             ))}
                         </ul>
@@ -95,15 +93,12 @@ export function Footer() {
                         <ul className="space-y-2">
                             {LEGAL_LINKS.map((item) => (
                                 <li key={item.label}>
-                                    <Link
+                                    <ExternalLink
                                         href={item.href}
                                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
                                     >
                                         {item.label}
-                                        <span className="sr-only">(opens in a new tab)</span>
-                                    </Link>
+                                    </ExternalLink>
                                 </li>
                             ))}
                         </ul>

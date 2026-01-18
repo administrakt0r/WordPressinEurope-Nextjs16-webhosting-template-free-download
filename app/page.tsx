@@ -4,6 +4,7 @@ import { Features } from "@/components/sections/Features";
 import { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { WEBSITE_JSON_LD, SERVICE_JSON_LD } from "@/lib/json-ld";
+import { JsonLd } from "@/components/JsonLd";
 
 // Dynamic imports for below-the-fold components
 const Pricing = dynamic(() => import("@/components/sections/Pricing").then(mod => ({ default: mod.Pricing })), {
