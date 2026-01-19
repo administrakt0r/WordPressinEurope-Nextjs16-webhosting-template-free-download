@@ -9,15 +9,15 @@ export function Hero() {
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
             {/* Dynamic Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Gradient Orbs */}
-                <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px]" />
-                <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px]" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] bg-blue-900/20 rounded-full blur-[100px]" />
+                {/* Gradient Orbs - Optimized: GPU accelerated to prevent repaint on scroll */}
+                <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px] gpu-accelerated" />
+                <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px] gpu-accelerated" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] bg-blue-900/20 rounded-full blur-[100px] gpu-accelerated" />
 
                 {/* Grid Pattern */}
                 {/* Localized noise.svg to reduce external network requests and improve reliability */}
-                <div className="absolute inset-0 bg-noise opacity-20" />
-                <div className="absolute inset-0 bg-grid-pattern" />
+                <div className="absolute inset-0 bg-noise opacity-20 gpu-accelerated" />
+                <div className="absolute inset-0 bg-grid-pattern gpu-accelerated" />
             </div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
