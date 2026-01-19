@@ -16,6 +16,8 @@
 [2026-02-24] [app/layout.tsx] Removed duplicate JsonLd import and used component instead of raw script
 [2026-02-24] [app/page.tsx] Removed duplicate JsonLd import
 [2026-02-24] [components/JsonLd.tsx] Added eslint-disable for dangerouslySetInnerHTML
+[2026-02-25] [app/support/page.tsx] Fixed insecure external links and naming collision
+[2026-02-25] [components/sections/About.tsx] Fixed insecure external link
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
