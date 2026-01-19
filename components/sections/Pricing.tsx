@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { Heart, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { PricingCard } from "./PricingCard";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 export function Pricing() {
     return (
@@ -13,7 +13,7 @@ export function Pricing() {
             style={{
                 contentVisibility: "auto",
                 containIntrinsicSize: "1px 800px"
-            }}
+            } as React.CSSProperties}
         >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center max-w-3xl mx-auto mb-16">
@@ -44,13 +44,13 @@ export function Pricing() {
                             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                                 Help us keep this project alive and get more resources in return. Any amount helps! Contributors can receive higher resources.
                             </p>
-                            <Link
+                            <ExternalLink
                                 href={EXTERNAL_LINKS.CLIENT_PORTAL}
                                 className="inline-flex items-center gap-2 text-yellow-400 font-bold text-sm hover:underline"
                             >
                                 Contribute to Our Mission
                                 <ArrowRight size={16} aria-hidden="true" />
-                            </Link>
+                            </ExternalLink>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const STARS = [1, 2, 3, 4, 5];
 
@@ -41,14 +42,14 @@ export function Hero() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mb-12">
-                            <Link
+                            <ExternalLink
                                 href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                                 className="group relative inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 hover:shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                             >
                                 <span className="relative z-10">Get Started Now</span>
                                 <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
                                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                            </Link>
+                            </ExternalLink>
                             <Link
                                 href="#features"
                                 className="inline-flex items-center justify-center gap-2 bg-slate-900/50 border border-slate-700 hover:border-blue-500/50 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all duration-200 hover:bg-slate-800 backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
@@ -138,12 +139,12 @@ export function Hero() {
                                         <span className="text-slate-500">/mo</span>
                                     </div>
                                 </div>
-                                <Link
+                                <ExternalLink
                                     href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                                     className="h-10 px-6 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-600/20 text-white font-bold text-sm transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                                 >
                                     Order Now
-                                </Link>
+                                </ExternalLink>
                             </div>
                         </div>
 
