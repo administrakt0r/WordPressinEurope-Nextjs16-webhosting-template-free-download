@@ -16,7 +16,8 @@ const features = [
 export function PricingCard() {
     return (
         <div
-            className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden animate-slide-up"
+            // Optimized: will-animate hint helps browser prepare for transform/opacity changes
+            className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden animate-slide-up will-animate"
         >
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-yellow-400" />
 
