@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { memo } from "react";
 
 const HOSTING_SERVICES = [
     { label: "Free WordPress Hosting", href: "/free-wordpress-hosting" },
@@ -28,7 +29,7 @@ const LEGAL_LINKS = [
     { label: "Report Abuse", href: EXTERNAL_LINKS.REPORT_ABUSE },
 ];
 
-export function Footer() {
+export const Footer = memo(function Footer() {
     return (
         <footer className="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
             <div className="container mx-auto px-4 md:px-6">
@@ -125,4 +126,4 @@ export function Footer() {
             </div>
         </footer>
     );
-}
+});

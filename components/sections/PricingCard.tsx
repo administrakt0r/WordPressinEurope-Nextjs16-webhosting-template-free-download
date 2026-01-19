@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { memo } from "react";
 
 const features = [
     "1 GB SSD disk space (RAID 10 NVMe)",
@@ -13,7 +14,7 @@ const features = [
     "NO advertisements or hidden fees"
 ];
 
-export function PricingCard() {
+export const PricingCard = memo(function PricingCard() {
     return (
         <div
             // Optimized: will-animate hint helps browser prepare for transform/opacity changes
@@ -59,4 +60,4 @@ export function PricingCard() {
             </div>
         </div>
     );
-}
+});

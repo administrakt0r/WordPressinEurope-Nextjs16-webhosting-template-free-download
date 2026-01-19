@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode, memo } from "react";
 
 interface FeatureCardProps {
     icon: ReactNode;
@@ -7,7 +7,7 @@ interface FeatureCardProps {
     index: number;
 }
 
-export function FeatureCard({ icon, title, description, index }: FeatureCardProps) {
+export const FeatureCard = memo(function FeatureCard({ icon, title, description, index }: FeatureCardProps) {
     return (
         <div
             // Optimized: will-animate hint helps browser prepare for transform/opacity changes
@@ -28,4 +28,4 @@ export function FeatureCard({ icon, title, description, index }: FeatureCardProp
             </p>
         </div>
     );
-}
+});
