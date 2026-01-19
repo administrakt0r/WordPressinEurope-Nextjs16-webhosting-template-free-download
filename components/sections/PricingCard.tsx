@@ -29,8 +29,9 @@ export function PricingCard() {
 
                     <div className="text-right">
                         <div className="flex items-baseline gap-1 mb-2">
-                            <span className="text-5xl font-bold text-foreground">€0.00</span>
-                            <span className="text-muted-foreground font-medium">/mo</span>
+                            <span className="text-5xl font-bold text-foreground" aria-hidden="true">€0.00</span>
+                            <span className="text-muted-foreground font-medium" aria-hidden="true">/mo</span>
+                            <span className="sr-only">0 Euros per month</span>
                         </div>
                         <p className="text-sm text-muted-foreground">No credit card required</p>
                     </div>
