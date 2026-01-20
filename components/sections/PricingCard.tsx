@@ -1,5 +1,6 @@
 import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 import { memo } from "react";
 
 const features = [
