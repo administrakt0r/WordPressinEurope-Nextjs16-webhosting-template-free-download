@@ -98,8 +98,8 @@ export function Hero() {
                             </div>
 
                             {/* Specs Grid */}
-                            <div className="grid gap-4 mb-8">
-                                <div className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <ul className="grid gap-4 mb-8">
+                                <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
                                     <div className="flex items-center gap-3">
                                         <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
                                             <Zap size={18} aria-hidden="true" />
@@ -107,9 +107,9 @@ export function Hero() {
                                         <span className="text-slate-300 font-medium">Super fast storage</span>
                                     </div>
                                     <span className="text-white font-bold">1GB NVMe SSD disk space</span>
-                                </div>
+                                </li>
 
-                                <div className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                                <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
                                     <div className="flex items-center gap-3">
                                         <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400">
                                             <Zap size={18} aria-hidden="true" />
@@ -117,9 +117,9 @@ export function Hero() {
                                         <span className="text-slate-300 font-medium">Bandwidth</span>
                                     </div>
                                     <span className="text-white font-bold">100GB Traffic</span>
-                                </div>
+                                </li>
 
-                                <div className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                                <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
                                     <div className="flex items-center gap-3">
                                         <div className="p-2 rounded-lg bg-yellow-500/10 text-yellow-400">
                                             <Globe size={18} aria-hidden="true" />
@@ -127,8 +127,8 @@ export function Hero() {
                                         <span className="text-slate-300 font-medium">Location</span>
                                     </div>
                                     <span className="text-white font-bold">Europe</span>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
 
                             {/* Price Tag */}
                             <div className="flex justify-between items-end">
