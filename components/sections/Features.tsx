@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { FeatureCard } from "./FeatureCard";
+import { memo } from "react";
 
 const features = [
     {
@@ -51,6 +52,33 @@ const technologies = [
     { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
 ];
 
+interface TechnologyLogoProps {
+    tech: typeof technologies[number];
+}
+
+const TechnologyLogo = memo(function TechnologyLogo({ tech }: TechnologyLogoProps) {
+    return (
+        <div className="group flex items-center justify-center">
+            {tech.logo ? (
+                <div className="relative h-10 md:h-12 w-auto">
+                        <Image
+                        src={tech.logo}
+                        alt={tech.name}
+                        width={tech.width}
+                        height={tech.height}
+                        sizes="(max-width: 768px) 100px, 150px"
+                        className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                    />
+                </div>
+            ) : (
+                <span className="text-lg md:text-xl font-bold text-slate-400 hover:text-primary transition-colors cursor-default">
+                    {tech.name}
+                </span>
+            )}
+        </div>
+    );
+});
+
 export function Features() {
     return (
         <section
@@ -72,24 +100,7 @@ export function Features() {
                     </h2>
                     <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
                         {technologies.map((tech) => (
-                            <div key={tech.name} className="group flex items-center justify-center">
-                                {tech.logo ? (
-                                    <div className="relative h-10 md:h-12 w-auto">
-                                         <Image
-                                            src={tech.logo}
-                                            alt={tech.name}
-                                            width={tech.width}
-                                            height={tech.height}
-                                            sizes="(max-width: 768px) 100px, 150px"
-                                            className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
-                                        />
-                                    </div>
-                                ) : (
-                                    <span className="text-lg md:text-xl font-bold text-slate-400 hover:text-primary transition-colors cursor-default">
-                                        {tech.name}
-                                    </span>
-                                )}
-                            </div>
+                            <TechnologyLogo key={tech.name} tech={tech} />
                         ))}
                     </div>
                 </div>

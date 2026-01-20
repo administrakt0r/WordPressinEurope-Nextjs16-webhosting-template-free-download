@@ -2,6 +2,9 @@
 /**
  * Safely serializes data for use in JSON-LD <script> tags.
  * prevent XSS by escaping HTML entities.
+ *
+ * @param data The JSON object to serialize.
+ * @returns A string containing the serialized JSON with escaped characters.
  */
 export function safeJsonLd(data: Record<string, unknown>): string {
   const json = JSON.stringify(data);
