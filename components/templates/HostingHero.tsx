@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Check, Star, Server, Zap, Shield, Globe } from "lucide-react";
 import { HeroAnimator } from "./HeroAnimator";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 interface HostingHeroProps {
     heroTitle: React.ReactNode;
@@ -33,14 +34,14 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mb-12">
-                <Link
+                <ExternalLink
                     href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                     className="group relative inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all hover:shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1 overflow-hidden"
                 >
                     <span className="relative z-10">Get Started Now</span>
                     <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
+                </ExternalLink>
                 <Link
                     href="#features"
                     className="inline-flex items-center justify-center gap-2 bg-slate-900/50 border border-slate-700 hover:border-blue-500/50 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all hover:bg-slate-800 backdrop-blur-sm"

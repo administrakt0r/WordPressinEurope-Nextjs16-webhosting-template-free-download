@@ -1,8 +1,8 @@
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { FAQAccordion } from "./FAQAccordion";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const faqs = [
     {
@@ -40,7 +40,7 @@ export function FAQ() {
             style={{
                 contentVisibility: "auto",
                 containIntrinsicSize: "1px 600px"
-            }}
+            } as React.CSSProperties}
         >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center max-w-3xl mx-auto mb-16">
@@ -72,13 +72,13 @@ export function FAQ() {
                         <p className="text-blue-100 mb-8 text-lg">
                             Dive into our comprehensive learning portal for WordPress and web development. Stay updated with the latest news, tutorials, and resources.
                         </p>
-                        <Link
+                        <ExternalLink
                             href={EXTERNAL_LINKS.LEARNING_PORTAL}
                             className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
                         >
                             Start Learning
                             <ArrowRight size={18} aria-hidden="true" />
-                        </Link>
+                        </ExternalLink>
                     </div>
                 </div>
             </div>

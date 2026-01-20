@@ -13,7 +13,7 @@ export function Pricing() {
             style={{
                 contentVisibility: "auto",
                 containIntrinsicSize: "1px 800px"
-            }}
+            } as React.CSSProperties}
         >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center max-w-3xl mx-auto mb-16">

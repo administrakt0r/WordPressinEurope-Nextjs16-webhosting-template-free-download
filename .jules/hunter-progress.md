@@ -20,6 +20,9 @@
 [2026-01-19] [app/globals.css] Added missing --color-muted and --color-muted-foreground CSS variables
 [2026-02-25] [components/sections/PricingCard.tsx] Added missing ExternalLink import (fixed build error)
 [2026-02-25] [components/sections/Hero.tsx] Replaced Link with ExternalLink for external URLs
+[2026-02-25] [components/templates/HostingHero.tsx] Replaced Link with ExternalLink for external URLs
+[2026-02-25] [components/sections/Pricing.tsx] Cast style prop to React.CSSProperties for contentVisibility
+[2026-02-25] [components/sections/FAQ.tsx] Cast style prop to React.CSSProperties and replaced Link with ExternalLink
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
