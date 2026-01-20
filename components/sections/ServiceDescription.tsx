@@ -1,4 +1,4 @@
-import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle } from "lucide-react";
+import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle, Globe, Code, Server, ShieldCheck, Layers } from "lucide-react";
 import Image from "next/image";
 
 interface ServiceFeature {
@@ -27,6 +27,11 @@ const iconMap: Record<string, React.ElementType> = {
     Mail,
     FileText,
     Download,
+    Globe,
+    Code,
+    Server,
+    ShieldCheck,
+    Layers,
 };
 
 function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {

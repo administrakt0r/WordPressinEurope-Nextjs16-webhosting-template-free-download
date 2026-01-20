@@ -16,7 +16,8 @@ const features = [
 export function PricingCard() {
     return (
         <div
-            className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden animate-slide-up"
+            // Optimized: will-animate hint helps browser prepare for transform/opacity changes
+            className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden animate-slide-up will-animate"
         >
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-yellow-400" />
 
@@ -29,8 +30,9 @@ export function PricingCard() {
 
                     <div className="text-right">
                         <div className="flex items-baseline gap-1 mb-2">
-                            <span className="text-5xl font-bold text-foreground">€0.00</span>
-                            <span className="text-muted-foreground font-medium">/mo</span>
+                            <span className="text-5xl font-bold text-foreground" aria-hidden="true">€0.00</span>
+                            <span className="text-muted-foreground font-medium" aria-hidden="true">/mo</span>
+                            <span className="sr-only">0 Euros per month</span>
                         </div>
                         <p className="text-sm text-muted-foreground">No credit card required</p>
                     </div>

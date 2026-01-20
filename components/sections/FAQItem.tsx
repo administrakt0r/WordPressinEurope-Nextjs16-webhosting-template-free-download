@@ -28,24 +28,26 @@ const FAQItem = memo(function FAQItem({
 
     return (
         <div className="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
-            <button
-                id={headerId}
-                aria-controls={panelId}
-                aria-expanded={isOpen}
-                onClick={() => onToggle(index)}
-                className="w-full flex items-center justify-between p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset hover:bg-slate-900/50 transition-colors duration-200"
-            >
-                <span className="font-bold font-heading text-foreground text-lg pr-8">
-                    {question}
-                </span>
-                <div
-                    className={`p-1 rounded-full ${
-                        isOpen ? "bg-primary text-white" : "bg-slate-800 text-slate-500"
-                    } transition-colors`}
+            <h3 className="m-0 p-0 text-base font-normal">
+                <button
+                    id={headerId}
+                    aria-controls={panelId}
+                    aria-expanded={isOpen}
+                    onClick={() => onToggle(index)}
+                    className="w-full flex items-center justify-between p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset hover:bg-slate-900/50 transition-colors duration-200"
                 >
-                    {isOpen ? <Minus size={20} aria-hidden="true" /> : <Plus size={20} aria-hidden="true" />}
-                </div>
-            </button>
+                    <span className="font-bold font-heading text-foreground text-lg pr-8">
+                        {question}
+                    </span>
+                    <div
+                        className={`p-1 rounded-full ${
+                            isOpen ? "bg-primary text-white" : "bg-slate-800 text-slate-500"
+                        } transition-colors`}
+                    >
+                        {isOpen ? <Minus size={20} aria-hidden="true" /> : <Plus size={20} aria-hidden="true" />}
+                    </div>
+                </button>
+            </h3>
             <AnimatePresence>
                 {isOpen && (
                     <m.div

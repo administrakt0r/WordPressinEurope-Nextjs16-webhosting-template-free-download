@@ -1,16 +1,17 @@
-import { memo } from "react";
+import type { ReactNode } from "react";
 
 interface FeatureCardProps {
-    icon: React.ReactNode;
+    icon: ReactNode;
     title: string;
     description: string;
     index: number;
 }
 
-export const FeatureCard = memo(function FeatureCard({ icon, title, description, index }: FeatureCardProps) {
+export function FeatureCard({ icon, title, description, index }: FeatureCardProps) {
     return (
         <div
-            className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:shadow-lg hover:border-primary/20 transition-all duration-300 group animate-slide-up"
+            // Optimized: will-animate hint helps browser prepare for transform/opacity changes
+            className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:shadow-lg hover:border-primary/20 transition-all duration-300 group animate-slide-up will-animate"
             style={{
                 animationDelay: `${index * 100}ms`,
                 animationFillMode: 'both' // Ensures opacity: 0 before animation starts
@@ -27,4 +28,4 @@ export const FeatureCard = memo(function FeatureCard({ icon, title, description,
             </p>
         </div>
     );
-});
+}
