@@ -9,8 +9,6 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { FeatureCard } from "./FeatureCard";
-import { memo } from "react";
-
 const features = [
     {
         icon: <LayoutDashboard size={24} aria-hidden="true" />,
@@ -56,7 +54,7 @@ interface TechnologyLogoProps {
     tech: typeof technologies[number];
 }
 
-const TechnologyLogo = memo(function TechnologyLogo({ tech }: TechnologyLogoProps) {
+function TechnologyLogo({ tech }: TechnologyLogoProps) {
     return (
         <div className="group flex items-center justify-center">
             {tech.logo ? (
@@ -77,7 +75,7 @@ const TechnologyLogo = memo(function TechnologyLogo({ tech }: TechnologyLogoProp
             )}
         </div>
     );
-});
+}
 
 export function Features() {
     return (
