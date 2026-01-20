@@ -16,6 +16,8 @@
 [2026-02-24] [app/layout.tsx] Removed duplicate JsonLd import and used component instead of raw script
 [2026-02-24] [app/page.tsx] Removed duplicate JsonLd import
 [2026-02-24] [components/JsonLd.tsx] Added eslint-disable for dangerouslySetInnerHTML
+[2026-01-19] [app/error.tsx] Added missing console.error logging for errors
+[2026-01-19] [app/globals.css] Added missing --color-muted and --color-muted-foreground CSS variables
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
