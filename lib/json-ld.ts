@@ -1,3 +1,7 @@
+/**
+ * JSON-LD data for the main website entity.
+ * Helps search engines understand the site structure and search capability.
+ */
 export const WEBSITE_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -10,6 +14,10 @@ export const WEBSITE_JSON_LD = {
   }
 };
 
+/**
+ * JSON-LD data for the hosting service.
+ * Describes the free hosting offer.
+ */
 export const SERVICE_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -36,6 +44,10 @@ export const SERVICE_JSON_LD = {
   }
 };
 
+/**
+ * JSON-LD data for the organization.
+ * Provides details about WPinEU as an entity.
+ */
 export const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Organization",

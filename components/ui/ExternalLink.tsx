@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -13,7 +14,7 @@ interface ExternalLinkProps {
  * A reusable component for external links that handles security and accessibility best practices.
  * Automatically adds target="_blank", rel="noopener noreferrer", and screen-reader only text.
  */
-export function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
+export const ExternalLink = memo(function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
   return (
     <Link
       href={href}
@@ -27,4 +28,4 @@ export function ExternalLink({ href, children, className, ariaLabel, onClick }: 
       <span className="sr-only">(opens in a new tab)</span>
     </Link>
   );
-}
+});

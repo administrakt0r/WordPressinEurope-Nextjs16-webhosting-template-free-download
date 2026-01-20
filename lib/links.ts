@@ -1,3 +1,7 @@
+/**
+ * Centralized configuration for all external links used across the application.
+ * Uses `as const` to ensure type safety for literal values.
+ */
 export const EXTERNAL_LINKS = {
     // Clients & Ordering
     CLIENT_PORTAL: "https://clients.wpineu.com/",
@@ -17,3 +21,5 @@ export const EXTERNAL_LINKS = {
     SLA: "https://wp.wpineu.com/service-level-agreement",
     REPORT_ABUSE: "https://wp.wpineu.com/report-abuse",
 } as const;
+
+export type ExternalLinkKey = keyof typeof EXTERNAL_LINKS;
