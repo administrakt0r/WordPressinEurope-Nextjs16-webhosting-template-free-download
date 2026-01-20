@@ -18,6 +18,8 @@
 [2026-02-24] [components/JsonLd.tsx] Added eslint-disable for dangerouslySetInnerHTML
 [2026-01-19] [app/error.tsx] Added missing console.error logging for errors
 [2026-01-19] [app/globals.css] Added missing --color-muted and --color-muted-foreground CSS variables
+[2026-02-25] [components/sections/PricingCard.tsx] Added missing ExternalLink import (fixed build error)
+[2026-02-25] [components/sections/Hero.tsx] Replaced Link with ExternalLink for external URLs
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
