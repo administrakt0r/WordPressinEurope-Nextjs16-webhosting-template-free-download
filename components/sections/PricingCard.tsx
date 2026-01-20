@@ -1,6 +1,7 @@
 import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { memo } from "react";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const features = [
     "1 GB SSD disk space (RAID 10 NVMe)",
