@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { Mail, MessageSquare, ExternalLink, Clock, MapPin } from "lucide-react";
-import Link from "next/link";
+import { Mail, MessageSquare, ExternalLink as ExternalLinkIcon, Clock, MapPin } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 export const metadata: Metadata = {
     title: "Support & Contact",
@@ -59,7 +59,7 @@ export default function SupportPage() {
                                 className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
                             >
                                 support@wpineu.com
-                                <ExternalLink size={16} />
+                                <ExternalLinkIcon size={16} />
                             </a>
                         </div>
 
@@ -72,15 +72,13 @@ export default function SupportPage() {
                             <p className="text-slate-400 mb-6">
                                 Access your account, manage services, and submit support tickets.
                             </p>
-                            <a
+                            <ExternalLink
                                 href={EXTERNAL_LINKS.CLIENT_PORTAL}
-                                target="_blank"
-                                rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
                             >
                                 clients.wpineu.com
-                                <ExternalLink size={16} />
-                            </a>
+                                <ExternalLinkIcon size={16} />
+                            </ExternalLink>
                         </div>
                     </div>
                 </div>
@@ -141,7 +139,7 @@ export default function SupportPage() {
                             <div className="bg-slate-900 rounded-xl p-6 border border-slate-800">
                                 <h3 className="text-xl font-bold text-white mb-3">How do I get started?</h3>
                                 <p className="text-slate-400">
-                                    Visit our <Link href={EXTERNAL_LINKS.ORDER_FREE_HOSTING} className="text-blue-400 hover:text-blue-300">order page</Link> to create your free hosting account. The setup is instant and requires no credit card.
+                                    Visit our <ExternalLink href={EXTERNAL_LINKS.ORDER_FREE_HOSTING} className="text-blue-400 hover:text-blue-300">order page</ExternalLink> to create your free hosting account. The setup is instant and requires no credit card.
                                 </p>
                             </div>
 
@@ -155,7 +153,7 @@ export default function SupportPage() {
                             <div className="bg-slate-900 rounded-xl p-6 border border-slate-800">
                                 <h3 className="text-xl font-bold text-white mb-3">How can I upgrade my plan?</h3>
                                 <p className="text-slate-400">
-                                    Log in to your <a href={EXTERNAL_LINKS.CLIENT_PORTAL} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">client area</a> to view available upgrade options and manage your services.
+                                    Log in to your <ExternalLink href={EXTERNAL_LINKS.CLIENT_PORTAL} className="text-blue-400 hover:text-blue-300">client area</ExternalLink> to view available upgrade options and manage your services.
                                 </p>
                             </div>
 
@@ -180,13 +178,13 @@ export default function SupportPage() {
                         <p className="text-xl text-blue-100 mb-8">
                             Create your free WordPress hosting account today. No credit card required.
                         </p>
-                        <Link
+                        <ExternalLink
                             href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                             className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all hover:shadow-lg hover:-translate-y-1"
                         >
                             Get Started Free
-                            <ExternalLink size={20} />
-                        </Link>
+                            <ExternalLinkIcon size={20} />
+                        </ExternalLink>
                     </div>
                 </div>
             </section>

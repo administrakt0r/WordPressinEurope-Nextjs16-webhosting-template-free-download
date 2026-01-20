@@ -1,6 +1,7 @@
 
 import Link from "next/link";
 import { Mail, ArrowUpRight, Code2 } from "lucide-react";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const resources = [
     { name: "compressi.us", url: "https://compressi.us" },
@@ -55,19 +56,17 @@ export function Support() {
                     </h3>
                     <div className="flex flex-wrap justify-center gap-4 md:gap-8">
                         {resources.map((resource) => (
-                            <a
+                            <ExternalLink
                                 key={resource.name}
                                 href={resource.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
                                 className="group flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 border border-slate-800 hover:border-primary/50 hover:shadow-sm transition-all"
                             >
                                 <span className="font-medium text-muted-foreground group-hover:text-primary transition-colors">
                                     {resource.name}
                                 </span>
-                                <span className="sr-only">(opens in a new tab)</span>
+                                {/* ExternalLink component already adds sr-only text */}
                                 <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
-                            </a>
+                            </ExternalLink>
                         ))}
                     </div>
                 </div>
