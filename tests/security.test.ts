@@ -23,15 +23,9 @@ describe('Security Headers', () => {
 
     if (!globalHeaders) return;
 
+    // CSP is now handled by Middleware to support nonces, so it should NOT be in next.config.ts
     const cspHeader = globalHeaders.headers.find((h: Header) => h.key === 'Content-Security-Policy');
-    expect(cspHeader).toBeDefined();
-    if (cspHeader) {
-        expect(cspHeader.value).toContain('upgrade-insecure-requests');
-        expect(cspHeader.value).toContain("object-src 'none'");
-        expect(cspHeader.value).toContain("frame-ancestors 'none'");
-        expect(cspHeader.value).toContain("frame-src 'none'");
-        expect(cspHeader.value).toContain("img-src 'self' data: https://images.unsplash.com");
-    }
+    expect(cspHeader).toBeUndefined();
   });
 
   it('should have strict Permissions-Policy', async () => {

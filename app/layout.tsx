@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Inter, Outfit } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -71,18 +72,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const nonce = headersList.get("x-nonce") || undefined;
+
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-slate-950 text-slate-50 transition-colors duration-300`}
       >
         <SkipLink />
-        <JsonLd data={ORGANIZATION_JSON_LD} />
+        <JsonLd data={ORGANIZATION_JSON_LD} nonce={nonce} />
         <Providers>
           <div className="flex flex-col min-h-screen">
             <Navbar />

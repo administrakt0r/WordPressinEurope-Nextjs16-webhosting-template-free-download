@@ -17,3 +17,8 @@
 **Vulnerability:** Inconsistent use of `target="_blank"` without `rel="noopener noreferrer"` in some components exposed potential reverse tabnabbing risks and lacked accessibility context (screen reader text).
 **Learning:** Enforcing a dedicated `ExternalLink` component ensures that all external links automatically include security attributes (`rel`) and accessibility enhancements (screen reader text), reducing the risk of human error.
 **Prevention:** Always use `@/components/ui/ExternalLink` for external URLs instead of raw `<a>` or `Link` with manual `target="_blank"`.
+
+## 2026-02-25 - Strict CSP with Nonce in Next.js 16
+**Vulnerability:** Weak `script-src 'unsafe-inline'` allowed potentially malicious inline scripts to execute if injected.
+**Learning:** Next.js 16 (App Router) automatically applies nonces to internal scripts/hydration when `x-nonce` request header and `Content-Security-Policy` header are set in Middleware. This eliminates the need for `unsafe-inline` while maintaining hydration. Also, `headers()` in `layout.tsx` causes the route to opt-out of static generation (Dynamic Rendering).
+**Prevention:** Use `middleware.ts` to generate nonces and set strict CSP headers, while passing the nonce to custom script components like `JsonLd`.
