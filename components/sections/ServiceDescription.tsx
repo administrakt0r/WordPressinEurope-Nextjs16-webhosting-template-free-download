@@ -1,5 +1,6 @@
 import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle, Globe, Code, Server, ShieldCheck, Layers } from "lucide-react";
 import Image from "next/image";
+import type { ElementType, CSSProperties } from "react";
 
 interface ServiceFeature {
     iconName: string;
@@ -15,7 +16,7 @@ interface ServiceDescriptionProps {
     techLogos?: { name: string; logo: string; width?: number; height?: number }[];
 }
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap: Record<string, ElementType> = {
     Shield,
     Zap,
     Database,
@@ -51,7 +52,13 @@ function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
 
 export function ServiceDescription({ title, subtitle, description, features, techLogos }: ServiceDescriptionProps) {
     return (
-        <section className="py-20 bg-slate-900">
+        <section
+            className="py-20 bg-slate-900"
+            style={{
+                contentVisibility: "auto",
+                containIntrinsicSize: "1px 800px"
+            } as CSSProperties}
+        >
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header */}
                 <div className="max-w-3xl mx-auto text-center mb-16">
