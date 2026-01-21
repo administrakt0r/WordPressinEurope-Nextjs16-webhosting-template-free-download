@@ -15,6 +15,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
   // Resource hints for critical external domains
   // prefetchDNS is for domains we might visit (uptime)
   ReactDOM.prefetchDNS("https://uptime.wpineu.com");
+  // ⚡ Performance: prefetch DNS for image CDN to speed up image loading
+  ReactDOM.prefetchDNS("https://images.unsplash.com");
+  // ⚡ Performance: prefetch DNS for internal subdomains to speed up navigation
+  ReactDOM.prefetchDNS("https://wp.wpineu.com");
+  ReactDOM.prefetchDNS("https://clients.wpineu.com");
+
 
   // preconnect is for domains we definitely fetch from soon (images, client portal linked in nav)
   ReactDOM.preconnect("https://clients.wpineu.com");

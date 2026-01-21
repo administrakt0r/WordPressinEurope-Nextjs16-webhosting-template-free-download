@@ -1,3 +1,4 @@
+import { getOffscreenOptimizations } from "@/lib/styles";
 import {
     Shield,
     Zap,
@@ -7,9 +8,8 @@ import {
     LayoutDashboard,
     Lock
 } from "lucide-react";
-import Image from "next/image";
 import { FeatureCard } from "./FeatureCard";
-import { memo } from "react";
+import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 
 const features = [
     {
@@ -47,49 +47,19 @@ const features = [
 const technologies = [
     { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
     { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
-    { name: "LiteSpeed", logo: null, width: 0, height: 0 },
+    { name: "LiteSpeed", logo: "/litespeed.svg", width: 800, height: 800 },
     { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
     { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
 ];
-
-interface TechnologyLogoProps {
-    tech: typeof technologies[number];
-}
-
-const TechnologyLogo = memo(function TechnologyLogo({ tech }: TechnologyLogoProps) {
-    return (
-        <div className="group flex items-center justify-center">
-            {tech.logo ? (
-                <div className="relative h-10 md:h-12 w-auto">
-                        <Image
-                        src={tech.logo}
-                        alt={tech.name}
-                        width={tech.width}
-                        height={tech.height}
-                        sizes="(max-width: 768px) 100px, 150px"
-                        className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
-                    />
-                </div>
-            ) : (
-                <span className="text-lg md:text-xl font-bold text-slate-400 hover:text-primary transition-colors cursor-default">
-                    {tech.name}
-                </span>
-            )}
-        </div>
-    );
-});
 
 export function Features() {
     return (
         <section
             id="features"
+            aria-label="Features and Technologies"
             className="py-20 bg-slate-950"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
-            // contain-intrinsic-size prevents scrollbar jumps (estimated height)
-            style={{
-                contentVisibility: "auto",
-                containIntrinsicSize: "1px 1200px"
-            } as React.CSSProperties}
+            style={getOffscreenOptimizations("1200px")}
         >
             <div className="container mx-auto px-4 md:px-6">
 
@@ -98,11 +68,18 @@ export function Features() {
                     <h2 className="text-2xl font-bold font-heading text-foreground mb-8">
                         Powered By Industry-Leading Technologies
                     </h2>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                    <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
                         {technologies.map((tech) => (
-                            <TechnologyLogo key={tech.name} tech={tech} />
+                            <li key={tech.name}>
+                                <TechnologyLogo
+                                    name={tech.name}
+                                    logo={tech.logo}
+                                    width={tech.width}
+                                    height={tech.height}
+                                />
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
 
                 {/* Main Features Grid */}
@@ -116,23 +93,31 @@ export function Features() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {features.map((feature, index) => (
-                            <FeatureCard
+                            <li
                                 key={feature.title}
-                                icon={feature.icon}
-                                title={feature.title}
-                                description={feature.description}
-                                index={index}
-                            />
+                                className="animate-slide-up will-animate"
+                                style={{
+                                    animationDelay: `${index * 100}ms`,
+                                    animationFillMode: 'both' // Ensures opacity: 0 before animation starts
+                                }}
+                            >
+                                <FeatureCard
+                                    icon={feature.icon}
+                                    title={feature.title}
+                                    description={feature.description}
+                                />
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
 
                 {/* Advantage Section */}
                 <div className="bg-blue-600 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+                    {/* GPU accelerated blurs to prevent repaint on scroll */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 gpu-accelerated" />
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 gpu-accelerated" />
 
                     <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                         <div>

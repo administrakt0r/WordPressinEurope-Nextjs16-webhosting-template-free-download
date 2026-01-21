@@ -127,8 +127,9 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
                     <div>
                         <p className="text-sm text-slate-400 mb-1">Monthly Cost</p>
                         <div className="flex items-baseline gap-1">
-                            <span className="text-4xl font-bold text-white">€0.00</span>
-                            <span className="text-slate-500">/mo</span>
+                            <span className="text-4xl font-bold text-white" aria-hidden="true">€0.00</span>
+                            <span className="text-slate-500" aria-hidden="true">/mo</span>
+                            <span className="sr-only">0 Euros per month</span>
                         </div>
                     </div>
                     <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/20">
@@ -142,7 +143,7 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
                 className="absolute -top-12 -right-8 z-30 bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-700"
             >
                 <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                    <div className="w-3 h-3 rounded-full bg-green-500" aria-hidden="true" />
                     <span className="font-bold text-sm text-white">WordPress Optimized</span>
                 </div>
             </div>

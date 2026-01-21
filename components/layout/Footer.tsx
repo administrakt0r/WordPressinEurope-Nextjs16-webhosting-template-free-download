@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
-import { memo } from "react";
+import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 
 const HOSTING_SERVICES = [
     { label: "Free WordPress Hosting", href: "/free-wordpress-hosting" },
@@ -29,7 +29,7 @@ const LEGAL_LINKS = [
     { label: "Report Abuse", href: EXTERNAL_LINKS.REPORT_ABUSE },
 ];
 
-export const Footer = memo(function Footer() {
+export function Footer() {
     return (
         <footer className="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
             <div className="container mx-auto px-4 md:px-6">
@@ -51,9 +51,10 @@ export const Footer = memo(function Footer() {
                         </p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <Mail size={16} aria-hidden="true" />
-                            <a href="mailto:support@wpineu.com" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm">
-                                support@wpineu.com
-                            </a>
+                            <ObfuscatedMailto
+                                email="support@wpineu.com"
+                                className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm"
+                            />
                         </div>
                     </div>
 
@@ -126,4 +127,4 @@ export const Footer = memo(function Footer() {
             </div>
         </footer>
     );
-});
+}

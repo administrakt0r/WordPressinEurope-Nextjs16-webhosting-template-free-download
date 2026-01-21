@@ -31,3 +31,7 @@
 ## 2025-05-24 - [Semantic Lists for Feature Grids]
 **Learning:** Rendering lists of features (e.g., in pricing cards) as a series of `div`s prevents screen readers from announcing them as a list (e.g., "List of 8 items"). This forces users to navigate item by item without knowing the scope.
 **Action:** Always use `<ul>` and `<li>` for feature lists, even if the visual design doesn't look like a traditional bulleted list.
+
+## 2025-05-24 - [Component Coupling in Semantic Lists]
+**Learning:** Modifying a reusable component (like `FeatureCard`) to return an `<li>` couples it tightly to list contexts, making it invalid HTML if used elsewhere.
+**Action:** Keep reusable display components as `<div>`s and wrap them in `<li>` elements within the parent list loop. Move list-specific animations and positioning styles to the wrapper `<li>`.
