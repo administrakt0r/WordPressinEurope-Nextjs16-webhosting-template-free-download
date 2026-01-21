@@ -18,7 +18,7 @@
 **Learning:** Enforcing a dedicated `ExternalLink` component ensures that all external links automatically include security attributes (`rel`) and accessibility enhancements (screen reader text), reducing the risk of human error.
 **Prevention:** Always use `@/components/ui/ExternalLink` for external URLs instead of raw `<a>` or `Link` with manual `target="_blank"`.
 
-## 2026-01-21 - Verification of Security Headers
-**Vulnerability:** `Referrer-Policy` was configured in `next.config.ts` but missing from the test suite, creating a potential for silent regression if the config was modified.
-**Learning:** Even static configuration files like `next.config.ts` should be covered by tests to ensure security guarantees persist through refactors.
-**Prevention:** Added `Referrer-Policy` check to `tests/security.test.ts`. Future security headers must include corresponding test cases.
+## 2025-05-24 - Mailto Scraping Protection
+**Vulnerability:** Raw `mailto:` links in static HTML are easily harvested by spambots, leading to increased phishing and spam for support addresses.
+**Learning:** Creating an `ObfuscatedMailto` component that renders the `href` attribute only after client-side hydration effectively prevents simple static scrapers from harvesting email addresses while maintaining usability for real users.
+**Prevention:** Use `@/components/ui/ObfuscatedMailto` instead of raw `<a>` tags for all email links.

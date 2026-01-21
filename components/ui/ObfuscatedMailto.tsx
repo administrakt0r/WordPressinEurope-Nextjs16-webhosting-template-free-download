@@ -1,54 +1,53 @@
 "use client";
 
-import { useState, useEffect, type ReactNode } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-interface ObfuscatedMailtoProps {
+interface ObfuscatedMailtoProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
   email: string;
-  children?: ReactNode;
-  className?: string;
-  subject?: string;
-  body?: string;
-  headers?: Record<string, string>;
+  headers?: {
+    subject?: string;
+    body?: string;
+    cc?: string;
+    bcc?: string;
+  };
 }
 
+/**
+ * A component that obfuscates the mailto link to prevent email scraping.
+ * The href is only set after hydration, protecting the address from simple bots.
+ */
 export function ObfuscatedMailto({
   email,
-  children,
-  className,
-  subject,
-  body,
   headers,
+  className,
+  children,
+  onClick,
+  ...props
 }: ObfuscatedMailtoProps) {
-  const [isMounted, setIsMounted] = useState(false);
+  const [href, setHref] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsMounted(true);
-  }, []);
-
-  const params = new URLSearchParams();
-  if (subject) params.append("subject", subject);
-  if (body) params.append("body", body);
-  if (headers) {
+    let link = `mailto:${email}`;
+    if (headers) {
+      const params = new URLSearchParams();
       Object.entries(headers).forEach(([key, value]) => {
-          params.append(key, value);
+        if (value) params.append(key, value);
       });
-  }
-
-  const queryString = params.toString();
-  const href = isMounted ? `mailto:${email}${queryString ? `?${queryString}` : ""}` : "#";
-
-  // If no children provided, display the email
-  const content = children || email;
+      const queryString = params.toString();
+      if (queryString) link += `?${queryString}`;
+    }
+    setHref(link);
+  }, [email, headers]);
 
   return (
     <a
       href={href}
-      className={cn("cursor-pointer", className)}
-      rel="nofollow noopener noreferrer"
+      className={cn(className)}
+      onClick={onClick}
+      {...props}
     >
-      {content}
+      {children || email}
     </a>
   );
 }
