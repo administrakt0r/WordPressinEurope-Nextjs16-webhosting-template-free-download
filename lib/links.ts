@@ -1,10 +1,6 @@
 /**
- * Centralized collection of all external links used throughout the application.
- * Using `as const` ensures literal types for better type safety and autocomplete.
- *
- * @example
- * import { EXTERNAL_LINKS } from "@/lib/links";
- * <a href={EXTERNAL_LINKS.CLIENT_PORTAL}>Client Portal</a>
+ * Centralized configuration for all external links used across the application.
+ * Uses `as const` to ensure type safety for literal values.
  */
 export const EXTERNAL_LINKS = {
     // Clients & Ordering
@@ -36,8 +32,4 @@ export const EXTERNAL_LINKS = {
     REPORT_ABUSE: "https://wp.wpineu.com/report-abuse",
 } as const;
 
-/**
- * Type representing the keys of the EXTERNAL_LINKS object.
- * Useful for component props that accept a specific link key.
- */
 export type ExternalLinkKey = keyof typeof EXTERNAL_LINKS;

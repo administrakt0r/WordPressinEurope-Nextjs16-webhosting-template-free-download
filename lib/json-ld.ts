@@ -1,13 +1,6 @@
 /**
- * JSON-LD (JavaScript Object Notation for Linked Data) structures for SEO.
- * These objects are used to provide structured data to search engines.
- *
- * @see https://schema.org/
- */
-
-/**
- * Structured data for the Website itself.
- * Defines the site name, URL, and potential search action.
+ * JSON-LD data for the main website entity.
+ * Helps search engines understand the site structure and search capability.
  */
 export const WEBSITE_JSON_LD = {
   "@context": "https://schema.org",
@@ -22,8 +15,8 @@ export const WEBSITE_JSON_LD = {
 };
 
 /**
- * Structured data for the specific Hosting Service offered.
- * Includes provider info, area served, and price details.
+ * JSON-LD data for the hosting service.
+ * Describes the free hosting offer.
  */
 export const SERVICE_JSON_LD = {
   "@context": "https://schema.org",
@@ -52,8 +45,8 @@ export const SERVICE_JSON_LD = {
 };
 
 /**
- * Structured data for the Organization behind the website.
- * Includes logo, address, and founding info.
+ * JSON-LD data for the organization.
+ * Provides details about WPinEU as an entity.
  */
 export const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
