@@ -7,8 +7,9 @@ import {
     LayoutDashboard,
     Lock
 } from "lucide-react";
-import Image from "next/image";
 import { FeatureCard } from "./FeatureCard";
+import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
+
 const features = [
     {
         icon: <LayoutDashboard size={24} aria-hidden="true" />,
@@ -50,35 +51,6 @@ const technologies = [
     { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
 ];
 
-interface TechnologyLogoProps {
-    tech: typeof technologies[number];
-}
-
-function TechnologyLogo({ tech }: TechnologyLogoProps) {
-    return (
-        <div className="group flex items-center justify-center">
-            {tech.logo ? (
-                <div className="relative h-10 md:h-12 w-auto">
-                        <Image
-                        src={tech.logo}
-                        alt={tech.name}
-                        width={tech.width}
-                        height={tech.height}
-                        // ⚡ Performance: Optimized sizes to handle wide logos (like cPanel) correctly
-                        // Previous 100px/150px was too small for ~225px wide logos on high DPI
-                        sizes="(max-width: 768px) 200px, 300px"
-                        className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
-                    />
-                </div>
-            ) : (
-                <span className="text-lg md:text-xl font-bold text-slate-400 hover:text-primary transition-colors cursor-default">
-                    {tech.name}
-                </span>
-            )}
-        </div>
-    );
-}
-
 export function Features() {
     return (
         <section
@@ -102,7 +74,12 @@ export function Features() {
                     <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
                         {technologies.map((tech) => (
                             <li key={tech.name}>
-                                <TechnologyLogo tech={tech} />
+                                <TechnologyLogo
+                                    name={tech.name}
+                                    logo={tech.logo}
+                                    width={tech.width}
+                                    height={tech.height}
+                                />
                             </li>
                         ))}
                     </ul>

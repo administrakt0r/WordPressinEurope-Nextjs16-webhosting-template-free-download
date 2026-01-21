@@ -1,7 +1,7 @@
 
-import Link from "next/link";
 import { Mail, ArrowUpRight, Code2 } from "lucide-react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 
 const resources = [
     { name: "compressi.us", url: "https://compressi.us" },
@@ -41,13 +41,13 @@ export function Support() {
                         <p className="text-slate-300 text-lg mb-10 leading-relaxed">
                             Beyond our free hosting, we specialize in creating tailor-made web solutions. If your project requires custom development, unique features, or dedicated support, we&apos;re here to help. Let&apos;s build something amazing together.
                         </p>
-                        <Link
-                            href="mailto:support@wpineu.com"
+                        <ObfuscatedMailto
+                            email="support@wpineu.com"
                             className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
                         >
                             <Mail size={18} aria-hidden="true" />
                             Contact Us
-                        </Link>
+                        </ObfuscatedMailto>
                     </div>
                 </div>
 
