@@ -5,3 +5,7 @@
 ## 2026-02-23 - SVG Image Optimization
 **Learning:** `next/image` requires `width` and `height` for all images, even SVGs. Using `viewBox` dimensions or reasonable defaults helps maintain aspect ratio while CSS controls display size.
 **Action:** When migrating `<img>` to `<Image />` for SVGs, extract dimensions from `viewBox` or file metadata to pass as props.
+
+## 2026-02-23 - Heavy CSS Effects Performance
+**Learning:** Large blurred elements (`blur-[120px]`) and SVG noise filters can cause significant repaint costs on scroll. Promoting them to their own compositing layer using `translateZ(0)` (or `.gpu-accelerated`) is a simple but effective fix.
+**Action:** Always apply GPU acceleration hints to fixed or absolute positioned background elements that use heavy CSS filters.

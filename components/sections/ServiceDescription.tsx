@@ -1,5 +1,6 @@
-import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle } from "lucide-react";
+import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle, Globe, Code, Server, ShieldCheck, Layers } from "lucide-react";
 import Image from "next/image";
+import type { ElementType, CSSProperties } from "react";
 
 interface ServiceFeature {
     iconName: string;
@@ -15,7 +16,7 @@ interface ServiceDescriptionProps {
     techLogos?: { name: string; logo: string; width?: number; height?: number }[];
 }
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap: Record<string, ElementType> = {
     Shield,
     Zap,
     Database,
@@ -27,6 +28,11 @@ const iconMap: Record<string, React.ElementType> = {
     Mail,
     FileText,
     Download,
+    Globe,
+    Code,
+    Server,
+    ShieldCheck,
+    Layers,
 };
 
 function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
@@ -36,7 +42,7 @@ function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
             className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-blue-500/50 transition-all"
         >
             <div className="w-12 h-12 rounded-lg bg-blue-900/30 text-blue-400 flex items-center justify-center mb-4">
-                <Icon size={24} />
+                <Icon size={24} aria-hidden="true" />
             </div>
             <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
             <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
@@ -46,7 +52,13 @@ function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
 
 export function ServiceDescription({ title, subtitle, description, features, techLogos }: ServiceDescriptionProps) {
     return (
-        <section className="py-20 bg-slate-900">
+        <section
+            className="py-20 bg-slate-900"
+            style={{
+                contentVisibility: "auto",
+                containIntrinsicSize: "1px 800px"
+            } as CSSProperties}
+        >
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header */}
                 <div className="max-w-3xl mx-auto text-center mb-16">
@@ -60,11 +72,13 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                 </div>
 
                 {/* Features Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                     {features.map((feature) => (
-                        <ServiceFeatureCard key={feature.title} feature={feature} />
+                        <li key={feature.title}>
+                            <ServiceFeatureCard feature={feature} />
+                        </li>
                     ))}
-                </div>
+                </ul>
 
                 {/* Technology Logos */}
                 {techLogos && techLogos.length > 0 && (
@@ -72,9 +86,9 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                         <h3 className="text-xl font-bold text-center text-white mb-8">
                             Powered By Industry-Leading Technologies
                         </h3>
-                        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                        <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
                             {techLogos.map((tech) => (
-                                <div key={tech.name} className="group relative h-10 md:h-12 w-auto flex items-center">
+                                <li key={tech.name} className="group relative h-10 md:h-12 w-auto flex items-center">
                                     <Image
                                         src={tech.logo}
                                         alt={tech.name}
@@ -83,9 +97,9 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                                         sizes="(max-width: 768px) 100px, 150px"
                                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                                     />
-                                </div>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
                     </div>
                 )}
             </div>

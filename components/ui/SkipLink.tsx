@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { cn } from "@/lib/utils";
 
 interface SkipLinkProps {
@@ -5,7 +6,7 @@ interface SkipLinkProps {
   className?: string;
 }
 
-export function SkipLink({ href = "#main-content", className }: SkipLinkProps) {
+export const SkipLink = memo(function SkipLink({ href = "#main-content", className }: SkipLinkProps) {
   return (
     <a
       href={href}
@@ -17,4 +18,4 @@ export function SkipLink({ href = "#main-content", className }: SkipLinkProps) {
       Skip to content
     </a>
   );
-}
+});

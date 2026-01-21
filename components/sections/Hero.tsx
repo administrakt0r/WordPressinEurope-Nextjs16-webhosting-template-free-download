@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const STARS = [1, 2, 3, 4, 5];
 
@@ -9,15 +10,15 @@ export function Hero() {
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
             {/* Dynamic Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Gradient Orbs */}
-                <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px]" />
-                <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px]" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] bg-blue-900/20 rounded-full blur-[100px]" />
+                {/* Gradient Orbs - Optimized: GPU accelerated to prevent repaint on scroll */}
+                <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px] gpu-accelerated" />
+                <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px] gpu-accelerated" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] bg-blue-900/20 rounded-full blur-[100px] gpu-accelerated" />
 
                 {/* Grid Pattern */}
                 {/* Localized noise.svg to reduce external network requests and improve reliability */}
-                <div className="absolute inset-0 bg-noise opacity-20" />
-                <div className="absolute inset-0 bg-grid-pattern" />
+                <div className="absolute inset-0 bg-noise opacity-20 gpu-accelerated" />
+                <div className="absolute inset-0 bg-grid-pattern gpu-accelerated" />
             </div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -41,14 +42,14 @@ export function Hero() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mb-12">
-                            <Link
+                            <ExternalLink
                                 href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                                 className="group relative inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 hover:shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                             >
                                 <span className="relative z-10">Get Started Now</span>
                                 <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
                                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                            </Link>
+                            </ExternalLink>
                             <Link
                                 href="#features"
                                 className="inline-flex items-center justify-center gap-2 bg-slate-900/50 border border-slate-700 hover:border-blue-500/50 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all duration-200 hover:bg-slate-800 backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
@@ -97,8 +98,8 @@ export function Hero() {
                             </div>
 
                             {/* Specs Grid */}
-                            <div className="grid gap-4 mb-8">
-                                <div className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <ul className="grid gap-4 mb-8">
+                                <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
                                     <div className="flex items-center gap-3">
                                         <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
                                             <Zap size={18} aria-hidden="true" />
@@ -106,9 +107,9 @@ export function Hero() {
                                         <span className="text-slate-300 font-medium">Super fast storage</span>
                                     </div>
                                     <span className="text-white font-bold">1GB NVMe SSD disk space</span>
-                                </div>
+                                </li>
 
-                                <div className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                                <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
                                     <div className="flex items-center gap-3">
                                         <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400">
                                             <Zap size={18} aria-hidden="true" />
@@ -116,9 +117,9 @@ export function Hero() {
                                         <span className="text-slate-300 font-medium">Bandwidth</span>
                                     </div>
                                     <span className="text-white font-bold">100GB Traffic</span>
-                                </div>
+                                </li>
 
-                                <div className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                                <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
                                     <div className="flex items-center gap-3">
                                         <div className="p-2 rounded-lg bg-yellow-500/10 text-yellow-400">
                                             <Globe size={18} aria-hidden="true" />
@@ -126,31 +127,32 @@ export function Hero() {
                                         <span className="text-slate-300 font-medium">Location</span>
                                     </div>
                                     <span className="text-white font-bold">Europe</span>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
 
                             {/* Price Tag */}
                             <div className="flex justify-between items-end">
                                 <div>
                                     <p className="text-sm text-slate-400 mb-1">Monthly Cost</p>
                                     <div className="flex items-baseline gap-1">
-                                        <span className="text-4xl font-bold text-white">€0.00</span>
-                                        <span className="text-slate-500">/mo</span>
+                                        <span className="text-4xl font-bold text-white" aria-hidden="true">€0.00</span>
+                                        <span className="text-slate-500" aria-hidden="true">/mo</span>
+                                        <span className="sr-only">0 Euros per month</span>
                                     </div>
                                 </div>
-                                <Link
+                                <ExternalLink
                                     href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                                     className="h-10 px-6 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-600/20 text-white font-bold text-sm transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                                 >
                                     Order Now
-                                </Link>
+                                </ExternalLink>
                             </div>
                         </div>
 
                         {/* Floating Elements */}
                         <div className="absolute -top-12 -right-8 z-30 bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-700">
                             <div className="flex items-center gap-3">
-                                <div className="w-3 h-3 rounded-full bg-orange-500" />
+                                <div className="w-3 h-3 rounded-full bg-orange-500" aria-hidden="true" />
                                 <span className="font-bold text-sm text-white">Powered by cPanel</span>
                             </div>
                         </div>

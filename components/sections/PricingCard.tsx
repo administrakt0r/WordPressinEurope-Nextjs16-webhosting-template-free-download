@@ -1,6 +1,7 @@
-import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { memo } from "react";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 
 const features = [
     "1 GB SSD disk space (RAID 10 NVMe)",
@@ -13,10 +14,11 @@ const features = [
     "NO advertisements or hidden fees"
 ];
 
-export function PricingCard() {
+export const PricingCard = memo(function PricingCard() {
     return (
         <div
-            className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden animate-slide-up"
+            // Optimized: will-animate hint helps browser prepare for transform/opacity changes
+            className="relative bg-slate-950 rounded-3xl shadow-2xl border border-slate-800 overflow-hidden animate-slide-up will-animate"
         >
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-yellow-400" />
 
@@ -29,20 +31,21 @@ export function PricingCard() {
 
                     <div className="text-right">
                         <div className="flex items-baseline gap-1 mb-2">
-                            <span className="text-5xl font-bold text-foreground">€0.00</span>
-                            <span className="text-muted-foreground font-medium">/mo</span>
+                            <span className="text-5xl font-bold text-foreground" aria-hidden="true">€0.00</span>
+                            <span className="text-muted-foreground font-medium" aria-hidden="true">/mo</span>
+                            <span className="sr-only">0 Euros per month</span>
                         </div>
                         <p className="text-sm text-muted-foreground">No credit card required</p>
                     </div>
                 </div>
 
-                <Link
+                <ExternalLink
                     href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
                     className="group flex items-center justify-center gap-2 w-full bg-primary hover:bg-blue-700 text-white py-4 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 mb-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                     Get Started Free Now
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                </Link>
+                </ExternalLink>
 
                 <ul className="space-y-4" aria-label="Hosting features">
                     {features.map((feature) => (
@@ -57,4 +60,4 @@ export function PricingCard() {
             </div>
         </div>
     );
-}
+});

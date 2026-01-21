@@ -18,9 +18,16 @@
 [2026-02-24] [components/JsonLd.tsx] Added eslint-disable for dangerouslySetInnerHTML
 [2026-02-25] [app/support/page.tsx] Fixed insecure external links and naming collision
 [2026-02-25] [components/sections/About.tsx] Fixed insecure external link
+[2026-01-19] [app/error.tsx] Added missing console.error logging for errors
+[2026-01-19] [app/globals.css] Added missing --color-muted and --color-muted-foreground CSS variables
+[2026-02-25] [components/sections/PricingCard.tsx] Added missing ExternalLink import (fixed build error)
+[2026-02-25] [components/sections/Hero.tsx] Replaced Link with ExternalLink for external URLs
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
+[2026-03-03] Missing `app/manifest.ts` (PWA feature) - Requires Feature task, not Bug Fix.
+[2026-03-03] `TechnologyLogo` component is defined in `Features.tsx` instead of `components/ui/TechnologyLogo.tsx` - Requires Refactor task, not Bug Fix.
+[2026-03-03] Missing JSDoc in `lib/utils.ts` and `lib/links.ts` - Requires Improvement task.
 
 ## False Positives
 <!-- Things that look like errors but aren't -->
