@@ -45,7 +45,7 @@ const features = [
 const technologies = [
     { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
     { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
-    { name: "LiteSpeed", logo: null, width: 0, height: 0 },
+    { name: "LiteSpeed", logo: "/litespeed.svg", width: 800, height: 800 },
     { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
     { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
 ];
@@ -64,7 +64,9 @@ function TechnologyLogo({ tech }: TechnologyLogoProps) {
                         alt={tech.name}
                         width={tech.width}
                         height={tech.height}
-                        sizes="(max-width: 768px) 100px, 150px"
+                        // ⚡ Performance: Optimized sizes to handle wide logos (like cPanel) correctly
+                        // Previous 100px/150px was too small for ~225px wide logos on high DPI
+                        sizes="(max-width: 768px) 200px, 300px"
                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                     />
                 </div>
