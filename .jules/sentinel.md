@@ -17,3 +17,8 @@
 **Vulnerability:** Inconsistent use of `target="_blank"` without `rel="noopener noreferrer"` in some components exposed potential reverse tabnabbing risks and lacked accessibility context (screen reader text).
 **Learning:** Enforcing a dedicated `ExternalLink` component ensures that all external links automatically include security attributes (`rel`) and accessibility enhancements (screen reader text), reducing the risk of human error.
 **Prevention:** Always use `@/components/ui/ExternalLink` for external URLs instead of raw `<a>` or `Link` with manual `target="_blank"`.
+
+## 2026-01-21 - Verification of Security Headers
+**Vulnerability:** `Referrer-Policy` was configured in `next.config.ts` but missing from the test suite, creating a potential for silent regression if the config was modified.
+**Learning:** Even static configuration files like `next.config.ts` should be covered by tests to ensure security guarantees persist through refactors.
+**Prevention:** Added `Referrer-Policy` check to `tests/security.test.ts`. Future security headers must include corresponding test cases.

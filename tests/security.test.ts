@@ -172,6 +172,23 @@ describe('Security Headers', () => {
     }
   });
 
+  it('should have Referrer-Policy set to strict-origin-when-cross-origin', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const referrerPolicyHeader = globalHeaders.headers.find((h: Header) => h.key === 'Referrer-Policy');
+    expect(referrerPolicyHeader).toBeDefined();
+    if (referrerPolicyHeader) {
+        expect(referrerPolicyHeader.value).toBe('strict-origin-when-cross-origin');
+    }
+  });
+
   it('should not have duplicate headers', async () => {
     if (!nextConfig.headers) {
       throw new Error('nextConfig.headers is undefined');
