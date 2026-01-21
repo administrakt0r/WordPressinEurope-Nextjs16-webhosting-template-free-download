@@ -83,6 +83,7 @@ export function Features() {
     return (
         <section
             id="features"
+            aria-label="Features and Technologies"
             className="py-20 bg-slate-950"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
             // contain-intrinsic-size prevents scrollbar jumps (estimated height)
@@ -98,11 +99,13 @@ export function Features() {
                     <h2 className="text-2xl font-bold font-heading text-foreground mb-8">
                         Powered By Industry-Leading Technologies
                     </h2>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                    <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
                         {technologies.map((tech) => (
-                            <TechnologyLogo key={tech.name} tech={tech} />
+                            <li key={tech.name}>
+                                <TechnologyLogo tech={tech} />
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
 
                 {/* Main Features Grid */}
