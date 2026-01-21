@@ -65,11 +65,13 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                 </div>
 
                 {/* Features Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                     {features.map((feature) => (
-                        <ServiceFeatureCard key={feature.title} feature={feature} />
+                        <li key={feature.title}>
+                            <ServiceFeatureCard feature={feature} />
+                        </li>
                     ))}
-                </div>
+                </ul>
 
                 {/* Technology Logos */}
                 {techLogos && techLogos.length > 0 && (
@@ -77,9 +79,9 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                         <h3 className="text-xl font-bold text-center text-white mb-8">
                             Powered By Industry-Leading Technologies
                         </h3>
-                        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                        <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
                             {techLogos.map((tech) => (
-                                <div key={tech.name} className="group relative h-10 md:h-12 w-auto flex items-center">
+                                <li key={tech.name} className="group relative h-10 md:h-12 w-auto flex items-center">
                                     <Image
                                         src={tech.logo}
                                         alt={tech.name}
@@ -88,9 +90,9 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                                         sizes="(max-width: 768px) 100px, 150px"
                                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                                     />
-                                </div>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
                     </div>
                 )}
             </div>

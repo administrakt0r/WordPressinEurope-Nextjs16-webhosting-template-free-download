@@ -13,6 +13,7 @@ export function About() {
     return (
         <section
             id="about"
+            aria-labelledby="about-heading"
             className="py-20 bg-slate-950 overflow-hidden"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
             // contain-intrinsic-size prevents scrollbar jumps (estimated height)
@@ -25,7 +26,10 @@ export function About() {
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                         {/* Text Content */}
                         <AnimatedSection direction="left">
-                            <h2 className="text-3xl md:text-4xl font-bold font-heading text-foreground mb-6">
+                            <h2
+                                id="about-heading"
+                                className="text-3xl md:text-4xl font-bold font-heading text-foreground mb-6"
+                            >
                                 About WPinEU
                             </h2>
                             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
