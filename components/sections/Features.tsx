@@ -114,17 +114,24 @@ export function Features() {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {features.map((feature, index) => (
-                            <FeatureCard
+                            <li
                                 key={feature.title}
-                                icon={feature.icon}
-                                title={feature.title}
-                                description={feature.description}
-                                index={index}
-                            />
+                                className="animate-slide-up will-animate"
+                                style={{
+                                    animationDelay: `${index * 100}ms`,
+                                    animationFillMode: 'both' // Ensures opacity: 0 before animation starts
+                                }}
+                            >
+                                <FeatureCard
+                                    icon={feature.icon}
+                                    title={feature.title}
+                                    description={feature.description}
+                                />
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
 
                 {/* Advantage Section */}
