@@ -1,3 +1,4 @@
+import { getOffscreenOptimizations } from "@/lib/styles";
 import {
     Shield,
     Zap,
@@ -83,11 +84,7 @@ export function Features() {
             id="features"
             className="py-20 bg-slate-950"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
-            // contain-intrinsic-size prevents scrollbar jumps (estimated height)
-            style={{
-                contentVisibility: "auto",
-                containIntrinsicSize: "1px 1200px"
-            } as React.CSSProperties}
+            style={getOffscreenOptimizations("1200px")}
         >
             <div className="container mx-auto px-4 md:px-6">
 
