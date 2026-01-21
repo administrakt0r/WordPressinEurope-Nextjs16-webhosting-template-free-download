@@ -14,6 +14,7 @@ export function Support() {
     return (
         <section
             id="support"
+            aria-label="Support and Resources"
             className="py-20 bg-slate-950"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
             // contain-intrinsic-size prevents scrollbar jumps (estimated height)
@@ -26,8 +27,9 @@ export function Support() {
 
                 {/* Custom Solutions CTA */}
                 <div className="bg-slate-900 rounded-3xl p-8 md:p-16 text-center text-white mb-20 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+                    {/* GPU accelerated blurs to prevent repaint on scroll */}
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 gpu-accelerated" />
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 gpu-accelerated" />
 
                     <div className="relative z-10 max-w-3xl mx-auto">
                         <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm text-white flex items-center justify-center mx-auto mb-8">
@@ -54,21 +56,22 @@ export function Support() {
                     <h3 className="text-xl font-bold font-heading text-foreground mb-8">
                         More Free Resources
                     </h3>
-                    <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+                    <ul className="flex flex-wrap justify-center gap-4 md:gap-8">
                         {resources.map((resource) => (
-                            <ExternalLink
-                                key={resource.name}
-                                href={resource.url}
-                                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 border border-slate-800 hover:border-primary/50 hover:shadow-sm transition-all"
-                            >
-                                <span className="font-medium text-muted-foreground group-hover:text-primary transition-colors">
-                                    {resource.name}
-                                </span>
-                                {/* ExternalLink component already adds sr-only text */}
-                                <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
-                            </ExternalLink>
+                            <li key={resource.name}>
+                                <ExternalLink
+                                    href={resource.url}
+                                    className="group flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 border border-slate-800 hover:border-primary/50 hover:shadow-sm transition-all"
+                                >
+                                    <span className="font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                                        {resource.name}
+                                    </span>
+                                    {/* ExternalLink component already adds sr-only text */}
+                                    <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
+                                </ExternalLink>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
             </div>
         </section>
