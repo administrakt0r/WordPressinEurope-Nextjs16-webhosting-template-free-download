@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 
 const HOSTING_SERVICES = [
     { label: "Free WordPress Hosting", href: "/free-wordpress-hosting" },
@@ -50,9 +51,10 @@ export function Footer() {
                         </p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <Mail size={16} aria-hidden="true" />
-                            <a href="mailto:support@wpineu.com" className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm">
-                                support@wpineu.com
-                            </a>
+                            <ObfuscatedMailto
+                                email="support@wpineu.com"
+                                className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm"
+                            />
                         </div>
                     </div>
 
