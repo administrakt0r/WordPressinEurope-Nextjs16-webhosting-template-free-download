@@ -40,7 +40,7 @@ export default function GlobalError({
               <div className="absolute inset-0 bg-grid-pattern opacity-20" />
           </div>
 
-          <div className="relative z-10">
+          <div className="relative z-10" role="alert" aria-live="assertive">
             <div className="w-24 h-24 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-8">
               <AlertTriangle size={48} className="text-red-500" aria-hidden="true" />
             </div>
