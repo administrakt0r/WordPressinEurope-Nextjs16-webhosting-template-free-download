@@ -80,4 +80,38 @@ describe('CSP Enhancements', () => {
         expect(cspHeader.value).toContain("media-src 'self'");
     }
   });
+
+  it('should have strict base-uri', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const cspHeader = globalHeaders.headers.find((h: Header) => h.key === 'Content-Security-Policy');
+    expect(cspHeader).toBeDefined();
+    if (cspHeader) {
+        expect(cspHeader.value).toContain("base-uri 'self'");
+    }
+  });
+
+  it('should have strict form-action', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const cspHeader = globalHeaders.headers.find((h: Header) => h.key === 'Content-Security-Policy');
+    expect(cspHeader).toBeDefined();
+    if (cspHeader) {
+        expect(cspHeader.value).toContain("form-action 'self'");
+    }
+  });
 });
