@@ -1,6 +1,7 @@
 import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle, Globe, Code, Server, ShieldCheck, Layers } from "lucide-react";
 import Image from "next/image";
-import type { ElementType, CSSProperties } from "react";
+import type { ElementType } from "react";
+import { getOffscreenOptimizations } from "@/lib/styles";
 
 interface ServiceFeature {
     iconName: string;
@@ -54,10 +55,7 @@ export function ServiceDescription({ title, subtitle, description, features, tec
     return (
         <section
             className="py-20 bg-slate-900"
-            style={{
-                contentVisibility: "auto",
-                containIntrinsicSize: "1px 800px"
-            } as CSSProperties}
+            style={getOffscreenOptimizations("800px")}
         >
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header */}
@@ -96,6 +94,7 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                                         height={tech.height || 100}
                                         sizes="(max-width: 768px) 100px, 150px"
                                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                                        unoptimized={tech.logo.endsWith('.svg')}
                                     />
                                 </li>
                             ))}

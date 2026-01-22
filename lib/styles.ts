@@ -17,5 +17,7 @@ export interface PerformanceStyle extends CSSProperties {
  */
 export const getOffscreenOptimizations = (height: string): PerformanceStyle => ({
   contentVisibility: "auto",
-  containIntrinsicSize: `1px ${height}`,
+  // ⚡ Performance: using 'auto' for width allows the browser to use the element's
+  // natural width (or last rendered width) instead of assuming 1px, preventing layout shifts.
+  containIntrinsicSize: `auto ${height}`,
 });

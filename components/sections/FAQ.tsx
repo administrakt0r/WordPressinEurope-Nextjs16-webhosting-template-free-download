@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { getOffscreenOptimizations } from "@/lib/styles";
 import { FAQAccordion } from "./FAQAccordion";
 
 const faqs = [
@@ -37,10 +38,7 @@ export function FAQ() {
             id="faq"
             className="py-20 bg-slate-900"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
-            style={{
-                contentVisibility: "auto",
-                containIntrinsicSize: "1px 600px"
-            }}
+            style={getOffscreenOptimizations("600px")}
         >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center max-w-3xl mx-auto mb-16">
