@@ -150,21 +150,30 @@ export function Hero() {
                         </div>
 
                         {/* Floating Elements */}
-                        <div className="absolute -top-12 -right-8 z-30 bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-700">
+                        <div
+                            className="absolute -top-12 -right-8 z-30 bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-700"
+                            aria-hidden="true"
+                        >
                             <div className="flex items-center gap-3">
-                                <div className="w-3 h-3 rounded-full bg-orange-500" aria-hidden="true" />
+                                <div className="w-3 h-3 rounded-full bg-orange-500" />
                                 <span className="font-bold text-sm text-white">Powered by cPanel</span>
                             </div>
                         </div>
 
-                        <div className="absolute -bottom-8 -left-8 z-30 bg-blue-600 p-4 rounded-2xl shadow-xl shadow-blue-600/20">
+                        <div
+                            className="absolute -bottom-8 -left-8 z-30 bg-blue-600 p-4 rounded-2xl shadow-xl shadow-blue-600/20"
+                            aria-hidden="true"
+                        >
                             <div className="flex items-center gap-3">
                                 <div className="font-bold text-lg text-white">LiteSpeed</div>
                                 <span className="text-blue-100 text-xs font-medium leading-tight">Web<br />Server</span>
                             </div>
                         </div>
 
-                        <div className="absolute top-1/2 -right-12 z-30 bg-red-500 p-3 rounded-xl shadow-lg shadow-red-500/20">
+                        <div
+                            className="absolute top-1/2 -right-12 z-30 bg-red-500 p-3 rounded-xl shadow-lg shadow-red-500/20"
+                            aria-hidden="true"
+                        >
                             <div className="text-xs font-bold text-white text-center">
                                 Redis<br />Cache
                             </div>
