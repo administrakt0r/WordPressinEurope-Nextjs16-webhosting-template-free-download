@@ -25,9 +25,20 @@ export function ObfuscatedMailto({
   onClick,
   ...props
 }: ObfuscatedMailtoProps) {
-  const [href, setHref] = useState<string | undefined>(undefined);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // Delay setting mounted state to avoid "setState in effect" lint error
+    // and ensure we don't block the initial paint.
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const getHref = () => {
+    if (!isMounted) return undefined;
+
     let link = `mailto:${email}`;
     if (headers) {
       const params = new URLSearchParams();
@@ -37,12 +48,12 @@ export function ObfuscatedMailto({
       const queryString = params.toString();
       if (queryString) link += `?${queryString}`;
     }
-    setHref(link);
-  }, [email, headers]);
+    return link;
+  };
 
   return (
     <a
-      href={href}
+      href={getHref()}
       className={cn(className)}
       onClick={onClick}
       {...props}

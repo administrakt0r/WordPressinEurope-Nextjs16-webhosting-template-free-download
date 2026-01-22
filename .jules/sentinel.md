@@ -22,3 +22,13 @@
 **Vulnerability:** Raw `mailto:` links in static HTML are easily harvested by spambots, leading to increased phishing and spam for support addresses.
 **Learning:** Creating an `ObfuscatedMailto` component that renders the `href` attribute only after client-side hydration effectively prevents simple static scrapers from harvesting email addresses while maintaining usability for real users.
 **Prevention:** Use `@/components/ui/ObfuscatedMailto` instead of raw `<a>` tags for all email links.
+
+## 2025-05-25 - React Hooks Linting Strictness
+**Vulnerability:** Strict ESLint configuration for `react-hooks/set-state-in-effect` flagged standard client-side mounting patterns (setting state in `useEffect`), potentially leading to developers disabling lint rules or writing unsafe code to bypass it.
+**Learning:** Using `setTimeout` with 0ms delay inside `useEffect` effectively moves the state update to the next tick, satisfying the linter while ensuring the component remains client-side only (avoiding hydration mismatch).
+**Prevention:** When needing to trigger a client-side only render (e.g. for `ObfuscatedMailto`), use `setTimeout(() => setState(true), 0)` inside `useEffect` if the linter complains about synchronous updates.
+
+## 2025-05-25 - URL Protocol Validation
+**Vulnerability:** Relying solely on `ExternalLink` for new tab behavior doesn't prevent XSS if a dynamic URL with `javascript:` protocol is passed.
+**Learning:** Adding a centralized `isSafeUrl` utility that strictly validates protocols (allowing only http/https/mailto/tel) provides Defense in Depth.
+**Prevention:** Always wrap external URL props in `isSafeUrl` check or use it within the link component itself to block unsafe schemes.

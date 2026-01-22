@@ -1,6 +1,6 @@
 
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { ObfuscatedMailto } from '@/components/ui/ObfuscatedMailto';
 
 describe('ObfuscatedMailto Component', () => {
@@ -9,14 +9,17 @@ describe('ObfuscatedMailto Component', () => {
         expect(screen.getByText('test@example.com')).toBeDefined();
     });
 
-    it('should initially have no href or placeholder href', () => {
+    it('should eventually have the correct mailto href', async () => {
         render(<ObfuscatedMailto email="test@example.com" />);
         const link = screen.getByText('test@example.com') as HTMLAnchorElement;
-        // Depending on implementation, it might be undefined or empty or "#" initially
-        // We just want to ensure it's not the full mailto link immediately in source if we were SSRing,
-        // but effectively in JSDOM, useEffect runs immediately.
-        // So we check that it eventually becomes the correct link.
-        expect(link.getAttribute('href')).toBe('mailto:test@example.com');
+
+        // Initially it should be null/undefined (server state)
+        expect(link.getAttribute('href')).toBeNull();
+
+        // Eventually it should be the mailto link (client state)
+        await waitFor(() => {
+            expect(link.getAttribute('href')).toBe('mailto:test@example.com');
+        });
     });
 
     it('should support custom children', () => {
@@ -25,10 +28,13 @@ describe('ObfuscatedMailto Component', () => {
         expect(screen.queryByText('test@example.com')).toBeNull();
     });
 
-    it('should support headers (subject, body)', () => {
+    it('should support headers (subject, body)', async () => {
         render(<ObfuscatedMailto email="test@example.com" headers={{ subject: "Hello", body: "World" }} />);
         const link = screen.getByText('test@example.com') as HTMLAnchorElement;
-        expect(link.getAttribute('href')).toBe('mailto:test@example.com?subject=Hello&body=World');
+
+        await waitFor(() => {
+             expect(link.getAttribute('href')).toBe('mailto:test@example.com?subject=Hello&body=World');
+        });
     });
 
     it('should pass through className', () => {
