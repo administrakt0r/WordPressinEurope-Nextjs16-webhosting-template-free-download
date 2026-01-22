@@ -5,22 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Server } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "@/components/ui/ExternalLink";
-
-const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Features", href: "#features" },
-    { name: "About", href: "#about" },
-    { name: "Support", href: "/support" },
-    { name: "Blog", href: EXTERNAL_LINKS.BLOG },
-    { name: "Uptime", href: EXTERNAL_LINKS.UPTIME },
-    { name: "Clients", href: EXTERNAL_LINKS.CLIENT_PORTAL },
-];
+import { useScroll } from "@/hooks/useScroll";
 
 export const Navbar = memo(function Navbar() {
     const pathname = usePathname();
-    const [isScrolled, setIsScrolled] = useState(false);
+    const isScrolled = useScroll(20);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // UX: Lock body scroll when mobile menu is open
@@ -34,24 +26,6 @@ export const Navbar = memo(function Navbar() {
             document.body.style.overflow = "unset";
         };
     }, [isMobileMenuOpen]);
-
-    useEffect(() => {
-        let ticking = false;
-        // Optimize scroll performance using requestAnimationFrame
-        // This decouples the scroll event firing rate from React state updates,
-        // preventing main thread blocking during rapid scrolling.
-        const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    setIsScrolled(window.scrollY > 20);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     return (
         <nav
@@ -85,7 +59,7 @@ export const Navbar = memo(function Navbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex items-center gap-8 bg-slate-800/50 px-8 py-2 rounded-full border border-white/20 backdrop-blur-sm shadow-sm" role="navigation" aria-label="Primary navigation">
-                    {navLinks.map((link) => {
+                    {NAV_LINKS.map((link) => {
                         const isActive =
                             pathname === link.href ||
                             (link.href !== "/" &&
@@ -179,7 +153,7 @@ export const Navbar = memo(function Navbar() {
                     } as React.CSSProperties}
                 >
                     <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
-                        {navLinks.map((link) => {
+                        {NAV_LINKS.map((link) => {
                             const isActive =
                                 pathname === link.href ||
                                 (link.href !== "/" &&
