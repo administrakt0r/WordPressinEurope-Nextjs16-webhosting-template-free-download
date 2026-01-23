@@ -2,6 +2,7 @@ import { HostingLanding } from "@/components/templates/HostingLanding";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { JsonLd } from "@/components/JsonLd";
+import { PRICE_MONTHLY_VALUE, PRICE_CURRENCY } from "@/lib/constants";
 
 export const metadata: Metadata = {
     title: "Free Web Hosting | WPinEU",
@@ -64,8 +65,8 @@ const jsonLd = {
     "description": "Reliable Free Web Hosting with cPanel and SSL.",
     "offers": {
         "@type": "Offer",
-        "price": "0.00",
-        "priceCurrency": "EUR"
+        "price": PRICE_MONTHLY_VALUE,
+        "priceCurrency": PRICE_CURRENCY
     }
 };
 

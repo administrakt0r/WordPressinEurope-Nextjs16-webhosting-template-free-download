@@ -1,3 +1,5 @@
+import { FAQS } from "@/lib/data";
+
 /**
  * JSON-LD data for the main website entity.
  * Helps search engines understand the site structure and search capability.
@@ -65,4 +67,21 @@ export const ORGANIZATION_JSON_LD = {
     "@type": "Person",
     "name": "WPinEU Team"
   }
+};
+
+/**
+ * JSON-LD data for the FAQ page.
+ * Provides structured data for the Frequently Asked Questions.
+ */
+export const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": FAQS.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
 };
