@@ -15,6 +15,8 @@ interface ExternalLinkProps {
  * Automatically adds target="_blank", rel="noopener noreferrer", and screen-reader only text.
  */
 export function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
+  const safeHref = isSafeUrl(href) ? href : '#';
+
   return (
     <Link
       href={safeHref}

@@ -33,6 +33,13 @@
 [2026-03-05] [components/sections/FeatureCard.tsx] Removed memo from server component child
 [2026-03-05] [components/sections/SupportCard.tsx] Removed memo from server component child
 [2026-03-05] [components/ui/TechnologyLogo.tsx] Removed memo from server component child
+[2026-03-05] [components/sections/FAQ.tsx] Removed duplicate import of getOffscreenOptimizations
+[2026-03-05] [lib/security.ts] Removed duplicate definition of isSafeUrl
+[2026-03-05] [components/sections/ServiceDescription.tsx] Removed duplicate unoptimized prop
+[2026-03-05] [components/ui/TechnologyLogo.tsx] Removed duplicate unoptimized prop
+[2026-03-05] [components/layout/Navbar.tsx] Fixed type error (label -> name)
+[2026-03-05] [components/ui/ExternalLink.tsx] Fixed undefined safeHref variable
+[2026-03-05] [components/ui/ObfuscatedMailto.tsx] Removed unused emptySubscribe variable
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
