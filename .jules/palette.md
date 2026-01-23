@@ -35,3 +35,7 @@
 ## 2025-05-24 - [Component Coupling in Semantic Lists]
 **Learning:** Modifying a reusable component (like `FeatureCard`) to return an `<li>` couples it tightly to list contexts, making it invalid HTML if used elsewhere.
 **Action:** Keep reusable display components as `<div>`s and wrap them in `<li>` elements within the parent list loop. Move list-specific animations and positioning styles to the wrapper `<li>`.
+
+## 2025-05-24 - [Decorative Layout Elements]
+**Learning:** Large floating UI elements used for background decoration (like code snippets or abstract shapes) can be picked up by screen readers as fragmented content if not explicitly hidden, causing confusion.
+**Action:** Apply `aria-hidden="true"` to entire container `div`s that serve only as visual decoration, ensuring assistive technology ignores the complex but meaningless structure within.

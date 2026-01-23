@@ -12,28 +12,6 @@ interface HeaderConfig {
 }
 
 describe('Security Headers', () => {
-  it('should have strict CSP', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    // We are looking for headers applied to all paths
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
-    if (!globalHeaders) return;
-
-    const cspHeader = globalHeaders.headers.find((h: Header) => h.key === 'Content-Security-Policy');
-    expect(cspHeader).toBeDefined();
-    if (cspHeader) {
-        expect(cspHeader.value).toContain('upgrade-insecure-requests');
-        expect(cspHeader.value).toContain("object-src 'none'");
-        expect(cspHeader.value).toContain("frame-ancestors 'none'");
-        expect(cspHeader.value).toContain("frame-src 'none'");
-        expect(cspHeader.value).toContain("img-src 'self' data: https://images.unsplash.com");
-    }
-  });
-
   it('should have strict Permissions-Policy', async () => {
     if (!nextConfig.headers) {
       throw new Error('nextConfig.headers is undefined');

@@ -39,8 +39,8 @@ export function About() {
                                 The project was founded on July 10, 2025, in Zagreb, Croatia, by Marko S. (<ExternalLink href="https://administraktor.com" className="text-primary hover:underline">administraktor.com</ExternalLink>) with one simple goal — to help people across Europe start their WordPress journey without financial barriers.
                             </p>
 
-                            <div className="space-y-8">
-                                <div className="flex gap-4">
+                            <ul className="space-y-8">
+                                <li className="flex gap-4">
                                     <div className="p-3 rounded-xl bg-blue-900/20 text-blue-400 h-fit">
                                         <Lightbulb size={24} aria-hidden="true" />
                                     </div>
@@ -50,9 +50,9 @@ export function About() {
                                             WP in EU started from a belief that learning web development shouldn&apos;t depend on your budget. I saw that many talented people across the EU wanted to learn WordPress but couldn&apos;t afford quality hosting. That&apos;s when I decided to create a space where anyone can learn, build, and grow — completely free of charge.
                                         </p>
                                     </div>
-                                </div>
+                                </li>
 
-                                <div className="flex gap-4">
+                                <li className="flex gap-4">
                                     <div className="p-3 rounded-xl bg-green-900/20 text-green-400 h-fit">
                                         <Globe2 size={24} aria-hidden="true" />
                                     </div>
@@ -70,8 +70,8 @@ export function About() {
                                             ))}
                                         </ul>
                                     </div>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                         </AnimatedSection>
 
                         {/* Visual/Stats Column */}
