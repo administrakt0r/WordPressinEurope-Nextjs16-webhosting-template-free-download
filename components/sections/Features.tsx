@@ -124,8 +124,8 @@ export function Features() {
                             <h2 className="text-3xl md:text-4xl font-bold font-heading mb-6">
                                 The WPinEU Advantage: Engineered for Your Success
                             </h2>
-                            <div className="space-y-6">
-                                <div className="flex gap-4">
+                            <ul className="space-y-6">
+                                <li className="flex gap-4">
                                     <div className="p-2 rounded-lg bg-white/10 backdrop-blur-sm h-fit">
                                         <Zap size={24} className="text-yellow-400" aria-hidden="true" />
                                     </div>
@@ -135,9 +135,9 @@ export function Features() {
                                             Our European servers are meticulously optimized for WordPress. Paired with cutting-edge SSD NVMe disks, your site will achieve lightning-fast load times.
                                         </p>
                                     </div>
-                                </div>
+                                </li>
 
-                                <div className="flex gap-4">
+                                <li className="flex gap-4">
                                     <div className="p-2 rounded-lg bg-white/10 backdrop-blur-sm h-fit">
                                         <Lock size={24} className="text-yellow-400" aria-hidden="true" />
                                     </div>
@@ -147,8 +147,8 @@ export function Features() {
                                             We provide robust, proactive security with ImmunifyAV antivirus protection and automated daily backups via JetBackup.
                                         </p>
                                     </div>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                         </div>
 
                         <div className="relative">
