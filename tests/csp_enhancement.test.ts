@@ -1,83 +1,51 @@
-
 import { describe, it, expect } from 'vitest';
-import nextConfig from '@/next.config';
+import { middleware } from '@/middleware';
+import { NextRequest } from 'next/server';
 
-interface Header {
-    key: string;
-    value: string;
-}
+describe('CSP Middleware', () => {
+    it('should set Content-Security-Policy header with nonce', () => {
+        const request = new NextRequest(new URL('http://localhost/'));
+        const response = middleware(request);
 
-interface HeaderConfig {
-    source: string;
-    headers: Header[];
-}
+        const csp = response.headers.get('Content-Security-Policy');
+        expect(csp).toBeDefined();
+        if (!csp) return;
 
-describe('CSP Enhancements', () => {
-  it('should have strict connect-src', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
+        // Check for Nonce
+        expect(csp).toMatch(/script-src 'self' 'nonce-[a-zA-Z0-9-]+'/);
 
-    if (!globalHeaders) return;
+        // Check for other critical directives
+        expect(csp).toContain("object-src 'none'");
+        expect(csp).toContain("frame-ancestors 'none'");
+        expect(csp).toContain("frame-src 'none'");
+        expect(csp).toContain("upgrade-insecure-requests");
+    });
 
-    const cspHeader = globalHeaders.headers.find((h: Header) => h.key === 'Content-Security-Policy');
-    expect(cspHeader).toBeDefined();
-    if (cspHeader) {
-        expect(cspHeader.value).toContain("connect-src 'self' https://uptime.wpineu.com https://clients.wpineu.com https://wp.wpineu.com https://images.unsplash.com");
-    }
-  });
+    it('should have strict connect-src', () => {
+        const request = new NextRequest(new URL('http://localhost/'));
+        const response = middleware(request);
+        const csp = response.headers.get('Content-Security-Policy');
+        expect(csp).toContain("connect-src 'self' https://uptime.wpineu.com https://clients.wpineu.com https://wp.wpineu.com https://images.unsplash.com");
+    });
 
-  it('should have strict worker-src', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
+    it('should have strict worker-src', () => {
+        const request = new NextRequest(new URL('http://localhost/'));
+        const response = middleware(request);
+        const csp = response.headers.get('Content-Security-Policy');
+        expect(csp).toContain("worker-src 'self' blob:");
+    });
 
-    if (!globalHeaders) return;
+    it('should have strict manifest-src', () => {
+        const request = new NextRequest(new URL('http://localhost/'));
+        const response = middleware(request);
+        const csp = response.headers.get('Content-Security-Policy');
+        expect(csp).toContain("manifest-src 'self'");
+    });
 
-    const cspHeader = globalHeaders.headers.find((h: Header) => h.key === 'Content-Security-Policy');
-    expect(cspHeader).toBeDefined();
-    if (cspHeader) {
-        expect(cspHeader.value).toContain("worker-src 'self' blob:");
-    }
-  });
-
-  it('should have strict manifest-src', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
-    if (!globalHeaders) return;
-
-    const cspHeader = globalHeaders.headers.find((h: Header) => h.key === 'Content-Security-Policy');
-    expect(cspHeader).toBeDefined();
-    if (cspHeader) {
-        expect(cspHeader.value).toContain("manifest-src 'self'");
-    }
-  });
-
-  it('should have strict media-src', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
-    if (!globalHeaders) return;
-
-    const cspHeader = globalHeaders.headers.find((h: Header) => h.key === 'Content-Security-Policy');
-    expect(cspHeader).toBeDefined();
-    if (cspHeader) {
-        expect(cspHeader.value).toContain("media-src 'self'");
-    }
-  });
+    it('should have strict media-src', () => {
+        const request = new NextRequest(new URL('http://localhost/'));
+        const response = middleware(request);
+        const csp = response.headers.get('Content-Security-Policy');
+        expect(csp).toContain("media-src 'self'");
+    });
 });

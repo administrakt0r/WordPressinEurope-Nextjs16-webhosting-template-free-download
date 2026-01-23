@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Inter, Outfit } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -71,11 +72,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // ⚡ Security: Retrieve nonce to ensure dynamic rendering and CSP compliance.
+  // Next.js automatically injects this nonce into internal scripts when x-nonce header is present.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const nonce = (await headers()).get('x-nonce');
+
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <body
