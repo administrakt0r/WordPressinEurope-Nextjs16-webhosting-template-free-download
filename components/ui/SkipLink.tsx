@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { cn } from "@/lib/utils";
+import { isSafeUrl } from "@/lib/security";
 
 interface SkipLinkProps {
   href?: string;
@@ -7,9 +8,12 @@ interface SkipLinkProps {
 }
 
 export const SkipLink = memo(function SkipLink({ href = "#main-content", className }: SkipLinkProps) {
+  const safe = isSafeUrl(href);
+  const safeHref = safe ? href : "#main-content";
+
   return (
     <a
-      href={href}
+      href={safeHref}
       className={cn(
         "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-6 py-3 bg-white text-blue-600 font-bold rounded-lg shadow-lg ring-2 ring-blue-500 ring-offset-2 ring-offset-slate-950 transition-transform",
         className
