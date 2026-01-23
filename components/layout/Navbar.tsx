@@ -70,11 +70,11 @@ export const Navbar = memo(function Navbar() {
                         if (link.href.startsWith("http")) {
                             return (
                                 <ExternalLink
-                                    key={link.label}
+                                    key={link.name}
                                     href={link.href}
                                     className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-150 relative group focus-visible:outline-none focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:rounded-sm"
                                 >
-                                    {link.label}
+                                    {link.name}
                                     <span className={cn(
                                         "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-150 w-0 group-hover:w-full"
                                     )} />
@@ -84,7 +84,7 @@ export const Navbar = memo(function Navbar() {
 
                         return (
                             <Link
-                                key={link.label}
+                                key={link.name}
                                 href={link.href}
                                 aria-current={isActive ? "page" : undefined}
                                 className={cn(
@@ -92,7 +92,7 @@ export const Navbar = memo(function Navbar() {
                                     isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
                                 )}
                             >
-                                {link.label}
+                                {link.name}
                                 <span className={cn(
                                     "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-150",
                                     isActive ? "w-full" : "w-0 group-hover:w-full"
@@ -164,19 +164,19 @@ export const Navbar = memo(function Navbar() {
                             if (link.href.startsWith("http")) {
                                 return (
                                     <ExternalLink
-                                        key={link.label}
+                                        key={link.name}
                                         href={link.href}
                                         className="text-lg font-medium py-3 border-b border-gray-800/50 last:border-0 text-foreground focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
-                                        {link.label}
+                                        {link.name}
                                     </ExternalLink>
                                 );
                             }
 
                             return (
                                 <Link
-                                    key={link.label}
+                                    key={link.name}
                                     href={link.href}
                                     aria-current={isActive ? "page" : undefined}
                                     className={cn(
@@ -185,7 +185,7 @@ export const Navbar = memo(function Navbar() {
                                     )}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
-                                    {link.label}
+                                    {link.name}
                                 </Link>
                             );
                         })}
