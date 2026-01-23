@@ -1,9 +1,8 @@
-import { memo } from "react";
 import { Heart, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 
-export const SupportCard = memo(function SupportCard() {
+export function SupportCard() {
     return (
         <div className="bg-yellow-900/10 rounded-2xl p-8 border border-yellow-900/20">
             <div className="w-12 h-12 rounded-xl bg-yellow-900/30 text-yellow-400 flex items-center justify-center mb-6">
@@ -24,4 +23,4 @@ export const SupportCard = memo(function SupportCard() {
             </ExternalLink>
         </div>
     );
-});
+}
