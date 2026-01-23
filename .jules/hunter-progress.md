@@ -24,6 +24,10 @@
 [2026-02-25] [components/sections/Hero.tsx] Replaced Link with ExternalLink for external URLs
 [2026-03-04] [components/ui/ObfuscatedMailto.tsx] Refactored to use useSyncExternalStore to fix "setState in useEffect" lint error
 [2026-03-04] [tests/obfuscated_mailto.test.tsx] Removed unused imports (fireEvent, waitFor)
+[2026-03-05] [lib/constants.ts] Added central pricing constants to fix duplicate code
+[2026-03-05] [components/sections/Hero.tsx] Updated to use pricing constants
+[2026-03-05] [components/sections/PricingCard.tsx] Updated to use pricing constants
+[2026-03-05] [app/free-*-hosting/page.tsx] Updated 6 pages to use pricing constants in JSON-LD
 [2026-03-05] [components/sections/FAQ.tsx] Replaced Link with ExternalLink for learning portal and refactored style
 [2026-03-05] [components/sections/PricingCard.tsx] Removed memo from server component child
 [2026-03-05] [components/sections/FeatureCard.tsx] Removed memo from server component child
