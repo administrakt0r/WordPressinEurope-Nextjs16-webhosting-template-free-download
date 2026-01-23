@@ -96,6 +96,7 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                                         height={tech.height || 100}
                                         sizes="(max-width: 768px) 100px, 150px"
                                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                                        unoptimized={tech.logo.endsWith('.svg')}
                                     />
                                 </li>
                             ))}
