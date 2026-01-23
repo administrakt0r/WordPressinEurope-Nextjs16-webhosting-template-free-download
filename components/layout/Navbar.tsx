@@ -8,10 +8,11 @@ import { EXTERNAL_LINKS } from "@/lib/links";
 import { NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { useScroll } from "@/hooks/useScroll";
 
 export const Navbar = memo(function Navbar() {
     const pathname = usePathname();
-    const [isScrolled, setIsScrolled] = useState(false);
+    const isScrolled = useScroll(20);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // UX: Lock body scroll when mobile menu is open
@@ -25,24 +26,6 @@ export const Navbar = memo(function Navbar() {
             document.body.style.overflow = "unset";
         };
     }, [isMobileMenuOpen]);
-
-    useEffect(() => {
-        let ticking = false;
-        // Optimize scroll performance using requestAnimationFrame
-        // This decouples the scroll event firing rate from React state updates,
-        // preventing main thread blocking during rapid scrolling.
-        const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    setIsScrolled(window.scrollY > 20);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     return (
         <nav

@@ -16,13 +16,12 @@ interface ExternalLinkProps {
  * Automatically adds target="_blank", rel="noopener noreferrer", and screen-reader only text.
  */
 export const ExternalLink = memo(function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
-  const safe = isSafeUrl(href);
-
-  if (!safe && process.env.NODE_ENV !== 'production') {
-    console.warn(`[ExternalLink] Unsafe URL blocked: ${href}`);
+  if (!isSafeUrl(href)) {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(`Blocked unsafe URL in ExternalLink: ${href}`);
+    }
+    return null;
   }
-
-  const safeHref = safe ? href : '#';
 
   return (
     <Link
