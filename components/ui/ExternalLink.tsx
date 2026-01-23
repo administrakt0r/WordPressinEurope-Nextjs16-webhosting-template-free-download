@@ -1,4 +1,3 @@
-import { memo } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { isSafeUrl } from "@/lib/security";
@@ -15,14 +14,7 @@ interface ExternalLinkProps {
  * A reusable component for external links that handles security and accessibility best practices.
  * Automatically adds target="_blank", rel="noopener noreferrer", and screen-reader only text.
  */
-export const ExternalLink = memo(function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
-  if (!isSafeUrl(href)) {
-    if (process.env.NODE_ENV === 'development') {
-      console.warn(`Blocked unsafe URL in ExternalLink: ${href}`);
-    }
-    return null;
-  }
-
+export function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
   return (
     <Link
       href={safeHref}
@@ -36,4 +28,4 @@ export const ExternalLink = memo(function ExternalLink({ href, children, classNa
       <span className="sr-only">(opens in a new tab)</span>
     </Link>
   );
-});
+}

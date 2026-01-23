@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
-import { HOSTING_SERVICES, RESOURCES, LEGAL_LINKS } from "@/lib/navigation";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
+import { HOSTING_SERVICES, RESOURCES, LEGAL_LINKS } from "@/lib/navigation";
 
 export function Footer() {
     return (

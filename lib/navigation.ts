@@ -1,21 +1,22 @@
-import { EXTERNAL_LINKS } from "./links";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
-export interface NavLink {
-    label: string;
-    href: string;
-}
+/**
+ * Main navigation links for the Navbar.
+ */
+export const NAV_LINKS = [
+    { name: "Home", href: "/" },
+    { name: "Features", href: "#features" },
+    { name: "About", href: "#about" },
+    { name: "Support", href: "/support" },
+    { name: "Blog", href: EXTERNAL_LINKS.BLOG },
+    { name: "Uptime", href: EXTERNAL_LINKS.UPTIME },
+    { name: "Clients", href: EXTERNAL_LINKS.CLIENT_PORTAL },
+] as const;
 
-export const NAV_LINKS: NavLink[] = [
-    { label: "Home", href: "/" },
-    { label: "Features", href: "#features" },
-    { label: "About", href: "#about" },
-    { label: "Support", href: "/support" },
-    { label: "Blog", href: EXTERNAL_LINKS.BLOG },
-    { label: "Uptime", href: EXTERNAL_LINKS.UPTIME },
-    { label: "Clients", href: EXTERNAL_LINKS.CLIENT_PORTAL },
-];
-
-export const HOSTING_SERVICES: NavLink[] = [
+/**
+ * Hosting services links for the Footer.
+ */
+export const HOSTING_SERVICES = [
     { label: "Free WordPress Hosting", href: "/free-wordpress-hosting" },
     { label: "Free Web Hosting", href: "/free-web-hosting" },
     { label: "Free LiteSpeed Hosting", href: "/free-litespeed-hosting" },
@@ -23,19 +24,25 @@ export const HOSTING_SERVICES: NavLink[] = [
     { label: "Free Redis Hosting", href: "/free-redis-hosting" },
     { label: "Free SSD Hosting", href: "/free-ssd-hosting" },
     { label: "Free Europe Hosting", href: "/free-europe-hosting" },
-];
+] as const;
 
-export const RESOURCES: NavLink[] = [
+/**
+ * Resource links for the Footer.
+ */
+export const RESOURCES = [
     { label: "Learning Portal", href: EXTERNAL_LINKS.LEARNING_PORTAL },
     { label: "Clients Zone", href: EXTERNAL_LINKS.CLIENT_PORTAL },
     { label: "Order Free Hosting", href: EXTERNAL_LINKS.ORDER_FREE_HOSTING },
     { label: "Uptime Status", href: EXTERNAL_LINKS.UPTIME },
     { label: "About Us", href: EXTERNAL_LINKS.ABOUT },
-];
+] as const;
 
-export const LEGAL_LINKS: NavLink[] = [
+/**
+ * Legal and policy links for the Footer.
+ */
+export const LEGAL_LINKS = [
     { label: "Privacy Policy", href: EXTERNAL_LINKS.PRIVACY_POLICY },
     { label: "Terms of Service", href: EXTERNAL_LINKS.TERMS_SERVICE },
     { label: "Service Level Agreement", href: EXTERNAL_LINKS.SLA },
     { label: "Report Abuse", href: EXTERNAL_LINKS.REPORT_ABUSE },
-];
+] as const;
