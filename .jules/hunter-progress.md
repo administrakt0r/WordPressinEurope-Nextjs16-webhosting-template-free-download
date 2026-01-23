@@ -22,11 +22,21 @@
 [2026-01-19] [app/globals.css] Added missing --color-muted and --color-muted-foreground CSS variables
 [2026-02-25] [components/sections/PricingCard.tsx] Added missing ExternalLink import (fixed build error)
 [2026-02-25] [components/sections/Hero.tsx] Replaced Link with ExternalLink for external URLs
+[2026-03-04] [components/ui/ObfuscatedMailto.tsx] Refactored to use useSyncExternalStore to fix "setState in useEffect" lint error
+[2026-03-04] [tests/obfuscated_mailto.test.tsx] Removed unused imports (fireEvent, waitFor)
+[2026-03-05] [lib/constants.ts] Added central pricing constants to fix duplicate code
+[2026-03-05] [components/sections/Hero.tsx] Updated to use pricing constants
+[2026-03-05] [components/sections/PricingCard.tsx] Updated to use pricing constants
+[2026-03-05] [app/free-*-hosting/page.tsx] Updated 6 pages to use pricing constants in JSON-LD
+[2026-03-05] [components/sections/FAQ.tsx] Replaced Link with ExternalLink for learning portal and refactored style
+[2026-03-05] [components/sections/PricingCard.tsx] Removed memo from server component child
+[2026-03-05] [components/sections/FeatureCard.tsx] Removed memo from server component child
+[2026-03-05] [components/sections/SupportCard.tsx] Removed memo from server component child
+[2026-03-05] [components/ui/TechnologyLogo.tsx] Removed memo from server component child
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
 [2026-03-03] Missing `app/manifest.ts` (PWA feature) - Requires Feature task, not Bug Fix.
-[2026-03-03] `TechnologyLogo` component is defined in `Features.tsx` instead of `components/ui/TechnologyLogo.tsx` - Requires Refactor task, not Bug Fix.
 [2026-03-03] Missing JSDoc in `lib/utils.ts` and `lib/links.ts` - Requires Improvement task.
 
 ## False Positives

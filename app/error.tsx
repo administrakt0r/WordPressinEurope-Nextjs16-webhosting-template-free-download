@@ -23,7 +23,11 @@ export default function Error({
           <div className="absolute inset-0 bg-grid-pattern" />
       </div>
 
-      <div className="relative z-10 bg-slate-900/50 backdrop-blur-sm p-8 rounded-3xl border border-red-900/20 shadow-xl max-w-md w-full">
+      <div
+        className="relative z-10 bg-slate-900/50 backdrop-blur-sm p-8 rounded-3xl border border-red-900/20 shadow-xl max-w-md w-full"
+        role="alert"
+        aria-live="assertive"
+      >
         <div className="bg-red-500/10 p-4 rounded-full mb-6 text-red-500 w-fit mx-auto">
             <AlertTriangle size={48} aria-hidden="true" />
         </div>

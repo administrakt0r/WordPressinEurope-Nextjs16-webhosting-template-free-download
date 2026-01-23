@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { memo } from "react";
 
 export interface TechnologyLogoProps {
     name: string;
@@ -8,7 +7,7 @@ export interface TechnologyLogoProps {
     height?: number;
 }
 
-export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
+export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
     return (
         <div className="group flex items-center justify-center">
             {logo && width && height ? (
@@ -21,7 +20,10 @@ export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, 
                         // ⚡ Performance: Optimized sizes to handle wide logos (like cPanel) correctly
                         // Previous 100px/150px was too small for ~225px wide logos on high DPI
                         sizes="(max-width: 768px) 200px, 300px"
+                        // ⚡ Performance: SVG images (like logos) should be unoptimized to preserve vector quality
+                        unoptimized
                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                        unoptimized={logo.endsWith('.svg')}
                     />
                 </div>
             ) : (
@@ -31,4 +33,4 @@ export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, 
             )}
         </div>
     );
-});
+}

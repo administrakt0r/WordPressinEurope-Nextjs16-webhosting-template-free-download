@@ -1,7 +1,7 @@
 import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
-import { memo } from "react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT } from "@/lib/constants";
 
 const features = [
     "1 GB SSD disk space (RAID 10 NVMe)",
@@ -14,7 +14,7 @@ const features = [
     "NO advertisements or hidden fees"
 ];
 
-export const PricingCard = memo(function PricingCard() {
+export function PricingCard() {
     return (
         <div
             // Optimized: will-animate hint helps browser prepare for transform/opacity changes
@@ -31,9 +31,9 @@ export const PricingCard = memo(function PricingCard() {
 
                     <div className="text-right">
                         <div className="flex items-baseline gap-1 mb-2">
-                            <span className="text-5xl font-bold text-foreground" aria-hidden="true">€0.00</span>
-                            <span className="text-muted-foreground font-medium" aria-hidden="true">/mo</span>
-                            <span className="sr-only">0 Euros per month</span>
+                            <span className="text-5xl font-bold text-foreground" aria-hidden="true">{PRICE_MONTHLY_DISPLAY}</span>
+                            <span className="text-muted-foreground font-medium" aria-hidden="true">{PRICE_UNIT_DISPLAY}</span>
+                            <span className="sr-only">{PRICE_ACCESSIBILITY_TEXT}</span>
                         </div>
                         <p className="text-sm text-muted-foreground">No credit card required</p>
                     </div>
@@ -60,4 +60,4 @@ export const PricingCard = memo(function PricingCard() {
             </div>
         </div>
     );
-});
+}

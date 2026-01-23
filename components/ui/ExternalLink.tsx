@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { isSafeUrl } from "@/lib/security";
 
 interface ExternalLinkProps {
   href: string;
@@ -16,7 +17,7 @@ interface ExternalLinkProps {
 export function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
   return (
     <Link
-      href={href}
+      href={safeHref}
       target="_blank"
       rel="noopener noreferrer"
       className={cn(className)}

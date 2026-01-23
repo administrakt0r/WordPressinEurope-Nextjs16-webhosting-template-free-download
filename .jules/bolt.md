@@ -9,3 +9,7 @@
 ## 2026-02-23 - Heavy CSS Effects Performance
 **Learning:** Large blurred elements (`blur-[120px]`) and SVG noise filters can cause significant repaint costs on scroll. Promoting them to their own compositing layer using `translateZ(0)` (or `.gpu-accelerated`) is a simple but effective fix.
 **Action:** Always apply GPU acceleration hints to fixed or absolute positioned background elements that use heavy CSS filters.
+
+## 2026-05-23 - Content Visibility Layout Stability
+**Learning:** Using `containIntrinsicSize: "1px 800px"` for `content-visibility: auto` sections caused potential layout shifts because the browser reserves only 1px width.
+**Action:** Use `containIntrinsicSize: "auto 800px"` (or just "auto") to allow the browser to use the element's natural width or last rendered size, preserving layout stability while still getting rendering performance benefits.
