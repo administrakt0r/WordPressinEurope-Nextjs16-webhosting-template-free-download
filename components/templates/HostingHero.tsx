@@ -90,8 +90,8 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
                 </div>
 
                 {/* Specs Grid */}
-                <div className="grid gap-4 mb-8">
-                    <div className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                <ul className="grid gap-4 mb-8">
+                    <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
                         <div className="flex items-center gap-3">
                             <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
                                 <Zap size={18} aria-hidden="true" />
@@ -99,9 +99,9 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
                             <span className="text-slate-300 font-medium">Speed</span>
                         </div>
                         <span className="text-white font-bold">3GB/s</span>
-                    </div>
+                    </li>
 
-                    <div className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                    <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
                         <div className="flex items-center gap-3">
                             <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400">
                                 <Shield size={18} aria-hidden="true" />
@@ -109,9 +109,9 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
                             <span className="text-slate-300 font-medium">Security</span>
                         </div>
                         <span className="text-white font-bold">ImunifyAV</span>
-                    </div>
+                    </li>
 
-                    <div className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                    <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
                         <div className="flex items-center gap-3">
                             <div className="p-2 rounded-lg bg-yellow-500/10 text-yellow-400">
                                 <Globe size={18} aria-hidden="true" />
@@ -119,8 +119,8 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
                             <span className="text-slate-300 font-medium">Location</span>
                         </div>
                         <span className="text-white font-bold">Europe</span>
-                    </div>
-                </div>
+                    </li>
+                </ul>
 
                 {/* Price Tag */}
                 <div className="flex justify-between items-end">
@@ -141,6 +141,7 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
             {/* Floating Elements */}
             <div
                 className="absolute -top-12 -right-8 z-30 bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-700"
+                aria-hidden="true"
             >
                 <div className="flex items-center gap-3">
                     <div className="w-3 h-3 rounded-full bg-green-500" aria-hidden="true" />
@@ -150,6 +151,7 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
 
             <div
                 className="absolute -bottom-8 -left-8 z-30 bg-blue-600 p-4 rounded-2xl shadow-xl shadow-blue-600/20"
+                aria-hidden="true"
             >
                 <div className="flex items-center gap-3">
                     <div className="font-bold text-2xl text-white">NVMe</div>
@@ -159,6 +161,7 @@ export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
 
             <div
                 className="absolute top-1/2 -right-12 z-30 bg-yellow-500 p-3 rounded-xl shadow-lg shadow-yellow-500/20"
+                aria-hidden="true"
             >
                 <div className="text-xs font-bold text-white text-center">
                     100GB<br />Bandwidth

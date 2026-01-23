@@ -22,3 +22,8 @@
 **Vulnerability:** Raw `mailto:` links in static HTML are easily harvested by spambots, leading to increased phishing and spam for support addresses.
 **Learning:** Creating an `ObfuscatedMailto` component that renders the `href` attribute only after client-side hydration effectively prevents simple static scrapers from harvesting email addresses while maintaining usability for real users.
 **Prevention:** Use `@/components/ui/ObfuscatedMailto` instead of raw `<a>` tags for all email links.
+
+## 2025-05-24 - Unsanitized Link Components
+**Vulnerability:** Reusable link components (`ExternalLink`, `SkipLink`) accepted arbitrary `href` values, allowing XSS via `javascript:` scheme if passed malicious input.
+**Learning:** Even "secure" components that handle `rel` and `target` attributes must also validate the `href` protocol to be truly secure.
+**Prevention:** Use `isSafeUrl` to validate all `href` props in link components before rendering.

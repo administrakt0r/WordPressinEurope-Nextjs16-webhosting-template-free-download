@@ -1,6 +1,7 @@
 import { memo } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { isSafeUrl } from "@/lib/security";
 
 interface ExternalLinkProps {
   href: string;
@@ -15,9 +16,17 @@ interface ExternalLinkProps {
  * Automatically adds target="_blank", rel="noopener noreferrer", and screen-reader only text.
  */
 export const ExternalLink = memo(function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
+  const safe = isSafeUrl(href);
+
+  if (!safe && process.env.NODE_ENV !== 'production') {
+    console.warn(`[ExternalLink] Unsafe URL blocked: ${href}`);
+  }
+
+  const safeHref = safe ? href : '#';
+
   return (
     <Link
-      href={href}
+      href={safeHref}
       target="_blank"
       rel="noopener noreferrer"
       className={cn(className)}

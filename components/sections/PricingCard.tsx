@@ -1,6 +1,5 @@
 import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
-import { memo } from "react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT } from "@/lib/constants";
 
@@ -15,7 +14,7 @@ const features = [
     "NO advertisements or hidden fees"
 ];
 
-export const PricingCard = memo(function PricingCard() {
+export function PricingCard() {
     return (
         <div
             // Optimized: will-animate hint helps browser prepare for transform/opacity changes
@@ -61,4 +60,4 @@ export const PricingCard = memo(function PricingCard() {
             </div>
         </div>
     );
-});
+}
