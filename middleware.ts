@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+const nonce = Buffer.from(crypto.getRandomValues(new Uint8Array(32))).toString('base64');
 
   // Content Security Policy (CSP)
   // We use a nonce to allow inline scripts (required for Next.js) while blocking unauthorized scripts.
