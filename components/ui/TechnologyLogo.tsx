@@ -23,7 +23,7 @@ export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProp
                         // ⚡ Performance: SVG images (like logos) should be unoptimized to preserve vector quality
                         unoptimized
                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
-                        unoptimized={logo?.endsWith('.svg')}
+                        unoptimized={logo.endsWith('.svg')}
                     />
                 </div>
             ) : (

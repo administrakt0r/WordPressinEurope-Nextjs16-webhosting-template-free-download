@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { getOffscreenOptimizations } from "@/lib/styles";
 import { FAQAccordion } from "./FAQAccordion";
 import { FAQS } from "@/lib/data";
 import { getOffscreenOptimizations } from "@/lib/styles";
