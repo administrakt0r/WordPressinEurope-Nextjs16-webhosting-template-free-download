@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT } from "@/lib/constants";
 
 const STARS = [1, 2, 3, 4, 5];
 
@@ -135,9 +136,9 @@ export function Hero() {
                                 <div>
                                     <p className="text-sm text-slate-400 mb-1">Monthly Cost</p>
                                     <div className="flex items-baseline gap-1">
-                                        <span className="text-4xl font-bold text-white" aria-hidden="true">€0.00</span>
-                                        <span className="text-slate-500" aria-hidden="true">/mo</span>
-                                        <span className="sr-only">0 Euros per month</span>
+                                        <span className="text-4xl font-bold text-white" aria-hidden="true">{PRICE_MONTHLY_DISPLAY}</span>
+                                        <span className="text-slate-500" aria-hidden="true">{PRICE_UNIT_DISPLAY}</span>
+                                        <span className="sr-only">{PRICE_ACCESSIBILITY_TEXT}</span>
                                     </div>
                                 </div>
                                 <ExternalLink
@@ -150,21 +151,30 @@ export function Hero() {
                         </div>
 
                         {/* Floating Elements */}
-                        <div className="absolute -top-12 -right-8 z-30 bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-700">
+                        <div
+                            className="absolute -top-12 -right-8 z-30 bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-700"
+                            aria-hidden="true"
+                        >
                             <div className="flex items-center gap-3">
-                                <div className="w-3 h-3 rounded-full bg-orange-500" aria-hidden="true" />
+                                <div className="w-3 h-3 rounded-full bg-orange-500" />
                                 <span className="font-bold text-sm text-white">Powered by cPanel</span>
                             </div>
                         </div>
 
-                        <div className="absolute -bottom-8 -left-8 z-30 bg-blue-600 p-4 rounded-2xl shadow-xl shadow-blue-600/20">
+                        <div
+                            className="absolute -bottom-8 -left-8 z-30 bg-blue-600 p-4 rounded-2xl shadow-xl shadow-blue-600/20"
+                            aria-hidden="true"
+                        >
                             <div className="flex items-center gap-3">
                                 <div className="font-bold text-lg text-white">LiteSpeed</div>
                                 <span className="text-blue-100 text-xs font-medium leading-tight">Web<br />Server</span>
                             </div>
                         </div>
 
-                        <div className="absolute top-1/2 -right-12 z-30 bg-red-500 p-3 rounded-xl shadow-lg shadow-red-500/20">
+                        <div
+                            className="absolute top-1/2 -right-12 z-30 bg-red-500 p-3 rounded-xl shadow-lg shadow-red-500/20"
+                            aria-hidden="true"
+                        >
                             <div className="text-xs font-bold text-white text-center">
                                 Redis<br />Cache
                             </div>

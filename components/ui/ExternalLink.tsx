@@ -25,7 +25,7 @@ export const ExternalLink = memo(function ExternalLink({ href, children, classNa
 
   return (
     <Link
-      href={href}
+      href={safeHref}
       target="_blank"
       rel="noopener noreferrer"
       className={cn(className)}

@@ -5,19 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Server } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
+import { NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useScroll } from "@/hooks/useScroll";
-
-const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Features", href: "#features" },
-    { name: "About", href: "#about" },
-    { name: "Support", href: "/support" },
-    { name: "Blog", href: EXTERNAL_LINKS.BLOG },
-    { name: "Uptime", href: EXTERNAL_LINKS.UPTIME },
-    { name: "Clients", href: EXTERNAL_LINKS.CLIENT_PORTAL },
-];
 
 export const Navbar = memo(function Navbar() {
     const pathname = usePathname();
@@ -68,7 +59,7 @@ export const Navbar = memo(function Navbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex items-center gap-8 bg-slate-800/50 px-8 py-2 rounded-full border border-white/20 backdrop-blur-sm shadow-sm" role="navigation" aria-label="Primary navigation">
-                    {navLinks.map((link) => {
+                    {NAV_LINKS.map((link) => {
                         const isActive =
                             pathname === link.href ||
                             (link.href !== "/" &&
@@ -79,11 +70,11 @@ export const Navbar = memo(function Navbar() {
                         if (link.href.startsWith("http")) {
                             return (
                                 <ExternalLink
-                                    key={link.name}
+                                    key={link.label}
                                     href={link.href}
                                     className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-150 relative group focus-visible:outline-none focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:rounded-sm"
                                 >
-                                    {link.name}
+                                    {link.label}
                                     <span className={cn(
                                         "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-150 w-0 group-hover:w-full"
                                     )} />
@@ -93,7 +84,7 @@ export const Navbar = memo(function Navbar() {
 
                         return (
                             <Link
-                                key={link.name}
+                                key={link.label}
                                 href={link.href}
                                 aria-current={isActive ? "page" : undefined}
                                 className={cn(
@@ -101,7 +92,7 @@ export const Navbar = memo(function Navbar() {
                                     isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
                                 )}
                             >
-                                {link.name}
+                                {link.label}
                                 <span className={cn(
                                     "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-150",
                                     isActive ? "w-full" : "w-0 group-hover:w-full"
@@ -162,7 +153,7 @@ export const Navbar = memo(function Navbar() {
                     } as React.CSSProperties}
                 >
                     <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
-                        {navLinks.map((link) => {
+                        {NAV_LINKS.map((link) => {
                             const isActive =
                                 pathname === link.href ||
                                 (link.href !== "/" &&
@@ -173,19 +164,19 @@ export const Navbar = memo(function Navbar() {
                             if (link.href.startsWith("http")) {
                                 return (
                                     <ExternalLink
-                                        key={link.name}
+                                        key={link.label}
                                         href={link.href}
                                         className="text-lg font-medium py-3 border-b border-gray-800/50 last:border-0 text-foreground focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
-                                        {link.name}
+                                        {link.label}
                                     </ExternalLink>
                                 );
                             }
 
                             return (
                                 <Link
-                                    key={link.name}
+                                    key={link.label}
                                     href={link.href}
                                     aria-current={isActive ? "page" : undefined}
                                     className={cn(
@@ -194,7 +185,7 @@ export const Navbar = memo(function Navbar() {
                                     )}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
-                                    {link.name}
+                                    {link.label}
                                 </Link>
                             );
                         })}
