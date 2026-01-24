@@ -28,6 +28,7 @@ export function Hero() {
                     <div className="text-center lg:text-left">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-900/30 border border-blue-800 text-blue-300 text-xs font-bold tracking-widest uppercase mb-8 hover:bg-blue-900/50 transition-colors cursor-default">
                             <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75" aria-hidden="true"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                             </span>
                             100% Free • No Ads • No Commitments

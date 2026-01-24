@@ -86,10 +86,14 @@ export function Footer() {
                     <p className="text-sm text-muted-foreground text-center md:text-left">
                         Copyright © 2025 WPinEU. All rights reserved. WPinEU is not part of WordPress.com or WordPress.org
                     </p>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground group cursor-default">
                         <span>Made with</span>
-                    <span className="sr-only">love</span>
-                    <Heart size={14} className="text-red-500 fill-red-500" aria-hidden="true" />
+                        <span className="sr-only">love</span>
+                        <Heart
+                            size={14}
+                            className="text-red-500 fill-red-500 group-hover:scale-125 transition-transform duration-300 origin-center"
+                            aria-hidden="true"
+                        />
                         <span>in Zagreb, Croatia</span>
                     </div>
                 </div>

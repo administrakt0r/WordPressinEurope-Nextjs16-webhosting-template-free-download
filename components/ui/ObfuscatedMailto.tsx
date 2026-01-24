@@ -13,8 +13,6 @@ interface ObfuscatedMailtoProps extends Omit<React.AnchorHTMLAttributes<HTMLAnch
   };
 }
 
-const emptySubscribe = () => () => {};
-
 /**
  * A component that obfuscates the mailto link to prevent email scraping.
  * The href is only set after hydration, protecting the address from simple bots.
