@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useSyncExternalStore, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 interface ObfuscatedMailtoProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
@@ -25,14 +25,11 @@ export function ObfuscatedMailto({
   onClick,
   ...props
 }: ObfuscatedMailtoProps) {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    // This is a standard pattern to handle client-side only rendering to avoid hydration mismatches.
-    // We intentionally trigger a re-render to reveal the protected content.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsMounted(true);
-  }, []);
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   // Construct href only on client
   const href = useMemo(() => {

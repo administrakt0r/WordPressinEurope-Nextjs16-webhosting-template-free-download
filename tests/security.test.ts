@@ -11,15 +11,19 @@ interface HeaderConfig {
     headers: Header[];
 }
 
-describe('Security Headers', () => {
-  it('should have strict Permissions-Policy', async () => {
+async function getGlobalHeaders() {
     if (!nextConfig.headers) {
       throw new Error('nextConfig.headers is undefined');
     }
     const headersConfig = await nextConfig.headers();
     const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
     expect(globalHeaders).toBeDefined();
+    return globalHeaders;
+}
 
+describe('Security Headers', () => {
+  it('should have strict Permissions-Policy', async () => {
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const permissionsHeader = globalHeaders.headers.find((h: Header) => h.key === 'Permissions-Policy');
@@ -31,13 +35,7 @@ describe('Security Headers', () => {
   });
 
   it('should have strict HSTS', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const hstsHeader = globalHeaders.headers.find((h: Header) => h.key === 'Strict-Transport-Security');
@@ -49,13 +47,7 @@ describe('Security Headers', () => {
   });
 
   it('should have X-Content-Type-Options set to nosniff', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const nosniffHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-Content-Type-Options');
@@ -66,13 +58,7 @@ describe('Security Headers', () => {
   });
 
   it('should have X-XSS-Protection set to 1; mode=block', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const xssHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-XSS-Protection');
@@ -83,13 +69,7 @@ describe('Security Headers', () => {
   });
 
   it('should have X-Frame-Options set to DENY', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const xFrameOptionsHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-Frame-Options');
@@ -100,13 +80,7 @@ describe('Security Headers', () => {
   });
 
   it('should have X-Permitted-Cross-Domain-Policies set to none', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const crossDomainHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-Permitted-Cross-Domain-Policies');
@@ -117,13 +91,7 @@ describe('Security Headers', () => {
   });
 
   it('should have Cross-Origin-Opener-Policy set to same-origin', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const coopHeader = globalHeaders.headers.find((h: Header) => h.key === 'Cross-Origin-Opener-Policy');
@@ -134,13 +102,7 @@ describe('Security Headers', () => {
   });
 
   it('should have Cross-Origin-Resource-Policy set to same-origin', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const corpHeader = globalHeaders.headers.find((h: Header) => h.key === 'Cross-Origin-Resource-Policy');
@@ -151,13 +113,7 @@ describe('Security Headers', () => {
   });
 
   it('should have Referrer-Policy set to strict-origin-when-cross-origin', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const referrerPolicyHeader = globalHeaders.headers.find((h: Header) => h.key === 'Referrer-Policy');
@@ -168,13 +124,7 @@ describe('Security Headers', () => {
   });
 
   it('should not have duplicate headers', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
+    const globalHeaders = await getGlobalHeaders();
     if (!globalHeaders) return;
 
     const keys = globalHeaders.headers.map((h: Header) => h.key);
