@@ -1,7 +1,7 @@
 import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle, Globe, Code, Server, ShieldCheck, Layers } from "lucide-react";
-import Image from "next/image";
 import type { ElementType } from "react";
 import { getOffscreenOptimizations } from "@/lib/styles";
+import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 
 interface ServiceFeature {
     iconName: string;
@@ -86,16 +86,12 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                         </h3>
                         <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
                             {techLogos.map((tech) => (
-                                <li key={tech.name} className="group relative h-10 md:h-12 w-auto flex items-center">
-                                    <Image
-                                        src={tech.logo}
-                                        alt={tech.name}
+                                <li key={tech.name}>
+                                    <TechnologyLogo
+                                        name={tech.name}
+                                        logo={tech.logo}
                                         width={tech.width || 100}
                                         height={tech.height || 100}
-                                        sizes="(max-width: 768px) 100px, 150px"
-                                        // ⚡ Performance: SVG images (like logos) should be unoptimized to preserve vector quality
-                                        unoptimized={tech.logo.endsWith('.svg')}
-                                        className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                                     />
                                 </li>
                             ))}
