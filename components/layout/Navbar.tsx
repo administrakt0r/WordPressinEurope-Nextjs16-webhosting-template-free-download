@@ -92,7 +92,7 @@ export const Navbar = memo(function Navbar() {
                                     isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
                                 )}
                             >
-                                    {link.name}
+                                {link.name}
                                 <span className={cn(
                                     "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-150",
                                     isActive ? "w-full" : "w-0 group-hover:w-full"
