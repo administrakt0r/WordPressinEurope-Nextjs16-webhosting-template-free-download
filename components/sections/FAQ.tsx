@@ -28,14 +28,16 @@ export function FAQ() {
 
                 {/* Learning Portal CTA */}
                 <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-8 md:p-12 text-white text-center relative overflow-hidden">
-                    <Image
-                        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"
-                        alt=""
-                        fill
-                        className="object-cover opacity-10 mix-blend-overlay"
-                        sizes="(max-width: 768px) 100vw, 1200px"
-                        quality={60}
-                    />
+                    <div aria-hidden="true" className="absolute inset-0">
+                        <Image
+                            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"
+                            alt=""
+                            fill
+                            className="object-cover opacity-10 mix-blend-overlay"
+                            sizes="(max-width: 768px) 100vw, 1200px"
+                            quality={60}
+                        />
+                    </div>
 
                     <div className="relative z-10 max-w-2xl mx-auto">
                         <h2 className="text-3xl font-bold font-heading mb-4">
