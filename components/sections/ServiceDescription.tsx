@@ -1,13 +1,6 @@
-import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle, Globe, Code, Server, ShieldCheck, Layers } from "lucide-react";
-import Image from "next/image";
-import type { ElementType } from "react";
 import { getOffscreenOptimizations } from "@/lib/styles";
-
-interface ServiceFeature {
-    iconName: string;
-    title: string;
-    description: string;
-}
+import { ServiceFeatureCard, type ServiceFeature } from "./ServiceFeatureCard";
+import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 
 interface ServiceDescriptionProps {
     title: string;
@@ -15,40 +8,6 @@ interface ServiceDescriptionProps {
     description: string;
     features: ServiceFeature[];
     techLogos?: { name: string; logo: string; width?: number; height?: number }[];
-}
-
-const iconMap: Record<string, ElementType> = {
-    Shield,
-    Zap,
-    Database,
-    HardDrive,
-    Rocket,
-    TrendingUp,
-    Gauge,
-    LayoutDashboard,
-    Mail,
-    FileText,
-    Download,
-    Globe,
-    Code,
-    Server,
-    ShieldCheck,
-    Layers,
-};
-
-function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
-    const Icon = iconMap[feature.iconName] || Circle;
-    return (
-        <div
-            className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-blue-500/50 transition-all"
-        >
-            <div className="w-12 h-12 rounded-lg bg-blue-900/30 text-blue-400 flex items-center justify-center mb-4">
-                <Icon size={24} aria-hidden="true" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
-        </div>
-    );
 }
 
 export function ServiceDescription({ title, subtitle, description, features, techLogos }: ServiceDescriptionProps) {
@@ -86,16 +45,12 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                         </h3>
                         <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
                             {techLogos.map((tech) => (
-                                <li key={tech.name} className="group relative h-10 md:h-12 w-auto flex items-center">
-                                    <Image
-                                        src={tech.logo}
-                                        alt={tech.name}
+                                <li key={tech.name}>
+                                    <TechnologyLogo
+                                        name={tech.name}
+                                        logo={tech.logo}
                                         width={tech.width || 100}
                                         height={tech.height || 100}
-                                        sizes="(max-width: 768px) 100px, 150px"
-                                        // ⚡ Performance: SVG images (like logos) should be unoptimized to preserve vector quality
-                                        unoptimized={tech.logo.endsWith('.svg')}
-                                        className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                                     />
                                 </li>
                             ))}
