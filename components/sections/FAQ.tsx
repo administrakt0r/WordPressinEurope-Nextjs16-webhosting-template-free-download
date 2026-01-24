@@ -4,7 +4,6 @@ import { EXTERNAL_LINKS } from "@/lib/links";
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { FAQAccordion } from "./FAQAccordion";
 import { FAQS } from "@/lib/data";
-import { getOffscreenOptimizations } from "@/lib/styles";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 
 export function FAQ() {
