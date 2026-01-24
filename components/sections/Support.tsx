@@ -2,6 +2,7 @@
 import { Mail, ArrowUpRight, Code2 } from "lucide-react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
+import { getOffscreenOptimizations } from "@/lib/styles";
 
 const resources = [
     { name: "compressi.us", url: "https://compressi.us" },
@@ -18,10 +19,7 @@ export function Support() {
             className="py-20 bg-slate-950"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
             // contain-intrinsic-size prevents scrollbar jumps (estimated height)
-            style={{
-                contentVisibility: "auto",
-                containIntrinsicSize: "1px 600px"
-            }}
+            style={getOffscreenOptimizations("600px")}
         >
             <div className="container mx-auto px-4 md:px-6">
 
