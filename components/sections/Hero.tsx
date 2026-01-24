@@ -46,6 +46,7 @@ export function Hero() {
                         <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mb-12">
                             <ExternalLink
                                 href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
+                                ariaLabel="Get started with free WordPress hosting"
                                 className="group relative inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 hover:shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                             >
                                 <span className="relative z-10">Get Started Now</span>
