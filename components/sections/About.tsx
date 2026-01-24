@@ -1,6 +1,7 @@
 import { Users, Lightbulb, ShieldCheck, Globe2 } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { getOffscreenOptimizations } from "@/lib/styles";
 
 const IMPACT_GOALS = [
     "Support long-term learning and digital growth",
@@ -17,10 +18,7 @@ export function About() {
             className="py-20 bg-slate-950 overflow-hidden"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
             // contain-intrinsic-size prevents scrollbar jumps (estimated height)
-            style={{
-                contentVisibility: "auto",
-                containIntrinsicSize: "1px 800px"
-            }}
+            style={getOffscreenOptimizations("800px")}
         >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
