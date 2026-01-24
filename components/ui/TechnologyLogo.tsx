@@ -21,6 +21,7 @@ export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProp
                         // Previous 100px/150px was too small for ~225px wide logos on high DPI
                         sizes="(max-width: 768px) 200px, 300px"
                         // ⚡ Performance: SVG images (like logos) should be unoptimized to preserve vector quality
+                        className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                         unoptimized={logo.endsWith('.svg')}
                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                     />
