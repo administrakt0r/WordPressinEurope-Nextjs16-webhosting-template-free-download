@@ -1,63 +1,11 @@
 import { getOffscreenOptimizations } from "@/lib/styles";
 import {
-    Shield,
     Zap,
-    Globe,
-    Download,
-    Database,
-    LayoutDashboard,
     Lock
 } from "lucide-react";
 import { FeatureCard } from "./FeatureCard";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
-import {
-    TECH_LOGO_WORDPRESS,
-    TECH_LOGO_CPANEL,
-    TECH_LOGO_LITESPEED,
-    TECH_LOGO_CLOUDLINUX,
-    TECH_LOGO_SOFTACULOUS
-} from "@/lib/constants";
-
-const features = [
-    {
-        icon: <LayoutDashboard size={24} aria-hidden="true" />,
-        title: "cPanel Control Panel",
-        description: "Manage your hosting with ease using the industry-leading cPanel. Its intuitive interface gives you full control over your website, domains, and emails."
-    },
-    {
-        icon: <Shield size={24} aria-hidden="true" />,
-        title: "ImmunifyAV Protection",
-        description: "Rest easy knowing your site is protected. Our ImmunifyAV antivirus automatically scans for and removes malware, keeping your website and visitors safe."
-    },
-    {
-        icon: <Zap size={24} aria-hidden="true" />,
-        title: "Blazing-Fast SSD NVMe",
-        description: "Experience superior performance with our SSD NVMe disks. Enjoy faster page loads, improved database queries, and a better overall user experience."
-    },
-    {
-        icon: <Globe size={24} aria-hidden="true" />,
-        title: "European Datacenter",
-        description: "Host your site closer to your audience for lower latency and faster speeds. Our state-of-the-art European datacenter ensures optimal performance."
-    },
-    {
-        icon: <Download size={24} aria-hidden="true" />,
-        title: "Softaculous Installer",
-        description: "Install WordPress and over 150 other applications with a single click. Softaculous makes setting up your website quick, easy, and hassle-free."
-    },
-    {
-        icon: <Database size={24} aria-hidden="true" />,
-        title: "Daily Backups by JetBackup",
-        description: "Your data is always secure with daily automated backups powered by JetBackup. Restore your files, databases, or entire account with ease."
-    }
-];
-
-const technologies = [
-    TECH_LOGO_WORDPRESS,
-    TECH_LOGO_CPANEL,
-    TECH_LOGO_LITESPEED,
-    TECH_LOGO_CLOUDLINUX,
-    TECH_LOGO_SOFTACULOUS,
-];
+import { FEATURES_LIST, TECHNOLOGIES_LIST } from "@/lib/data";
 
 export function Features() {
     return (
@@ -76,7 +24,7 @@ export function Features() {
                         Powered By Industry-Leading Technologies
                     </h2>
                     <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-                        {technologies.map((tech) => (
+                        {TECHNOLOGIES_LIST.map((tech) => (
                             <li key={tech.name}>
                                 <TechnologyLogo
                                     name={tech.name}
@@ -101,7 +49,7 @@ export function Features() {
                     </div>
 
                     <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {features.map((feature, index) => (
+                        {FEATURES_LIST.map((feature, index) => (
                             <li
                                 key={feature.title}
                                 className="animate-slide-up will-animate"
