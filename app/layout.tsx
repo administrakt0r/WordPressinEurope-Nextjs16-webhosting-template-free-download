@@ -83,7 +83,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${outfit.variable} antialiased bg-slate-950 text-slate-50 transition-colors duration-300`}
+        className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground transition-colors duration-300`}
       >
         <SkipLink />
         <JsonLd data={ORGANIZATION_JSON_LD} />

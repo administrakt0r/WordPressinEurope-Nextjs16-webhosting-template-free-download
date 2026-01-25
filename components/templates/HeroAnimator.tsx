@@ -7,6 +7,15 @@ interface HeroAnimatorProps {
     visualContent: React.ReactNode;
 }
 
+/**
+ * Client-side wrapper for animating the Hero section.
+ * This component handles the entrance animations for the text and visual content.
+ * It uses `framer-motion` (via the `m` component from `LazyMotion` in `Providers`)
+ * to efficiently animate elements without bloating the initial bundle.
+ *
+ * @param textContent - The server-rendered text content (heading, description, CTA).
+ * @param visualContent - The server-rendered visual content (e.g., images, cards).
+ */
 export function HeroAnimator({ textContent, visualContent }: HeroAnimatorProps) {
     return (
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
