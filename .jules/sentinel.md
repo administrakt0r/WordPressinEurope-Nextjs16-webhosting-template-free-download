@@ -27,3 +27,8 @@
 **Vulnerability:** Reusable link components (`ExternalLink`, `SkipLink`) accepted arbitrary `href` values, allowing XSS via `javascript:` scheme if passed malicious input.
 **Learning:** Even "secure" components that handle `rel` and `target` attributes must also validate the `href` protocol to be truly secure.
 **Prevention:** Use `isSafeUrl` to validate all `href` props in link components before rendering.
+
+## 2025-05-24 - Defense in Depth with Middleware Headers
+**Vulnerability:** While `next.config.ts` configured security headers, they rely on specific path matching. The application lacked a "defense in depth" layer to enforce these headers globally at the edge (middleware), potentially leaving gaps for excluded paths or static assets if configuration drifts.
+**Learning:** Next.js `middleware.ts` (or `proxy.ts`) allows intercepting requests before they hit the filesystem or page logic, making it the ideal place to enforce non-negotiable security headers like HSTS and X-Frame-Options.
+**Prevention:** Explicitly set critical security headers in Middleware in addition to `next.config.ts` to ensure redundancy and broader coverage.
