@@ -30,6 +30,26 @@ export const EXTERNAL_LINKS = {
     SLA: "https://wp.wpineu.com/service-level-agreement",
     /** Form/Email to report abuse */
     REPORT_ABUSE: "https://wp.wpineu.com/report-abuse",
+
+    // General
+    /** The main website URL */
+    MAIN_URL: "https://wpineu.com",
+    /** CDN for Unsplash images */
+    UNSPLASH_CDN: "https://images.unsplash.com",
+    /** Support email address */
+    SUPPORT_EMAIL: "support@wpineu.com",
+
+    // Partners & Resources
+    /** Administraktor website */
+    ADMINISTRAKTOR: "https://administraktor.com",
+    /** Compressi.us tool */
+    COMPRESSI_US: "https://compressi.us",
+    /** Links2Pics tool */
+    LINKS2PICS: "https://links2pics.com",
+    /** Thumbnail Monster tool */
+    THUMBNAIL_MONSTER: "https://thumbnail.monster",
+    /** Minify Click tool */
+    MINIFY_CLICK: "https://minify.click",
 } as const;
 
 export type ExternalLinkKey = keyof typeof EXTERNAL_LINKS;
