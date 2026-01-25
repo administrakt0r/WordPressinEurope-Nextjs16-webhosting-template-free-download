@@ -1,20 +1,11 @@
 import { Check, ArrowRight } from "lucide-react";
+import { memo } from "react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT } from "@/lib/constants";
+import { PRICING_FEATURES } from "@/lib/data";
 
-const features = [
-    "1 GB SSD disk space (RAID 10 NVMe)",
-    "100 GB Bandwidth (up to 3GB/s speed)",
-    "2 Addon domains",
-    "2 MySQL databases",
-    "2 email addresses",
-    "FREE Auto SSL Certificates",
-    "Latest cPanel with 150+ 1-click apps",
-    "NO advertisements or hidden fees"
-];
-
-export function PricingCard() {
+export const PricingCard = memo(function PricingCard() {
     return (
         <div
             // Optimized: will-animate hint helps browser prepare for transform/opacity changes
@@ -48,7 +39,7 @@ export function PricingCard() {
                 </ExternalLink>
 
                 <ul className="space-y-4" aria-label="Hosting features">
-                    {features.map((feature) => (
+                    {PRICING_FEATURES.map((feature) => (
                         <li key={feature} className="flex items-start gap-3">
                             <div className="p-1 rounded-full bg-green-900/30 text-green-400 mt-0.5">
                                 <Check size={14} strokeWidth={3} aria-hidden="true" />
@@ -60,4 +51,4 @@ export function PricingCard() {
             </div>
         </div>
     );
-}
+});

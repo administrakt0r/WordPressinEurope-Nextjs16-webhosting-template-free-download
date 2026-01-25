@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { type ReactNode, memo } from "react";
 
 interface FeatureCardProps {
     icon: ReactNode;
@@ -6,7 +6,7 @@ interface FeatureCardProps {
     description: string;
 }
 
-export function FeatureCard({ icon, title, description }: FeatureCardProps) {
+export const FeatureCard = memo(function FeatureCard({ icon, title, description }: FeatureCardProps) {
     return (
         <div
             className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:shadow-lg hover:border-primary/20 transition-all duration-300 group h-full"
@@ -22,4 +22,4 @@ export function FeatureCard({ icon, title, description }: FeatureCardProps) {
             </p>
         </div>
     );
-}
+});
