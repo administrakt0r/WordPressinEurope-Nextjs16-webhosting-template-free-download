@@ -27,3 +27,8 @@
 **Vulnerability:** Reusable link components (`ExternalLink`, `SkipLink`) accepted arbitrary `href` values, allowing XSS via `javascript:` scheme if passed malicious input.
 **Learning:** Even "secure" components that handle `rel` and `target` attributes must also validate the `href` protocol to be truly secure.
 **Prevention:** Use `isSafeUrl` to validate all `href` props in link components before rendering.
+
+## 2026-02-24 - Rate Limiting in Edge Middleware
+**Vulnerability:** Lack of rate limiting on public endpoints exposed the application to potential Denial of Service (DoS) attacks and aggressive scraping.
+**Learning:** Next.js Middleware runs on Edge Runtime, meaning in-memory state (like `Map`) is local to the lambda instance and resets on cold start. While not a distributed rate limiter (like Redis), it provides basic protection against single-instance bursts.
+**Prevention:** Implemented a token-bucket-like counter in `middleware.ts` to limit requests per IP. Future improvements could involve an external store for distributed rate limiting.

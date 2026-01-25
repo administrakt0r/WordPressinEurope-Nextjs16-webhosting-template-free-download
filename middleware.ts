@@ -1,7 +1,15 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { rateLimit } from '@/lib/ratelimit';
 
 export function middleware(request: NextRequest) {
+  // Rate Limiting
+  const ip = (request as any).ip ?? request.headers.get('x-forwarded-for') ?? '127.0.0.1';
+  // Limit to 100 requests per minute
+  if (!rateLimit(ip, 100, 60 * 1000)) {
+    return new NextResponse('Too Many Requests', { status: 429 });
+  }
+
   const nonce = crypto.randomUUID();
   const cspHeader = `
     default-src 'self';
