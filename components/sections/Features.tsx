@@ -10,6 +10,13 @@ import {
 } from "lucide-react";
 import { FeatureCard } from "./FeatureCard";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
+import {
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_LITESPEED,
+    TECH_LOGO_CLOUDLINUX,
+    TECH_LOGO_SOFTACULOUS
+} from "@/lib/constants";
 
 const features = [
     {
@@ -45,11 +52,11 @@ const features = [
 ];
 
 const technologies = [
-    { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
-    { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
-    { name: "LiteSpeed", logo: "/litespeed.svg", width: 800, height: 800 },
-    { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
-    { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_LITESPEED,
+    TECH_LOGO_CLOUDLINUX,
+    TECH_LOGO_SOFTACULOUS,
 ];
 
 export function Features() {
