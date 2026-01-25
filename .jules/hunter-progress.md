@@ -39,6 +39,9 @@
 [2026-03-06] [components/ui/ExternalLink.tsx] Defined missing safeHref variable using isSafeUrl
 [2026-03-06] [components/sections/ServiceDescription.tsx] Removed duplicate unoptimized JSX prop
 [2026-03-06] [components/ui/TechnologyLogo.tsx] Removed duplicate unoptimized JSX prop
+[2026-03-07] [lib/constants.ts] Added technology logo constants to centralize duplicate definitions
+[2026-03-07] [app/free-*-hosting/page.tsx] Refactored 6 pages to use central logo constants
+[2026-03-07] [components/sections/Features.tsx] Refactored to use central logo constants
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
