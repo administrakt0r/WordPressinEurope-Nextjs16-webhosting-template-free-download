@@ -82,6 +82,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
+      <link rel="preconnect" href="https://images.unsplash.com" />
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-slate-950 text-slate-50 transition-colors duration-300`}
       >

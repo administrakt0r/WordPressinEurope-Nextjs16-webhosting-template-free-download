@@ -5,14 +5,17 @@ export default function NotFound() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[70vh] px-4 text-center overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <div className="absolute top-[20%] left-[20%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[100px]" />
           <div className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%] bg-yellow-500/5 rounded-full blur-[100px]" />
           <div className="absolute inset-0 bg-grid-pattern" />
       </div>
 
       <div className="relative z-10">
-        <h1 className="text-9xl font-bold font-heading text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-yellow-400 mb-8 select-none">
+        <h1
+          className="text-9xl font-bold font-heading text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-yellow-400 mb-8 select-none"
+          aria-label="Error 404"
+        >
           404
         </h1>
         <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mb-6">
