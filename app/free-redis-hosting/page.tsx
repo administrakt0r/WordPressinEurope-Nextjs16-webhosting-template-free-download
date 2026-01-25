@@ -78,6 +78,9 @@ export default function FreeRedisHosting() {
                     </>
                 }
                 heroSubtitle="Unlock the full potential of your WordPress site with Redis Object Caching. Lightning-fast database queries for free."
+                breadcrumbs={[
+                    { label: "Free Redis Hosting", href: "/free-redis-hosting" }
+                ]}
             >
                 <ServiceDescription
                     title="What is Redis Object Caching?"

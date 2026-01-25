@@ -50,6 +50,15 @@ export function BackToTop() {
       top: 0,
       behavior: "smooth",
     });
+
+    // Move focus to main content for keyboard users
+    // Small timeout to allow smooth scroll to start
+    setTimeout(() => {
+      const main = document.getElementById("main-content");
+      if (main) {
+        main.focus({ preventScroll: true });
+      }
+    }, 100);
   };
 
   // Circumference of the circle (r=18) -> 2 * PI * 18 ≈ 113.1

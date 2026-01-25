@@ -81,6 +81,9 @@ export default function FreeWebHosting() {
                     </>
                 }
                 heroSubtitle="Host your website on our high-performance servers. Enjoy free SSL, daily backups, and 24/7 monitoring without paying a dime."
+                breadcrumbs={[
+                    { label: "Free Web Hosting", href: "/free-web-hosting" }
+                ]}
             >
                 <ServiceDescription
                     title="Everything You Need to Get Online"

@@ -78,6 +78,9 @@ export default function FreeSSDHosting() {
                     </>
                 }
                 heroSubtitle="Experience superior performance with our enterprise-grade NVMe SSD storage. Your website deserves the best speed, completely free."
+                breadcrumbs={[
+                    { label: "Free SSD Hosting", href: "/free-ssd-hosting" }
+                ]}
             >
                 <ServiceDescription
                     title="Why NVMe SSD Storage Matters"
