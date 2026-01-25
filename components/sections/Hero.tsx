@@ -2,9 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
-import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT } from "@/lib/constants";
-
-const STARS = [1, 2, 3, 4, 5];
+import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT, RATING_STARS } from "@/lib/constants";
 
 export function Hero() {
     return (
@@ -64,7 +62,7 @@ export function Hero() {
                         <div className="flex items-center justify-center lg:justify-start gap-6 pt-8 border-t border-slate-800/50">
                             <div className="flex flex-col">
                                 <div className="flex items-center gap-1 text-yellow-400 mb-1" role="img" aria-label="Rated 5 out of 5 stars">
-                                    {STARS.map((i) => (
+                                    {RATING_STARS.map((i) => (
                                         <Star key={i} size={16} fill="currentColor" aria-hidden="true" />
                                     ))}
                                 </div>

@@ -26,16 +26,17 @@ interface HostingLandingProps {
     heroTitle: React.ReactNode;
     heroSubtitle: string;
     children?: React.ReactNode;
+    showTechnologies?: boolean;
 }
 
-export function HostingLanding({ heroTitle, heroSubtitle, children }: HostingLandingProps) {
+export function HostingLanding({ heroTitle, heroSubtitle, children, showTechnologies = true }: HostingLandingProps) {
     return (
         <>
             <HostingHero heroTitle={heroTitle} heroSubtitle={heroSubtitle} />
 
             {children}
 
-            <Features />
+            <Features showTechnologies={showTechnologies} />
             <Pricing />
             <About />
             <FAQ />

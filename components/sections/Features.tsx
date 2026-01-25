@@ -10,6 +10,13 @@ import {
 } from "lucide-react";
 import { FeatureCard } from "./FeatureCard";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
+import {
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_LITESPEED,
+    TECH_LOGO_CLOUDLINUX,
+    TECH_LOGO_SOFTACULOUS
+} from "@/lib/constants";
 
 const features = [
     {
@@ -45,14 +52,18 @@ const features = [
 ];
 
 const technologies = [
-    { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
-    { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
-    { name: "LiteSpeed", logo: "/litespeed.svg", width: 800, height: 800 },
-    { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
-    { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_LITESPEED,
+    TECH_LOGO_CLOUDLINUX,
+    TECH_LOGO_SOFTACULOUS,
 ];
 
-export function Features() {
+interface FeaturesProps {
+    showTechnologies?: boolean;
+}
+
+export function Features({ showTechnologies = true }: FeaturesProps) {
     return (
         <section
             id="features"
@@ -64,23 +75,25 @@ export function Features() {
             <div className="container mx-auto px-4 md:px-6">
 
                 {/* Tech Stack */}
-                <div className="text-center mb-20">
-                    <h2 className="text-2xl font-bold font-heading text-foreground mb-8">
-                        Powered By Industry-Leading Technologies
-                    </h2>
-                    <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-                        {technologies.map((tech) => (
-                            <li key={tech.name}>
-                                <TechnologyLogo
-                                    name={tech.name}
-                                    logo={tech.logo}
-                                    width={tech.width}
-                                    height={tech.height}
-                                />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                {showTechnologies && (
+                    <div className="text-center mb-20">
+                        <h2 className="text-2xl font-bold font-heading text-foreground mb-8">
+                            Powered By Industry-Leading Technologies
+                        </h2>
+                        <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                            {technologies.map((tech) => (
+                                <li key={tech.name}>
+                                    <TechnologyLogo
+                                        name={tech.name}
+                                        logo={tech.logo}
+                                        width={tech.width}
+                                        height={tech.height}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
 
                 {/* Main Features Grid */}
                 <div className="mb-20">

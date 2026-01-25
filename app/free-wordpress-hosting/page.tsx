@@ -2,7 +2,14 @@ import { HostingLanding } from "@/components/templates/HostingLanding";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
-import { PRICE_MONTHLY_VALUE, PRICE_CURRENCY } from "@/lib/constants";
+import {
+    PRICE_MONTHLY_VALUE,
+    PRICE_CURRENCY,
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_SOFTACULOUS,
+    TECH_LOGO_CLOUDLINUX
+} from "@/lib/constants";
 
 export const metadata: Metadata = {
     title: "Free WordPress Hosting with cPanel | WPinEU",
@@ -62,10 +69,10 @@ const wordpressFeatures = [
 ];
 
 const techLogos = [
-    { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
-    { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
-    { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
-    { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_SOFTACULOUS,
+    TECH_LOGO_CLOUDLINUX,
 ];
 
 export default function FreeWordPressHosting() {
@@ -79,6 +86,7 @@ export default function FreeWordPressHosting() {
                     </>
                 }
                 heroSubtitle="Everything you need to start your WordPress journey. cPanel, Softaculous, and full control over your website."
+                showTechnologies={false}
             >
                 <ServiceDescription
                     title="Complete WordPress Hosting Solution"

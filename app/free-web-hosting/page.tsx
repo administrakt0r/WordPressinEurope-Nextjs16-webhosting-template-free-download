@@ -2,7 +2,14 @@ import { HostingLanding } from "@/components/templates/HostingLanding";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { JsonLd } from "@/components/JsonLd";
-import { PRICE_MONTHLY_VALUE, PRICE_CURRENCY } from "@/lib/constants";
+import {
+    PRICE_MONTHLY_VALUE,
+    PRICE_CURRENCY,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_SOFTACULOUS,
+    TECH_LOGO_CLOUDLINUX
+} from "@/lib/constants";
 
 export const metadata: Metadata = {
     title: "Free Web Hosting | WPinEU",
@@ -48,10 +55,10 @@ const webHostingFeatures = [
 ];
 
 const techLogos = [
-    { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
-    { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
-    { name: "Softaculous", logo: "/Softaculous.svg", width: 960, height: 960 },
-    { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_SOFTACULOUS,
+    TECH_LOGO_CLOUDLINUX,
 ];
 
 const jsonLd = {
@@ -81,6 +88,7 @@ export default function FreeWebHosting() {
                     </>
                 }
                 heroSubtitle="Host your website on our high-performance servers. Enjoy free SSL, daily backups, and 24/7 monitoring without paying a dime."
+                showTechnologies={false}
             >
                 <ServiceDescription
                     title="Everything You Need to Get Online"

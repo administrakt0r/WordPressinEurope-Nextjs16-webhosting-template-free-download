@@ -2,7 +2,13 @@ import { HostingLanding } from "@/components/templates/HostingLanding";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
-import { PRICE_MONTHLY_VALUE, PRICE_CURRENCY } from "@/lib/constants";
+import {
+    PRICE_MONTHLY_VALUE,
+    PRICE_CURRENCY,
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_CLOUDLINUX
+} from "@/lib/constants";
 
 export const metadata: Metadata = {
     title: "Free Redis Hosting for WordPress | WPinEU",
@@ -62,9 +68,9 @@ const redisFeatures = [
 ];
 
 const techLogos = [
-    { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
-    { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
-    { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_CLOUDLINUX,
 ];
 
 export default function FreeRedisHosting() {
@@ -78,6 +84,7 @@ export default function FreeRedisHosting() {
                     </>
                 }
                 heroSubtitle="Unlock the full potential of your WordPress site with Redis Object Caching. Lightning-fast database queries for free."
+                showTechnologies={false}
             >
                 <ServiceDescription
                     title="What is Redis Object Caching?"

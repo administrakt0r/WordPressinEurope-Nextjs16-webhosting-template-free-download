@@ -2,7 +2,14 @@ import { HostingLanding } from "@/components/templates/HostingLanding";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
-import { PRICE_MONTHLY_VALUE, PRICE_CURRENCY } from "@/lib/constants";
+import {
+    PRICE_MONTHLY_VALUE,
+    PRICE_CURRENCY,
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_LITESPEED,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_CLOUDLINUX
+} from "@/lib/constants";
 
 export const metadata: Metadata = {
     title: "Free LiteSpeed WordPress Hosting | WPinEU",
@@ -62,10 +69,10 @@ const litespeedFeatures = [
 ];
 
 const techLogos = [
-    { name: "WordPress", logo: "/wordpress-logo.svg", width: 540, height: 540 },
-    { name: "LiteSpeed", logo: "/litespeed.svg", width: 800, height: 800 },
-    { name: "cPanel", logo: "/cPanel.svg", width: 1136, height: 240 },
-    { name: "CloudLinux", logo: "/cloudlinux.svg", width: 24, height: 24 },
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_LITESPEED,
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_CLOUDLINUX,
 ];
 
 export default function FreeLiteSpeedHosting() {
@@ -79,6 +86,7 @@ export default function FreeLiteSpeedHosting() {
                     </>
                 }
                 heroSubtitle="Don't settle for slow Apache servers. Get the speed of LiteSpeed Web Server and LSCache, optimized for WordPress."
+                showTechnologies={false}
             >
                 <ServiceDescription
                     title="Why LiteSpeed is Superior"
