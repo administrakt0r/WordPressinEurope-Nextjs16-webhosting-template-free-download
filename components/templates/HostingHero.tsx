@@ -3,19 +3,22 @@ import { ArrowRight, Check, Star, Server, Zap, Shield, Globe } from "lucide-reac
 import { HeroAnimator } from "./HeroAnimator";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { Breadcrumbs, type BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
 interface HostingHeroProps {
     heroTitle: React.ReactNode;
     heroSubtitle: string;
+    breadcrumbs?: BreadcrumbItem[];
 }
 
-export function HostingHero({ heroTitle, heroSubtitle }: HostingHeroProps) {
+export function HostingHero({ heroTitle, heroSubtitle, breadcrumbs }: HostingHeroProps) {
     // ⚡ Performance: Extracted static content to Server Component.
     // Animations are handled by the client-side wrapper `HeroAnimator`.
     // This reduces client bundle size by keeping large static JSX on the server.
 
     const textContent = (
         <>
+            {breadcrumbs && <Breadcrumbs items={breadcrumbs} className="mb-4" />}
             <div
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-900/30 border border-blue-800 text-blue-300 text-xs font-bold tracking-widest uppercase mb-8 hover:bg-blue-900/50 transition-colors cursor-default"
             >

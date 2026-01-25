@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { HostingHero } from "./HostingHero";
+import { type BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
 // Dynamic imports for below-the-fold components to reduce initial bundle size
 const Features = dynamic(() => import("@/components/sections/Features").then(mod => ({ default: mod.Features })), {
@@ -26,12 +27,13 @@ interface HostingLandingProps {
     heroTitle: React.ReactNode;
     heroSubtitle: string;
     children?: React.ReactNode;
+    breadcrumbs?: BreadcrumbItem[];
 }
 
-export function HostingLanding({ heroTitle, heroSubtitle, children }: HostingLandingProps) {
+export function HostingLanding({ heroTitle, heroSubtitle, children, breadcrumbs }: HostingLandingProps) {
     return (
         <>
-            <HostingHero heroTitle={heroTitle} heroSubtitle={heroSubtitle} />
+            <HostingHero heroTitle={heroTitle} heroSubtitle={heroSubtitle} breadcrumbs={breadcrumbs} />
 
             {children}
 

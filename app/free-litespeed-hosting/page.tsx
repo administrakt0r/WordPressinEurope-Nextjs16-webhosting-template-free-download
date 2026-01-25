@@ -86,6 +86,9 @@ export default function FreeLiteSpeedHosting() {
                     </>
                 }
                 heroSubtitle="Don't settle for slow Apache servers. Get the speed of LiteSpeed Web Server and LSCache, optimized for WordPress."
+                breadcrumbs={[
+                    { label: "Free LiteSpeed Hosting", href: "/free-litespeed-hosting" }
+                ]}
             >
                 <ServiceDescription
                     title="Why LiteSpeed is Superior"

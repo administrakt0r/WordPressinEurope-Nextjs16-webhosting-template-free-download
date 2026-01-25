@@ -90,7 +90,7 @@ export default async function RootLayout({
         <Providers>
           <div className="flex flex-col min-h-screen">
             <Navbar />
-            <main id="main-content" className="flex-grow">
+            <main id="main-content" className="flex-grow" tabIndex={-1}>
               {children}
             </main>
             <Footer />

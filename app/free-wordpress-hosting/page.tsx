@@ -86,6 +86,9 @@ export default function FreeWordPressHosting() {
                     </>
                 }
                 heroSubtitle="Everything you need to start your WordPress journey. cPanel, Softaculous, and full control over your website."
+                breadcrumbs={[
+                    { label: "Free WordPress Hosting", href: "/free-wordpress-hosting" }
+                ]}
             >
                 <ServiceDescription
                     title="Complete WordPress Hosting Solution"

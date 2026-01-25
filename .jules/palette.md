@@ -39,3 +39,7 @@
 ## 2025-05-24 - [Decorative Layout Elements]
 **Learning:** Large floating UI elements used for background decoration (like code snippets or abstract shapes) can be picked up by screen readers as fragmented content if not explicitly hidden, causing confusion.
 **Action:** Apply `aria-hidden="true"` to entire container `div`s that serve only as visual decoration, ensuring assistive technology ignores the complex but meaningless structure within.
+
+## 2026-05-25 - [Breadcrumbs & Focus Management]
+**Learning:** Users navigating deep hosting pages often lose context. Adding `Breadcrumbs` to the hero section provides immediate location awareness. Also, "Back to Top" buttons must programmatically focus the main content area after scrolling, otherwise keyboard users are stranded at the bottom.
+**Action:** Always include breadcrumbs on nested pages and ensure scroll-to-top interactions manage focus.
