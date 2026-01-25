@@ -7,6 +7,10 @@ describe('External Links Security', () => {
             if (url.startsWith('mailto:')) {
                 return; // Skip mailto links
             }
+            if (key === 'SUPPORT_EMAIL') {
+                expect(url).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+                return;
+            }
             try {
                 const urlObj = new URL(url);
                 expect(urlObj.protocol).toBe('https:');

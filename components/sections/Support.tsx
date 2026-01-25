@@ -3,12 +3,13 @@ import { Mail, ArrowUpRight, Code2 } from "lucide-react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 import { getOffscreenOptimizations } from "@/lib/styles";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
 const resources = [
-    { name: "compressi.us", url: "https://compressi.us" },
-    { name: "links2pics.com", url: "https://links2pics.com" },
-    { name: "thumbnail.monster", url: "https://thumbnail.monster" },
-    { name: "minify.click", url: "https://minify.click" },
+    { name: "compressi.us", url: EXTERNAL_LINKS.COMPRESSI_US },
+    { name: "links2pics.com", url: EXTERNAL_LINKS.LINKS2PICS },
+    { name: "thumbnail.monster", url: EXTERNAL_LINKS.THUMBNAIL_MONSTER },
+    { name: "minify.click", url: EXTERNAL_LINKS.MINIFY_CLICK },
 ];
 
 export function Support() {
@@ -40,7 +41,7 @@ export function Support() {
                             Beyond our free hosting, we specialize in creating tailor-made web solutions. If your project requires custom development, unique features, or dedicated support, we&apos;re here to help. Let&apos;s build something amazing together.
                         </p>
                         <ObfuscatedMailto
-                            email="support@wpineu.com"
+                            email={EXTERNAL_LINKS.SUPPORT_EMAIL}
                             className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
                         >
                             <Mail size={18} aria-hidden="true" />

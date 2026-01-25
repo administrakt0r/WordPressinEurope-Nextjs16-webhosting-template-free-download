@@ -42,6 +42,8 @@
 [2026-03-07] [lib/constants.ts] Added technology logo constants to centralize duplicate definitions
 [2026-03-07] [app/free-*-hosting/page.tsx] Refactored 6 pages to use central logo constants
 [2026-03-07] [components/sections/Features.tsx] Refactored to use central logo constants
+[2026-03-08] [lib/links.ts] Centralized hardcoded external URLs
+[2026-03-08] [components/sections/Support.tsx, About.tsx, Providers.tsx, app/support/page.tsx] Refactored to use centralized EXTERNAL_LINKS
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->

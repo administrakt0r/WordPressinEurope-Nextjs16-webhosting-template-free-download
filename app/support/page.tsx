@@ -56,10 +56,10 @@ export default function SupportPage() {
                                 Send us an email and we&apos;ll get back to you as soon as possible.
                             </p>
                             <ObfuscatedMailto
-                                email="support@wpineu.com"
+                                email={EXTERNAL_LINKS.SUPPORT_EMAIL}
                                 className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
                             >
-                                support@wpineu.com
+                                {EXTERNAL_LINKS.SUPPORT_EMAIL}
                                 <ExternalLinkIcon size={16} />
                             </ObfuscatedMailto>
                         </div>
@@ -161,7 +161,7 @@ export default function SupportPage() {
                             <div className="bg-slate-900 rounded-xl p-6 border border-slate-800">
                                 <h3 className="text-xl font-bold text-white mb-3">What if I need help with WordPress?</h3>
                                 <p className="text-slate-400">
-                                    Contact us at <ObfuscatedMailto email="support@wpineu.com" className="text-blue-400 hover:text-blue-300" /> with your questions. We&apos;re here to help you succeed with your WordPress site.
+                                    Contact us at <ObfuscatedMailto email={EXTERNAL_LINKS.SUPPORT_EMAIL} className="text-blue-400 hover:text-blue-300" /> with your questions. We&apos;re here to help you succeed with your WordPress site.
                                 </p>
                             </div>
                         </div>

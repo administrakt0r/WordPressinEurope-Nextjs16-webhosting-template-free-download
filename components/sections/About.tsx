@@ -2,6 +2,7 @@ import { Users, Lightbulb, ShieldCheck, Globe2 } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { getOffscreenOptimizations } from "@/lib/styles";
+import { EXTERNAL_LINKS } from "@/lib/links";
 
 const IMPACT_GOALS = [
     "Support long-term learning and digital growth",
@@ -34,7 +35,7 @@ export function About() {
                                 WP in EU is an educational initiative created to make learning web development more accessible to everyone. We provide free, reliable cPanel hosting to help beginners and aspiring developers gain real, hands-on experience.
                             </p>
                             <p className="text-muted-foreground mb-8 leading-relaxed">
-                                The project was founded on July 10, 2025, in Zagreb, Croatia, by Marko S. (<ExternalLink href="https://administraktor.com" className="text-primary hover:underline">administraktor.com</ExternalLink>) with one simple goal — to help people across Europe start their WordPress journey without financial barriers.
+                                The project was founded on July 10, 2025, in Zagreb, Croatia, by Marko S. (<ExternalLink href={EXTERNAL_LINKS.ADMINISTRAKTOR} className="text-primary hover:underline">administraktor.com</ExternalLink>) with one simple goal — to help people across Europe start their WordPress journey without financial barriers.
                             </p>
 
                             <ul className="space-y-8">
