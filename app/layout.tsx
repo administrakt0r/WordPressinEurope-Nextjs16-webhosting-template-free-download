@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { headers } from "next/headers";
 import { Inter, Outfit } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   // Opt-in to dynamic rendering to ensure nonce generation
   await headers();

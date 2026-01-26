@@ -42,9 +42,14 @@
 [2026-03-07] [lib/constants.ts] Added technology logo constants to centralize duplicate definitions
 [2026-03-07] [app/free-*-hosting/page.tsx] Refactored 6 pages to use central logo constants
 [2026-03-07] [components/sections/Features.tsx] Refactored to use central logo constants
+[2026-03-08] [app/layout.tsx] Fixed React type imports (replaced React.ReactNode with ReactNode)
+[2026-03-08] [components/layout/Navbar.tsx] Fixed React type imports (replaced React.CSSProperties with CSSProperties)
+[2026-03-08] [components/ui/Skeleton.tsx] Fixed React type imports (replaced React.HTMLAttributes with HTMLAttributes)
+[2026-03-08] [components/ui/ObfuscatedMailto.tsx] Fixed React type imports (replaced React.AnchorHTMLAttributes with AnchorHTMLAttributes)
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
+[2026-03-08] [components/ui/ObfuscatedMailto.tsx] Regression: File uses useEffect/setState instead of useSyncExternalStore (reverts previous fix).
 [2026-03-03] Missing `app/manifest.ts` (PWA feature) - Requires Feature task, not Bug Fix.
 [2026-03-03] Missing JSDoc in `lib/utils.ts` and `lib/links.ts` - Requires Improvement task.
 [2026-03-06] [components/ui/ObfuscatedMailto.tsx] Unused variable warning (low priority)
