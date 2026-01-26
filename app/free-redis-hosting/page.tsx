@@ -1,6 +1,7 @@
 import { HostingLanding } from "@/components/templates/HostingLanding";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
+import { Zap, Database, Gauge, TrendingUp } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import {
     PRICE_MONTHLY_VALUE,
@@ -46,22 +47,22 @@ const jsonLd = {
 
 const redisFeatures = [
     {
-        iconName: "Zap",
+        icon: Zap,
         title: "In-Memory Caching",
         description: "Redis stores data in RAM, making it incredibly fast. Access your cached objects in microseconds instead of milliseconds."
     },
     {
-        iconName: "Database",
+        icon: Database,
         title: "Reduce DB Load",
         description: "Dramatically reduce database queries by caching frequently accessed data. Your MySQL database will thank you."
     },
     {
-        iconName: "Gauge",
+        icon: Gauge,
         title: "Faster Page Loads",
         description: "With Redis object caching, your WordPress pages load up to 10x faster, especially on high-traffic sites."
     },
     {
-        iconName: "TrendingUp",
+        icon: TrendingUp,
         title: "Better Scalability",
         description: "Handle more concurrent visitors without slowing down. Redis helps your site scale effortlessly as traffic grows."
     }

@@ -1,6 +1,7 @@
 import { HostingLanding } from "@/components/templates/HostingLanding";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
+import { LayoutDashboard, Mail, Database, FileText } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import {
     PRICE_MONTHLY_VALUE,
@@ -47,22 +48,22 @@ const jsonLd = {
 
 const cpanelFeatures = [
     {
-        iconName: "LayoutDashboard",
+        icon: LayoutDashboard,
         title: "Intuitive Interface",
         description: "cPanel's user-friendly interface makes managing your hosting simple. No technical expertise required to get started."
     },
     {
-        iconName: "Mail",
+        icon: Mail,
         title: "Email Management",
         description: "Create unlimited email accounts, forwarders, and autoresponders. Full webmail access included with Roundcube and Horde."
     },
     {
-        iconName: "Database",
+        icon: Database,
         title: "Database Control",
         description: "Manage MySQL databases with phpMyAdmin. Create, edit, and optimize databases with ease through the intuitive interface."
     },
     {
-        iconName: "FileText",
+        icon: FileText,
         title: "File Manager",
         description: "Upload, edit, and manage files directly in your browser. No FTP client needed - everything is built into cPanel."
     }

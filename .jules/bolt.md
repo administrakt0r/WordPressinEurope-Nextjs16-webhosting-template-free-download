@@ -13,3 +13,11 @@
 ## 2026-05-23 - Content Visibility Layout Stability
 **Learning:** Using `containIntrinsicSize: "1px 800px"` for `content-visibility: auto` sections caused potential layout shifts because the browser reserves only 1px width.
 **Action:** Use `containIntrinsicSize: "auto 800px"` (or just "auto") to allow the browser to use the element's natural width or last rendered size, preserving layout stability while still getting rendering performance benefits.
+
+## 2026-06-15 - CSS Blur vs Radial Gradients
+**Learning:** Large CSS filters like `blur-[120px]` on large areas are expensive for the compositor. Replacing them with `radial-gradient` achieves a similar visual result with significantly lower paint cost.
+**Action:** Prefer `radial-gradient` with alpha transitions over solid colors + heavy `blur()` for background glow effects.
+
+## 2026-06-15 - Unused Icon Bundling in Shared Components
+**Learning:** Passing icon names as strings and mapping them in a shared component (`ServiceDescription`) forces bundling of all possible icons, defeating tree-shaking.
+**Action:** Pass icon components (React elements) directly as props. This allows the consumer to import only what is needed, enabling effective tree-shaking.

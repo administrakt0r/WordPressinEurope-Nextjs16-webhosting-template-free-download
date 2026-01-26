@@ -1,10 +1,9 @@
-import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle, Globe, Code, Server, ShieldCheck, Layers } from "lucide-react";
 import type { ElementType } from "react";
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 
 interface ServiceFeature {
-    iconName: string;
+    icon: ElementType;
     title: string;
     description: string;
 }
@@ -17,27 +16,8 @@ interface ServiceDescriptionProps {
     techLogos?: { name: string; logo: string; width?: number; height?: number }[];
 }
 
-const iconMap: Record<string, ElementType> = {
-    Shield,
-    Zap,
-    Database,
-    HardDrive,
-    Rocket,
-    TrendingUp,
-    Gauge,
-    LayoutDashboard,
-    Mail,
-    FileText,
-    Download,
-    Globe,
-    Code,
-    Server,
-    ShieldCheck,
-    Layers,
-};
-
 function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
-    const Icon = iconMap[feature.iconName] || Circle;
+    const Icon = feature.icon;
     return (
         <div
             className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-blue-500/50 transition-all"

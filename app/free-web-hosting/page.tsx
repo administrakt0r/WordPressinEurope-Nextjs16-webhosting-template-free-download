@@ -1,6 +1,7 @@
 import { HostingLanding } from "@/components/templates/HostingLanding";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { Globe, Code, Server, ShieldCheck, Zap, Layers } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import {
     PRICE_MONTHLY_VALUE,
@@ -23,32 +24,32 @@ const ServiceDescription = dynamic(() =>
 
 const webHostingFeatures = [
     {
-        iconName: "Globe",
+        icon: Globe,
         title: "Free Subdomain",
         description: "Don't have a domain yet? No problem. Use our free subdomain to get your website online instantly."
     },
     {
-        iconName: "Code",
+        icon: Code,
         title: "PHP & MySQL Support",
         description: "Full support for the latest PHP versions and MySQL databases, ensuring compatibility with modern web applications."
     },
     {
-        iconName: "Server",
+        icon: Server,
         title: "cPanel Control Panel",
         description: "Manage your files, databases, email accounts, and more with the industry-standard cPanel interface."
     },
     {
-        iconName: "ShieldCheck",
+        icon: ShieldCheck,
         title: "DDoS Protection",
         description: "Our network is protected by advanced DDoS mitigation systems to keep your website online even during attacks."
     },
     {
-        iconName: "Zap",
+        icon: Zap,
         title: "99.9% Uptime",
         description: "We guarantee 99.9% uptime for your website, so your visitors can always access your content."
     },
     {
-        iconName: "Layers",
+        icon: Layers,
         title: "No Ads",
         description: "Unlike other free hosts, we never place forced advertisements on your website. Your content is 100% yours."
     }
