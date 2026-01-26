@@ -1,4 +1,5 @@
 import { FAQS } from "@/lib/data";
+import { PRICE_MONTHLY_VALUE, PRICE_CURRENCY } from "@/lib/constants";
 
 /**
  * JSON-LD data for the main website entity.
@@ -39,12 +40,37 @@ export const SERVICE_JSON_LD = {
           "@type": "Service",
           "name": "Free WordPress Hosting Plan"
         },
-        "price": "0.00",
-        "priceCurrency": "EUR"
+        "price": PRICE_MONTHLY_VALUE,
+        "priceCurrency": PRICE_CURRENCY
       }
     ]
   }
 };
+
+/**
+ * Generates JSON-LD data for a specific service page.
+ *
+ * @param name The name of the service
+ * @param description The description of the service
+ * @returns The JSON-LD object
+ */
+export function getServiceJsonLd(name: string, description: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": name,
+    "provider": {
+        "@type": "Organization",
+        "name": "WPinEU"
+    },
+    "description": description,
+    "offers": {
+        "@type": "Offer",
+        "price": PRICE_MONTHLY_VALUE,
+        "priceCurrency": PRICE_CURRENCY
+    }
+  };
+}
 
 /**
  * JSON-LD data for the organization.

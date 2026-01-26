@@ -3,13 +3,12 @@ import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import {
-    PRICE_MONTHLY_VALUE,
-    PRICE_CURRENCY,
     TECH_LOGO_WORDPRESS,
     TECH_LOGO_LITESPEED,
     TECH_LOGO_CPANEL,
     TECH_LOGO_CLOUDLINUX
 } from "@/lib/constants";
+import { getServiceJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
     title: "Free LiteSpeed WordPress Hosting | WPinEU",
@@ -29,21 +28,10 @@ const ServiceDescription = dynamic(() =>
     import("@/components/sections/ServiceDescription").then((mod) => mod.ServiceDescription)
 );
 
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Free LiteSpeed Hosting",
-    "provider": {
-        "@type": "Organization",
-        "name": "WPinEU"
-    },
-    "description": "High-performance LiteSpeed Web Server hosting for WordPress.",
-    "offers": {
-        "@type": "Offer",
-        "price": PRICE_MONTHLY_VALUE,
-        "priceCurrency": PRICE_CURRENCY
-    }
-};
+const jsonLd = getServiceJsonLd(
+    "Free LiteSpeed Hosting",
+    "High-performance LiteSpeed Web Server hosting for WordPress."
+);
 
 const litespeedFeatures = [
     {

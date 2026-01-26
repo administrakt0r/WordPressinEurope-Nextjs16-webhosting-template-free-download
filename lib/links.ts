@@ -30,6 +30,8 @@ export const EXTERNAL_LINKS = {
     SLA: "https://wp.wpineu.com/service-level-agreement",
     /** Form/Email to report abuse */
     REPORT_ABUSE: "https://wp.wpineu.com/report-abuse",
+    /** Support email address */
+    SUPPORT_EMAIL: "support@wpineu.com",
 } as const;
 
 export type ExternalLinkKey = keyof typeof EXTERNAL_LINKS;
