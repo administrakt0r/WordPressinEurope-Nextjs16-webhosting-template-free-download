@@ -4,13 +4,12 @@ import { Metadata } from "next";
 import { LayoutDashboard, Download, Zap, Shield } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import {
-    PRICE_MONTHLY_VALUE,
-    PRICE_CURRENCY,
     TECH_LOGO_WORDPRESS,
     TECH_LOGO_CPANEL,
     TECH_LOGO_SOFTACULOUS,
     TECH_LOGO_CLOUDLINUX
 } from "@/lib/constants";
+import { getServiceJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
     title: "Free WordPress Hosting with cPanel | WPinEU",
@@ -30,21 +29,10 @@ const ServiceDescription = dynamic(() =>
     import("@/components/sections/ServiceDescription").then((mod) => mod.ServiceDescription)
 );
 
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Free WordPress Hosting",
-    "provider": {
-        "@type": "Organization",
-        "name": "WPinEU"
-    },
-    "description": "Full-featured WordPress hosting with cPanel and Softaculous.",
-    "offers": {
-        "@type": "Offer",
-        "price": PRICE_MONTHLY_VALUE,
-        "priceCurrency": PRICE_CURRENCY
-    }
-};
+const jsonLd = getServiceJsonLd(
+    "Free WordPress Hosting",
+    "Full-featured WordPress hosting with cPanel and Softaculous."
+);
 
 const wordpressFeatures = [
     {

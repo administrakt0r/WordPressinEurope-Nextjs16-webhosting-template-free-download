@@ -42,6 +42,11 @@
 [2026-03-07] [lib/constants.ts] Added technology logo constants to centralize duplicate definitions
 [2026-03-07] [app/free-*-hosting/page.tsx] Refactored 6 pages to use central logo constants
 [2026-03-07] [components/sections/Features.tsx] Refactored to use central logo constants
+[2026-03-07] [lib/links.ts] Added SUPPORT_EMAIL to EXTERNAL_LINKS
+[2026-03-07] [app/support/page.tsx] Updated to use SUPPORT_EMAIL from links constant
+[2026-03-07] [components/ui/SkipLink.tsx] Removed unnecessary memo from Server Component
+[2026-03-07] [lib/json-ld.ts] Added getServiceJsonLd helper to avoid duplication
+[2026-03-07] [app/free-*-hosting/page.tsx] Refactored 6 pages to use getServiceJsonLd (duplicate code fix)
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->

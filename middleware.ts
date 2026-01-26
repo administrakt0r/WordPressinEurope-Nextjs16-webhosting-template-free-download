@@ -53,6 +53,7 @@ export function middleware(request: NextRequest) {
     'Strict-Transport-Security',
     'max-age=63072000; includeSubDomains; preload'
   );
+  response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
 
   return response;
 }

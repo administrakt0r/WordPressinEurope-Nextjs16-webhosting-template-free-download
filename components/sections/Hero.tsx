@@ -154,6 +154,7 @@ export function Hero() {
                                 </div>
                                 <ExternalLink
                                     href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
+                                    ariaLabel="Order free WordPress hosting now"
                                     className="h-10 px-6 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-600/20 text-white font-bold text-sm transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                                 >
                                     Order Now

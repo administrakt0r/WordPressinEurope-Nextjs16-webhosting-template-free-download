@@ -4,12 +4,11 @@ import { Metadata } from "next";
 import { Zap, HardDrive, Gauge, Shield } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import {
-    PRICE_MONTHLY_VALUE,
-    PRICE_CURRENCY,
     TECH_LOGO_WORDPRESS,
     TECH_LOGO_CPANEL,
     TECH_LOGO_CLOUDLINUX
 } from "@/lib/constants";
+import { getServiceJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
     title: "Free SSD NVMe Hosting in Europe | WPinEU",
@@ -29,21 +28,10 @@ const ServiceDescription = dynamic(() =>
     import("@/components/sections/ServiceDescription").then((mod) => mod.ServiceDescription)
 );
 
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Free SSD Hosting",
-    "provider": {
-        "@type": "Organization",
-        "name": "WPinEU"
-    },
-    "description": "Enterprise-grade NVMe SSD storage for WordPress websites.",
-    "offers": {
-        "@type": "Offer",
-        "price": PRICE_MONTHLY_VALUE,
-        "priceCurrency": PRICE_CURRENCY
-    }
-};
+const jsonLd = getServiceJsonLd(
+    "Free SSD Hosting",
+    "Enterprise-grade NVMe SSD storage for WordPress websites."
+);
 
 const ssdFeatures = [
     {

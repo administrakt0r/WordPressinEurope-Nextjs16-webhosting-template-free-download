@@ -32,3 +32,8 @@
 **Vulnerability:** While `next.config.ts` configured security headers, they rely on specific path matching. The application lacked a "defense in depth" layer to enforce these headers globally at the edge (middleware), potentially leaving gaps for excluded paths or static assets if configuration drifts.
 **Learning:** Next.js `middleware.ts` (or `proxy.ts`) allows intercepting requests before they hit the filesystem or page logic, making it the ideal place to enforce non-negotiable security headers like HSTS and X-Frame-Options.
 **Prevention:** Explicitly set critical security headers in Middleware in addition to `next.config.ts` to ensure redundancy and broader coverage.
+
+## 2025-05-24 - Cross-Domain Policy Header
+**Vulnerability:** Missing `X-Permitted-Cross-Domain-Policies` header allowed Adobe Flash and PDF documents to potentially load data from the domain.
+**Learning:** Even though Flash is deprecated, other clients (like PDF readers) may verify this policy. Explicitly setting it to `none` is a defense-in-depth measure.
+**Prevention:** Enforce `X-Permitted-Cross-Domain-Policies: none` in middleware to prevent cross-domain data loading.

@@ -4,13 +4,12 @@ import dynamic from "next/dynamic";
 import { Globe, Code, Server, ShieldCheck, Zap, Layers } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import {
-    PRICE_MONTHLY_VALUE,
-    PRICE_CURRENCY,
     TECH_LOGO_CPANEL,
     TECH_LOGO_WORDPRESS,
     TECH_LOGO_SOFTACULOUS,
     TECH_LOGO_CLOUDLINUX
 } from "@/lib/constants";
+import { getServiceJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
     title: "Free Web Hosting | WPinEU",
@@ -62,21 +61,10 @@ const techLogos = [
     TECH_LOGO_CLOUDLINUX,
 ];
 
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Free Web Hosting",
-    "provider": {
-        "@type": "Organization",
-        "name": "WPinEU"
-    },
-    "description": "Reliable Free Web Hosting with cPanel and SSL.",
-    "offers": {
-        "@type": "Offer",
-        "price": PRICE_MONTHLY_VALUE,
-        "priceCurrency": PRICE_CURRENCY
-    }
-};
+const jsonLd = getServiceJsonLd(
+    "Free Web Hosting",
+    "Reliable Free Web Hosting with cPanel and SSL."
+);
 
 export default function FreeWebHosting() {
     return (

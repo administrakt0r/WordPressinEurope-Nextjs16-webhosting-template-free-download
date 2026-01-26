@@ -172,18 +172,32 @@ export function Features() {
 
                                 <div className="space-y-4">
                                     <div className="flex justify-between text-sm">
-                                        <span>Server Response</span>
+                                        <span id="server-response-label">Server Response</span>
                                         <span className="font-bold text-green-400">0.2s</span>
                                     </div>
-                                    <div className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden">
+                                    <div
+                                        role="progressbar"
+                                        aria-labelledby="server-response-label"
+                                        aria-valuenow={95}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                        className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden"
+                                    >
                                         <div className="bg-green-400 h-full rounded-full w-[95%]" />
                                     </div>
 
                                     <div className="flex justify-between text-sm">
-                                        <span>Database Query</span>
+                                        <span id="db-query-label">Database Query</span>
                                         <span className="font-bold text-green-400">0.05s</span>
                                     </div>
-                                    <div className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden">
+                                    <div
+                                        role="progressbar"
+                                        aria-labelledby="db-query-label"
+                                        aria-valuenow={98}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                        className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden"
+                                    >
                                         <div className="bg-green-400 h-full rounded-full w-[98%]" />
                                     </div>
                                 </div>
