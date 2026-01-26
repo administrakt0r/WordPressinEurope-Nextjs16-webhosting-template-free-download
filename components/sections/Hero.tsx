@@ -11,13 +11,19 @@ export function Hero() {
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
             {/* Dynamic Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Gradient Orbs - Optimized: Radial gradients are much cheaper to paint than large blurs */}
-                <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] rounded-full opacity-20 gpu-accelerated"
-                     style={{ background: 'radial-gradient(circle, #2563eb 0%, transparent 70%)' }} />
-                <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full opacity-10 gpu-accelerated"
-                     style={{ background: 'radial-gradient(circle, #eab308 0%, transparent 70%)' }} />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] rounded-full opacity-20 gpu-accelerated"
-                     style={{ background: 'radial-gradient(circle, #1e3a8a 0%, transparent 70%)' }} />
+                {/* Gradient Orbs - Optimized: Replaced expensive CSS blurs with radial gradients for performance */}
+                <div
+                    className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] gpu-accelerated"
+                    style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.2), transparent)' }}
+                />
+                <div
+                    className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] gpu-accelerated"
+                    style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.1), transparent)' }}
+                />
+                <div
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] gpu-accelerated"
+                    style={{ background: 'radial-gradient(closest-side, rgba(30, 58, 138, 0.2), transparent)' }}
+                />
 
                 {/* Grid Pattern */}
                 {/* Localized noise.svg to reduce external network requests and improve reliability */}

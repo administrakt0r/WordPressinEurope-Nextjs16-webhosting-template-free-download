@@ -1,6 +1,7 @@
 import { HostingLanding } from "@/components/templates/HostingLanding";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
+import { Rocket, Zap, Shield, TrendingUp } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import {
     TECH_LOGO_WORDPRESS,
@@ -35,22 +36,22 @@ const jsonLd = getServiceJsonLd(
 
 const litespeedFeatures = [
     {
-        iconName: "Rocket",
+        icon: Rocket,
         title: "Up to 84x Faster",
         description: "LiteSpeed Web Server outperforms Apache by up to 84x in serving static content and 9x for dynamic PHP content."
     },
     {
-        iconName: "Zap",
+        icon: Zap,
         title: "LSCache Built-in",
         description: "LiteSpeed Cache (LSCache) is the most powerful WordPress caching plugin, integrated at the server level for maximum performance."
     },
     {
-        iconName: "Shield",
+        icon: Shield,
         title: "Advanced Security",
         description: "Built-in DDoS protection, anti-DDoS features, and mod_security compatibility keep your site safe from attacks."
     },
     {
-        iconName: "TrendingUp",
+        icon: TrendingUp,
         title: "Better Resource Usage",
         description: "LiteSpeed uses significantly less CPU and RAM than Apache, allowing your site to handle more traffic with the same resources."
     }

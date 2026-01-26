@@ -1,6 +1,7 @@
 import { HostingLanding } from "@/components/templates/HostingLanding";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
+import { LayoutDashboard, Download, Zap, Shield } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import {
     TECH_LOGO_WORDPRESS,
@@ -35,22 +36,22 @@ const jsonLd = getServiceJsonLd(
 
 const wordpressFeatures = [
     {
-        iconName: "LayoutDashboard",
+        icon: LayoutDashboard,
         title: "cPanel Control Panel",
         description: "Get the industry-standard cPanel control panel. Manage your hosting, domains, emails, databases, and files with ease."
     },
     {
-        iconName: "Download",
+        icon: Download,
         title: "1-Click WordPress Install",
         description: "Install WordPress in seconds with Softaculous. No technical knowledge required - just click and go."
     },
     {
-        iconName: "Zap",
+        icon: Zap,
         title: "Optimized for WordPress",
         description: "Our servers are specifically tuned for WordPress with PHP 8.x, MySQL 8.0, and all required extensions pre-installed."
     },
     {
-        iconName: "Shield",
+        icon: Shield,
         title: "WordPress Manager",
         description: "Update WordPress core, themes, and plugins directly from cPanel. Keep your site secure and up-to-date effortlessly."
     }
