@@ -43,3 +43,7 @@
 ## 2026-05-25 - [Breadcrumbs & Focus Management]
 **Learning:** Users navigating deep hosting pages often lose context. Adding `Breadcrumbs` to the hero section provides immediate location awareness. Also, "Back to Top" buttons must programmatically focus the main content area after scrolling, otherwise keyboard users are stranded at the bottom.
 **Action:** Always include breadcrumbs on nested pages and ensure scroll-to-top interactions manage focus.
+
+## 2026-06-12 - [Mailto Friction & Native Tooltips]
+**Learning:** `mailto:` links often frustrate users without default email clients. Providing a copy-to-clipboard action is a critical fallback. Also, purely visual logos lack context for non-expert users; native `title` attributes are a zero-overhead way to add labels without custom tooltip logic.
+**Action:** Always pair email links with a copy action, and ensure icon-only logos have `title` attributes for sighted users.
