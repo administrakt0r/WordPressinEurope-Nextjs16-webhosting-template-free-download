@@ -11,10 +11,13 @@ export function Hero() {
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
             {/* Dynamic Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Gradient Orbs - Optimized: GPU accelerated to prevent repaint on scroll */}
-                <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px] gpu-accelerated" />
-                <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px] gpu-accelerated" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] bg-blue-900/20 rounded-full blur-[100px] gpu-accelerated" />
+                {/* Gradient Orbs - Optimized: Radial gradients are much cheaper to paint than large blurs */}
+                <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] rounded-full opacity-20 gpu-accelerated"
+                     style={{ background: 'radial-gradient(circle, #2563eb 0%, transparent 70%)' }} />
+                <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full opacity-10 gpu-accelerated"
+                     style={{ background: 'radial-gradient(circle, #eab308 0%, transparent 70%)' }} />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] rounded-full opacity-20 gpu-accelerated"
+                     style={{ background: 'radial-gradient(circle, #1e3a8a 0%, transparent 70%)' }} />
 
                 {/* Grid Pattern */}
                 {/* Localized noise.svg to reduce external network requests and improve reliability */}
@@ -145,6 +148,7 @@ export function Hero() {
                                 </div>
                                 <ExternalLink
                                     href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
+                                    ariaLabel="Order free WordPress hosting now"
                                     className="h-10 px-6 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-600/20 text-white font-bold text-sm transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                                 >
                                     Order Now
