@@ -9,7 +9,7 @@ export interface TechnologyLogoProps {
 
 export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
     return (
-        <div className="group flex items-center justify-center">
+        <div className="group flex items-center justify-center" title={name}>
             {logo && width && height ? (
                 <div className="relative h-10 md:h-12 w-auto">
                         <Image

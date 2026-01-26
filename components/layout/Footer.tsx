@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
+import { CopyButton } from "@/components/ui/CopyButton";
 import { HOSTING_SERVICES, RESOURCES, LEGAL_LINKS } from "@/lib/navigation";
 
 export function Footer() {
@@ -30,6 +31,7 @@ export function Footer() {
                                 email="support@wpineu.com"
                                 className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm"
                             />
+                            <CopyButton text="support@wpineu.com" ariaLabel="Copy support email" />
                         </div>
                     </div>
 
