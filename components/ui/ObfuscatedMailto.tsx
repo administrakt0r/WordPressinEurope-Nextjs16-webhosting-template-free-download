@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, type AnchorHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-interface ObfuscatedMailtoProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
+interface ObfuscatedMailtoProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
   email: string;
   headers?: {
     subject?: string;
