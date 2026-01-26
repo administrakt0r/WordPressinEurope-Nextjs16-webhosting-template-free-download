@@ -18,5 +18,6 @@ describe('Middleware Security Headers', () => {
     expect(headers.get('Referrer-Policy')).toBe('strict-origin-when-cross-origin');
     expect(headers.get('Strict-Transport-Security')).toBe('max-age=63072000; includeSubDomains; preload');
     expect(headers.get('Permissions-Policy')).toContain('camera=()');
+    expect(headers.get('X-Permitted-Cross-Domain-Policies')).toBe('none');
   });
 });
