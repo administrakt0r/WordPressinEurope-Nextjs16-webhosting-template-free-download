@@ -19,7 +19,10 @@ export default function Error({
     <div className="relative flex flex-col items-center justify-center min-h-[50vh] px-4 text-center overflow-hidden py-20">
        {/* Background Elements */}
        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[20%] right-[20%] w-[40%] h-[40%] bg-red-600/5 rounded-full blur-[100px]" />
+          <div
+              className="absolute top-[20%] right-[20%] w-[40%] h-[40%]"
+              style={{ background: 'radial-gradient(closest-side, rgba(220, 38, 38, 0.05), transparent)' }}
+          />
           <div className="absolute inset-0 bg-grid-pattern" />
       </div>
 

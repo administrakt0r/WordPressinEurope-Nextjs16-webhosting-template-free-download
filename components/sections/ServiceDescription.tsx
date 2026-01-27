@@ -1,4 +1,4 @@
-import type { ElementType } from "react";
+import { memo, type ElementType } from "react";
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 
@@ -16,7 +16,7 @@ interface ServiceDescriptionProps {
     techLogos?: { name: string; logo: string; width?: number; height?: number }[];
 }
 
-function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
+const ServiceFeatureCard = memo(function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
     const Icon = feature.icon;
     return (
         <div
@@ -29,18 +29,22 @@ function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
             <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
         </div>
     );
-}
+});
 
 export function ServiceDescription({ title, subtitle, description, features, techLogos }: ServiceDescriptionProps) {
     return (
         <section
             className="py-20 bg-slate-900"
             style={getOffscreenOptimizations("800px")}
+            aria-labelledby="service-description-heading"
         >
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header */}
                 <div className="max-w-3xl mx-auto text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    <h2
+                        id="service-description-heading"
+                        className="text-3xl md:text-4xl font-bold text-white mb-4"
+                    >
                         {title}
                     </h2>
                     <p className="text-xl text-blue-400 mb-6">{subtitle}</p>
