@@ -88,7 +88,7 @@ export default async function RootLayout({
       <link rel="dns-prefetch" href="https://wp.wpineu.com" />
       <link rel="dns-prefetch" href="https://clients.wpineu.com" />
       <body
-        className={`${inter.variable} ${outfit.variable} antialiased bg-slate-950 text-slate-50 transition-colors duration-300`}
+        className={`${inter.variable} ${outfit.variable} antialiased transition-colors duration-300`}
       >
         <SkipLink />
         <JsonLd data={ORGANIZATION_JSON_LD} />
