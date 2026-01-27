@@ -18,24 +18,24 @@ export default function NotFound() {
         >
           404
         </h1>
-        <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mb-6">
+        <h2 className="text-3xl md:text-4xl font-bold font-heading text-foreground mb-6">
           Page Not Found
         </h2>
-        <p className="text-lg text-slate-400 mb-10 max-w-lg mx-auto">
+        <p className="text-lg text-muted-foreground mb-10 max-w-lg mx-auto">
           Oops! The page you are looking for seems to have wandered off into the digital void.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <Home size={20} aria-hidden="true" />
             Back to Home
           </Link>
           <Link
             href="/support"
-            className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 border border-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            className="inline-flex items-center justify-center gap-2 bg-background hover:bg-muted text-foreground px-8 py-3 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 border border-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-muted-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <HelpCircle size={20} aria-hidden="true" />
             Contact Support
