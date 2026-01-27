@@ -21,3 +21,7 @@
 ## 2026-06-15 - Unused Icon Bundling in Shared Components
 **Learning:** Passing icon names as strings and mapping them in a shared component (`ServiceDescription`) forces bundling of all possible icons, defeating tree-shaking.
 **Action:** Pass icon components (React elements) directly as props. This allows the consumer to import only what is needed, enabling effective tree-shaking.
+
+## 2026-10-27 - Resource Hints Timing
+**Learning:** Placing resource hints (`preconnect`, `dns-prefetch`) in client-side components (e.g., inside `useEffect` or rendered JSX) delays their execution until after hydration.
+**Action:** Move global resource hints to `app/layout.tsx` (Server Component) as standard `<link>` tags in the `<head>` (or `<html>`) to ensure the browser processes them immediately upon receiving the initial HTML.
