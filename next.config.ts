@@ -93,10 +93,6 @@ const nextConfig: NextConfig = {
             value: 'nosniff',
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
             key: 'X-Frame-Options',
             value: 'DENY',
           },
