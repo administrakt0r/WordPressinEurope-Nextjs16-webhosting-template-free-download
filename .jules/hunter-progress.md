@@ -47,12 +47,14 @@
 [2026-03-07] [components/ui/SkipLink.tsx] Removed unnecessary memo from Server Component
 [2026-03-07] [lib/json-ld.ts] Added getServiceJsonLd helper to avoid duplication
 [2026-03-07] [app/free-*-hosting/page.tsx] Refactored 6 pages to use getServiceJsonLd (duplicate code fix)
+[2026-03-08] [components/ui/ObfuscatedMailto.tsx] Refactored to use useSyncExternalStore (fixed eslint-disable)
+[2026-03-08] [components/sections/Features.tsx] Added missing aria-valuetext to progress bars
+[2026-03-08] [lib/constants.ts] Fixed inconsistent TECH_LOGO_CLOUDLINUX dimensions
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
 [2026-03-03] Missing `app/manifest.ts` (PWA feature) - Requires Feature task, not Bug Fix.
 [2026-03-03] Missing JSDoc in `lib/utils.ts` and `lib/links.ts` - Requires Improvement task.
-[2026-03-06] [components/ui/ObfuscatedMailto.tsx] Unused variable warning (low priority)
 
 ## False Positives
 <!-- Things that look like errors but aren't -->
