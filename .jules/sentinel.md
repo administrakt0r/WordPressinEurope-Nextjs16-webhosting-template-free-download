@@ -37,3 +37,8 @@
 **Vulnerability:** Missing `X-Permitted-Cross-Domain-Policies` header allowed Adobe Flash and PDF documents to potentially load data from the domain.
 **Learning:** Even though Flash is deprecated, other clients (like PDF readers) may verify this policy. Explicitly setting it to `none` is a defense-in-depth measure.
 **Prevention:** Enforce `X-Permitted-Cross-Domain-Policies: none` in middleware to prevent cross-domain data loading.
+
+## 2025-05-24 - Hardware API Fingerprinting
+**Vulnerability:** Modern browser APIs like Web Bluetooth, Serial, HID, and Battery Status can be used for fingerprinting or accessing local hardware if exploited via XSS.
+**Learning:** Explicitly disabling unused hardware APIs via `Permissions-Policy` reduces the attack surface and prevents unauthorized access to user devices, even if an attacker achieves script execution.
+**Prevention:** Maintain a strict `Permissions-Policy` in `middleware.ts` that explicitly denies `bluetooth`, `serial`, `hid`, and `battery` unless absolutely necessary.

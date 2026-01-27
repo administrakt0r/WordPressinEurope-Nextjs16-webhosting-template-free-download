@@ -24,6 +24,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wpineu.com'),
+  referrer: 'strict-origin-when-cross-origin',
   title: {
     default: "WPinEU - Free WordPress Hosting in Europe",
     template: "%s | WPinEU"

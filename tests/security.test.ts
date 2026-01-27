@@ -27,6 +27,10 @@ describe('Security Headers', () => {
     if (permissionsHeader) {
         expect(permissionsHeader.value).toContain('camera=()');
         expect(permissionsHeader.value).toContain('microphone=()');
+        expect(permissionsHeader.value).toContain('bluetooth=()');
+        expect(permissionsHeader.value).toContain('serial=()');
+        expect(permissionsHeader.value).toContain('hid=()');
+        expect(permissionsHeader.value).toContain('battery=()');
     }
   });
 
