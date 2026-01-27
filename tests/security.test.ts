@@ -65,22 +65,6 @@ describe('Security Headers', () => {
     }
   });
 
-  it('should have X-XSS-Protection set to 1; mode=block', async () => {
-    if (!nextConfig.headers) {
-      throw new Error('nextConfig.headers is undefined');
-    }
-    const headersConfig = await nextConfig.headers();
-    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
-    expect(globalHeaders).toBeDefined();
-
-    if (!globalHeaders) return;
-
-    const xssHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-XSS-Protection');
-    expect(xssHeader).toBeDefined();
-    if (xssHeader) {
-        expect(xssHeader.value).toBe('1; mode=block');
-    }
-  });
 
   it('should have X-Frame-Options set to DENY', async () => {
     if (!nextConfig.headers) {

@@ -37,3 +37,8 @@
 **Vulnerability:** Missing `X-Permitted-Cross-Domain-Policies` header allowed Adobe Flash and PDF documents to potentially load data from the domain.
 **Learning:** Even though Flash is deprecated, other clients (like PDF readers) may verify this policy. Explicitly setting it to `none` is a defense-in-depth measure.
 **Prevention:** Enforce `X-Permitted-Cross-Domain-Policies: none` in middleware to prevent cross-domain data loading.
+
+## 2025-05-24 - Rate Limiting at Edge
+**Vulnerability:** Lack of rate limiting on sensitive pages allowed potential Denial of Service (DoS) attacks.
+**Learning:** In a serverless/edge environment (Next.js Middleware), state is not shared between instances by default. A local in-memory rate limiter provides "defense in depth" per-instance protection but is not a substitute for distributed rate limiting (e.g., Redis).
+**Prevention:** Implemented `RateLimiter` in `middleware.ts` using a token bucket algorithm to throttle requests per instance, while documenting the limitation.
