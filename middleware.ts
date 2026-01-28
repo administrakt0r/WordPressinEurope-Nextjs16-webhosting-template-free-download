@@ -1,7 +1,19 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { checkRateLimit } from '@/lib/ratelimit';
 
 export function middleware(request: NextRequest) {
+  // Rate Limiting
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || (request as any).ip || '127.0.0.1';
+
+  // Only rate limit if not a static asset (double check, though matcher handles most)
+  const isStatic = /\.(svg|png|jpg|jpeg|gif|webp|css|js|ico|ttf|woff|woff2)$/i.test(request.nextUrl.pathname);
+
+  if (!isStatic && !checkRateLimit(ip, { limit: 100, window: 60 * 1000 })) {
+    return new NextResponse('Too Many Requests', { status: 429 });
+  }
+
   const nonce = crypto.randomUUID();
   const cspHeader = `
     default-src 'self';
@@ -62,11 +74,10 @@ export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
-     * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };
