@@ -33,6 +33,10 @@ describe('lib/security', () => {
     it('should return false for empty URLs', () => {
         expect(isSafeUrl('')).toBe(false);
     });
+
+    it('should return false for protocol-relative URLs', () => {
+      expect(isSafeUrl('//evil.com')).toBe(false);
+    });
   });
 
   describe('safeJsonLd', () => {
