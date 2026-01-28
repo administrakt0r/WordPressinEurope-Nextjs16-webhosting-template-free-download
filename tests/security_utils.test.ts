@@ -6,23 +6,30 @@ describe('lib/security', () => {
     it('should return true for valid http/https URLs', () => {
       expect(isSafeUrl('https://example.com')).toBe(true);
       expect(isSafeUrl('http://example.com')).toBe(true);
+      expect(isSafeUrl('https://sub.example.com/path?query=1')).toBe(true);
     });
 
-    it('should return true for valid mailto URLs', () => {
+    it('should return true for mailto and tel links', () => {
       expect(isSafeUrl('mailto:test@example.com')).toBe(true);
+      expect(isSafeUrl('tel:+1234567890')).toBe(true);
     });
 
-    it('should return false for javascript: URLs', () => {
+    it('should return true for relative URLs', () => {
+      expect(isSafeUrl('/')).toBe(true);
+      expect(isSafeUrl('/about')).toBe(true);
+      expect(isSafeUrl('#main-content')).toBe(true);
+      expect(isSafeUrl('page.html')).toBe(true);
+    });
+
+    it('should return false for dangerous schemes', () => {
       expect(isSafeUrl('javascript:alert(1)')).toBe(false);
       expect(isSafeUrl('javascript:void(0)')).toBe(false);
-    });
-
-    it('should return false for vbscript: URLs', () => {
       expect(isSafeUrl('vbscript:msgbox "hello"')).toBe(false);
+      expect(isSafeUrl('data:text/html,<script>alert(1)</script>')).toBe(false);
     });
 
-    it('should return false for data: URLs', () => {
-      expect(isSafeUrl('data:text/html,<script>alert(1)</script>')).toBe(false);
+    it('should return false for malformed URLs with potential schemes', () => {
+      expect(isSafeUrl('foo:bar')).toBe(false); // Unknown scheme
     });
 
     it('should handle whitespace', () => {
@@ -30,8 +37,12 @@ describe('lib/security', () => {
       expect(isSafeUrl('  https://example.com  ')).toBe(true);
     });
 
-    it('should return false for empty URLs', () => {
+    it('should return false for empty or invalid inputs', () => {
         expect(isSafeUrl('')).toBe(false);
+        // @ts-expect-error Testing invalid input
+        expect(isSafeUrl(null)).toBe(false);
+        // @ts-expect-error Testing invalid input
+        expect(isSafeUrl(undefined)).toBe(false);
     });
   });
 
@@ -50,6 +61,25 @@ describe('lib/security', () => {
       const input = { key: 'value', num: 123 };
       const output = safeJsonLd(input);
       expect(JSON.parse(output)).toEqual(input);
+    });
+
+    it('should escape HTML entities like &', () => {
+      const malicious = {
+        description: 'Something & something else'
+      };
+      const serialized = safeJsonLd(malicious);
+      expect(serialized).toContain('\\u0026');
+    });
+
+    it('should escape line separators and single quotes', () => {
+      const malicious = {
+        note: "It's a trap!",
+        bad: "Line\u2028Separator"
+      };
+      const serialized = safeJsonLd(malicious);
+      expect(serialized).toContain('\\u0027'); // Single quote
+      expect(serialized).toContain('\\u2028'); // Line separator
+      expect(serialized).not.toContain("It's");
     });
   });
 });
