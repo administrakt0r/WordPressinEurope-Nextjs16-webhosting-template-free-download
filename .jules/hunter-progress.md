@@ -47,6 +47,8 @@
 [2026-03-07] [components/ui/SkipLink.tsx] Removed unnecessary memo from Server Component
 [2026-03-07] [lib/json-ld.ts] Added getServiceJsonLd helper to avoid duplication
 [2026-03-07] [app/free-*-hosting/page.tsx] Refactored 6 pages to use getServiceJsonLd (duplicate code fix)
+[2026-01-28] [app/free-europe-hosting/page.tsx] Added missing alternates and openGraph metadata
+[2026-01-28] [app/free-web-hosting/page.tsx] Added missing alternates and openGraph metadata
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
