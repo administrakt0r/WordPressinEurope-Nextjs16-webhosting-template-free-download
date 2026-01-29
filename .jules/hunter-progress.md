@@ -47,12 +47,17 @@
 [2026-03-07] [components/ui/SkipLink.tsx] Removed unnecessary memo from Server Component
 [2026-03-07] [lib/json-ld.ts] Added getServiceJsonLd helper to avoid duplication
 [2026-03-07] [app/free-*-hosting/page.tsx] Refactored 6 pages to use getServiceJsonLd (duplicate code fix)
+[2026-01-28] [app/free-europe-hosting/page.tsx] Added missing alternates and openGraph metadata
+[2026-01-28] [app/free-web-hosting/page.tsx] Added missing alternates and openGraph metadata
+[2026-03-07] [tests/security_utils.test.ts] Consolidated security tests and removed duplicate file
+[2026-03-07] [package.json] Updated baseline-browser-mapping to fix build warning
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
 [2026-03-03] Missing `app/manifest.ts` (PWA feature) - Requires Feature task, not Bug Fix.
 [2026-03-03] Missing JSDoc in `lib/utils.ts` and `lib/links.ts` - Requires Improvement task.
 [2026-03-06] [components/ui/ObfuscatedMailto.tsx] Unused variable warning (low priority)
+[2026-03-07] [middleware.ts] Deprecation warning: "The 'middleware' file convention is deprecated. Please use 'proxy' instead." (Next.js 16)
 
 ## False Positives
 <!-- Things that look like errors but aren't -->

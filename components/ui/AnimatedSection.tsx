@@ -43,7 +43,8 @@ export function AnimatedSection({ children, direction = "up", delay = 0, classNa
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={variants}
-            className={className}
+            // ⚡ Performance: will-animate hints browser to optimize compositing layer
+            className={`${className} will-animate`}
         >
             {children}
         </m.div>
