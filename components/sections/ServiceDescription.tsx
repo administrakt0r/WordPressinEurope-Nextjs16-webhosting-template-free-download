@@ -1,6 +1,7 @@
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { clsx } from "clsx";
+import { memo, type ElementType } from "react";
 
 interface ServiceFeature {
     icon: ElementType;
@@ -32,7 +33,7 @@ const ServiceFeatureCard = memo(function ServiceFeatureCard({ feature }: { featu
     );
 });
 
-export function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4 }: ServiceDescriptionProps) {
+export const ServiceDescription = memo(function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4 }: ServiceDescriptionProps) {
     const gridColsClass = clsx("grid md:grid-cols-2 gap-6 mb-16", {
         "lg:grid-cols-4": cols === 4,
         "lg:grid-cols-3": cols === 3,
@@ -91,4 +92,4 @@ export function ServiceDescription({ title, subtitle, description, features, tec
             </div>
         </section>
     );
-}
+});
