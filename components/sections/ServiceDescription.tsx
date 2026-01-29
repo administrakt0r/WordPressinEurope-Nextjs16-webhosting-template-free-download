@@ -1,4 +1,3 @@
-import { memo, type ElementType } from "react";
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { clsx } from "clsx";

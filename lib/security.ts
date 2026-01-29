@@ -26,6 +26,9 @@ export function safeJsonLd(data: Record<string, unknown>): string {
 export function isSafeUrl(url: string): boolean {
   if (!url) return false;
 
+  // Prevent protocol-relative URLs (open redirect risk)
+  if (url.startsWith('//')) return false;
+
   // Allow relative URLs (starting with / or #)
   if (url.startsWith('/') || url.startsWith('#')) return true;
 

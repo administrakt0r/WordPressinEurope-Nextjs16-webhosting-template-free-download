@@ -2,6 +2,7 @@
 import { Mail, ArrowUpRight, Code2 } from "lucide-react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
+import { CopyButton } from "@/components/ui/CopyButton";
 import { getOffscreenOptimizations } from "@/lib/styles";
 
 const resources = [
@@ -26,8 +27,14 @@ export function Support() {
                 {/* Custom Solutions CTA */}
                 <div className="bg-slate-900 rounded-3xl p-8 md:p-16 text-center text-white mb-20 relative overflow-hidden">
                     {/* GPU accelerated blurs to prevent repaint on scroll */}
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 gpu-accelerated" />
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 gpu-accelerated" />
+                    <div
+                        className="absolute top-0 right-0 w-[500px] h-[500px] -translate-y-1/2 translate-x-1/2 gpu-accelerated"
+                        style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.2), transparent)' }}
+                    />
+                    <div
+                        className="absolute bottom-0 left-0 w-[500px] h-[500px] translate-y-1/2 -translate-x-1/2 gpu-accelerated"
+                        style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.1), transparent)' }}
+                    />
 
                     <div className="relative z-10 max-w-3xl mx-auto">
                         <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm text-white flex items-center justify-center mx-auto mb-8">
@@ -39,13 +46,20 @@ export function Support() {
                         <p className="text-slate-300 text-lg mb-10 leading-relaxed">
                             Beyond our free hosting, we specialize in creating tailor-made web solutions. If your project requires custom development, unique features, or dedicated support, we&apos;re here to help. Let&apos;s build something amazing together.
                         </p>
-                        <ObfuscatedMailto
-                            email="support@wpineu.com"
-                            className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
-                        >
-                            <Mail size={18} aria-hidden="true" />
-                            Contact Us
-                        </ObfuscatedMailto>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <ObfuscatedMailto
+                                email="support@wpineu.com"
+                                className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                            >
+                                <Mail size={18} aria-hidden="true" />
+                                Contact Us
+                            </ObfuscatedMailto>
+                            <CopyButton
+                                text="support@wpineu.com"
+                                ariaLabel="Copy support email address"
+                                className="bg-slate-800 text-white p-4 rounded-full hover:bg-slate-700 border border-slate-700 transition-colors focus-visible:ring-offset-slate-900"
+                            />
+                        </div>
                     </div>
                 </div>
 

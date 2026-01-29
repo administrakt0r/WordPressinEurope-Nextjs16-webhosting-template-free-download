@@ -1,9 +1,17 @@
 import { middleware } from '../middleware';
 import { NextRequest } from 'next/server';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { ratelimit } from '@/lib/ratelimit';
 
 describe('Middleware Security Headers', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('should set security headers', () => {
+    // Ensure rate limit passes for this test
+    vi.spyOn(ratelimit, 'check').mockReturnValue(true);
+
     const request = new NextRequest(new URL('https://wpineu.com/'));
     const response = middleware(request);
 
@@ -19,5 +27,15 @@ describe('Middleware Security Headers', () => {
     expect(headers.get('Strict-Transport-Security')).toBe('max-age=63072000; includeSubDomains; preload');
     expect(headers.get('Permissions-Policy')).toContain('camera=()');
     expect(headers.get('X-Permitted-Cross-Domain-Policies')).toBe('none');
+  });
+
+  it('should return 429 when rate limit is exceeded', () => {
+    vi.spyOn(ratelimit, 'check').mockReturnValue(false);
+
+    const request = new NextRequest(new URL('https://wpineu.com/'));
+    const response = middleware(request);
+
+    expect(response.status).toBe(429);
+    expect(response.headers.get('Retry-After')).toBe('60');
   });
 });

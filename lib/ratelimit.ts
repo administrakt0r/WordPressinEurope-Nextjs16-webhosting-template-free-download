@@ -1,0 +1,49 @@
+
+export class RateLimiter {
+  private timestamps: Map<string, number[]>;
+  public readonly interval: number;
+  public readonly uniqueTokenPerInterval: number;
+
+  constructor(options: { interval: number; uniqueTokenPerInterval: number }) {
+    this.timestamps = new Map();
+    this.interval = options.interval;
+    this.uniqueTokenPerInterval = options.uniqueTokenPerInterval;
+  }
+
+  /**
+   * Checks if the rate limit is exceeded for the given token.
+   * @param limit Max requests allowed within the interval
+   * @param token Unique identifier (e.g., IP address)
+   * @returns true if the request is allowed, false if blocked
+   */
+  check(limit: number, token: string): boolean {
+    const now = Date.now();
+    const windowStart = now - this.interval;
+
+    let timestamps = this.timestamps.get(token) || [];
+    // Filter out timestamps older than the window
+    timestamps = timestamps.filter((t) => t > windowStart);
+
+    if (timestamps.length >= limit) {
+      return false;
+    }
+
+    timestamps.push(now);
+    this.timestamps.set(token, timestamps);
+
+    // Prevent memory leaks by limiting the cache size
+    if (this.timestamps.size > this.uniqueTokenPerInterval) {
+      // Map keys are iterated in insertion order, so this removes the oldest entry
+      const firstKey = this.timestamps.keys().next().value;
+      if (firstKey) this.timestamps.delete(firstKey);
+    }
+
+    return true;
+  }
+}
+
+// Global instance for the application
+export const ratelimit = new RateLimiter({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500, // Track up to 500 unique IPs per instance
+});

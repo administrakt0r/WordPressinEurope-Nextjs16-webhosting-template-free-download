@@ -7,6 +7,14 @@ export const metadata: Metadata = {
     title: "Free Europe Hosting | WPinEU",
     description: "Free Europe Hosting with low latency for European visitors. GDPR compliant and locally optimized.",
     keywords: ["Free Europe Hosting", "EU Hosting", "GDPR Compliant Hosting", "WPinEU"],
+    alternates: {
+        canonical: "https://wpineu.com/free-europe-hosting",
+    },
+    openGraph: {
+        title: "Free Europe Hosting | WPinEU",
+        description: "Free Europe Hosting with low latency for European visitors. GDPR compliant and locally optimized.",
+        url: "https://wpineu.com/free-europe-hosting",
+    }
 };
 
 const ServiceDescription = dynamic(() =>

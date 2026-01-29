@@ -1,7 +1,23 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { ratelimit } from '@/lib/ratelimit';
 
 export function middleware(request: NextRequest) {
+  // Rate limiting
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : ((request as any).ip || '127.0.0.1');
+
+  if (!ratelimit.check(100, ip)) {
+    return new NextResponse('Too Many Requests', {
+      status: 429,
+      headers: {
+        'Retry-After': '60',
+        'Content-Type': 'text/plain',
+      },
+    });
+  }
+
   const nonce = crypto.randomUUID();
   const cspHeader = `
     default-src 'self';
@@ -62,11 +78,10 @@ export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
-     * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };
