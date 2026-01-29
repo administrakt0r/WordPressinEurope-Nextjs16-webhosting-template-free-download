@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
-import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT } from "@/lib/constants";
+import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT, HOSTING_SPECS } from "@/lib/constants";
 
 const STARS = [1, 2, 3, 4, 5];
 
@@ -11,10 +11,19 @@ export function Hero() {
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
             {/* Dynamic Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Gradient Orbs - Optimized: GPU accelerated to prevent repaint on scroll */}
-                <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px] gpu-accelerated" />
-                <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px] gpu-accelerated" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] bg-blue-900/20 rounded-full blur-[100px] gpu-accelerated" />
+                {/* Gradient Orbs - Optimized: Replaced expensive CSS blurs with radial gradients for performance */}
+                <div
+                    className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] gpu-accelerated"
+                    style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.2), transparent)' }}
+                />
+                <div
+                    className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] gpu-accelerated"
+                    style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.1), transparent)' }}
+                />
+                <div
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] gpu-accelerated"
+                    style={{ background: 'radial-gradient(closest-side, rgba(30, 58, 138, 0.2), transparent)' }}
+                />
 
                 {/* Grid Pattern */}
                 {/* Localized noise.svg to reduce external network requests and improve reliability */}
@@ -69,12 +78,12 @@ export function Hero() {
                                     ))}
                                 </div>
                                 <span className="text-sm text-slate-400">
-                                    <span className="font-bold text-white">4.9/5</span> from happy users
+                                    <span className="font-bold text-white">{HOSTING_SPECS.RATING}</span> from happy users
                                 </span>
                             </div>
                             <div className="w-px h-10 bg-slate-800" />
                             <div className="flex flex-col">
-                                <span className="text-xl font-bold text-white">99.9%</span>
+                                <span className="text-xl font-bold text-white">{HOSTING_SPECS.UPTIME}</span>
                                 <span className="text-sm text-slate-400">Uptime Guaranteed</span>
                             </div>
                         </div>
@@ -109,7 +118,7 @@ export function Hero() {
                                         </div>
                                         <span className="text-slate-300 font-medium">Super fast storage</span>
                                     </div>
-                                    <span className="text-white font-bold">1GB NVMe SSD disk space</span>
+                                    <span className="text-white font-bold">{HOSTING_SPECS.DISK_LABEL}</span>
                                 </li>
 
                                 <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
@@ -119,7 +128,7 @@ export function Hero() {
                                         </div>
                                         <span className="text-slate-300 font-medium">Bandwidth</span>
                                     </div>
-                                    <span className="text-white font-bold">100GB Traffic</span>
+                                    <span className="text-white font-bold">{HOSTING_SPECS.TRAFFIC_LABEL}</span>
                                 </li>
 
                                 <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
@@ -129,7 +138,7 @@ export function Hero() {
                                         </div>
                                         <span className="text-slate-300 font-medium">Location</span>
                                     </div>
-                                    <span className="text-white font-bold">Europe</span>
+                                    <span className="text-white font-bold">{HOSTING_SPECS.LOCATION}</span>
                                 </li>
                             </ul>
 
@@ -145,6 +154,7 @@ export function Hero() {
                                 </div>
                                 <ExternalLink
                                     href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
+                                    ariaLabel="Order free WordPress hosting now"
                                     className="h-10 px-6 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-600/20 text-white font-bold text-sm transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                                 >
                                     Order Now
@@ -183,7 +193,10 @@ export function Hero() {
                         </div>
 
                         {/* Glow Effects */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/10 rounded-full blur-3xl -z-10" />
+                        <div
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] -z-10 gpu-accelerated"
+                            style={{ background: 'radial-gradient(closest-side, rgba(59, 130, 246, 0.1), transparent)' }}
+                        />
                     </div>
                 </div>
             </div>

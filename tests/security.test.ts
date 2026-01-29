@@ -27,6 +27,10 @@ describe('Security Headers', () => {
     if (permissionsHeader) {
         expect(permissionsHeader.value).toContain('camera=()');
         expect(permissionsHeader.value).toContain('microphone=()');
+        expect(permissionsHeader.value).toContain('bluetooth=()');
+        expect(permissionsHeader.value).toContain('serial=()');
+        expect(permissionsHeader.value).toContain('hid=()');
+        expect(permissionsHeader.value).toContain('battery=()');
     }
   });
 
@@ -65,7 +69,7 @@ describe('Security Headers', () => {
     }
   });
 
-  it('should have X-XSS-Protection set to 1; mode=block', async () => {
+  it('should NOT have X-XSS-Protection header', async () => {
     if (!nextConfig.headers) {
       throw new Error('nextConfig.headers is undefined');
     }
@@ -76,10 +80,7 @@ describe('Security Headers', () => {
     if (!globalHeaders) return;
 
     const xssHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-XSS-Protection');
-    expect(xssHeader).toBeDefined();
-    if (xssHeader) {
-        expect(xssHeader.value).toBe('1; mode=block');
-    }
+    expect(xssHeader).toBeUndefined();
   });
 
   it('should have X-Frame-Options set to DENY', async () => {

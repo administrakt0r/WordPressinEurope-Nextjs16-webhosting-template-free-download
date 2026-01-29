@@ -68,8 +68,14 @@ export function Features() {
                 {/* Advantage Section */}
                 <div className="bg-blue-600 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative">
                     {/* GPU accelerated blurs to prevent repaint on scroll */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 gpu-accelerated" />
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 gpu-accelerated" />
+                    <div
+                        className="absolute top-0 right-0 w-64 h-64 -translate-y-1/2 translate-x-1/2 gpu-accelerated"
+                        style={{ background: 'radial-gradient(closest-side, rgba(255, 255, 255, 0.1), transparent)' }}
+                    />
+                    <div
+                        className="absolute bottom-0 left-0 w-64 h-64 translate-y-1/2 -translate-x-1/2 gpu-accelerated"
+                        style={{ background: 'radial-gradient(closest-side, rgba(250, 204, 21, 0.2), transparent)' }}
+                    />
 
                     <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                         <div>
@@ -117,18 +123,34 @@ export function Features() {
 
                                 <div className="space-y-4">
                                     <div className="flex justify-between text-sm">
-                                        <span>Server Response</span>
+                                        <span id="server-response-label">Server Response</span>
                                         <span className="font-bold text-green-400">0.2s</span>
                                     </div>
-                                    <div className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden">
+                                    <div
+                                        role="progressbar"
+                                        aria-labelledby="server-response-label"
+                                        aria-valuenow={95}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                        aria-valuetext="0.2 seconds"
+                                        className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden"
+                                    >
                                         <div className="bg-green-400 h-full rounded-full w-[95%]" />
                                     </div>
 
                                     <div className="flex justify-between text-sm">
-                                        <span>Database Query</span>
+                                        <span id="db-query-label">Database Query</span>
                                         <span className="font-bold text-green-400">0.05s</span>
                                     </div>
-                                    <div className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden">
+                                    <div
+                                        role="progressbar"
+                                        aria-labelledby="db-query-label"
+                                        aria-valuenow={98}
+                                        aria-valuemin={0}
+                                        aria-valuemax={100}
+                                        aria-valuetext="0.05 seconds"
+                                        className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden"
+                                    >
                                         <div className="bg-green-400 h-full rounded-full w-[98%]" />
                                     </div>
                                 </div>

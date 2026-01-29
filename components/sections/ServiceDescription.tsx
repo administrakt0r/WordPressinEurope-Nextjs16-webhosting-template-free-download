@@ -1,13 +1,6 @@
-import { Shield, Zap, Database, HardDrive, Rocket, TrendingUp, Gauge, LayoutDashboard, Mail, FileText, Download, Circle, Globe, Code, Server, ShieldCheck, Layers } from "lucide-react";
-import type { ElementType } from "react";
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
-
-interface ServiceFeature {
-    iconName: string;
-    title: string;
-    description: string;
-}
+import { ServiceFeatureCard, type ServiceFeature } from "./ServiceFeatureCard";
 
 interface ServiceDescriptionProps {
     title: string;
@@ -17,50 +10,20 @@ interface ServiceDescriptionProps {
     techLogos?: { name: string; logo: string; width?: number; height?: number }[];
 }
 
-const iconMap: Record<string, ElementType> = {
-    Shield,
-    Zap,
-    Database,
-    HardDrive,
-    Rocket,
-    TrendingUp,
-    Gauge,
-    LayoutDashboard,
-    Mail,
-    FileText,
-    Download,
-    Globe,
-    Code,
-    Server,
-    ShieldCheck,
-    Layers,
-};
-
-function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
-    const Icon = iconMap[feature.iconName] || Circle;
-    return (
-        <div
-            className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-blue-500/50 transition-all"
-        >
-            <div className="w-12 h-12 rounded-lg bg-blue-900/30 text-blue-400 flex items-center justify-center mb-4">
-                <Icon size={24} aria-hidden="true" />
-            </div>
-            <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-            <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
-        </div>
-    );
-}
-
 export function ServiceDescription({ title, subtitle, description, features, techLogos }: ServiceDescriptionProps) {
     return (
         <section
             className="py-20 bg-slate-900"
             style={getOffscreenOptimizations("800px")}
+            aria-labelledby="service-description-heading"
         >
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header */}
                 <div className="max-w-3xl mx-auto text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    <h2
+                        id="service-description-heading"
+                        className="text-3xl md:text-4xl font-bold text-white mb-4"
+                    >
                         {title}
                     </h2>
                     <p className="text-xl text-blue-400 mb-6">{subtitle}</p>

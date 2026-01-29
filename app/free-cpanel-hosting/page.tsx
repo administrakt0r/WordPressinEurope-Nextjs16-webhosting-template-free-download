@@ -1,15 +1,15 @@
 import { HostingLanding } from "@/components/templates/HostingLanding";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
+import { LayoutDashboard, Mail, Database, FileText } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import {
-    PRICE_MONTHLY_VALUE,
-    PRICE_CURRENCY,
     TECH_LOGO_CPANEL,
     TECH_LOGO_WORDPRESS,
     TECH_LOGO_SOFTACULOUS,
     TECH_LOGO_CLOUDLINUX
 } from "@/lib/constants";
+import { getServiceJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
     title: "Free cPanel Hosting | WPinEU",
@@ -29,40 +29,29 @@ const ServiceDescription = dynamic(() =>
     import("@/components/sections/ServiceDescription").then((mod) => mod.ServiceDescription)
 );
 
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Free cPanel Hosting",
-    "provider": {
-        "@type": "Organization",
-        "name": "WPinEU"
-    },
-    "description": "Free hosting with cPanel control panel for easy website management.",
-    "offers": {
-        "@type": "Offer",
-        "price": PRICE_MONTHLY_VALUE,
-        "priceCurrency": PRICE_CURRENCY
-    }
-};
+const jsonLd = getServiceJsonLd(
+    "Free cPanel Hosting",
+    "Free hosting with cPanel control panel for easy website management."
+);
 
 const cpanelFeatures = [
     {
-        iconName: "LayoutDashboard",
+        icon: LayoutDashboard,
         title: "Intuitive Interface",
         description: "cPanel's user-friendly interface makes managing your hosting simple. No technical expertise required to get started."
     },
     {
-        iconName: "Mail",
+        icon: Mail,
         title: "Email Management",
         description: "Create unlimited email accounts, forwarders, and autoresponders. Full webmail access included with Roundcube and Horde."
     },
     {
-        iconName: "Database",
+        icon: Database,
         title: "Database Control",
         description: "Manage MySQL databases with phpMyAdmin. Create, edit, and optimize databases with ease through the intuitive interface."
     },
     {
-        iconName: "FileText",
+        icon: FileText,
         title: "File Manager",
         description: "Upload, edit, and manage files directly in your browser. No FTP client needed - everything is built into cPanel."
     }

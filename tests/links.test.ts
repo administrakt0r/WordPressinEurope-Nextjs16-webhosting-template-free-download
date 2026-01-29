@@ -4,8 +4,8 @@ import { EXTERNAL_LINKS } from '@/lib/links';
 describe('External Links Security', () => {
     it('should use HTTPS for all external links', () => {
         Object.entries(EXTERNAL_LINKS).forEach(([key, url]) => {
-            if (url.startsWith('mailto:')) {
-                return; // Skip mailto links
+            if (url.startsWith('mailto:') || key === 'SUPPORT_EMAIL') {
+                return; // Skip mailto links and raw email addresses
             }
             try {
                 const urlObj = new URL(url);
