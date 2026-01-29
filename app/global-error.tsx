@@ -1,21 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Inter, Outfit } from "next/font/google";
 import { AlertTriangle, RotateCcw } from 'lucide-react';
+import { inter, outfit } from "@/lib/fonts";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: 'swap',
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  display: 'swap',
-});
 
 export default function GlobalError({
   error,
