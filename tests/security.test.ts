@@ -69,7 +69,7 @@ describe('Security Headers', () => {
     }
   });
 
-  it('should NOT have X-XSS-Protection header', async () => {
+  it('should have X-XSS-Protection header set to 1; mode=block', async () => {
     if (!nextConfig.headers) {
       throw new Error('nextConfig.headers is undefined');
     }
@@ -80,7 +80,27 @@ describe('Security Headers', () => {
     if (!globalHeaders) return;
 
     const xssHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-XSS-Protection');
-    expect(xssHeader).toBeUndefined();
+    expect(xssHeader).toBeDefined();
+    if (xssHeader) {
+        expect(xssHeader.value).toBe('1; mode=block');
+    }
+  });
+
+  it('should have X-DNS-Prefetch-Control set to on', async () => {
+    if (!nextConfig.headers) {
+      throw new Error('nextConfig.headers is undefined');
+    }
+    const headersConfig = await nextConfig.headers();
+    const globalHeaders = headersConfig.find((h: HeaderConfig) => h.source === '/:path*');
+    expect(globalHeaders).toBeDefined();
+
+    if (!globalHeaders) return;
+
+    const dnsHeader = globalHeaders.headers.find((h: Header) => h.key === 'X-DNS-Prefetch-Control');
+    expect(dnsHeader).toBeDefined();
+    if (dnsHeader) {
+        expect(dnsHeader.value).toBe('on');
+    }
   });
 
   it('should have X-Frame-Options set to DENY', async () => {
