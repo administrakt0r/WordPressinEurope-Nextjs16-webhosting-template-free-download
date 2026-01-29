@@ -2,6 +2,7 @@
 import { Mail, ArrowUpRight, Code2 } from "lucide-react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
+import { CopyButton } from "@/components/ui/CopyButton";
 import { getOffscreenOptimizations } from "@/lib/styles";
 
 const resources = [
@@ -45,13 +46,20 @@ export function Support() {
                         <p className="text-slate-300 text-lg mb-10 leading-relaxed">
                             Beyond our free hosting, we specialize in creating tailor-made web solutions. If your project requires custom development, unique features, or dedicated support, we&apos;re here to help. Let&apos;s build something amazing together.
                         </p>
-                        <ObfuscatedMailto
-                            email="support@wpineu.com"
-                            className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
-                        >
-                            <Mail size={18} aria-hidden="true" />
-                            Contact Us
-                        </ObfuscatedMailto>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <ObfuscatedMailto
+                                email="support@wpineu.com"
+                                className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                            >
+                                <Mail size={18} aria-hidden="true" />
+                                Contact Us
+                            </ObfuscatedMailto>
+                            <CopyButton
+                                text="support@wpineu.com"
+                                ariaLabel="Copy support email address"
+                                className="bg-slate-800 text-white p-4 rounded-full hover:bg-slate-700 border border-slate-700 transition-colors focus-visible:ring-offset-slate-900"
+                            />
+                        </div>
                     </div>
                 </div>
 
