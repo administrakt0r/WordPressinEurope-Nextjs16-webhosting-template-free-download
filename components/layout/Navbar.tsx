@@ -124,7 +124,7 @@ export const Navbar = memo(function Navbar() {
                 <div className="flex items-center gap-4 md:hidden">
                     <ExternalLink
                         href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                        className="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-bold transition-all duration-200"
+                        className="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         aria-label="Get started with free hosting"
                     >
                         Get Started
@@ -200,7 +200,7 @@ export const Navbar = memo(function Navbar() {
                             </ExternalLink>
                             <ExternalLink
                                 href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                                className="w-full text-center py-3.5 rounded-lg bg-primary text-white font-medium hover:bg-blue-700 transition-colors"
+                                className="w-full text-center py-3.5 rounded-lg bg-primary text-white font-medium hover:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 aria-label="Get started with free hosting"
                             >
