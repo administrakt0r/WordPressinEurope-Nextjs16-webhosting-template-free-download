@@ -86,7 +86,7 @@ export function Footer() {
 
                 <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-muted-foreground text-center md:text-left">
-                        Copyright © 2025 WPinEU. All rights reserved. WPinEU is not part of WordPress.com or WordPress.org
+                        Copyright © {new Date().getFullYear()} WPinEU. All rights reserved. WPinEU is not part of WordPress.com or WordPress.org
                     </p>
                     <div className="flex items-center gap-1 text-sm text-muted-foreground group cursor-default">
                         <span>Made with</span>
