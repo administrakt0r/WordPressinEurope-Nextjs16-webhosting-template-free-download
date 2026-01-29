@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { memo } from "react";
 
 export interface TechnologyLogoProps {
     name: string;
@@ -7,7 +8,7 @@ export interface TechnologyLogoProps {
     height?: number;
 }
 
-export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
+export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
     return (
         <div className="group flex items-center justify-center" title={name}>
             {logo && width && height ? (
@@ -36,4 +37,4 @@ export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProp
             )}
         </div>
     );
-}
+});

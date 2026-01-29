@@ -50,6 +50,10 @@
 [2026-03-08] [app/layout.tsx] Removed redundant CSS classes
 [2026-03-08] [components/sections/ServiceDescription.tsx] Added dynamic column support (refactor)
 [2026-03-08] [app/free-europe-hosting/page.tsx] Refactored to use ServiceDescription component (deduplication)
+[2026-01-29] [app/layout.tsx] Refactored CSS: moved focus rules to globals.css and deleted accessibility.css
+[2026-01-29] [lib/fonts.ts] Created shared font definitions to deduplicate code
+[2026-01-29] [app/layout.tsx] Updated to use shared fonts
+[2026-01-29] [app/global-error.tsx] Updated to use shared fonts
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->

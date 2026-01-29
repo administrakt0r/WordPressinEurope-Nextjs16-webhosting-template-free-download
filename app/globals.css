@@ -52,6 +52,7 @@
 /* Smooth scrolling for the entire document */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -123,4 +124,10 @@ h4,
 h5,
 h6 {
   font-family: var(--font-outfit);
+}
+
+/* Focus visible styles for better keyboard navigation */
+*:focus-visible {
+    outline: 2px solid theme('colors.blue.500');
+    outline-offset: 2px;
 }
