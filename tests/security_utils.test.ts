@@ -44,6 +44,10 @@ describe('lib/security', () => {
         // @ts-expect-error Testing invalid input
         expect(isSafeUrl(undefined)).toBe(false);
     });
+
+    it('should return false for protocol-relative URLs', () => {
+      expect(isSafeUrl('//evil.com')).toBe(false);
+    });
   });
 
   describe('safeJsonLd', () => {
