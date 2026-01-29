@@ -15,6 +15,14 @@ export const metadata: Metadata = {
     title: "Free Web Hosting | WPinEU",
     description: "Reliable Free Web Hosting with cPanel and SSL. Host your website for free with no ads and 99.9% uptime guarantee.",
     keywords: ["Free Web Hosting", "Web Hosting", "Free Hosting", "WPinEU"],
+    alternates: {
+        canonical: "https://wpineu.com/free-web-hosting",
+    },
+    openGraph: {
+        title: "Free Web Hosting | WPinEU",
+        description: "Reliable Free Web Hosting with cPanel and SSL. Host your website for free with no ads and 99.9% uptime guarantee.",
+        url: "https://wpineu.com/free-web-hosting",
+    }
 };
 
 const ServiceDescription = dynamic(() =>

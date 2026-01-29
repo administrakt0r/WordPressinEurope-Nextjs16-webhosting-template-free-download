@@ -24,6 +24,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wpineu.com'),
+  referrer: 'strict-origin-when-cross-origin',
   title: {
     default: "WPinEU - Free WordPress Hosting in Europe",
     template: "%s | WPinEU"
@@ -83,6 +84,9 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <link rel="preconnect" href="https://images.unsplash.com" />
+      <link rel="dns-prefetch" href="https://uptime.wpineu.com" />
+      <link rel="dns-prefetch" href="https://wp.wpineu.com" />
+      <link rel="dns-prefetch" href="https://clients.wpineu.com" />
       <body
         className={`${inter.variable} ${outfit.variable} antialiased bg-slate-950 text-slate-50 transition-colors duration-300`}
       >

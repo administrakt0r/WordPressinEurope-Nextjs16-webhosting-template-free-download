@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
-import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT } from "@/lib/constants";
+import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT, HOSTING_SPECS } from "@/lib/constants";
 
 const STARS = [1, 2, 3, 4, 5];
 
@@ -78,12 +78,12 @@ export function Hero() {
                                     ))}
                                 </div>
                                 <span className="text-sm text-slate-400">
-                                    <span className="font-bold text-white">4.9/5</span> from happy users
+                                    <span className="font-bold text-white">{HOSTING_SPECS.RATING}</span> from happy users
                                 </span>
                             </div>
                             <div className="w-px h-10 bg-slate-800" />
                             <div className="flex flex-col">
-                                <span className="text-xl font-bold text-white">99.9%</span>
+                                <span className="text-xl font-bold text-white">{HOSTING_SPECS.UPTIME}</span>
                                 <span className="text-sm text-slate-400">Uptime Guaranteed</span>
                             </div>
                         </div>
@@ -118,7 +118,7 @@ export function Hero() {
                                         </div>
                                         <span className="text-slate-300 font-medium">Super fast storage</span>
                                     </div>
-                                    <span className="text-white font-bold">1GB NVMe SSD disk space</span>
+                                    <span className="text-white font-bold">{HOSTING_SPECS.DISK_LABEL}</span>
                                 </li>
 
                                 <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
@@ -128,7 +128,7 @@ export function Hero() {
                                         </div>
                                         <span className="text-slate-300 font-medium">Bandwidth</span>
                                     </div>
-                                    <span className="text-white font-bold">100GB Traffic</span>
+                                    <span className="text-white font-bold">{HOSTING_SPECS.TRAFFIC_LABEL}</span>
                                 </li>
 
                                 <li className="flex items-center justify-between p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
@@ -138,7 +138,7 @@ export function Hero() {
                                         </div>
                                         <span className="text-slate-300 font-medium">Location</span>
                                     </div>
-                                    <span className="text-white font-bold">Europe</span>
+                                    <span className="text-white font-bold">{HOSTING_SPECS.LOCATION}</span>
                                 </li>
                             </ul>
 
@@ -193,7 +193,10 @@ export function Hero() {
                         </div>
 
                         {/* Glow Effects */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/10 rounded-full blur-3xl -z-10" />
+                        <div
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] -z-10 gpu-accelerated"
+                            style={{ background: 'radial-gradient(closest-side, rgba(59, 130, 246, 0.1), transparent)' }}
+                        />
                     </div>
                 </div>
             </div>

@@ -37,3 +37,13 @@
 **Vulnerability:** Missing `X-Permitted-Cross-Domain-Policies` header allowed Adobe Flash and PDF documents to potentially load data from the domain.
 **Learning:** Even though Flash is deprecated, other clients (like PDF readers) may verify this policy. Explicitly setting it to `none` is a defense-in-depth measure.
 **Prevention:** Enforce `X-Permitted-Cross-Domain-Policies: none` in middleware to prevent cross-domain data loading.
+
+## 2025-05-24 - Hardware API Fingerprinting
+**Vulnerability:** Modern browser APIs like Web Bluetooth, Serial, HID, and Battery Status can be used for fingerprinting or accessing local hardware if exploited via XSS.
+**Learning:** Explicitly disabling unused hardware APIs via `Permissions-Policy` reduces the attack surface and prevents unauthorized access to user devices, even if an attacker achieves script execution.
+**Prevention:** Maintain a strict `Permissions-Policy` in `middleware.ts` that explicitly denies `bluetooth`, `serial`, `hid`, and `battery` unless absolutely necessary.
+
+## 2025-05-24 - Protocol-Relative URL Risk
+**Vulnerability:** The `isSafeUrl` function allowed protocol-relative URLs (starting with `//`), which could lead to Open Redirect vulnerabilities if used in redirection contexts or misleading users about the destination protocol.
+**Learning:** `new URL('//example.com')` throws an error without a base, causing the validation to fall through to the catch block where it was treated as safe. Explicitly checking for `//` is necessary.
+**Prevention:** Added an explicit check `if (url.startsWith('//')) return false;` in `lib/security.ts`.

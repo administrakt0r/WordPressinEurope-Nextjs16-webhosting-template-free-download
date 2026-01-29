@@ -123,8 +123,14 @@ export function Features() {
                 {/* Advantage Section */}
                 <div className="bg-blue-600 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative">
                     {/* GPU accelerated blurs to prevent repaint on scroll */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 gpu-accelerated" />
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 gpu-accelerated" />
+                    <div
+                        className="absolute top-0 right-0 w-64 h-64 -translate-y-1/2 translate-x-1/2 gpu-accelerated"
+                        style={{ background: 'radial-gradient(closest-side, rgba(255, 255, 255, 0.1), transparent)' }}
+                    />
+                    <div
+                        className="absolute bottom-0 left-0 w-64 h-64 translate-y-1/2 -translate-x-1/2 gpu-accelerated"
+                        style={{ background: 'radial-gradient(closest-side, rgba(250, 204, 21, 0.2), transparent)' }}
+                    />
 
                     <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                         <div>
