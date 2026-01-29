@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useId, useCallback } from "react";
+import { useState, useId, useCallback, memo } from "react";
 import { FAQItem } from "./FAQItem";
 
 interface FAQItemData {
@@ -12,7 +12,7 @@ interface FAQAccordionProps {
     faqs: FAQItemData[];
 }
 
-export function FAQAccordion({ faqs }: FAQAccordionProps) {
+export const FAQAccordion = memo(function FAQAccordion({ faqs }: FAQAccordionProps) {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
     const accordionId = useId();
 
@@ -38,4 +38,4 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
             </div>
         </div>
     );
-}
+});
