@@ -47,9 +47,9 @@
 [2026-03-07] [components/ui/SkipLink.tsx] Removed unnecessary memo from Server Component
 [2026-03-07] [lib/json-ld.ts] Added getServiceJsonLd helper to avoid duplication
 [2026-03-07] [app/free-*-hosting/page.tsx] Refactored 6 pages to use getServiceJsonLd (duplicate code fix)
-[2026-03-08] [components/ui/ObfuscatedMailto.tsx] Refactored to use useSyncExternalStore (fixed eslint-disable)
-[2026-03-08] [components/sections/Features.tsx] Added missing aria-valuetext to progress bars
-[2026-03-08] [lib/constants.ts] Fixed inconsistent TECH_LOGO_CLOUDLINUX dimensions
+[2026-03-08] [app/layout.tsx] Removed redundant CSS classes
+[2026-03-08] [components/sections/ServiceDescription.tsx] Added dynamic column support (refactor)
+[2026-03-08] [app/free-europe-hosting/page.tsx] Refactored to use ServiceDescription component (deduplication)
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
