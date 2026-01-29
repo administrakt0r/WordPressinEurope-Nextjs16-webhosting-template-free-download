@@ -2,6 +2,7 @@ import { getOffscreenOptimizations } from "@/lib/styles";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { ServiceFeatureCard, type ServiceFeature } from "@/components/sections/ServiceFeatureCard";
 import { clsx } from "clsx";
+import { memo, type ElementType } from "react";
 
 interface ServiceDescriptionProps {
     title: string;
