@@ -187,6 +187,7 @@ export function Features() {
                                         aria-valuenow={95}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
+                                        aria-valuetext="0.2 seconds"
                                         className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden"
                                     >
                                         <div className="bg-green-400 h-full rounded-full w-[95%]" />
@@ -202,6 +203,7 @@ export function Features() {
                                         aria-valuenow={98}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
+                                        aria-valuetext="0.05 seconds"
                                         className="w-full bg-blue-900/50 rounded-full h-2 overflow-hidden"
                                     >
                                         <div className="bg-green-400 h-full rounded-full w-[98%]" />
