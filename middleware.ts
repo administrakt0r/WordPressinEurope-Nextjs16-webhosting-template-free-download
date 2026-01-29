@@ -1,17 +1,21 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { checkRateLimit } from '@/lib/ratelimit';
+import { ratelimit } from '@/lib/ratelimit';
 
 export function middleware(request: NextRequest) {
-  // Rate Limiting
+  // Rate limiting
+  const forwardedFor = request.headers.get('x-forwarded-for');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || (request as any).ip || '127.0.0.1';
+  const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : ((request as any).ip || '127.0.0.1');
 
-  // Only rate limit if not a static asset (double check, though matcher handles most)
-  const isStatic = /\.(svg|png|jpg|jpeg|gif|webp|css|js|ico|ttf|woff|woff2)$/i.test(request.nextUrl.pathname);
-
-  if (!isStatic && !checkRateLimit(ip, { limit: 100, window: 60 * 1000 })) {
-    return new NextResponse('Too Many Requests', { status: 429 });
+  if (!ratelimit.check(100, ip)) {
+    return new NextResponse('Too Many Requests', {
+      status: 429,
+      headers: {
+        'Retry-After': '60',
+        'Content-Type': 'text/plain',
+      },
+    });
   }
 
   const nonce = crypto.randomUUID();
