@@ -124,3 +124,9 @@ h5,
 h6 {
   font-family: var(--font-outfit);
 }
+
+/* Focus visible styles for better keyboard navigation */
+*:focus-visible {
+    outline: 2px solid theme('colors.blue.500');
+    outline-offset: 2px;
+}
