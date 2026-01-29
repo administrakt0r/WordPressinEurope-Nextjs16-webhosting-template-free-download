@@ -1,6 +1,8 @@
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { clsx } from "clsx";
+import { memo } from "react";
+import type { ElementType } from "react";
 
 interface ServiceFeature {
     icon: ElementType;
