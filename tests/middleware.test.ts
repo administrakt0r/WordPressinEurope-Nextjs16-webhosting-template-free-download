@@ -27,6 +27,9 @@ describe('Middleware Security Headers', () => {
     expect(headers.get('Strict-Transport-Security')).toBe('max-age=63072000; includeSubDomains; preload');
     expect(headers.get('Permissions-Policy')).toContain('camera=()');
     expect(headers.get('X-Permitted-Cross-Domain-Policies')).toBe('none');
+    expect(headers.get('Cross-Origin-Opener-Policy')).toBe('same-origin');
+    expect(headers.get('Cross-Origin-Resource-Policy')).toBe('same-origin');
+    expect(headers.get('X-DNS-Prefetch-Control')).toBe('on');
   });
 
   it('should return 429 when rate limit is exceeded', () => {

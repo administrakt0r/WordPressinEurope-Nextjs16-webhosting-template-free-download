@@ -26,6 +26,9 @@ export function safeJsonLd(data: Record<string, unknown>): string {
 export function isSafeUrl(url: string): boolean {
   if (!url) return false;
 
+  // Prevent control characters (e.g. \n, \r, \t, null byte) to avoid obfuscation
+  if (/[\x00-\x1F\x7F]/.test(url)) return false;
+
   // Prevent protocol-relative URLs (open redirect risk)
   if (url.startsWith('//')) return false;
 
