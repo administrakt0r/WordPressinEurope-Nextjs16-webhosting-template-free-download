@@ -3,6 +3,7 @@ import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT, HOSTING_SPECS } from "@/lib/constants";
+import { HERO_CONTENT } from "@/lib/content";
 
 const STARS = [1, 2, 3, 4, 5];
 
@@ -40,16 +41,15 @@ export function Hero() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75" aria-hidden="true"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                             </span>
-                            100% Free • No Ads • No Commitments
+                            {HERO_CONTENT.badge}
                         </div>
 
                         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading text-white leading-[1.1] mb-8 tracking-tight">
-                            Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">WordPress</span> Hosting for <span className="text-yellow-400">Free</span>
+                            {HERO_CONTENT.title.prefix} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">{HERO_CONTENT.title.highlight1}</span> {HERO_CONTENT.title.middle} <span className="text-yellow-400">{HERO_CONTENT.title.highlight2}</span>
                         </h1>
 
                         <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                            Experience the power of enterprise-grade hosting without the cost.
-                            Built on the <strong>world-leading cPanel</strong>, <strong>LiteSpeed</strong>, <strong>Redis Cache</strong>, and <strong>WordPress Manager</strong> for unmatched speed and reliability.
+                            {HERO_CONTENT.description}
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mb-12">
@@ -58,7 +58,7 @@ export function Hero() {
                                 ariaLabel="Get started with free WordPress hosting"
                                 className="group relative inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 hover:shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                             >
-                                <span className="relative z-10">Get Started Now</span>
+                                <span className="relative z-10">{HERO_CONTENT.cta.primary}</span>
                                 <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
                                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                             </ExternalLink>
@@ -66,7 +66,7 @@ export function Hero() {
                                 href="#features"
                                 className="inline-flex items-center justify-center gap-2 bg-slate-900/50 border border-slate-700 hover:border-blue-500/50 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all duration-200 hover:bg-slate-800 backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                             >
-                                View Features
+                                {HERO_CONTENT.cta.secondary}
                             </Link>
                         </div>
 
@@ -78,13 +78,13 @@ export function Hero() {
                                     ))}
                                 </div>
                                 <span className="text-sm text-slate-400">
-                                    <span className="font-bold text-white">{HOSTING_SPECS.RATING}</span> from happy users
+                                    <span className="font-bold text-white">{HOSTING_SPECS.RATING}</span> {HERO_CONTENT.stats.ratingLabel}
                                 </span>
                             </div>
                             <div className="w-px h-10 bg-slate-800" />
                             <div className="flex flex-col">
                                 <span className="text-xl font-bold text-white">{HOSTING_SPECS.UPTIME}</span>
-                                <span className="text-sm text-slate-400">Uptime Guaranteed</span>
+                                <span className="text-sm text-slate-400">{HERO_CONTENT.stats.uptimeLabel}</span>
                             </div>
                         </div>
                     </div>

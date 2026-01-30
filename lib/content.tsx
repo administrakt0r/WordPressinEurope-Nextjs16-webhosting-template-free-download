@@ -54,3 +54,27 @@ export const TECHNOLOGIES_LIST = [
     TECH_LOGO_CLOUDLINUX,
     TECH_LOGO_SOFTACULOUS,
 ];
+
+export const HERO_CONTENT = {
+    badge: "100% Free • No Ads • No Commitments",
+    title: {
+        prefix: "Premium",
+        highlight1: "WordPress",
+        middle: "Hosting for",
+        highlight2: "Free"
+    },
+    description: (
+        <>
+            Experience the power of enterprise-grade hosting without the cost.
+            Built on the <strong>world-leading cPanel</strong>, <strong>LiteSpeed</strong>, <strong>Redis Cache</strong>, and <strong>WordPress Manager</strong> for unmatched speed and reliability.
+        </>
+    ),
+    cta: {
+        primary: "Get Started Now",
+        secondary: "View Features"
+    },
+    stats: {
+        ratingLabel: "from happy users",
+        uptimeLabel: "Uptime Guaranteed"
+    }
+};
