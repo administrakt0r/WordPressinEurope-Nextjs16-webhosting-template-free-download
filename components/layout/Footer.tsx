@@ -57,7 +57,7 @@ export function Footer() {
                                 <li key={item.label}>
                                     <ExternalLink
                                         href={item.href}
-                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm"
                                     >
                                         {item.label}
                                     </ExternalLink>
@@ -74,7 +74,7 @@ export function Footer() {
                                 <li key={item.label}>
                                     <ExternalLink
                                         href={item.href}
-                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm"
                                     >
                                         {item.label}
                                     </ExternalLink>
