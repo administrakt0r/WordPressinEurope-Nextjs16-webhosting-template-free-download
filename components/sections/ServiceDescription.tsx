@@ -1,18 +1,42 @@
-import { ElementType, memo } from "react";
+import { memo } from "react";
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { ServiceFeatureCard, type ServiceFeature } from "@/components/sections/ServiceFeatureCard";
 import { clsx } from "clsx";
-import { memo, type ElementType } from "react";
+
+interface TechLogo {
+    name: string;
+    logo: string;
+    width?: number;
+    height?: number;
+}
 
 interface ServiceDescriptionProps {
     title: string;
     subtitle?: string;
     description: string;
     features: ServiceFeature[];
-    techLogos?: { name: string; logo: string; width?: number; height?: number }[];
+    techLogos?: TechLogo[];
     cols?: 3 | 4;
 }
+
+// Optimization: Memoized list component to prevent unnecessary re-renders of logos
+const TechLogoList = memo(function TechLogoList({ logos }: { logos: TechLogo[] }) {
+    return (
+        <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {logos.map((tech) => (
+                <li key={tech.name}>
+                    <TechnologyLogo
+                        name={tech.name}
+                        logo={tech.logo}
+                        width={tech.width || 100}
+                        height={tech.height || 100}
+                    />
+                </li>
+            ))}
+        </ul>
+    );
+});
 
 export function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4 }: ServiceDescriptionProps) {
     const gridColsClass = clsx("grid md:grid-cols-2 gap-6 mb-16", {
@@ -56,18 +80,7 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                         <h3 className="text-xl font-bold text-center text-foreground mb-8">
                             Powered By Industry-Leading Technologies
                         </h3>
-                        <ul className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-                            {techLogos.map((tech) => (
-                                <li key={tech.name}>
-                                    <TechnologyLogo
-                                        name={tech.name}
-                                        logo={tech.logo}
-                                        width={tech.width || 100}
-                                        height={tech.height || 100}
-                                    />
-                                </li>
-                            ))}
-                        </ul>
+                        <TechLogoList logos={techLogos} />
                     </div>
                 )}
             </div>

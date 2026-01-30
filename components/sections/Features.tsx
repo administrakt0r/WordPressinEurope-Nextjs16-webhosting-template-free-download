@@ -1,8 +1,28 @@
+import { memo } from "react";
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { Zap, Lock } from "lucide-react";
 import { FeatureCard } from "./FeatureCard";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { FEATURES_LIST, TECHNOLOGIES_LIST } from "@/lib/content";
+
+// Optimization: Extract list item to prevent re-creation of inline styles and improve list rendering
+const FeatureListItem = memo(function FeatureListItem({ feature, index }: { feature: typeof FEATURES_LIST[0], index: number }) {
+    return (
+        <li
+            className="animate-slide-up will-animate"
+            style={{
+                animationDelay: `${index * 100}ms`,
+                animationFillMode: 'both' // Ensures opacity: 0 before animation starts
+            }}
+        >
+            <FeatureCard
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+            />
+        </li>
+    );
+});
 
 export function Features() {
     return (
@@ -47,20 +67,11 @@ export function Features() {
 
                     <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {FEATURES_LIST.map((feature, index) => (
-                            <li
+                            <FeatureListItem
                                 key={feature.title}
-                                className="animate-slide-up will-animate"
-                                style={{
-                                    animationDelay: `${index * 100}ms`,
-                                    animationFillMode: 'both' // Ensures opacity: 0 before animation starts
-                                }}
-                            >
-                                <FeatureCard
-                                    icon={feature.icon}
-                                    title={feature.title}
-                                    description={feature.description}
-                                />
-                            </li>
+                                feature={feature}
+                                index={index}
+                            />
                         ))}
                     </ul>
                 </div>
