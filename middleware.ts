@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
   // Note: request.ip is missing in the current NextRequest type definition in this environment.
   const ip = forwardedFor
     ? forwardedFor.split(',')[0].trim()
-    : ((request as any).ip || '127.0.0.1'); // eslint-disable-line @typescript-eslint/no-explicit-any
+    : ((request as unknown as { ip?: string }).ip || '127.0.0.1');
 
   if (!ratelimit.check(100, ip)) {
     return new NextResponse('Too Many Requests', {
