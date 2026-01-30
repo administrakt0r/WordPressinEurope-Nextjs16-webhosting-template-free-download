@@ -90,6 +90,7 @@ export function BackToTop() {
           fill="none"
           stroke="currentColor"
           strokeWidth="3"
+          pathLength="100"
         />
         {/* Progress indicator */}
         <path
@@ -100,6 +101,7 @@ export function BackToTop() {
           stroke="currentColor"
           strokeWidth="3"
           strokeDasharray="0, 100"
+          pathLength="100"
         />
       </svg>
 

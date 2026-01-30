@@ -5,11 +5,10 @@ import { ratelimit } from '@/lib/ratelimit';
 export function middleware(request: NextRequest) {
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
-  // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
-  // Note: request.ip is missing in the current NextRequest type definition in this environment.
+  // Prioritize X-Forwarded-For if available, then fallback to '127.0.0.1'
   const ip = forwardedFor
     ? forwardedFor.split(',')[0].trim()
-    : ((request as any).ip || '127.0.0.1'); // eslint-disable-line @typescript-eslint/no-explicit-any
+    : '127.0.0.1';
 
   if (!ratelimit.check(100, ip)) {
     return new NextResponse('Too Many Requests', {
@@ -22,34 +21,30 @@ export function middleware(request: NextRequest) {
   }
 
   const nonce = crypto.randomUUID();
-  const cspHeader = `
-    default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: https://images.unsplash.com;
-    font-src 'self' data:;
-    connect-src 'self' https://uptime.wpineu.com https://clients.wpineu.com https://wp.wpineu.com https://images.unsplash.com;
-    worker-src 'self' blob:;
-    manifest-src 'self';
-    media-src 'self';
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    frame-src 'none';
-    block-all-mixed-content;
-    upgrade-insecure-requests;
-  `;
-  // Replace newlines with spaces
-  const contentSecurityPolicyHeaderValue = cspHeader
-    .replace(/\s{2,}/g, ' ')
-    .trim();
+  const cspHeader = [
+    "default-src 'self';",
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic';`,
+    "style-src 'self' 'unsafe-inline';",
+    "img-src 'self' blob: data: https://images.unsplash.com;",
+    "font-src 'self' data:;",
+    "connect-src 'self' https://uptime.wpineu.com https://clients.wpineu.com https://wp.wpineu.com https://images.unsplash.com;",
+    "worker-src 'self' blob:;",
+    "manifest-src 'self';",
+    "media-src 'self';",
+    "object-src 'none';",
+    "base-uri 'self';",
+    "form-action 'self';",
+    "frame-ancestors 'none';",
+    "frame-src 'none';",
+    "block-all-mixed-content;",
+    "upgrade-insecure-requests;"
+  ].join(" ");
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set(
     'Content-Security-Policy',
-    contentSecurityPolicyHeaderValue
+    cspHeader
   );
 
   const response = NextResponse.next({
@@ -59,7 +54,7 @@ export function middleware(request: NextRequest) {
   });
   response.headers.set(
     'Content-Security-Policy',
-    contentSecurityPolicyHeaderValue
+    cspHeader
   );
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');

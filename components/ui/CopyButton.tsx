@@ -18,8 +18,8 @@ export function CopyButton({ text, className, ariaLabel = "Copy to clipboard" }:
       await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy:", err);
+    } catch {
+      // Fail silently if clipboard access is denied
     }
   };
 
