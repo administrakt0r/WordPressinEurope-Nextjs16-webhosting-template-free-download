@@ -48,6 +48,12 @@ describe('lib/security', () => {
     it('should return false for protocol-relative URLs', () => {
       expect(isSafeUrl('//evil.com')).toBe(false);
     });
+
+    it('should return false for URLs with control characters', () => {
+      expect(isSafeUrl('javascript\n:alert(1)')).toBe(false);
+      expect(isSafeUrl('http://example.com\r')).toBe(false);
+      expect(isSafeUrl('http://example.com\t')).toBe(false);
+    });
   });
 
   describe('safeJsonLd', () => {

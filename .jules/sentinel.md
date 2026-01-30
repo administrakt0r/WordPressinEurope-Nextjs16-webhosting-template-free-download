@@ -47,3 +47,8 @@
 **Vulnerability:** The `isSafeUrl` function allowed protocol-relative URLs (starting with `//`), which could lead to Open Redirect vulnerabilities if used in redirection contexts or misleading users about the destination protocol.
 **Learning:** `new URL('//example.com')` throws an error without a base, causing the validation to fall through to the catch block where it was treated as safe. Explicitly checking for `//` is necessary.
 **Prevention:** Added an explicit check `if (url.startsWith('//')) return false;` in `lib/security.ts`.
+
+## 2026-05-24 - Control Characters in URL Validation
+**Vulnerability:** Control characters (e.g., `\n`, `\r`, `\t`) in URLs can potentially bypass validation logic or cause issues in downstream parsers, leading to obfuscation or injection attacks.
+**Learning:** Simply checking protocol schemes is not enough; URLs must be sanitized of control characters to ensure they are interpreted consistently by all components.
+**Prevention:** Added a regex check `/[\x00-\x1F\x7F]/` in `isSafeUrl` to reject any URL containing control characters.
