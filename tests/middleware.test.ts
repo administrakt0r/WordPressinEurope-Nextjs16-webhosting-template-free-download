@@ -38,4 +38,15 @@ describe('Middleware Security Headers', () => {
     expect(response.status).toBe(429);
     expect(response.headers.get('Retry-After')).toBe('60');
   });
+
+  it('should return 403 for malicious user agents', () => {
+    const request = new NextRequest(new URL('https://wpineu.com/'), {
+      headers: {
+        'user-agent': 'sqlmap/1.5',
+      },
+    });
+    const response = middleware(request);
+
+    expect(response.status).toBe(403);
+  });
 });
