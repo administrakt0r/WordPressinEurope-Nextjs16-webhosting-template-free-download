@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Server } from "lucide-react";
@@ -14,11 +14,30 @@ export const Navbar = memo(function Navbar() {
     const pathname = usePathname();
     const isScrolled = useScroll(20);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
 
-    // UX: Lock body scroll when mobile menu is open
+    // UX: Lock body scroll and manage focus when mobile menu is open
     useEffect(() => {
         if (isMobileMenuOpen) {
             document.body.style.overflow = "hidden";
+
+            // Focus the first interactive element
+            const firstFocusable = mobileMenuRef.current?.querySelector('a, button');
+            if (firstFocusable instanceof HTMLElement) {
+                firstFocusable.focus();
+            }
+
+            // Handle Escape key
+            const handleEscape = (e: KeyboardEvent) => {
+                if (e.key === 'Escape') {
+                    setIsMobileMenuOpen(false);
+                }
+            };
+            document.addEventListener('keydown', handleEscape);
+            return () => {
+                document.body.style.overflow = "unset";
+                document.removeEventListener('keydown', handleEscape);
+            };
         } else {
             document.body.style.overflow = "unset";
         }
@@ -145,8 +164,10 @@ export const Navbar = memo(function Navbar() {
             {isMobileMenuOpen && (
                 <div
                     id="mobile-menu"
+                    ref={mobileMenuRef}
                     className="md:hidden fixed inset-0 top-[var(--navbar-height,72px)] bg-slate-950 z-40 overflow-y-auto"
-                    role="navigation"
+                    role="dialog"
+                    aria-modal="true"
                     aria-label="Mobile navigation"
                     style={{
                         '--navbar-height': isScrolled ? '72px' : '88px',
