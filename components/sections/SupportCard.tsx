@@ -16,7 +16,7 @@ export function SupportCard() {
             </p>
             <ExternalLink
                 href={EXTERNAL_LINKS.CLIENT_PORTAL}
-                className="inline-flex items-center gap-2 text-yellow-400 font-bold text-sm hover:underline"
+                className="inline-flex items-center gap-2 text-yellow-400 font-bold text-sm hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-sm"
             >
                 Contribute to Our Mission
                 <ArrowRight size={16} aria-hidden="true" />
