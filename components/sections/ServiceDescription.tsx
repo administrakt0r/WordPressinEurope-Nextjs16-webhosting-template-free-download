@@ -1,9 +1,8 @@
-import { ElementType, memo } from "react";
+import { memo } from "react";
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { ServiceFeatureCard, type ServiceFeature } from "@/components/sections/ServiceFeatureCard";
 import { clsx } from "clsx";
-import { memo, type ElementType } from "react";
 
 interface ServiceDescriptionProps {
     title: string;
@@ -14,7 +13,7 @@ interface ServiceDescriptionProps {
     cols?: 3 | 4;
 }
 
-export function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4 }: ServiceDescriptionProps) {
+export const ServiceDescription = memo(function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4 }: ServiceDescriptionProps) {
     const gridColsClass = clsx("grid md:grid-cols-2 gap-6 mb-16", {
         "lg:grid-cols-4": cols === 4,
         "lg:grid-cols-3": cols === 3,
@@ -73,4 +72,4 @@ export function ServiceDescription({ title, subtitle, description, features, tec
             </div>
         </section>
     );
-}
+});

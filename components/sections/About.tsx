@@ -100,8 +100,11 @@ export function About() {
                                 </div>
                             </div>
 
-                            {/* Decorative background */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-blue-500/5 to-yellow-500/5 rounded-full blur-3xl -z-10" />
+                            {/* Decorative background - Optimized: Replaced blur with radial gradient */}
+                            <div
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] -z-10 gpu-accelerated"
+                                style={{ background: 'radial-gradient(closest-side, rgba(59, 130, 246, 0.05), transparent)' }}
+                            />
                         </AnimatedSection>
                     </div>
                 </div>
