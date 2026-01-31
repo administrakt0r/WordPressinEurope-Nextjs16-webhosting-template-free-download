@@ -6,9 +6,10 @@ export interface TechnologyLogoProps {
     logo?: string;
     width?: number;
     height?: number;
+    priority?: boolean;
 }
 
-export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
+export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height, priority = false }: TechnologyLogoProps) {
     return (
         <div className="group flex items-center justify-center" title={name}>
             {logo && width && height ? (
@@ -22,6 +23,7 @@ export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, 
                         alt={name}
                         width={width}
                         height={height}
+                        priority={priority}
                         // ⚡ Performance: Optimized sizes to handle wide logos (like cPanel) correctly
                         // Previous 100px/150px was too small for ~225px wide logos on high DPI
                         sizes="(max-width: 768px) 200px, 300px"

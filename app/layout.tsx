@@ -7,27 +7,28 @@ import { JsonLd } from "@/components/JsonLd";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { ORGANIZATION_JSON_LD } from "@/lib/json-ld";
 import { inter, outfit } from "@/lib/fonts";
+import { BRAND_NAME, BRAND_TAGLINE } from "@/lib/constants";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wpineu.com'),
   referrer: 'strict-origin-when-cross-origin',
   title: {
-    default: "WPinEU - Free WordPress Hosting in Europe",
-    template: "%s | WPinEU"
+    default: `${BRAND_NAME} - ${BRAND_TAGLINE} in Europe`,
+    template: `%s | ${BRAND_NAME}`
   },
   description: "Premium free WordPress hosting with cPanel, LiteSpeed, and Redis. No ads, no hidden fees. Perfect for students, developers, and small businesses in the EU.",
   keywords: ["free wordpress hosting", "cpanel hosting free", "litespeed hosting", "redis cache", "eu hosting", "wordpress europe"],
-  authors: [{ name: "WPinEU Team" }],
-  creator: "WPinEU",
-  publisher: "WPinEU",
+  authors: [{ name: `${BRAND_NAME} Team` }],
+  creator: BRAND_NAME,
+  publisher: BRAND_NAME,
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://wpineu.com",
-    title: "WPinEU - Free WordPress Hosting in Europe",
+    title: `${BRAND_NAME} - ${BRAND_TAGLINE} in Europe`,
     description: "Premium free WordPress hosting with cPanel, LiteSpeed, and Redis. No ads, no hidden fees.",
-    siteName: "WPinEU",
+    siteName: BRAND_NAME,
     images: [
       {
         url: "/og-image.png",
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WPinEU - Free WordPress Hosting in Europe",
+    title: `${BRAND_NAME} - ${BRAND_TAGLINE} in Europe`,
     description: "Premium free WordPress hosting with cPanel, LiteSpeed, and Redis. No ads, no hidden fees.",
     creator: "@wpineu",
     images: ["/og-image.png"],

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
-import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT, HOSTING_SPECS } from "@/lib/constants";
+import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT, HOSTING_SPECS, BRAND_TAGLINE } from "@/lib/constants";
 
 const STARS = [1, 2, 3, 4, 5];
 
@@ -100,7 +100,7 @@ export function Hero() {
                                         <Server size={24} aria-hidden="true" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-white">Free WordPress Hosting</h3>
+                                        <h3 className="font-bold text-white">{BRAND_TAGLINE}</h3>
                                         <p className="text-xs text-slate-400">Available for EU residents</p>
                                     </div>
                                 </div>

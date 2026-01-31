@@ -3,6 +3,10 @@
  * Used to ensure consistency across the application.
  */
 
+// Brand
+export const BRAND_NAME = "WPinEU";
+export const BRAND_TAGLINE = "Free WordPress Hosting";
+
 // Pricing
 export const PRICE_MONTHLY_DISPLAY = "€0.00";
 export const PRICE_MONTHLY_VALUE = "0.00";
