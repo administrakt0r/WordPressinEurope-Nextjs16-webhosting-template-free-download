@@ -3,22 +3,40 @@ import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
 
 export function middleware(request: NextRequest) {
-  // Rate limiting
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
-  // Note: request.ip is missing in the current NextRequest type definition in this environment.
-  const ip = forwardedFor
-    ? forwardedFor.split(',')[0].trim()
-    : ((request as any).ip || '127.0.0.1'); // eslint-disable-line @typescript-eslint/no-explicit-any
-
-  if (!ratelimit.check(100, ip)) {
-    return new NextResponse('Too Many Requests', {
-      status: 429,
-      headers: {
-        'Retry-After': '60',
-        'Content-Type': 'text/plain',
-      },
+  // Block malicious User-Agents
+  const userAgent = request.headers.get('user-agent') || '';
+  const BLOCKED_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
+  if (BLOCKED_AGENTS.some((agent) => userAgent.toLowerCase().includes(agent))) {
+    return new NextResponse('Forbidden', {
+      status: 403,
+      headers: { 'Content-Type': 'text/plain' },
     });
+  }
+
+  // Rate limiting
+  // Skip rate limiting for static assets to improve performance and reduce overhead
+  const isStaticAsset =
+    /\.(svg|png|jpg|jpeg|gif|webp|css|js|ico|ttf|woff|woff2)$/i.test(
+      request.nextUrl.pathname
+    );
+
+  if (!isStaticAsset) {
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
+    // Note: request.ip is missing in the current NextRequest type definition in this environment.
+    const ip = forwardedFor
+      ? forwardedFor.split(',')[0].trim()
+      : ((request as any).ip || '127.0.0.1'); // eslint-disable-line @typescript-eslint/no-explicit-any
+
+    if (!ratelimit.check(100, ip)) {
+      return new NextResponse('Too Many Requests', {
+        status: 429,
+        headers: {
+          'Retry-After': '60',
+          'Content-Type': 'text/plain',
+        },
+      });
+    }
   }
 
   const nonce = crypto.randomUUID();
