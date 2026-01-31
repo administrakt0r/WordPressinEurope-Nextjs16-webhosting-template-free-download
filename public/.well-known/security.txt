@@ -1,5 +1,6 @@
 Contact: mailto:support@wpineu.com
-Expires: 2026-12-31T23:59:59.000Z
-Preferred-Languages: en, hr
-Canonical: https://wpineu.com/.well-known/security.txt
+Contact: https://wp.wpineu.com/report-abuse
 Policy: https://wp.wpineu.com/privacy-policy
+Expires: 2026-01-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://wpineu.com/.well-known/security.txt
