@@ -54,3 +54,14 @@ export const TECHNOLOGIES_LIST = [
     TECH_LOGO_CLOUDLINUX,
     TECH_LOGO_SOFTACULOUS,
 ];
+
+export const PRICING_FEATURES = [
+    "1 GB SSD disk space (RAID 10 NVMe)",
+    "100 GB Bandwidth (up to 3GB/s speed)",
+    "2 Addon domains",
+    "2 MySQL databases",
+    "2 email addresses",
+    "FREE Auto SSL Certificates",
+    "Latest cPanel with 150+ 1-click apps",
+    "NO advertisements or hidden fees"
+];

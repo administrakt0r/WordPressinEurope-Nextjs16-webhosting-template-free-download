@@ -3,17 +3,7 @@ import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT } from "@/lib/constants";
-
-const features = [
-    "1 GB SSD disk space (RAID 10 NVMe)",
-    "100 GB Bandwidth (up to 3GB/s speed)",
-    "2 Addon domains",
-    "2 MySQL databases",
-    "2 email addresses",
-    "FREE Auto SSL Certificates",
-    "Latest cPanel with 150+ 1-click apps",
-    "NO advertisements or hidden fees"
-];
+import { PRICING_FEATURES } from "@/lib/content";
 
 export const PricingCard = memo(function PricingCard() {
     return (
@@ -49,7 +39,7 @@ export const PricingCard = memo(function PricingCard() {
                 </ExternalLink>
 
                 <ul className="space-y-4" aria-label="Hosting features">
-                    {features.map((feature) => (
+                    {PRICING_FEATURES.map((feature) => (
                         <li key={feature} className="flex items-start gap-3">
                             <div className="p-1 rounded-full bg-green-900/30 text-green-400 mt-0.5">
                                 <Check size={14} strokeWidth={3} aria-hidden="true" />
