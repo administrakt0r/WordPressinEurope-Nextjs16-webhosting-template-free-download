@@ -54,6 +54,10 @@
 [2026-01-29] [lib/fonts.ts] Created shared font definitions to deduplicate code
 [2026-01-29] [app/layout.tsx] Updated to use shared fonts
 [2026-01-29] [app/global-error.tsx] Updated to use shared fonts
+[2026-03-08] [components/sections/ServiceDescription.tsx] Removed duplicate and unused imports (memo, ElementType)
+[2026-03-08] [middleware.ts] Fixed unsafe 'any' type cast by defining RequestWithIp interface
+[2026-03-08] [lib/content.tsx] Centralized PRICING_FEATURES
+[2026-03-08] [components/sections/PricingCard.tsx] Refactored to use centralized PRICING_FEATURES
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
