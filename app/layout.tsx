@@ -71,6 +71,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <link rel="preconnect" href="https://images.unsplash.com" />
+      <link rel="preconnect" href="https://clients.wpineu.com" />
       <link rel="dns-prefetch" href="https://uptime.wpineu.com" />
       <link rel="dns-prefetch" href="https://wp.wpineu.com" />
       <link rel="dns-prefetch" href="https://clients.wpineu.com" />

@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
 
+interface RequestWithIp extends NextRequest {
+  ip?: string;
+}
+
 export function middleware(request: NextRequest) {
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
@@ -9,7 +13,7 @@ export function middleware(request: NextRequest) {
   // Note: request.ip is missing in the current NextRequest type definition in this environment.
   const ip = forwardedFor
     ? forwardedFor.split(',')[0].trim()
-    : ((request as any).ip || '127.0.0.1'); // eslint-disable-line @typescript-eslint/no-explicit-any
+    : ((request as RequestWithIp).ip || '127.0.0.1');
 
   if (!ratelimit.check(100, ip)) {
     return new NextResponse('Too Many Requests', {
