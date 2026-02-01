@@ -181,10 +181,19 @@ export function HostingHero({ heroTitle, heroSubtitle, breadcrumbs }: HostingHer
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
             {/* Dynamic Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    {/* Gradient Orbs */}
-                    <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px] gpu-accelerated" />
-                    <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px] gpu-accelerated" />
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] bg-blue-900/20 rounded-full blur-[100px] gpu-accelerated" />
+                    {/* Gradient Orbs - Optimized: Replaced expensive CSS blurs with radial gradients for performance */}
+                    <div
+                        className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] gpu-accelerated"
+                        style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.2), transparent)' }}
+                    />
+                    <div
+                        className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] gpu-accelerated"
+                        style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.1), transparent)' }}
+                    />
+                    <div
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] gpu-accelerated"
+                        style={{ background: 'radial-gradient(closest-side, rgba(30, 58, 138, 0.2), transparent)' }}
+                    />
 
                     {/* Grid Pattern */}
                     <div className="absolute inset-0 bg-noise opacity-20 gpu-accelerated" />

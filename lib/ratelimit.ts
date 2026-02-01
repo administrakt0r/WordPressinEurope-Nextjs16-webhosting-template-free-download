@@ -22,7 +22,15 @@ export class RateLimiter {
 
     let timestamps = this.timestamps.get(token) || [];
     // Filter out timestamps older than the window
-    timestamps = timestamps.filter((t) => t > windowStart);
+    // Optimization: avoid filter (O(N) allocation) by finding the start index
+    const startIndex = timestamps.findIndex((t) => t > windowStart);
+    if (startIndex > 0) {
+      timestamps = timestamps.slice(startIndex);
+    } else if (startIndex === -1 && timestamps.length > 0) {
+      // No timestamp is > windowStart (all are old)
+      timestamps = [];
+    }
+    // If startIndex === 0, all timestamps are valid, no need to slice
 
     if (timestamps.length >= limit) {
       return false;
