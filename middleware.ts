@@ -1,10 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
-
-interface RequestWithIp extends NextRequest {
-  ip?: string;
-}
+import { generateCsp } from '@/lib/csp';
 
 export function middleware(request: NextRequest) {
   // Rate limiting
@@ -13,7 +10,7 @@ export function middleware(request: NextRequest) {
   // Note: request.ip is missing in the current NextRequest type definition in this environment.
   const ip = forwardedFor
     ? forwardedFor.split(',')[0].trim()
-    : ((request as RequestWithIp).ip || '127.0.0.1');
+    : ((request as unknown as RequestWithIp).ip || '127.0.0.1');
 
   if (!ratelimit.check(100, ip)) {
     return new NextResponse('Too Many Requests', {
@@ -26,28 +23,7 @@ export function middleware(request: NextRequest) {
   }
 
   const nonce = crypto.randomUUID();
-  const cspHeader = `
-    default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: https://images.unsplash.com;
-    font-src 'self' data:;
-    connect-src 'self' https://uptime.wpineu.com https://clients.wpineu.com https://wp.wpineu.com https://images.unsplash.com;
-    worker-src 'self' blob:;
-    manifest-src 'self';
-    media-src 'self';
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    frame-src 'none';
-    block-all-mixed-content;
-    upgrade-insecure-requests;
-  `;
-  // Replace newlines with spaces
-  const contentSecurityPolicyHeaderValue = cspHeader
-    .replace(/\s{2,}/g, ' ')
-    .trim();
+  const contentSecurityPolicyHeaderValue = generateCsp(nonce);
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-nonce', nonce);
