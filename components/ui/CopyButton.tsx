@@ -25,6 +25,7 @@ export function CopyButton({ text, className, ariaLabel = "Copy to clipboard" }:
 
   return (
     <button
+      type="button"
       onClick={handleCopy}
       className={cn(
         "inline-flex items-center justify-center p-1.5 rounded-md hover:bg-slate-800 text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",

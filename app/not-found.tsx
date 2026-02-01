@@ -1,21 +1,12 @@
 import Link from 'next/link';
 import { Home, HelpCircle } from 'lucide-react';
+import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 
 export default function NotFound() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[70vh] px-4 text-center overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          <div
-              className="absolute top-[20%] left-[20%] w-[40%] h-[40%]"
-              style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.1), transparent)' }}
-          />
-          <div
-              className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%]"
-              style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.05), transparent)' }}
-          />
-          <div className="absolute inset-0 bg-grid-pattern" />
-      </div>
+      <BackgroundEffects />
 
       <div className="relative z-10">
         <h1
