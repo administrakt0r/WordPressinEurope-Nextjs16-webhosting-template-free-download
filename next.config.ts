@@ -122,7 +122,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'X-DNS-Prefetch-Control',
-            value: 'on',
+            value: 'off',
           },
         ],
       },
