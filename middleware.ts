@@ -7,6 +7,12 @@ interface RequestWithIp extends NextRequest {
 }
 
 export function middleware(request: NextRequest) {
+  // Security: Block known malicious User-Agents
+  const userAgent = request.headers.get('user-agent') || '';
+  if (userAgent.match(/(sqlmap|nikto|nuclei|wpscan)/i)) {
+    return new NextResponse('Forbidden', { status: 403 });
+  }
+
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
   // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1

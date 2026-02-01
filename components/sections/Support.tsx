@@ -3,6 +3,7 @@ import { Mail, ArrowUpRight, Code2 } from "lucide-react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 import { CopyButton } from "@/components/ui/CopyButton";
+import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 import { getOffscreenOptimizations } from "@/lib/styles";
 
 const resources = [
@@ -26,15 +27,7 @@ export function Support() {
 
                 {/* Custom Solutions CTA */}
                 <div className="bg-slate-900 rounded-3xl p-8 md:p-16 text-center text-white mb-20 relative overflow-hidden">
-                    {/* GPU accelerated blurs to prevent repaint on scroll */}
-                    <div
-                        className="absolute top-0 right-0 w-[500px] h-[500px] -translate-y-1/2 translate-x-1/2 gpu-accelerated"
-                        style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.2), transparent)' }}
-                    />
-                    <div
-                        className="absolute bottom-0 left-0 w-[500px] h-[500px] translate-y-1/2 -translate-x-1/2 gpu-accelerated"
-                        style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.1), transparent)' }}
-                    />
+                    <BackgroundEffects />
 
                     <div className="relative z-10 max-w-3xl mx-auto">
                         <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm text-white flex items-center justify-center mx-auto mb-8">

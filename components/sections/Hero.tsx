@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Star, Server, Zap, Globe } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT, HOSTING_SPECS } from "@/lib/constants";
 
 const STARS = [1, 2, 3, 4, 5];
@@ -10,26 +11,7 @@ export function Hero() {
     return (
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-slate-950">
             {/* Dynamic Background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Gradient Orbs - Optimized: Replaced expensive CSS blurs with radial gradients for performance */}
-                <div
-                    className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] gpu-accelerated"
-                    style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.2), transparent)' }}
-                />
-                <div
-                    className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] gpu-accelerated"
-                    style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.1), transparent)' }}
-                />
-                <div
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] gpu-accelerated"
-                    style={{ background: 'radial-gradient(closest-side, rgba(30, 58, 138, 0.2), transparent)' }}
-                />
-
-                {/* Grid Pattern */}
-                {/* Localized noise.svg to reduce external network requests and improve reliability */}
-                <div className="absolute inset-0 bg-noise opacity-20 gpu-accelerated" />
-                <div className="absolute inset-0 bg-grid-pattern gpu-accelerated" />
-            </div>
+            <BackgroundEffects />
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
