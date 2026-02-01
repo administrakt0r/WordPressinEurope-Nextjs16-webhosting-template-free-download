@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Server } from "lucide-react";
@@ -14,6 +14,8 @@ export const Navbar = memo(function Navbar() {
     const pathname = usePathname();
     const isScrolled = useScroll(20);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
+    const menuButtonRef = useRef<HTMLButtonElement>(null);
 
     // UX: Lock body scroll when mobile menu is open
     useEffect(() => {
@@ -25,6 +27,58 @@ export const Navbar = memo(function Navbar() {
         return () => {
             document.body.style.overflow = "unset";
         };
+    }, [isMobileMenuOpen]);
+
+    // UX: Close menu on Escape key and trap focus
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (!isMobileMenuOpen) return;
+
+            if (e.key === "Escape") {
+                setIsMobileMenuOpen(false);
+                menuButtonRef.current?.focus();
+            }
+
+            if (e.key === "Tab") {
+                if (!mobileMenuRef.current) return;
+
+                const focusableElements = mobileMenuRef.current.querySelectorAll(
+                    'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+                );
+
+                if (focusableElements.length === 0) return;
+
+                const firstElement = focusableElements[0] as HTMLElement;
+                const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, [isMobileMenuOpen]);
+
+    // Focus management when menu opens
+    useEffect(() => {
+        if (isMobileMenuOpen && mobileMenuRef.current) {
+            // Find first focusable element
+            const firstFocusable = mobileMenuRef.current.querySelector('a, button') as HTMLElement;
+            if (firstFocusable) {
+                // Small timeout to ensure visibility
+                setTimeout(() => firstFocusable.focus(), 50);
+            }
+        }
     }, [isMobileMenuOpen]);
 
     return (
@@ -130,6 +184,7 @@ export const Navbar = memo(function Navbar() {
                         Get Started
                     </ExternalLink>
                     <button
+                        ref={menuButtonRef}
                         className="p-2 text-foreground rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -145,6 +200,7 @@ export const Navbar = memo(function Navbar() {
             {isMobileMenuOpen && (
                 <div
                     id="mobile-menu"
+                    ref={mobileMenuRef}
                     className="md:hidden fixed inset-0 top-[var(--navbar-height,72px)] bg-slate-950 z-40 overflow-y-auto"
                     role="navigation"
                     aria-label="Mobile navigation"
