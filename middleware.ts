@@ -1,12 +1,19 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
+import { generateCsp } from '@/lib/csp';
 
 interface RequestWithIp extends NextRequest {
   ip?: string;
 }
 
 export function middleware(request: NextRequest) {
+  // Block malicious User-Agents
+  const userAgent = request.headers.get('user-agent') || '';
+  if (/sqlmap|nikto|nuclei|wpscan/i.test(userAgent)) {
+    return new NextResponse('Forbidden', { status: 403 });
+  }
+
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
   // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
@@ -15,7 +22,12 @@ export function middleware(request: NextRequest) {
     ? forwardedFor.split(',')[0].trim()
     : ((request as RequestWithIp).ip || '127.0.0.1');
 
-  if (!ratelimit.check(100, ip)) {
+  // Exclude static assets from rate limiting
+  const isStaticAsset = /\.(svg|png|jpg|jpeg|gif|webp|css|js|ico|ttf|woff|woff2)$/i.test(
+    request.nextUrl.pathname
+  );
+
+  if (!isStaticAsset && !ratelimit.check(100, ip)) {
     return new NextResponse('Too Many Requests', {
       status: 429,
       headers: {
@@ -26,28 +38,7 @@ export function middleware(request: NextRequest) {
   }
 
   const nonce = crypto.randomUUID();
-  const cspHeader = `
-    default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: https://images.unsplash.com;
-    font-src 'self' data:;
-    connect-src 'self' https://uptime.wpineu.com https://clients.wpineu.com https://wp.wpineu.com https://images.unsplash.com;
-    worker-src 'self' blob:;
-    manifest-src 'self';
-    media-src 'self';
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    frame-src 'none';
-    block-all-mixed-content;
-    upgrade-insecure-requests;
-  `;
-  // Replace newlines with spaces
-  const contentSecurityPolicyHeaderValue = cspHeader
-    .replace(/\s{2,}/g, ' ')
-    .trim();
+  const contentSecurityPolicyHeaderValue = generateCsp(nonce);
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-nonce', nonce);

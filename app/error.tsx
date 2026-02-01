@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { AlertTriangle, RefreshCcw } from "lucide-react";
+import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 
 export default function Error({
   error,
@@ -17,14 +18,7 @@ export default function Error({
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[50vh] px-4 text-center overflow-hidden py-20">
-       {/* Background Elements */}
-       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div
-              className="absolute top-[20%] right-[20%] w-[40%] h-[40%]"
-              style={{ background: 'radial-gradient(closest-side, rgba(220, 38, 38, 0.05), transparent)' }}
-          />
-          <div className="absolute inset-0 bg-grid-pattern" />
-      </div>
+      <BackgroundEffects variant="error" />
 
       <div
         className="relative z-10 bg-background/50 backdrop-blur-sm p-8 rounded-3xl border border-red-900/20 shadow-xl max-w-md w-full"

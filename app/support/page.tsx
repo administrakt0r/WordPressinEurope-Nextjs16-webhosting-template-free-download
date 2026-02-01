@@ -3,6 +3,7 @@ import { Mail, MessageSquare, ExternalLink as ExternalLinkIcon, Clock, MapPin } 
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
+import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 
 export const metadata: Metadata = {
     title: "Support & Contact",
@@ -23,12 +24,7 @@ export default function SupportPage() {
         <div className="min-h-screen bg-slate-950">
             {/* Hero Section */}
             <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-                {/* Background */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px]" />
-                    <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-                </div>
+                <BackgroundEffects variant="support" />
 
                 <div className="container mx-auto px-4 md:px-6 relative z-10">
                     <div className="text-center max-w-3xl mx-auto">
