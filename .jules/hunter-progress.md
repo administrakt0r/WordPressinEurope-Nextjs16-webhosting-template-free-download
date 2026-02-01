@@ -58,6 +58,9 @@
 [2026-03-08] [middleware.ts] Fixed unsafe 'any' type cast by defining RequestWithIp interface
 [2026-03-08] [lib/content.tsx] Centralized PRICING_FEATURES
 [2026-03-08] [components/sections/PricingCard.tsx] Refactored to use centralized PRICING_FEATURES
+[2026-03-09] [middleware.ts] Added missing User-Agent blocking and static asset bypass logic.
+[2026-03-09] [lib/csp.ts] Extracted CSP logic to reduce duplication in middleware.
+[2026-03-09] [components/ui/BackgroundEffects.tsx] Created component to remove duplicate background UI code in `app/not-found.tsx`, `app/error.tsx`, and `app/support/page.tsx`.
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
