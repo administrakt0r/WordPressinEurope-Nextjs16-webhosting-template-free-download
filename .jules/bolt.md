@@ -25,3 +25,11 @@
 ## 2026-10-27 - Resource Hints Timing
 **Learning:** Placing resource hints (`preconnect`, `dns-prefetch`) in client-side components (e.g., inside `useEffect` or rendered JSX) delays their execution until after hydration.
 **Action:** Move global resource hints to `app/layout.tsx` (Server Component) as standard `<link>` tags in the `<head>` (or `<html>`) to ensure the browser processes them immediately upon receiving the initial HTML.
+
+## 2026-10-27 - Navbar Scroll Re-rendering
+**Learning:** The `Navbar` component re-renders entirely on every scroll event because `isScrolled` is state. Extracting static parts (like `NAV_LINKS` mapping) into memoized child components prevents expensive re-reconciliation of the navigation list.
+**Action:** When a parent component tracks scroll state, isolate static children into `memo` components to avoid waterfall re-renders.
+
+## 2026-10-27 - Offscreen Footer Optimization
+**Learning:** The Footer is static and always offscreen initially. Applying `content-visibility: auto` allows the browser to skip rendering it until the user scrolls near the bottom, improving Initial Paint metrics.
+**Action:** Use `getOffscreenOptimizations` helper for heavy, static, below-the-fold sections like Footers.

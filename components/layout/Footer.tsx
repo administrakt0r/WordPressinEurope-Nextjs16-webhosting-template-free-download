@@ -4,10 +4,15 @@ import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { HOSTING_SERVICES, RESOURCES, LEGAL_LINKS } from "@/lib/navigation";
+import { getOffscreenOptimizations } from "@/lib/styles";
 
 export function Footer() {
     return (
-        <footer className="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
+        <footer
+            className="bg-slate-900 border-t border-slate-800 pt-16 pb-8"
+            // ⚡ Performance: content-visibility skips rendering work when off-screen
+            style={getOffscreenOptimizations("400px")}
+        >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* Brand Column */}
