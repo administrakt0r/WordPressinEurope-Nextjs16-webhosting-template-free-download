@@ -27,9 +27,12 @@ describe('Middleware Security Headers', () => {
     expect(headers.get('Strict-Transport-Security')).toBe('max-age=63072000; includeSubDomains; preload');
     expect(headers.get('Permissions-Policy')).toContain('camera=()');
     expect(headers.get('X-Permitted-Cross-Domain-Policies')).toBe('none');
+    expect(headers.get('Cross-Origin-Opener-Policy')).toBe('same-origin');
+    expect(headers.get('Cross-Origin-Resource-Policy')).toBe('same-origin');
+    expect(headers.get('X-DNS-Prefetch-Control')).toBe('on');
   });
 
-  it('should return 429 when rate limit is exceeded', () => {
+  it('should return 429 with security headers when rate limit is exceeded', () => {
     vi.spyOn(ratelimit, 'check').mockReturnValue(false);
 
     const request = new NextRequest(new URL('https://wpineu.com/'));
@@ -37,5 +40,11 @@ describe('Middleware Security Headers', () => {
 
     expect(response.status).toBe(429);
     expect(response.headers.get('Retry-After')).toBe('60');
+
+    // Security headers should also be present on error responses
+    expect(response.headers.get('Content-Security-Policy')).toBeDefined();
+    expect(response.headers.get('X-Frame-Options')).toBe('DENY');
+    expect(response.headers.get('Strict-Transport-Security')).toBeDefined();
+    expect(response.headers.get('Cross-Origin-Opener-Policy')).toBe('same-origin');
   });
 });
