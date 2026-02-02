@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -8,6 +8,12 @@ import { SkipLink } from "@/components/ui/SkipLink";
 import { ORGANIZATION_JSON_LD } from "@/lib/json-ld";
 import { inter, outfit } from "@/lib/fonts";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  themeColor: '#020617',
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wpineu.com'),

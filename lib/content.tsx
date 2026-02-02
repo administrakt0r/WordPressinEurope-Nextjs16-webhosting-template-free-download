@@ -65,3 +65,11 @@ export const PRICING_FEATURES = [
     "Latest cPanel with 150+ 1-click apps",
     "NO advertisements or hidden fees"
 ];
+
+export const NOT_FOUND_CONTENT = {
+    CODE: "404",
+    TITLE: "Page Not Found",
+    DESCRIPTION: "Oops! The page you are looking for seems to have wandered off into the digital void.",
+    BUTTON_HOME: "Back to Home",
+    BUTTON_SUPPORT: "Contact Support"
+};
