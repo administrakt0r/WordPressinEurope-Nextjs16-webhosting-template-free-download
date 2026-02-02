@@ -131,3 +131,20 @@ h6 {
     outline: 2px solid theme('colors.blue.500');
     outline-offset: 2px;
 }
+
+/* Print optimization */
+@media print {
+  nav, footer, button, [role="button"], .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+}
