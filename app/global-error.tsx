@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { AlertTriangle, RotateCcw } from 'lucide-react';
 import { inter, outfit } from "@/lib/fonts";
+import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 import "./globals.css";
 
 export default function GlobalError({
@@ -21,18 +22,7 @@ export default function GlobalError({
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${outfit.variable} antialiased bg-slate-950 text-slate-50`}>
         <div className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center overflow-hidden">
-          {/* Background Elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div
-                  className="absolute top-[20%] left-[20%] w-[40%] h-[40%] gpu-accelerated"
-                  style={{ background: 'radial-gradient(closest-side, rgba(220, 38, 38, 0.1), transparent)' }}
-              />
-              <div
-                  className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%] gpu-accelerated"
-                  style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.05), transparent)' }}
-              />
-              <div className="absolute inset-0 bg-grid-pattern opacity-20" />
-          </div>
+          <BackgroundEffects variant="default" />
 
           <div className="relative z-10" role="alert" aria-live="assertive">
             <div className="w-24 h-24 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-8">
