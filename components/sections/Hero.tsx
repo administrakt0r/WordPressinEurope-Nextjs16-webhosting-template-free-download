@@ -13,16 +13,13 @@ export function Hero() {
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Gradient Orbs - Optimized: Replaced expensive CSS blurs with radial gradients for performance */}
                 <div
-                    className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] gpu-accelerated"
-                    style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.2), transparent)' }}
+                    className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] gpu-accelerated bg-[radial-gradient(closest-side,rgba(37,99,235,0.2),transparent)]"
                 />
                 <div
-                    className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] gpu-accelerated"
-                    style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.1), transparent)' }}
+                    className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] gpu-accelerated bg-[radial-gradient(closest-side,rgba(234,179,8,0.1),transparent)]"
                 />
                 <div
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] gpu-accelerated"
-                    style={{ background: 'radial-gradient(closest-side, rgba(30, 58, 138, 0.2), transparent)' }}
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] gpu-accelerated bg-[radial-gradient(closest-side,rgba(30,58,138,0.2),transparent)]"
                 />
 
                 {/* Grid Pattern */}
@@ -194,8 +191,7 @@ export function Hero() {
 
                         {/* Glow Effects */}
                         <div
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] -z-10 gpu-accelerated"
-                            style={{ background: 'radial-gradient(closest-side, rgba(59, 130, 246, 0.1), transparent)' }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] -z-10 gpu-accelerated bg-[radial-gradient(closest-side,rgba(59,130,246,0.1),transparent)]"
                         />
                     </div>
                 </div>

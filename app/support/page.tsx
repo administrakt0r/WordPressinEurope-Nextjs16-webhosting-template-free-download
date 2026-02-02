@@ -3,6 +3,7 @@ import { Mail, MessageSquare, ExternalLink as ExternalLinkIcon, Clock, MapPin } 
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
     title: "Support & Contact",
@@ -32,6 +33,12 @@ export default function SupportPage() {
 
                 <div className="container mx-auto px-4 md:px-6 relative z-10">
                     <div className="text-center max-w-3xl mx-auto">
+                        <div className="flex justify-center">
+                            <Breadcrumbs
+                                items={[{ label: 'Support', href: '/support' }]}
+                                className="mb-8"
+                            />
+                        </div>
                         <h1 className="text-5xl md:text-6xl font-bold font-heading text-foreground leading-tight mb-6">
                             We&apos;re Here to <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Help</span>
                         </h1>
