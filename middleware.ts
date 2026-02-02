@@ -15,16 +15,6 @@ export function middleware(request: NextRequest) {
     ? forwardedFor.split(',')[0].trim()
     : ((request as RequestWithIp).ip || '127.0.0.1');
 
-  if (!ratelimit.check(100, ip)) {
-    return new NextResponse('Too Many Requests', {
-      status: 429,
-      headers: {
-        'Retry-After': '60',
-        'Content-Type': 'text/plain',
-      },
-    });
-  }
-
   const nonce = crypto.randomUUID();
   const cspHeader = `
     default-src 'self';
@@ -49,18 +39,32 @@ export function middleware(request: NextRequest) {
     .replace(/\s{2,}/g, ' ')
     .trim();
 
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-nonce', nonce);
-  requestHeaders.set(
-    'Content-Security-Policy',
-    contentSecurityPolicyHeaderValue
-  );
+  let response: NextResponse;
 
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  if (!ratelimit.check(100, ip)) {
+    response = new NextResponse('Too Many Requests', {
+      status: 429,
+      headers: {
+        'Retry-After': '60',
+        'Content-Type': 'text/plain',
+      },
+    });
+  } else {
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set('x-nonce', nonce);
+    requestHeaders.set(
+      'Content-Security-Policy',
+      contentSecurityPolicyHeaderValue
+    );
+
+    response = NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
+  }
+
+  // Apply Security Headers to all responses (including 429)
   response.headers.set(
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue
@@ -77,6 +81,9 @@ export function middleware(request: NextRequest) {
     'max-age=63072000; includeSubDomains; preload'
   );
   response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
+  response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+  response.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
+  response.headers.set('X-DNS-Prefetch-Control', 'on');
 
   return response;
 }
