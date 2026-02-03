@@ -1,4 +1,4 @@
-import { memo, type ElementType } from 'react';
+import { type ElementType } from 'react';
 
 export interface ServiceFeature {
     icon: ElementType;
@@ -6,7 +6,7 @@ export interface ServiceFeature {
     description: string;
 }
 
-export const ServiceFeatureCard = memo(function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
+export function ServiceFeatureCard({ feature }: { feature: ServiceFeature }) {
     const Icon = feature.icon;
     return (
         <div
@@ -19,4 +19,4 @@ export const ServiceFeatureCard = memo(function ServiceFeatureCard({ feature }: 
             <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
         </div>
     );
-});
+}
