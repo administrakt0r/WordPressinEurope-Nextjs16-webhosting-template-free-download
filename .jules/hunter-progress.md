@@ -64,6 +64,10 @@
 [2026-03-09] [app/not-found.tsx] Refactored to use BackgroundEffects (duplicate code reduction)
 [2026-03-09] [app/global-error.tsx] Refactored to use BackgroundEffects (duplicate code reduction)
 [2026-03-09] [app/globals.css] Added @media print styles to hide navigation/footer
+[2026-03-10] [components/ui/TechnologyLogo.tsx] Removed unnecessary memo wrapper (Server Component child)
+[2026-03-10] [components/sections/FeatureCard.tsx] Removed unnecessary memo wrapper (Server Component child)
+[2026-03-10] [components/sections/PricingCard.tsx] Removed unnecessary memo wrapper (Server Component child)
+[2026-03-10] [components/sections/ServiceFeatureCard.tsx] Removed unnecessary memo wrapper (Server Component child)
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
