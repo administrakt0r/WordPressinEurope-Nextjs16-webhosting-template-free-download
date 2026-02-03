@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Server } from "lucide-react";
@@ -60,6 +60,75 @@ const DesktopNavLinks = memo(function DesktopNavLinks({ pathname }: { pathname: 
     );
 });
 
+// Optimization: Memoized MobileNavLinks to separate the list rendering from Navbar state (isScrolled).
+// This prevents the mobile menu content from re-reconciling when the user scrolls (which changes navbar height/bg).
+const MobileNavLinks = memo(function MobileNavLinks({
+    pathname,
+    onClose
+}: {
+    pathname: string | null;
+    onClose: () => void;
+}) {
+    return (
+        <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
+            {NAV_LINKS.map((link) => {
+                const isActive =
+                    pathname === link.href ||
+                    (link.href !== "/" &&
+                        pathname?.startsWith(`${link.href}/`) &&
+                        !link.href.startsWith("http") &&
+                        !link.href.startsWith("#"));
+
+                if (link.href.startsWith("http")) {
+                    return (
+                        <ExternalLink
+                            key={link.name}
+                            href={link.href}
+                            className="text-lg font-medium py-3 border-b border-gray-800/50 last:border-0 text-foreground focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all"
+                            onClick={onClose}
+                        >
+                            {link.name}
+                        </ExternalLink>
+                    );
+                }
+
+                return (
+                    <Link
+                        key={link.name}
+                        href={link.href}
+                        aria-current={isActive ? "page" : undefined}
+                        className={cn(
+                            "text-lg font-medium py-3 border-b border-gray-800/50 last:border-0 focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all",
+                            isActive ? "text-primary pl-2" : "text-foreground"
+                        )}
+                        onClick={onClose}
+                    >
+                        {link.name}
+                    </Link>
+                );
+            })}
+            <div className="flex flex-col gap-4 mt-6">
+                <ExternalLink
+                    href={EXTERNAL_LINKS.CLIENT_PORTAL}
+                    className="w-full text-center py-3.5 rounded-lg border border-gray-700 font-medium hover:bg-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    onClick={onClose}
+                    aria-label="Sign in to client portal"
+                >
+                    Sign In
+                </ExternalLink>
+                <ExternalLink
+                    href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
+                    className="w-full text-center py-3.5 rounded-lg bg-primary text-white font-medium hover:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    onClick={onClose}
+                    aria-label="Get started with free hosting"
+                >
+                    Get Started
+                </ExternalLink>
+            </div>
+        </div>
+    );
+});
+
 export const Navbar = memo(function Navbar() {
     const pathname = usePathname();
     const isScrolled = useScroll(20);
@@ -76,6 +145,11 @@ export const Navbar = memo(function Navbar() {
             document.body.style.overflow = "unset";
         };
     }, [isMobileMenuOpen]);
+
+    // Optimization: Stable callback to prevent MobileNavLinks re-renders
+    const handleCloseMobileMenu = useCallback(() => {
+        setIsMobileMenuOpen(false);
+    }, []);
 
     return (
         <nav
@@ -160,62 +234,7 @@ export const Navbar = memo(function Navbar() {
                         '--navbar-height': isScrolled ? '72px' : '88px',
                     } as React.CSSProperties}
                 >
-                    <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
-                        {NAV_LINKS.map((link) => {
-                            const isActive =
-                                pathname === link.href ||
-                                (link.href !== "/" &&
-                                    pathname?.startsWith(`${link.href}/`) &&
-                                    !link.href.startsWith("http") &&
-                                    !link.href.startsWith("#"));
-
-                            if (link.href.startsWith("http")) {
-                                return (
-                                    <ExternalLink
-                                        key={link.name}
-                                        href={link.href}
-                                        className="text-lg font-medium py-3 border-b border-gray-800/50 last:border-0 text-foreground focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                    >
-                                        {link.name}
-                                    </ExternalLink>
-                                );
-                            }
-
-                            return (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    aria-current={isActive ? "page" : undefined}
-                                    className={cn(
-                                        "text-lg font-medium py-3 border-b border-gray-800/50 last:border-0 focus-visible:outline-none focus-visible:text-primary focus-visible:pl-2 transition-all",
-                                        isActive ? "text-primary pl-2" : "text-foreground"
-                                    )}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    {link.name}
-                                </Link>
-                            );
-                        })}
-                        <div className="flex flex-col gap-4 mt-6">
-                            <ExternalLink
-                                href={EXTERNAL_LINKS.CLIENT_PORTAL}
-                                className="w-full text-center py-3.5 rounded-lg border border-gray-700 font-medium hover:bg-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                aria-label="Sign in to client portal"
-                            >
-                                Sign In
-                            </ExternalLink>
-                            <ExternalLink
-                                href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                                className="w-full text-center py-3.5 rounded-lg bg-primary text-white font-medium hover:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                aria-label="Get started with free hosting"
-                            >
-                                Get Started
-                            </ExternalLink>
-                        </div>
-                    </div>
+                    <MobileNavLinks pathname={pathname} onClose={handleCloseMobileMenu} />
                 </div>
             )}
         </nav>
