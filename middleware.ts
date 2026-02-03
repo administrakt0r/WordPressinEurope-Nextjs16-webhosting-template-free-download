@@ -6,14 +6,29 @@ interface RequestWithIp extends NextRequest {
   ip?: string;
 }
 
+const BLOCKED_USER_AGENTS = [
+  'sqlmap',
+  'nikto',
+  'nuclei',
+  'wpscan',
+  'python-requests',
+  'nessus',
+  'acunetix',
+];
+
 export function middleware(request: NextRequest) {
+  // Block malicious User-Agents
+  const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
+  if (BLOCKED_USER_AGENTS.some((ua) => userAgent.includes(ua))) {
+    return new NextResponse('Forbidden', { status: 403 });
+  }
+
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
-  // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
-  // Note: request.ip is missing in the current NextRequest type definition in this environment.
-  const ip = forwardedFor
-    ? forwardedFor.split(',')[0].trim()
-    : ((request as RequestWithIp).ip || '127.0.0.1');
+  // Prioritize request.ip (platform provided) over X-Forwarded-For (potentially spoofed)
+  // Fallback to X-Forwarded-For if request.ip is missing (e.g. self-hosted without platform logic)
+  const requestIp = (request as RequestWithIp).ip;
+  const ip = requestIp || (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
 
   const nonce = crypto.randomUUID();
   const cspHeader = `

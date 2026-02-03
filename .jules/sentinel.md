@@ -47,3 +47,8 @@
 **Vulnerability:** The `isSafeUrl` function allowed protocol-relative URLs (starting with `//`), which could lead to Open Redirect vulnerabilities if used in redirection contexts or misleading users about the destination protocol.
 **Learning:** `new URL('//example.com')` throws an error without a base, causing the validation to fall through to the catch block where it was treated as safe. Explicitly checking for `//` is necessary.
 **Prevention:** Added an explicit check `if (url.startsWith('//')) return false;` in `lib/security.ts`.
+
+## 2025-05-24 - IP Spoofing Risk in Middleware
+**Vulnerability:** Middleware blindly trusted `X-Forwarded-For` header over platform-provided `request.ip`, allowing attackers to spoof IPs and bypass rate limiting.
+**Learning:** Even if a comment claims `request.ip` is missing, verify it on modern versions. Blindly trusting headers without validation or correct priority order negates security controls.
+**Prevention:** Always prioritize platform-provided IP (`request.ip` on Vercel/Next.js) and only fall back to headers if necessary and understanding the risk.
