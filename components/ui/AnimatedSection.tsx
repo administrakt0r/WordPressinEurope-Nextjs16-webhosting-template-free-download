@@ -1,6 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 interface AnimatedSectionProps {
     children: React.ReactNode;
@@ -17,21 +17,22 @@ interface AnimatedSectionProps {
  * Do not use this component without wrapping it (or a parent) in LazyMotion.
  */
 export function AnimatedSection({ children, direction = "up", delay = 0, className = "" }: AnimatedSectionProps) {
+    const shouldReduceMotion = useReducedMotion();
     const offset = 15; // Reduced from 20 for smoother feel
 
     const variants = {
         hidden: {
             opacity: 0,
-            x: direction === "left" ? -offset : direction === "right" ? offset : 0,
-            y: direction === "up" ? offset : direction === "down" ? -offset : 0,
+            x: shouldReduceMotion ? 0 : (direction === "left" ? -offset : direction === "right" ? offset : 0),
+            y: shouldReduceMotion ? 0 : (direction === "up" ? offset : direction === "down" ? -offset : 0),
         },
         visible: {
             opacity: 1,
             x: 0,
             y: 0,
             transition: {
-                duration: 0.4,
-                delay: delay,
+                duration: shouldReduceMotion ? 0 : 0.4,
+                delay: shouldReduceMotion ? 0 : delay,
                 ease: "easeOut" as const,
             },
         },
