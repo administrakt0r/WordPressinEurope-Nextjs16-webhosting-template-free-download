@@ -16,6 +16,8 @@ export function safeJsonLd(data: Record<string, unknown>): string {
              .replace(/\u2029/g, '\\u2029');
 }
 
+const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
+
 /**
  * Validates a URL to ensure it uses a safe protocol.
  * Prevents XSS by blocking dangerous schemes like javascript:, data:, vbscript:.
@@ -34,7 +36,6 @@ export function isSafeUrl(url: string): boolean {
 
   try {
     const parsed = new URL(url);
-    const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
     return SAFE_PROTOCOLS.includes(parsed.protocol);
   } catch {
     // If URL parsing fails, checks for potential dangerous schemes that might have bypassed parsing
