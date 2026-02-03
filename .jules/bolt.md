@@ -33,3 +33,7 @@
 ## 2026-10-27 - Offscreen Footer Optimization
 **Learning:** The Footer is static and always offscreen initially. Applying `content-visibility: auto` allows the browser to skip rendering it until the user scrolls near the bottom, improving Initial Paint metrics.
 **Action:** Use `getOffscreenOptimizations` helper for heavy, static, below-the-fold sections like Footers.
+
+## 2026-10-28 - React Memoization Anti-pattern
+**Learning:** Passing inline arrow functions (e.g., `onClose={() => setIsOpen(false)}`) to `memo`ized components invalidates memoization because a new function reference is created on every render.
+**Action:** Always wrap event handlers passed to memoized components in `useCallback` to ensure prop stability.
