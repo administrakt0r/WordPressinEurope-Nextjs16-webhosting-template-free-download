@@ -79,7 +79,7 @@ const Support = dynamic(() => import("@/components/sections/Support").then(mod =
 });
 
 export const metadata: Metadata = {
-  title: "Free WordPress Hosting with cPanel & LiteSpeed | WPinEU",
+  title: "Free WordPress Hosting with cPanel & LiteSpeed",
   description: "Get 100% free WordPress hosting in Europe. Includes cPanel, LiteSpeed, Redis, and NVMe SSD. No ads, no credit card required. Start your website today.",
   alternates: {
     canonical: "https://wpineu.com",
