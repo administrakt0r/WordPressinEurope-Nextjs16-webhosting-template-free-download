@@ -37,7 +37,7 @@ export function CopyButton({ text, className, ariaLabel = "Copy to clipboard" }:
       >
         {copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}
       </button>
-      <span className="sr-only" role="status" aria-live="polite">
+      <span role="status" className="sr-only" aria-live="polite">
         {copied ? "Copied to clipboard" : ""}
       </span>
     </>
