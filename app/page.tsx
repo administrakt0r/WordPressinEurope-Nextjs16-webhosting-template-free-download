@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { Skeleton } from "@/components/ui/Skeleton";
+import { SkeletonList } from "@/components/ui/SkeletonList";
 import { WEBSITE_JSON_LD, SERVICE_JSON_LD, FAQ_JSON_LD } from "@/lib/json-ld";
 
 // Dynamic imports for below-the-fold components
@@ -11,15 +12,11 @@ const Features = dynamic(() => import("@/components/sections/Features").then(mod
     <section className="py-20 bg-slate-950 min-h-[800px] flex items-center justify-center">
       <div className="container px-4">
         <div className="flex justify-center gap-8 mb-20">
-           {[1, 2, 3, 4, 5].map((i) => (
-             <Skeleton key={i} className="h-12 w-12 rounded-full" />
-           ))}
+           <SkeletonList count={5} className="h-12 w-12 rounded-full" />
         </div>
         <Skeleton className="h-12 w-64 mx-auto mb-12" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <Skeleton key={i} className="h-64 w-full rounded-2xl" />
-          ))}
+          <SkeletonList count={6} className="h-64 w-full rounded-2xl" />
         </div>
       </div>
     </section>
@@ -59,9 +56,7 @@ const FAQ = dynamic(() => import("@/components/sections/FAQ").then(mod => ({ def
       <div className="container px-4 max-w-3xl">
         <Skeleton className="h-12 w-48 mx-auto mb-12" />
         <div className="space-y-4">
-          {[1, 2, 3, 4].map((i) => (
-            <Skeleton key={i} className="h-20 w-full rounded-2xl" />
-          ))}
+          <SkeletonList count={4} className="h-20 w-full rounded-2xl" />
         </div>
       </div>
     </section>

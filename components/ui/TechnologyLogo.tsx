@@ -1,11 +1,8 @@
 import Image from "next/image";
 
-export interface TechnologyLogoProps {
-    name: string;
-    logo?: string;
-    width?: number;
-    height?: number;
-}
+export type TechnologyLogoProps =
+    | { name: string; logo: string; width: number; height: number }
+    | { name: string; logo?: undefined; width?: number; height?: number };
 
 export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
     return (
