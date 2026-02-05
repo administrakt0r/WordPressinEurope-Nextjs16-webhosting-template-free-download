@@ -6,19 +6,10 @@ interface RequestWithIp extends NextRequest {
   ip?: string;
 }
 
-export function middleware(request: NextRequest) {
-  // Rate limiting
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
-  // Note: request.ip is missing in the current NextRequest type definition in this environment.
-  const ip = forwardedFor
-    ? forwardedFor.split(',')[0].trim()
-    : ((request as RequestWithIp).ip || '127.0.0.1');
-
-  const nonce = crypto.randomUUID();
-  const cspHeader = `
+// Pre-compute the CSP template to avoid regex and string allocation on every request
+const CSP_TEMPLATE = `
     default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
+    script-src 'self' 'nonce-NONCE_PLACEHOLDER' 'strict-dynamic';
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: https://images.unsplash.com;
     font-src 'self' data:;
@@ -33,11 +24,22 @@ export function middleware(request: NextRequest) {
     frame-src 'none';
     block-all-mixed-content;
     upgrade-insecure-requests;
-  `;
-  // Replace newlines with spaces
-  const contentSecurityPolicyHeaderValue = cspHeader
-    .replace(/\s{2,}/g, ' ')
-    .trim();
+`
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+
+export function middleware(request: NextRequest) {
+  // Rate limiting
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
+  // Note: request.ip is missing in the current NextRequest type definition in this environment.
+  const ip = forwardedFor
+    ? forwardedFor.split(',')[0].trim()
+    : ((request as RequestWithIp).ip || '127.0.0.1');
+
+  const nonce = crypto.randomUUID();
+  // Optimization: Use simple string replacement instead of regex/template literal for per-request CSP generation
+  const contentSecurityPolicyHeaderValue = CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
 
   let response: NextResponse;
 

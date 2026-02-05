@@ -27,18 +27,27 @@ describe('RateLimiter', () => {
     expect(limiter.check(1, 'ip3')).toBe(true);
   });
 
-  it('should clean up old tokens when uniqueTokenPerInterval is exceeded', () => {
-    // Config: Max 2 unique tokens.
-    const limiter = new RateLimiter({ interval: 10000, uniqueTokenPerInterval: 2 });
+  it('should follow LRU eviction policy', () => {
+    const limiter = new RateLimiter({ interval: 100000, uniqueTokenPerInterval: 2 });
 
-    limiter.check(1, 'A'); // stored: [A]
-    limiter.check(1, 'B'); // stored: [A, B]
+    // Fill capacity
+    limiter.check(1, 'A'); // Usage: 1/1. Keys: [A]
+    limiter.check(1, 'B'); // Usage: 1/1. Keys: [A, B]
 
-    expect(limiter.check(1, 'A')).toBe(false); // A is already used/blocked (limit 1)
+    // Access A again. This should move it to the end (most recently used).
+    // A is blocked (1/1), but we accessed it.
+    limiter.check(1, 'A');
+    // Keys should be: [B, A]
 
-    limiter.check(1, 'C'); // stored: [A, B, C] -> Cleanup triggers -> stored: [B, C]
+    // Add new token C. Should evict the least recently used (B).
+    limiter.check(1, 'C');
+    // Keys should be: [A, C]
 
-    // A should be forgotten, so treated as new
-    expect(limiter.check(1, 'A')).toBe(true);
+    // Verify A should remain (remembered), so it is still blocked.
+    // NOTE: We check A first to avoid evicting A by inserting B!
+    expect(limiter.check(1, 'A')).toBe(false);
+
+    // Verify B should be evicted (forgotten), so it starts fresh.
+    expect(limiter.check(1, 'B')).toBe(true);
   });
 });
