@@ -33,3 +33,7 @@
 ## 2026-10-27 - Offscreen Footer Optimization
 **Learning:** The Footer is static and always offscreen initially. Applying `content-visibility: auto` allows the browser to skip rendering it until the user scrolls near the bottom, improving Initial Paint metrics.
 **Action:** Use `getOffscreenOptimizations` helper for heavy, static, below-the-fold sections like Footers.
+
+## 2026-10-27 - Middleware Header Generation
+**Learning:** Generating CSP headers inside the middleware request handler using regex replacement creates per-request overhead. Since the CSP policy structure is static, the template should be pre-calculated at module scope.
+**Action:** Move static header template generation outside the `middleware` function and use simple string replacement or concatenation for dynamic values (like nonces) instead of regex.
