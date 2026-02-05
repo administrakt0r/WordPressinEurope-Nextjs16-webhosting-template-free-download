@@ -6,6 +6,8 @@
  * @param data The JSON object to serialize.
  * @returns A string containing the serialized JSON with escaped characters.
  */
+const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
+
 export function safeJsonLd(data: Record<string, unknown>): string {
   const json = JSON.stringify(data);
   return json.replace(/</g, '\\u003c')
@@ -15,6 +17,8 @@ export function safeJsonLd(data: Record<string, unknown>): string {
              .replace(/\u2028/g, '\\u2028')
              .replace(/\u2029/g, '\\u2029');
 }
+
+const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
 
 /**
  * Validates a URL to ensure it uses a safe protocol.
@@ -34,7 +38,6 @@ export function isSafeUrl(url: string): boolean {
 
   try {
     const parsed = new URL(url);
-    const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
     return SAFE_PROTOCOLS.includes(parsed.protocol);
   } catch {
     // If URL parsing fails, checks for potential dangerous schemes that might have bypassed parsing

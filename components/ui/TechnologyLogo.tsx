@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { memo } from "react";
 
 export interface TechnologyLogoProps {
     name: string;
@@ -43,4 +42,4 @@ export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, 
             )}
         </div>
     );
-});
+}
