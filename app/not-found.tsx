@@ -24,6 +24,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/"
+            replace
             className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <Home size={20} aria-hidden="true" />

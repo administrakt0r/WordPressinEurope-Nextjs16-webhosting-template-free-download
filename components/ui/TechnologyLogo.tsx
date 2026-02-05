@@ -1,12 +1,9 @@
 import Image from "next/image";
 import { memo } from "react";
 
-export interface TechnologyLogoProps {
-    name: string;
-    logo?: string;
-    width?: number;
-    height?: number;
-}
+export type TechnologyLogoProps =
+    | { name: string; logo: string; width: number; height: number }
+    | { name: string; logo?: undefined; width?: number; height?: number };
 
 export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
     return (
