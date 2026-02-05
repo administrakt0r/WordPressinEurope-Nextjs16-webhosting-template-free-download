@@ -12,7 +12,7 @@ export interface TechnologyLogoProps {
     priority?: boolean;
 }
 
-export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height, priority = false }: TechnologyLogoProps) {
+export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
     return (
         <div className="group flex items-center justify-center" title={name}>
             {logo && width && height ? (
