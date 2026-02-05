@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { memo } from "react";
 import { cn } from "@/lib/utils";
 import { isSafeUrl } from "@/lib/security";
 
@@ -14,7 +15,7 @@ interface ExternalLinkProps {
  * A reusable component for external links that handles security and accessibility best practices.
  * Automatically adds target="_blank", rel="noopener noreferrer", and screen-reader only text.
  */
-export function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
+export const ExternalLink = memo(function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
   const safeHref = isSafeUrl(href) ? href : "#";
 
   return (
@@ -30,4 +31,4 @@ export function ExternalLink({ href, children, className, ariaLabel, onClick }: 
       <span className="sr-only">(opens in a new tab)</span>
     </Link>
   );
-}
+});
