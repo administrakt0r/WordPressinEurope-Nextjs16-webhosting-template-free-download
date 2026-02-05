@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, memo } from "react";
+import { useState, memo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Server } from "lucide-react";
@@ -9,6 +9,7 @@ import { NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useScroll } from "@/hooks/useScroll";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 // Optimization: Memoized DesktopNavLinks to avoid re-rendering links when Navbar state (isScrolled) changes.
 // This isolates the list rendering from the scroll event updates.
@@ -66,16 +67,7 @@ export const Navbar = memo(function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // UX: Lock body scroll when mobile menu is open
-    useEffect(() => {
-        if (isMobileMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
-        }
-        return () => {
-            document.body.style.overflow = "unset";
-        };
-    }, [isMobileMenuOpen]);
+    useScrollLock(isMobileMenuOpen);
 
     return (
         <nav

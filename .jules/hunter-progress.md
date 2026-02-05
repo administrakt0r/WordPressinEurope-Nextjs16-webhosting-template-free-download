@@ -64,11 +64,15 @@
 [2026-03-09] [app/not-found.tsx] Refactored to use BackgroundEffects (duplicate code reduction)
 [2026-03-09] [app/global-error.tsx] Refactored to use BackgroundEffects (duplicate code reduction)
 [2026-03-09] [app/globals.css] Added @media print styles to hide navigation/footer
+[2026-03-09] [components/sections/PricingCard.tsx] Removed React.memo from Server Component
+[2026-03-09] [components/sections/FeatureCard.tsx] Removed React.memo from Server Component
+[2026-03-09] [components/ui/TechnologyLogo.tsx] Removed React.memo from Server Component
+[2026-03-09] [app/not-found.tsx] Added missing replace prop to "Back to Home" Link
 
 ## Known Issues
 <!-- Issues found but not yet fixed -->
 [2026-03-03] Missing `app/manifest.ts` (PWA feature) - Requires Feature task, not Bug Fix.
-[2026-03-03] Missing JSDoc in `lib/utils.ts` and `lib/links.ts` - Requires Improvement task.
 
 ## False Positives
 <!-- Things that look like errors but aren't -->
+[2026-03-03] Missing JSDoc in `lib/utils.ts` and `lib/links.ts` - Found existing JSDoc.
