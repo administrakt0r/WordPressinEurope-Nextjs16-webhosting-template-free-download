@@ -1,10 +1,18 @@
 import Image from "next/image";
 
-export type TechnologyLogoProps =
-    | { name: string; logo: string; width: number; height: number }
-    | { name: string; logo?: undefined; width?: number; height?: number };
+export interface TechnologyLogoProps {
+    name: string;
+    /** URL of the logo image */
+    logo?: string;
+    /** Required if logo is provided */
+    width?: number;
+    /** Required if logo is provided */
+    height?: number;
+    /** Set to true for LCP images */
+    priority?: boolean;
+}
 
-export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
+export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height, priority = false }: TechnologyLogoProps) {
     return (
         <div className="group flex items-center justify-center" title={name}>
             {logo && width && height ? (
@@ -13,11 +21,12 @@ export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProp
                     // ⚡ Performance: Enforce aspect ratio to prevent CLS while image loads
                     style={{ aspectRatio: `${width} / ${height}` }}
                 >
-                        <Image
+                    <Image
                         src={logo}
                         alt={name}
                         width={width}
                         height={height}
+                        priority={priority}
                         // ⚡ Performance: Optimized sizes to handle wide logos (like cPanel) correctly
                         // Previous 100px/150px was too small for ~225px wide logos on high DPI
                         sizes="(max-width: 768px) 200px, 300px"

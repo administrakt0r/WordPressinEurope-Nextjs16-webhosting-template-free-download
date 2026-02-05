@@ -32,11 +32,15 @@ export class RateLimiter {
     }
     // If startIndex === 0, all timestamps are valid, no need to slice
 
-    if (timestamps.length >= limit) {
-      return false;
+    // LRU Policy: Delete the token so re-insertion moves it to the end of the Map
+    this.timestamps.delete(token);
+
+    const isBlocked = timestamps.length >= limit;
+
+    if (!isBlocked) {
+      timestamps.push(now);
     }
 
-    timestamps.push(now);
     this.timestamps.set(token, timestamps);
 
     // Prevent memory leaks by limiting the cache size
@@ -46,7 +50,7 @@ export class RateLimiter {
       if (firstKey) this.timestamps.delete(firstKey);
     }
 
-    return true;
+    return !isBlocked;
   }
 }
 

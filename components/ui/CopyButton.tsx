@@ -24,17 +24,22 @@ export function CopyButton({ text, className, ariaLabel = "Copy to clipboard" }:
   };
 
   return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      className={cn(
-        "inline-flex items-center justify-center p-1.5 rounded-md hover:bg-slate-800 text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-        className
-      )}
-      aria-label={copied ? "Copied" : ariaLabel}
-      title={copied ? "Copied" : ariaLabel}
-    >
-      {copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={handleCopy}
+        className={cn(
+          "inline-flex items-center justify-center p-1.5 rounded-md hover:bg-slate-800 text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+          className
+        )}
+        aria-label={copied ? "Copied" : ariaLabel}
+        title={copied ? "Copied" : ariaLabel}
+      >
+        {copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}
+      </button>
+      <span className="sr-only" role="status" aria-live="polite">
+        {copied ? "Copied to clipboard" : ""}
+      </span>
+    </>
   );
 }
