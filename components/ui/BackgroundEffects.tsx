@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { cn } from "@/lib/utils";
 
 interface BackgroundEffectsProps {
@@ -6,7 +6,7 @@ interface BackgroundEffectsProps {
     variant?: 'default' | 'error' | 'not-found';
 }
 
-export function BackgroundEffects({ className, variant = 'default' }: BackgroundEffectsProps) {
+export const BackgroundEffects = memo(function BackgroundEffects({ className, variant = 'default' }: BackgroundEffectsProps) {
     return (
         <div className={cn("absolute inset-0 overflow-hidden pointer-events-none", className)} aria-hidden="true">
             {variant === 'not-found' && (
@@ -45,4 +45,4 @@ export function BackgroundEffects({ className, variant = 'default' }: Background
             <div className="absolute inset-0 bg-grid-pattern opacity-20" />
         </div>
     );
-}
+});

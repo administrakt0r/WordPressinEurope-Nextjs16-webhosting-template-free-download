@@ -31,11 +31,10 @@ const CSP_TEMPLATE = `
 export function middleware(request: NextRequest) {
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
-  // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
-  // Note: request.ip is missing in the current NextRequest type definition in this environment.
+  // Prioritize X-Forwarded-For if available, then fallback to request.ip, finally 127.0.0.1
   const ip = forwardedFor
     ? forwardedFor.split(',')[0].trim()
-    : ((request as RequestWithIp).ip || '127.0.0.1');
+    : (request as RequestWithIp).ip || '127.0.0.1';
 
   const nonce = crypto.randomUUID();
   // Optimization: Use simple string replacement instead of regex/template literal for per-request CSP generation
@@ -43,7 +42,11 @@ export function middleware(request: NextRequest) {
 
   let response: NextResponse;
 
-  if (!ratelimit.check(100, ip)) {
+  // Block malicious User-Agents
+  const userAgent = request.headers.get('user-agent') || '';
+  if (/sqlmap|nikto|nuclei|wpscan/i.test(userAgent)) {
+    response = new NextResponse('Forbidden', { status: 403 });
+  } else if (!ratelimit.check(100, ip)) {
     response = new NextResponse('Too Many Requests', {
       status: 429,
       headers: {
@@ -66,7 +69,7 @@ export function middleware(request: NextRequest) {
     });
   }
 
-  // Apply Security Headers to all responses (including 429)
+  // Apply Security Headers to all responses (including 429 and 403)
   response.headers.set(
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue

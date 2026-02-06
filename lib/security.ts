@@ -6,8 +6,6 @@
  * @param data The JSON object to serialize.
  * @returns A string containing the serialized JSON with escaped characters.
  */
-const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
-
 export function safeJsonLd(data: Record<string, unknown>): string {
   const json = JSON.stringify(data);
   return json.replace(/</g, '\\u003c')
