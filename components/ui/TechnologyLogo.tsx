@@ -12,7 +12,7 @@ export interface TechnologyLogoProps {
     priority?: boolean;
 }
 
-export function TechnologyLogo({ name, logo, width, height }: TechnologyLogoProps) {
+export function TechnologyLogo({ name, logo, width, height, priority }: TechnologyLogoProps) {
     return (
         <div className="group flex items-center justify-center" title={name}>
             {logo && width && height ? (

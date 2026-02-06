@@ -29,6 +29,12 @@ const CSP_TEMPLATE = `
   .trim();
 
 export function middleware(request: NextRequest) {
+  // Block malicious user agents
+  const userAgent = request.headers.get('user-agent') || '';
+  if (userAgent && ['sqlmap', 'nikto', 'nuclei', 'wpscan'].some(bot => userAgent.includes(bot))) {
+    return new NextResponse('Forbidden', { status: 403 });
+  }
+
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
   // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
