@@ -47,3 +47,13 @@
 **Vulnerability:** The `isSafeUrl` function allowed protocol-relative URLs (starting with `//`), which could lead to Open Redirect vulnerabilities if used in redirection contexts or misleading users about the destination protocol.
 **Learning:** `new URL('//example.com')` throws an error without a base, causing the validation to fall through to the catch block where it was treated as safe. Explicitly checking for `//` is necessary.
 **Prevention:** Added an explicit check `if (url.startsWith('//')) return false;` in `lib/security.ts`.
+
+## 2025-05-24 - Rate Limiting IP Spoofing
+**Vulnerability:** `X-Forwarded-For` header was prioritized over `request.ip` for rate limiting, allowing attackers to bypass limits by spoofing the header.
+**Learning:** Never blindly trust `X-Forwarded-For` for security controls unless the upstream proxy configuration strictly sanitizes it. Next.js `request.ip` is a trusted source in supported environments.
+**Prevention:** Prioritize `request.ip` or use platform-specific headers (like `CF-Connecting-IP`) before falling back to `X-Forwarded-For`.
+
+## 2025-05-24 - User-Agent Blocking
+**Vulnerability:** Known malicious scanners (sqlmap, nikto, etc.) were able to access the application because User-Agent blocking logic was missing.
+**Learning:** Automated scanners are the first wave of attack. Blocking them at the middleware level saves resources and reduces log noise.
+**Prevention:** Implement a blocklist for known malicious User-Agents in `middleware.ts` and return 403 immediately.
