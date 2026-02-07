@@ -28,20 +28,24 @@ const CSP_TEMPLATE = `
   .replace(/\s{2,}/g, ' ')
   .trim();
 
+const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
+
 export function middleware(request: NextRequest) {
-  // Block malicious user agents
-  const userAgent = request.headers.get('user-agent') || '';
-  if (userAgent && ['sqlmap', 'nikto', 'nuclei', 'wpscan'].some(bot => userAgent.includes(bot))) {
-    return new NextResponse('Forbidden', { status: 403 });
+  const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
+  if (BLOCKED_USER_AGENTS.some((agent) => userAgent.includes(agent))) {
+    const response = new NextResponse('Forbidden', { status: 403 });
+    // Apply critical security headers even for blocked requests
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('X-Frame-Options', 'DENY');
+    return response;
   }
 
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
-  // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
-  // Note: request.ip is missing in the current NextRequest type definition in this environment.
-  const ip = forwardedFor
-    ? forwardedFor.split(',')[0].trim()
-    : ((request as RequestWithIp).ip || '127.0.0.1');
+  // Prioritize request.ip (trusted platform IP), then fallback to x-forwarded-for, finally 127.0.0.1
+  const ip =
+    (request as RequestWithIp).ip ||
+    (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
 
   const nonce = crypto.randomUUID();
   // Optimization: Use simple string replacement instead of regex/template literal for per-request CSP generation
