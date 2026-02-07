@@ -28,7 +28,18 @@ const CSP_TEMPLATE = `
   .replace(/\s{2,}/g, ' ')
   .trim();
 
+const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
+
 export function middleware(request: NextRequest) {
+  const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
+  if (BLOCKED_USER_AGENTS.some((agent) => userAgent.includes(agent))) {
+    const response = new NextResponse('Forbidden', { status: 403 });
+    // Apply critical security headers even for blocked requests
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('X-Frame-Options', 'DENY');
+    return response;
+  }
+
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
   // Prioritize X-Forwarded-For if available, then fallback to request.ip, finally 127.0.0.1
