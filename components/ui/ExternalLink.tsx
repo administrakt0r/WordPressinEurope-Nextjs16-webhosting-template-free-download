@@ -1,5 +1,4 @@
 import { memo, useMemo } from "react";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { isSafeUrl } from "@/lib/security";
 
@@ -21,7 +20,7 @@ export const ExternalLink = memo(function ExternalLink({ href, children, classNa
   const safeHref = useMemo(() => isSafeUrl(href) ? href : "#", [href]);
 
   return (
-    <Link
+    <a
       href={safeHref}
       target="_blank"
       rel="noopener noreferrer"
@@ -31,6 +30,6 @@ export const ExternalLink = memo(function ExternalLink({ href, children, classNa
     >
       {children}
       <span className="sr-only">(opens in a new tab)</span>
-    </Link>
+    </a>
   );
 });
