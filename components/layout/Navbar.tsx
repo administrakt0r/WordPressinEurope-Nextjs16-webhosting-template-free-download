@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, memo, useCallback } from "react";
+import { useState, memo, useCallback, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -161,7 +161,7 @@ const MobileMenu = memo(function MobileMenu({
             aria-label="Mobile navigation"
             style={{
                 '--navbar-height': isScrolled ? '72px' : '88px',
-            } as React.CSSProperties}
+            } as CSSProperties}
         >
             <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
                 {NAV_LINKS.map((link) => {
