@@ -34,6 +34,8 @@ export function isSafeUrl(url: string): boolean {
   // Allow relative URLs (starting with / or #)
   if (url.startsWith('/') || url.startsWith('#')) return true;
 
+  const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
+
   try {
     const parsed = new URL(url);
     return SAFE_PROTOCOLS.includes(parsed.protocol);
