@@ -53,11 +53,7 @@ export function middleware(request: NextRequest) {
 
   let response: NextResponse;
 
-  // Block malicious User-Agents
-  const userAgent = request.headers.get('user-agent') || '';
-  if (/sqlmap|nikto|nuclei|wpscan/i.test(userAgent)) {
-    response = new NextResponse('Forbidden', { status: 403 });
-  } else if (!ratelimit.check(100, ip)) {
+  if (!ratelimit.check(100, ip)) {
     response = new NextResponse('Too Many Requests', {
       status: 429,
       headers: {

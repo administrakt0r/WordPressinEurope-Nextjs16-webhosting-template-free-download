@@ -1,4 +1,6 @@
 
+const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
+
 /**
  * Safely serializes data for use in JSON-LD <script> tags.
  * prevent XSS by escaping HTML entities.
