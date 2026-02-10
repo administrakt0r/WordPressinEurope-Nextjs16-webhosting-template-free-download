@@ -32,9 +32,10 @@ const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
 
 export function middleware(request: NextRequest) {
   const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
+
+  // Block malicious User-Agents
   if (BLOCKED_USER_AGENTS.some((agent) => userAgent.includes(agent))) {
     const response = new NextResponse('Forbidden', { status: 403 });
-    // Apply critical security headers even for blocked requests
     response.headers.set('X-Content-Type-Options', 'nosniff');
     response.headers.set('X-Frame-Options', 'DENY');
     return response;
@@ -42,22 +43,17 @@ export function middleware(request: NextRequest) {
 
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
-  // Prioritize X-Forwarded-For if available, then fallback to request.ip, finally 127.0.0.1
   const ip = forwardedFor
     ? forwardedFor.split(',')[0].trim()
     : (request as RequestWithIp).ip || '127.0.0.1';
 
+  // Generate nonce and CSP for all non-blocked requests
   const nonce = crypto.randomUUID();
-  // Optimization: Use simple string replacement instead of regex/template literal for per-request CSP generation
   const contentSecurityPolicyHeaderValue = CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
 
   let response: NextResponse;
 
-  // Block malicious User-Agents
-  const userAgent = request.headers.get('user-agent') || '';
-  if (/sqlmap|nikto|nuclei|wpscan/i.test(userAgent)) {
-    response = new NextResponse('Forbidden', { status: 403 });
-  } else if (!ratelimit.check(100, ip)) {
+  if (!ratelimit.check(100, ip)) {
     response = new NextResponse('Too Many Requests', {
       status: 429,
       headers: {
@@ -80,7 +76,7 @@ export function middleware(request: NextRequest) {
     });
   }
 
-  // Apply Security Headers to all responses (including 429 and 403)
+  // Apply Security Headers to all responses (including 429)
   response.headers.set(
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue

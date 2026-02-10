@@ -57,3 +57,8 @@
 **Vulnerability:** Known malicious scanners (sqlmap, nikto, etc.) were able to access the application because User-Agent blocking logic was missing.
 **Learning:** Automated scanners are the first wave of attack. Blocking them at the middleware level saves resources and reduces log noise.
 **Prevention:** Implement a blocklist for known malicious User-Agents in `middleware.ts` and return 403 immediately.
+
+## 2025-05-25 - Unverified Global Constants in Security Utilities
+**Vulnerability:** The `isSafeUrl` utility relied on a `SAFE_PROTOCOLS` constant that was undefined in the module scope, causing the function to throw a `ReferenceError` which was caught by a generic catch block, leading to `false` returns for all valid absolute URLs.
+**Learning:** Security utilities must be rigorous about variable definitions. A missing constant in a utility function can silently break functionality or security checks if error handling is too broad (e.g., catching all errors and returning a default value).
+**Prevention:** Explicitly define all constants within the module or function scope and ensure strict linting/testing catches undefined variables. Avoid broad `try-catch` blocks that suppress `ReferenceError`s during development.
