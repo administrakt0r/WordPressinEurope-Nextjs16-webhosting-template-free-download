@@ -43,9 +43,7 @@ export function middleware(request: NextRequest) {
 
   // Rate limiting
   const forwardedFor = request.headers.get('x-forwarded-for');
-  const ip = forwardedFor
-    ? forwardedFor.split(',')[0].trim()
-    : (request as RequestWithIp).ip || '127.0.0.1';
+  const ip = (request as RequestWithIp).ip || (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
 
   // Generate nonce and CSP for all non-blocked requests
   const nonce = crypto.randomUUID();
