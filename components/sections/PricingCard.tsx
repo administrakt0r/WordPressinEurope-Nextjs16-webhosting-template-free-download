@@ -1,10 +1,11 @@
+import { memo } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { PRICE_MONTHLY_DISPLAY, PRICE_UNIT_DISPLAY, PRICE_ACCESSIBILITY_TEXT } from "@/lib/constants";
 import { PRICING_FEATURES } from "@/lib/content";
 
-export function PricingCard() {
+export const PricingCard = memo(function PricingCard() {
     return (
         <div
             // Optimized: will-animate hint helps browser prepare for transform/opacity changes
@@ -50,4 +51,4 @@ export function PricingCard() {
             </div>
         </div>
     );
-}
+});
