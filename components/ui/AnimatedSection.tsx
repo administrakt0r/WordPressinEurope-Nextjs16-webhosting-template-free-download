@@ -1,6 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
+import { memo } from "react";
 
 interface AnimatedSectionProps {
     children: React.ReactNode;
@@ -16,7 +17,7 @@ interface AnimatedSectionProps {
  * ⚡ Performance: Expects a parent <LazyMotion> provider to be present in the tree.
  * Do not use this component without wrapping it (or a parent) in LazyMotion.
  */
-export function AnimatedSection({ children, direction = "up", delay = 0, className = "" }: AnimatedSectionProps) {
+export const AnimatedSection = memo(function AnimatedSection({ children, direction = "up", delay = 0, className = "" }: AnimatedSectionProps) {
     const offset = 15; // Reduced from 20 for smoother feel
 
     const variants = {
@@ -49,4 +50,4 @@ export function AnimatedSection({ children, direction = "up", delay = 0, classNa
             {children}
         </m.div>
     );
-}
+});
