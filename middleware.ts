@@ -31,6 +31,11 @@ const CSP_TEMPLATE = `
 const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
 
 export function middleware(request: NextRequest) {
+  // Block TRACE and TRACK methods to prevent XST attacks
+  if (request.method === 'TRACE' || request.method === 'TRACK') {
+    return new NextResponse(null, { status: 405 });
+  }
+
   const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
 
   // Block malicious User-Agents
