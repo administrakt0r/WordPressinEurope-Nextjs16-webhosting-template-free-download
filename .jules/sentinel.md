@@ -62,3 +62,8 @@
 **Vulnerability:** The `isSafeUrl` utility relied on a `SAFE_PROTOCOLS` constant that was undefined in the module scope, causing the function to throw a `ReferenceError` which was caught by a generic catch block, leading to `false` returns for all valid absolute URLs.
 **Learning:** Security utilities must be rigorous about variable definitions. A missing constant in a utility function can silently break functionality or security checks if error handling is too broad (e.g., catching all errors and returning a default value).
 **Prevention:** Explicitly define all constants within the module or function scope and ensure strict linting/testing catches undefined variables. Avoid broad `try-catch` blocks that suppress `ReferenceError`s during development.
+
+## 2026-02-13 - Next.js Middleware Deprecation
+**Vulnerability:** Next.js 16 (preview/canary) deprecates `middleware.ts` in favor of `proxy.ts`. Future updates might stop loading `middleware.ts`, leaving the application without critical security headers and access controls.
+**Learning:** The build output warned: "The 'middleware' file convention is deprecated. Please use 'proxy' instead." Security infrastructure relying on middleware must adapt to framework changes to ensure continuity.
+**Prevention:** Plan migration from `middleware.ts` to `proxy.ts` before the next major framework upgrade to avoid silent security failures.

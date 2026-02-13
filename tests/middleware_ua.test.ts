@@ -4,7 +4,20 @@ import { describe, it, expect } from 'vitest';
 
 describe('Middleware User-Agent Blocking', () => {
   it('should block malicious user agents', () => {
-    const maliciousAgents = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
+    const maliciousAgents = [
+      'sqlmap',
+      'nikto',
+      'nuclei',
+      'wpscan',
+      'masscan',
+      'zgrab',
+      'acunetix',
+      'netsparker',
+      'havij',
+      'muieblackcat',
+      'gobuster',
+      'dirbuster',
+    ];
 
     maliciousAgents.forEach((agent) => {
       const request = new NextRequest(new URL('https://wpineu.com/'), {
