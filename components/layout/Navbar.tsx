@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useScroll } from "@/hooks/useScroll";
 import { useScrollLock } from "@/hooks/useScrollLock";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 // Optimization: Memoized DesktopNavLinks to avoid re-rendering links when Navbar state (isScrolled) changes.
 // This isolates the list rendering from the scroll event updates.
@@ -150,12 +151,16 @@ const MobileMenu = memo(function MobileMenu({
     isScrolled: boolean;
     onClose: () => void;
 }) {
+    // UX: Trap focus within the menu when open for accessibility
+    const menuRef = useFocusTrap(isOpen);
+
     // Only render if open and on client (document exists)
     if (!isOpen || typeof document === 'undefined') return null;
 
     return createPortal(
         <div
             id="mobile-menu"
+            ref={menuRef}
             className="md:hidden fixed inset-0 top-[var(--navbar-height,72px)] bg-slate-950 z-40 overflow-y-auto"
             role="navigation"
             aria-label="Mobile navigation"
