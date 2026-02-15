@@ -50,4 +50,41 @@ describe('RateLimiter', () => {
     // Verify B should be evicted (forgotten), so it starts fresh.
     expect(limiter.check(1, 'B')).toBe(true);
   });
+
+  it('should extend block if spam continues', async () => {
+    // 10 requests allowed per 100ms
+    const limiter = new RateLimiter({ interval: 100, uniqueTokenPerInterval: 10 });
+
+    // Fill the bucket (1 request allowed)
+    // We use limit=1 for this test case
+    expect(limiter.check(1, 'ip4')).toBe(true);
+    // Next request is blocked
+    expect(limiter.check(1, 'ip4')).toBe(false);
+
+    // Wait 50ms. Window [0, 100]. Current time 50.
+    // Original request at 0 expires at 100.
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    // Spam again while blocked at T=50.
+    // This should update the timestamp to 50, extending the block until 150.
+    expect(limiter.check(1, 'ip4')).toBe(false);
+
+    // Wait another 60ms. Total time 110ms.
+    // Original request (at 0) would have expired at 100.
+    // BUT since we spammed at 50, the timestamp is now 50.
+    // Expiration is 150. So at 110, we should still be blocked.
+    await new Promise((resolve) => setTimeout(resolve, 60));
+
+    // Should be false (blocked)
+    // NOTE: This call at 110 updates the timestamp to 110, extending the block until 210.
+    expect(limiter.check(1, 'ip4')).toBe(false);
+
+    // Stop spamming. Wait for the last block (at 110) to expire.
+    // It expires at 210.
+    // We are at 110. Need to wait > 100ms. Let's wait 110ms to be safe.
+    await new Promise((resolve) => setTimeout(resolve, 110));
+
+    // Now at 220. Should be unblocked.
+    expect(limiter.check(1, 'ip4')).toBe(true);
+  });
 });
