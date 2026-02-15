@@ -37,9 +37,14 @@ export class RateLimiter {
 
     const isBlocked = timestamps.length >= limit;
 
-    if (!isBlocked) {
-      timestamps.push(now);
+    // Fixed: Always track the attempt, even if blocked, to extend the block duration if spam continues.
+    // This effectively slides the window forward, keeping the user blocked as long as they spam.
+    if (isBlocked) {
+      // Optimization: If full, remove the oldest timestamp to make room for the new one.
+      // This maintains the array size at 'limit' while sliding the window.
+      timestamps.shift();
     }
+    timestamps.push(now);
 
     this.timestamps.set(token, timestamps);
 

@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { Heart, ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 
-export function SupportCard() {
+export const SupportCard = memo(function SupportCard() {
     return (
         <div className="bg-yellow-900/10 rounded-2xl p-8 border border-yellow-900/20">
             <div className="w-12 h-12 rounded-xl bg-yellow-900/30 text-yellow-400 flex items-center justify-center mb-6">
@@ -16,11 +17,11 @@ export function SupportCard() {
             </p>
             <ExternalLink
                 href={EXTERNAL_LINKS.CLIENT_PORTAL}
-                className="inline-flex items-center gap-2 text-yellow-400 font-bold text-sm hover:underline"
+                className="inline-flex items-center gap-2 text-yellow-400 font-bold text-sm hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 rounded-sm"
             >
                 Contribute to Our Mission
                 <ArrowRight size={16} aria-hidden="true" />
             </ExternalLink>
         </div>
     );
-}
+});
