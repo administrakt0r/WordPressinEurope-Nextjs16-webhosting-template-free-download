@@ -124,4 +124,14 @@ describe('Security Headers', () => {
     const uniqueKeys = new Set(keys);
     expect(keys.length).toBe(uniqueKeys.size);
   });
+
+  it('should have X-DNS-Prefetch-Control set to off', async () => {
+    const headers = await getGlobalHeaders();
+    const dnsHeader = headers.find((h: Header) => h.key === 'X-DNS-Prefetch-Control');
+
+    expect(dnsHeader).toBeDefined();
+    if (dnsHeader) {
+        expect(dnsHeader.value).toBe('off');
+    }
+  });
 });

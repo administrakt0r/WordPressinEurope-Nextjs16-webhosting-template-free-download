@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
+import { BLOCKED_USER_AGENTS, generateCSP } from '@/lib/security';
 
 interface RequestWithIp extends NextRequest {
   ip?: string;
@@ -60,7 +61,7 @@ export function middleware(request: NextRequest) {
 
   // Generate nonce and CSP for all non-blocked requests
   const nonce = crypto.randomUUID();
-  const contentSecurityPolicyHeaderValue = CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
+  const contentSecurityPolicyHeaderValue = generateCSP(nonce);
 
   let response: NextResponse;
 
