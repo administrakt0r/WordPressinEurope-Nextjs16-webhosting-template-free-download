@@ -1,24 +1,16 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
+import { BLOCKED_USER_AGENTS, generateCSP } from '@/lib/security';
 
 interface RequestWithIp extends NextRequest {
   ip?: string;
 }
 
-export function middleware(request: NextRequest) {
-  // Rate limiting
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  // Prioritize X-Forwarded-For if available, then fallback to request.ip if it exists, finally 127.0.0.1
-  // Note: request.ip is missing in the current NextRequest type definition in this environment.
-  const ip = forwardedFor
-    ? forwardedFor.split(',')[0].trim()
-    : ((request as RequestWithIp).ip || '127.0.0.1');
-
-  const nonce = crypto.randomUUID();
-  const cspHeader = `
+// Pre-compute the CSP template to avoid regex and string allocation on every request
+const CSP_TEMPLATE = `
     default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
+    script-src 'self' 'nonce-NONCE_PLACEHOLDER' 'strict-dynamic';
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: https://images.unsplash.com;
     font-src 'self' data:;
@@ -33,15 +25,73 @@ export function middleware(request: NextRequest) {
     frame-src 'none';
     block-all-mixed-content;
     upgrade-insecure-requests;
-  `;
-  // Replace newlines with spaces
-  const contentSecurityPolicyHeaderValue = cspHeader
-    .replace(/\s{2,}/g, ' ')
-    .trim();
+`
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+
+const BLOCKED_USER_AGENTS = [
+  'sqlmap',
+  'nikto',
+  'nuclei',
+  'wpscan',
+  'masscan',
+  'zgrab',
+  'acunetix',
+  'netsparker',
+  'havij',
+  'muieblackcat',
+  'gobuster',
+  'dirbuster',
+];
+
+export function middleware(request: NextRequest) {
+  // Block TRACE and TRACK methods to prevent XST attacks
+  if (request.method === 'TRACE' || request.method === 'TRACK') {
+    return new NextResponse(null, { status: 405 });
+  }
+
+  const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
+
+  // Block malicious User-Agents
+  if (BLOCKED_USER_AGENTS.some((agent) => userAgent.includes(agent))) {
+    const response = new NextResponse('Forbidden', { status: 403 });
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('X-Frame-Options', 'DENY');
+    return response;
+  }
+
+  // Block potentially dangerous HTTP methods
+  // TRACE and TRACK can be used for XST (Cross-Site Tracing) attacks
+  if (['TRACE', 'TRACK'].includes(request.method)) {
+    const response = new NextResponse('Method Not Allowed', { status: 405 });
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('X-Frame-Options', 'DENY');
+    return response;
+  }
+
+  // Rate limiting
+  // Prioritize request.ip (trusted platform IP) to prevent spoofing via X-Forwarded-For
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  const ip = (request as RequestWithIp).ip ||
+             (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
+
+  // Generate nonce and CSP for all non-blocked requests
+  const nonce = crypto.randomUUID();
+  const contentSecurityPolicyHeaderValue = generateCSP(nonce);
 
   let response: NextResponse;
 
-  if (!ratelimit.check(100, ip)) {
+  // Block malicious User-Agents
+  const userAgent = request.headers.get('user-agent') || '';
+  const blockedAgents = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
+  if (blockedAgents.some((agent) => userAgent.toLowerCase().includes(agent))) {
+    response = new NextResponse('Forbidden', {
+      status: 403,
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+    });
+  } else if (!ratelimit.check(100, ip)) {
     response = new NextResponse('Too Many Requests', {
       status: 429,
       headers: {
@@ -83,7 +133,8 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
   response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
   response.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
-  response.headers.set('X-DNS-Prefetch-Control', 'on');
+  response.headers.set('X-DNS-Prefetch-Control', 'off');
+  response.headers.set('X-Download-Options', 'noopen');
 
   return response;
 }

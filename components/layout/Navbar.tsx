@@ -3,12 +3,10 @@
 import { useState, useEffect, memo, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Server } from "lucide-react";
-import { EXTERNAL_LINKS } from "@/lib/links";
-import { NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
-import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useScroll } from "@/hooks/useScroll";
+import { useScrollLock } from "@/hooks/useScrollLock";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 // Optimization: Memoized DesktopNavLinks to avoid re-rendering links when Navbar state (isScrolled) changes.
 // This isolates the list rendering from the scroll event updates.
@@ -135,16 +133,14 @@ export const Navbar = memo(function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // UX: Lock body scroll when mobile menu is open
-    useEffect(() => {
-        if (isMobileMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
-        }
-        return () => {
-            document.body.style.overflow = "unset";
-        };
-    }, [isMobileMenuOpen]);
+    useScrollLock(isMobileMenuOpen);
+
+    // Handler to close menu
+    // Optimization: useCallback to keep the function stable for memoized children
+    const closeMenu = useCallback(() => setIsMobileMenuOpen(false), []);
+    // Handler to toggle menu
+    // Optimization: useCallback to keep the function stable for memoized children
+    const toggleMenu = useCallback(() => setIsMobileMenuOpen(prev => !prev), []);
 
     // Optimization: Stable callback to prevent MobileNavLinks re-renders
     const handleCloseMobileMenu = useCallback(() => {
@@ -163,64 +159,16 @@ export const Navbar = memo(function Navbar() {
         >
             <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
                 {/* Logo */}
-                <Link
-                    href="/"
-                    className="flex items-center gap-2 group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                    aria-label="WPinEU Home"
-                >
-                    <div className="bg-primary text-white p-2 rounded-lg group-hover:scale-105 transition-transform duration-200">
-                        <Server size={24} aria-hidden="true" />
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-xl font-bold font-heading leading-none text-foreground">
-                            WPinEU
-                        </span>
-                        <span className="text-[10px] text-muted-foreground font-medium tracking-wider">
-                            WORDPRESS IN EUROPE
-                        </span>
-                    </div>
-                </Link>
+                <NavbarLogo />
 
                 {/* Desktop Menu */}
                 <DesktopNavLinks pathname={pathname} />
 
                 {/* CTA Buttons */}
-                <div className="hidden md:flex items-center gap-4">
-                    <ExternalLink
-                        href={EXTERNAL_LINKS.CLIENT_PORTAL}
-                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-150 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                        aria-label="Sign in to client portal"
-                    >
-                        Sign In
-                    </ExternalLink>
-                    <ExternalLink
-                        href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                        className="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-background"
-                        aria-label="Get started with free hosting"
-                    >
-                        Get Started
-                    </ExternalLink>
-                </div>
+                <NavbarCTAs />
 
                 {/* Mobile Menu Button & Theme Toggle */}
-                <div className="flex items-center gap-4 md:hidden">
-                    <ExternalLink
-                        href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                        className="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                        aria-label="Get started with free hosting"
-                    >
-                        Get Started
-                    </ExternalLink>
-                    <button
-                        className="p-2 text-foreground rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-                        aria-expanded={isMobileMenuOpen}
-                        aria-controls="mobile-menu"
-                    >
-                        {isMobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
-                    </button>
-                </div>
+                <MobileMenuToggle isOpen={isMobileMenuOpen} onToggle={toggleMenu} />
             </div>
 
             {/* Mobile Menu - No animation, instant show/hide */}

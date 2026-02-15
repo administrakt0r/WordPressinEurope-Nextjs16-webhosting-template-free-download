@@ -2,6 +2,13 @@ import { HostingLanding } from "@/components/templates/HostingLanding";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Globe, ShieldCheck, Server, MapPin, Scale, Lock } from "lucide-react";
+import { JsonLd } from "@/components/JsonLd";
+import {
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CLOUDLINUX
+} from "@/lib/constants";
+import { getServiceJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
     title: "Free Europe Hosting | WPinEU",
@@ -19,6 +26,11 @@ export const metadata: Metadata = {
 
 const ServiceDescription = dynamic(() =>
     import("@/components/sections/ServiceDescription").then((mod) => mod.ServiceDescription)
+);
+
+const jsonLd = getServiceJsonLd(
+    "Free Europe Hosting",
+    "Free Europe Hosting with low latency for European visitors. GDPR compliant and locally optimized."
 );
 
 const features = [
@@ -54,22 +66,35 @@ const features = [
     }
 ];
 
+const techLogos = [
+    TECH_LOGO_CPANEL,
+    TECH_LOGO_WORDPRESS,
+    TECH_LOGO_CLOUDLINUX,
+];
+
 export default function FreeEuropeHosting() {
     return (
-        <HostingLanding
-            heroTitle={
-                <>
-                    Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-200">Free Europe Hosting</span>
-                </>
-            }
-            heroSubtitle="Host your site closer to your audience. Our European data centers ensure low latency, high speeds, and full GDPR compliance."
-        >
-            <ServiceDescription
-                title="Hosted Locally, Served Globally"
-                description="Location matters. Hosting your website in Europe ensures the best possible experience for your European visitors."
-                features={features}
-                cols={3}
-            />
-        </HostingLanding>
+        <>
+            <JsonLd data={jsonLd} />
+            <HostingLanding
+                heroTitle={
+                    <>
+                        Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-200">Free Europe Hosting</span>
+                    </>
+                }
+                heroSubtitle="Host your site closer to your audience. Our European data centers ensure low latency, high speeds, and full GDPR compliance."
+                breadcrumbs={[
+                    { label: "Free Europe Hosting", href: "/free-europe-hosting" }
+                ]}
+            >
+                <ServiceDescription
+                    title="Hosted Locally, Served Globally"
+                    description="Location matters. Hosting your website in Europe ensures the best possible experience for your European visitors."
+                    features={features}
+                    techLogos={techLogos}
+                    cols={3}
+                />
+            </HostingLanding>
+        </>
     );
 }

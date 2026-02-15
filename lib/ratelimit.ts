@@ -32,11 +32,20 @@ export class RateLimiter {
     }
     // If startIndex === 0, all timestamps are valid, no need to slice
 
-    if (timestamps.length >= limit) {
-      return false;
-    }
+    // LRU Policy: Delete the token so re-insertion moves it to the end of the Map
+    this.timestamps.delete(token);
 
+    const isBlocked = timestamps.length >= limit;
+
+    // Fixed: Always track the attempt, even if blocked, to extend the block duration if spam continues.
+    // This effectively slides the window forward, keeping the user blocked as long as they spam.
+    if (isBlocked) {
+      // Optimization: If full, remove the oldest timestamp to make room for the new one.
+      // This maintains the array size at 'limit' while sliding the window.
+      timestamps.shift();
+    }
     timestamps.push(now);
+
     this.timestamps.set(token, timestamps);
 
     // Prevent memory leaks by limiting the cache size
@@ -46,7 +55,7 @@ export class RateLimiter {
       if (firstKey) this.timestamps.delete(firstKey);
     }
 
-    return true;
+    return !isBlocked;
   }
 }
 

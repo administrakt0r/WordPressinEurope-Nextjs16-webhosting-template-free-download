@@ -29,7 +29,8 @@ describe('Middleware Security Headers', () => {
     expect(headers.get('X-Permitted-Cross-Domain-Policies')).toBe('none');
     expect(headers.get('Cross-Origin-Opener-Policy')).toBe('same-origin');
     expect(headers.get('Cross-Origin-Resource-Policy')).toBe('same-origin');
-    expect(headers.get('X-DNS-Prefetch-Control')).toBe('on');
+    expect(headers.get('X-DNS-Prefetch-Control')).toBe('off');
+    expect(headers.get('X-Download-Options')).toBe('noopen');
   });
 
   it('should return 429 with security headers when rate limit is exceeded', () => {
@@ -46,5 +47,30 @@ describe('Middleware Security Headers', () => {
     expect(response.headers.get('X-Frame-Options')).toBe('DENY');
     expect(response.headers.get('Strict-Transport-Security')).toBeDefined();
     expect(response.headers.get('Cross-Origin-Opener-Policy')).toBe('same-origin');
+  });
+
+  it('should block TRACE and TRACK methods with 405 status', () => {
+    ['TRACE', 'TRACK'].forEach((method) => {
+      // Mock NextRequest to bypass constructor validation for unsupported methods
+      const request = {
+        method,
+        headers: new Headers(),
+        nextUrl: new URL('https://wpineu.com/'),
+        url: 'https://wpineu.com/',
+      } as unknown as NextRequest;
+
+      const response = middleware(request);
+      expect(response.status).toBe(405);
+    });
+  });
+
+  it('should allow GET, POST, HEAD, OPTIONS methods', () => {
+    ['GET', 'POST', 'HEAD', 'OPTIONS'].forEach((method) => {
+      // Ensure rate limit passes
+      vi.spyOn(ratelimit, 'check').mockReturnValue(true);
+      const request = new NextRequest(new URL('https://wpineu.com/'), { method });
+      const response = middleware(request);
+      expect(response.status).not.toBe(405);
+    });
   });
 });
