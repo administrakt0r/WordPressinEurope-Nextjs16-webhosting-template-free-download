@@ -1,34 +1,11 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
+import { BLOCKED_USER_AGENTS, generateCSP } from '@/lib/security';
 
 interface RequestWithIp extends NextRequest {
   ip?: string;
 }
-
-// Pre-compute the CSP template to avoid regex and string allocation on every request
-const CSP_TEMPLATE = `
-    default-src 'self';
-    script-src 'self' 'nonce-NONCE_PLACEHOLDER' 'strict-dynamic';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: https://images.unsplash.com;
-    font-src 'self' data:;
-    connect-src 'self' https://uptime.wpineu.com https://clients.wpineu.com https://wp.wpineu.com https://images.unsplash.com;
-    worker-src 'self' blob:;
-    manifest-src 'self';
-    media-src 'self';
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    frame-src 'none';
-    block-all-mixed-content;
-    upgrade-insecure-requests;
-`
-  .replace(/\s{2,}/g, ' ')
-  .trim();
-
-const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
 
 export function middleware(request: NextRequest) {
   const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
@@ -47,7 +24,7 @@ export function middleware(request: NextRequest) {
 
   // Generate nonce and CSP for all non-blocked requests
   const nonce = crypto.randomUUID();
-  const contentSecurityPolicyHeaderValue = CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
+  const contentSecurityPolicyHeaderValue = generateCSP(nonce);
 
   let response: NextResponse;
 

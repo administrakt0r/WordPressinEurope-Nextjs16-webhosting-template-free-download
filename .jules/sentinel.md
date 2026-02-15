@@ -72,3 +72,7 @@
 **Vulnerability:** The `ExternalLink` component, critical for security (rel/target attributes), relied on `useMemo` but lacked `"use client"`. While build tools may sometimes tolerate this in certain contexts, it creates a risk of silent failure or runtime crashes in Server Components.
 **Learning:** Security primitives that rely on React hooks for validation or attribute generation must explicitly mark themselves as Client Components to guarantee stability across the application.
 **Prevention:** Audit all UI components using hooks (like `useMemo`, `useState`) and enforce `"use client"` directive.
+## 2026-02-15 - Header Policy Enforcement Mismatch
+**Vulnerability:** Inconsistent security header configuration between code implementation (`on`) and security policy/memory (`off`) for `X-DNS-Prefetch-Control`.
+**Learning:** Security headers must be verified against the intended policy, not just copied from existing config files. Mismatches can lead to weakened privacy protections (e.g., DNS prefetching leaking user navigation).
+**Prevention:** Regularly audit `middleware.ts` and `next.config.ts` against the centralized security policy (memory/documentation) to ensure alignment.
