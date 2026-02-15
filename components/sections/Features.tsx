@@ -38,7 +38,7 @@ export function Features() {
                 <div className="mb-20">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold font-heading text-foreground mb-4">
-                            Unlock Peak Performance
+                            High Performance WordPress Hosting Features
                         </h2>
                         <p className="text-lg text-muted-foreground">
                             Our WordPress hosting is engineered for excellence. From ironclad security to lightning-fast speeds and effortless scalability.

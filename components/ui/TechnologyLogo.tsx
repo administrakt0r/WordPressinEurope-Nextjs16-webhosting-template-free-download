@@ -11,33 +11,41 @@ export interface TechnologyLogoProps {
     height?: number;
     /** Set to true for LCP images */
     priority?: boolean;
+    /** Optional custom sizes for responsive images */
+    sizes?: string;
 }
 
-export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height, priority }: TechnologyLogoProps) {
+export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height, priority, sizes = "(max-width: 768px) 200px, 300px" }: TechnologyLogoProps) {
     return (
-        <div className="group flex items-center justify-center" title={name}>
+        <div
+            className="group flex items-center justify-center"
+            role="img"
+            aria-label={name}
+            title={name}
+        >
             {logo && width && height ? (
                 <div
                     className="relative h-10 md:h-12 w-auto"
                     // ⚡ Performance: Enforce aspect ratio to prevent CLS while image loads
                     style={{ aspectRatio: `${width} / ${height}` }}
+                    aria-hidden="true"
                 >
                     <Image
                         src={logo}
-                        alt={name}
+                        alt=""
                         width={width}
                         height={height}
                         priority={priority}
                         // ⚡ Performance: Optimized sizes to handle wide logos (like cPanel) correctly
                         // Previous 100px/150px was too small for ~225px wide logos on high DPI
-                        sizes="(max-width: 768px) 200px, 300px"
+                        sizes={sizes}
                         // ⚡ Performance: SVG images (like logos) should be unoptimized to preserve vector quality
                         className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                         unoptimized={logo.endsWith('.svg')}
                     />
                 </div>
             ) : (
-                <span className="text-lg md:text-xl font-bold text-slate-400 hover:text-primary transition-colors cursor-default">
+                <span className="text-lg md:text-xl font-bold text-slate-400 hover:text-primary transition-colors cursor-default" aria-hidden="true">
                     {name}
                 </span>
             )}
