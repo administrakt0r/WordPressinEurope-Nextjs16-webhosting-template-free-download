@@ -33,3 +33,11 @@
 ## 2026-10-27 - Offscreen Footer Optimization
 **Learning:** The Footer is static and always offscreen initially. Applying `content-visibility: auto` allows the browser to skip rendering it until the user scrolls near the bottom, improving Initial Paint metrics.
 **Action:** Use `getOffscreenOptimizations` helper for heavy, static, below-the-fold sections like Footers.
+
+## 2026-10-28 - Fixed Position Elements inside Transformed Parents
+**Learning:** Elements with `position: fixed` behave like `absolute` when inside a parent with a transform (e.g., caused by `backdrop-filter` or `translateZ(0)`). This can cause overlays like Mobile Menus to be trapped inside the parent's coordinate system.
+**Action:** Use `createPortal` to render full-screen fixed overlays (like Modals or Mobile Menus) directly into `document.body` to ensure they are positioned relative to the viewport.
+
+## 2026-10-29 - Image Priority Prop Propagation
+**Learning:** Reusable components wrapping `next/image` must explicitly propagate the `priority` prop. Failing to do so prevents LCP optimization for critical above-the-fold images used within these components.
+**Action:** Always destructure and pass `priority` in image wrapper components.

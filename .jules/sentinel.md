@@ -47,3 +47,28 @@
 **Vulnerability:** The `isSafeUrl` function allowed protocol-relative URLs (starting with `//`), which could lead to Open Redirect vulnerabilities if used in redirection contexts or misleading users about the destination protocol.
 **Learning:** `new URL('//example.com')` throws an error without a base, causing the validation to fall through to the catch block where it was treated as safe. Explicitly checking for `//` is necessary.
 **Prevention:** Added an explicit check `if (url.startsWith('//')) return false;` in `lib/security.ts`.
+
+## 2025-05-24 - Rate Limiting IP Spoofing
+**Vulnerability:** `X-Forwarded-For` header was prioritized over `request.ip` for rate limiting, allowing attackers to bypass limits by spoofing the header.
+**Learning:** Never blindly trust `X-Forwarded-For` for security controls unless the upstream proxy configuration strictly sanitizes it. Next.js `request.ip` is a trusted source in supported environments.
+**Prevention:** Prioritize `request.ip` or use platform-specific headers (like `CF-Connecting-IP`) before falling back to `X-Forwarded-For`.
+
+## 2025-05-24 - User-Agent Blocking
+**Vulnerability:** Known malicious scanners (sqlmap, nikto, etc.) were able to access the application because User-Agent blocking logic was missing.
+**Learning:** Automated scanners are the first wave of attack. Blocking them at the middleware level saves resources and reduces log noise.
+**Prevention:** Implement a blocklist for known malicious User-Agents in `middleware.ts` and return 403 immediately.
+
+## 2025-05-25 - Unverified Global Constants in Security Utilities
+**Vulnerability:** The `isSafeUrl` utility relied on a `SAFE_PROTOCOLS` constant that was undefined in the module scope, causing the function to throw a `ReferenceError` which was caught by a generic catch block, leading to `false` returns for all valid absolute URLs.
+**Learning:** Security utilities must be rigorous about variable definitions. A missing constant in a utility function can silently break functionality or security checks if error handling is too broad (e.g., catching all errors and returning a default value).
+**Prevention:** Explicitly define all constants within the module or function scope and ensure strict linting/testing catches undefined variables. Avoid broad `try-catch` blocks that suppress `ReferenceError`s during development.
+
+## 2025-05-25 - IP Rate Limiting Spoofing
+**Vulnerability:** The rate limiting logic prioritized `X-Forwarded-For` over `request.ip`, allowing attackers to bypass rate limits by spoofing the header.
+**Learning:** `X-Forwarded-For` is user-controlled and can be forged unless the upstream proxy strictly sanitizes it. Next.js `request.ip` is populated from trusted platform headers.
+**Prevention:** Always prioritize `request.ip` (or platform-specific trusted headers) for security controls. Use `X-Forwarded-For` only as a fallback and sanitize it.
+
+## 2025-05-25 - HTTP Method Blocking
+**Vulnerability:** The application implicitly allowed all HTTP methods. `TRACE` and `TRACK` methods can be used for Cross-Site Tracing (XST) attacks to steal cookies or credentials, bypassing HttpOnly flags.
+**Learning:** Even if modern browsers block TRACE via XHR, blocking it at the server level is a standard hardening practice ("Defense in Depth").
+**Prevention:** Explicitly block `TRACE` and `TRACK` methods in `middleware.ts` with a 405 Method Not Allowed response.

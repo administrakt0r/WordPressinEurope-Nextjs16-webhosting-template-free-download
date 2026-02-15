@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function BackToTop() {
+// Optimization: Memoized to prevent re-renders when parent updates (e.g. Providers)
+export const BackToTop = memo(function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
   const pathRef = useRef<SVGPathElement>(null);
 
@@ -71,7 +72,7 @@ export function BackToTop() {
       aria-hidden={!isVisible}
       title="Back to top"
       className={cn(
-        "fixed bottom-8 right-8 z-50 p-2 bg-slate-950 text-white rounded-full shadow-lg hover:bg-slate-900 hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-slate-950 group flex items-center justify-center",
+        "fixed bottom-8 right-8 z-50 p-2 bg-slate-950 text-white rounded-full shadow-lg hover:bg-slate-900 hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-slate-950 group flex items-center justify-center will-change-[transform,opacity]",
         isVisible ? "opacity-100 translate-y-0 cursor-pointer" : "opacity-0 translate-y-4 pointer-events-none"
       )}
       aria-label="Back to top"
@@ -109,4 +110,4 @@ export function BackToTop() {
       </div>
     </button>
   );
-}
+});
