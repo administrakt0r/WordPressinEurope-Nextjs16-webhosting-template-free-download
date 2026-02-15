@@ -63,6 +63,15 @@
 **Learning:** Security utilities must be rigorous about variable definitions. A missing constant in a utility function can silently break functionality or security checks if error handling is too broad (e.g., catching all errors and returning a default value).
 **Prevention:** Explicitly define all constants within the module or function scope and ensure strict linting/testing catches undefined variables. Avoid broad `try-catch` blocks that suppress `ReferenceError`s during development.
 
+## 2025-05-25 - Configuration Drift in Security Headers
+**Vulnerability:** Inconsistent `X-DNS-Prefetch-Control` values between `middleware.ts` (on) and security policy/memory (off) created ambiguity and potential privacy leaks.
+**Learning:** Redundant configuration (defense in depth) can lead to drift if not synchronized. Automated tests must verify *both* layers (middleware and config) against the source of truth (policy).
+**Prevention:** Ensure tests cover all configuration layers explicitly.
+
+## 2025-05-25 - Client Component Boundary for Security Components
+**Vulnerability:** The `ExternalLink` component, critical for security (rel/target attributes), relied on `useMemo` but lacked `"use client"`. While build tools may sometimes tolerate this in certain contexts, it creates a risk of silent failure or runtime crashes in Server Components.
+**Learning:** Security primitives that rely on React hooks for validation or attribute generation must explicitly mark themselves as Client Components to guarantee stability across the application.
+**Prevention:** Audit all UI components using hooks (like `useMemo`, `useState`) and enforce `"use client"` directive.
 ## 2026-02-15 - Header Policy Enforcement Mismatch
 **Vulnerability:** Inconsistent security header configuration between code implementation (`on`) and security policy/memory (`off`) for `X-DNS-Prefetch-Control`.
 **Learning:** Security headers must be verified against the intended policy, not just copied from existing config files. Mismatches can lead to weakened privacy protections (e.g., DNS prefetching leaking user navigation).
