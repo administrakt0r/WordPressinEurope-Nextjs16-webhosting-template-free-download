@@ -34,8 +34,6 @@ export function isSafeUrl(url: string): boolean {
   // Allow relative URLs (starting with / or #)
   if (url.startsWith('/') || url.startsWith('#')) return true;
 
-  const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
-
   try {
     const parsed = new URL(url);
     return SAFE_PROTOCOLS.includes(parsed.protocol);
@@ -48,4 +46,32 @@ export function isSafeUrl(url: string): boolean {
     // Treat as relative path
     return true;
   }
+}
+
+// Pre-compute the CSP template to avoid regex and string allocation on every request
+const CSP_TEMPLATE = `
+    default-src 'self';
+    script-src 'self' 'nonce-NONCE_PLACEHOLDER' 'strict-dynamic';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' blob: data: https://images.unsplash.com;
+    font-src 'self' data:;
+    connect-src 'self' https://uptime.wpineu.com https://clients.wpineu.com https://wp.wpineu.com https://images.unsplash.com;
+    worker-src 'self' blob:;
+    manifest-src 'self';
+    media-src 'self';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    frame-src 'none';
+    block-all-mixed-content;
+    upgrade-insecure-requests;
+`
+  .replace(/\s{2,}/g, ' ')
+  .trim();
+
+export const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
+
+export function generateCSP(nonce: string): string {
+  return CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
 }
