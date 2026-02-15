@@ -72,7 +72,7 @@
 ## Known Issues
 <!-- Issues found but not yet fixed -->
 [2026-03-03] Missing `app/manifest.ts` (PWA feature) - Requires Feature task, not Bug Fix.
-[2026-03-03] Missing JSDoc in `lib/utils.ts` and `lib/links.ts` - Requires Improvement task.
 
 ## False Positives
 <!-- Things that look like errors but aren't -->
+[2026-03-03] Missing JSDoc in `lib/utils.ts` and `lib/links.ts` - Found existing JSDoc.

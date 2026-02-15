@@ -34,6 +34,7 @@ export function Footer() {
                             <Mail size={16} aria-hidden="true" />
                             <ObfuscatedMailto
                                 email="support@wpineu.com"
+                                aria-label="Email Support"
                                 className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm"
                             />
                             <CopyButton text="support@wpineu.com" ariaLabel="Copy support email" />
