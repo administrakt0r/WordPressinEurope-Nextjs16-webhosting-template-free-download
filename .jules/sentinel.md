@@ -63,12 +63,12 @@
 **Learning:** Security utilities must be rigorous about variable definitions. A missing constant in a utility function can silently break functionality or security checks if error handling is too broad (e.g., catching all errors and returning a default value).
 **Prevention:** Explicitly define all constants within the module or function scope and ensure strict linting/testing catches undefined variables. Avoid broad `try-catch` blocks that suppress `ReferenceError`s during development.
 
-## 2025-05-25 - Cross-Site Tracing (XST) Prevention
-**Vulnerability:** The application did not explicitly block `TRACE` and `TRACK` HTTP methods, potentially allowing Cross-Site Tracing (XST) attacks where an attacker could bypass `HttpOnly` cookies via XSS (in older browsers/configurations) or gather diagnostic information.
-**Learning:** Even though modern browsers largely mitigate XST, defense-in-depth requires blocking diagnostic methods at the application/middleware level to prevent any potential misuse or information leakage.
-**Prevention:** Explicitly check for and block `TRACE` and `TRACK` methods in `middleware.ts` with a 405 Method Not Allowed response.
+## 2025-05-25 - IP Rate Limiting Spoofing
+**Vulnerability:** The rate limiting logic prioritized `X-Forwarded-For` over `request.ip`, allowing attackers to bypass rate limits by spoofing the header.
+**Learning:** `X-Forwarded-For` is user-controlled and can be forged unless the upstream proxy strictly sanitizes it. Next.js `request.ip` is populated from trusted platform headers.
+**Prevention:** Always prioritize `request.ip` (or platform-specific trusted headers) for security controls. Use `X-Forwarded-For` only as a fallback and sanitize it.
 
-## 2025-05-25 - Testing Middleware with Unsupported Methods
-**Vulnerability:** Testing middleware logic for unsupported HTTP methods (like `TRACE`/`TRACK`) using `new NextRequest(...)` fails because the constructor validates methods against a strict list, preventing the test from running.
-**Learning:** When testing edge cases or security controls for non-standard/unsupported methods, standard framework constructs (like `NextRequest`) may enforce validity too early. We must mock the request object to bypass constructor validation and test the middleware logic itself.
-**Prevention:** Use a plain object cast to `NextRequest` (or a mock) when testing unsupported methods in middleware tests.
+## 2025-05-25 - HTTP Method Blocking
+**Vulnerability:** The application implicitly allowed all HTTP methods. `TRACE` and `TRACK` methods can be used for Cross-Site Tracing (XST) attacks to steal cookies or credentials, bypassing HttpOnly flags.
+**Learning:** Even if modern browsers block TRACE via XHR, blocking it at the server level is a standard hardening practice ("Defense in Depth").
+**Prevention:** Explicitly block `TRACE` and `TRACK` methods in `middleware.ts` with a 405 Method Not Allowed response.

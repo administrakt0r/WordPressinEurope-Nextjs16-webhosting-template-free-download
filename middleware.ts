@@ -60,9 +60,20 @@ export function middleware(request: NextRequest) {
     return response;
   }
 
+  // Block potentially dangerous HTTP methods
+  // TRACE and TRACK can be used for XST (Cross-Site Tracing) attacks
+  if (['TRACE', 'TRACK'].includes(request.method)) {
+    const response = new NextResponse('Method Not Allowed', { status: 405 });
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('X-Frame-Options', 'DENY');
+    return response;
+  }
+
   // Rate limiting
+  // Prioritize request.ip (trusted platform IP) to prevent spoofing via X-Forwarded-For
   const forwardedFor = request.headers.get('x-forwarded-for');
-  const ip = (request as RequestWithIp).ip || (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
+  const ip = (request as RequestWithIp).ip ||
+             (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
 
   // Generate nonce and CSP for all non-blocked requests
   const nonce = crypto.randomUUID();
