@@ -30,6 +30,7 @@ describe('Middleware Security Headers', () => {
     expect(headers.get('Cross-Origin-Opener-Policy')).toBe('same-origin');
     expect(headers.get('Cross-Origin-Resource-Policy')).toBe('same-origin');
     expect(headers.get('X-DNS-Prefetch-Control')).toBe('off');
+    expect(headers.get('X-Download-Options')).toBe('noopen');
   });
 
   it('should return 429 with security headers when rate limit is exceeded', () => {

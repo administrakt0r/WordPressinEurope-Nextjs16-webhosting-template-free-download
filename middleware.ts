@@ -29,7 +29,20 @@ const CSP_TEMPLATE = `
   .replace(/\s{2,}/g, ' ')
   .trim();
 
-const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan', 'masscan', 'zgrab', 'gobuster'];
+const BLOCKED_USER_AGENTS = [
+  'sqlmap',
+  'nikto',
+  'nuclei',
+  'wpscan',
+  'masscan',
+  'zgrab',
+  'acunetix',
+  'netsparker',
+  'havij',
+  'muieblackcat',
+  'gobuster',
+  'dirbuster',
+];
 
 export function middleware(request: NextRequest) {
   const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
@@ -95,6 +108,7 @@ export function middleware(request: NextRequest) {
   response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
   response.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
   response.headers.set('X-DNS-Prefetch-Control', 'off');
+  response.headers.set('X-Download-Options', 'noopen');
 
   return response;
 }

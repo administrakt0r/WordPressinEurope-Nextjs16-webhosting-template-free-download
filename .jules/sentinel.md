@@ -63,6 +63,10 @@
 **Learning:** Security utilities must be rigorous about variable definitions. A missing constant in a utility function can silently break functionality or security checks if error handling is too broad (e.g., catching all errors and returning a default value).
 **Prevention:** Explicitly define all constants within the module or function scope and ensure strict linting/testing catches undefined variables. Avoid broad `try-catch` blocks that suppress `ReferenceError`s during development.
 
+## 2026-02-13 - Next.js Middleware Deprecation
+**Vulnerability:** Next.js 16 (preview/canary) deprecates `middleware.ts` in favor of `proxy.ts`. Future updates might stop loading `middleware.ts`, leaving the application without critical security headers and access controls.
+**Learning:** The build output warned: "The 'middleware' file convention is deprecated. Please use 'proxy' instead." Security infrastructure relying on middleware must adapt to framework changes to ensure continuity.
+**Prevention:** Plan migration from `middleware.ts` to `proxy.ts` before the next major framework upgrade to avoid silent security failures.
 ## 2025-05-25 - Configuration Drift in Security Headers
 **Vulnerability:** Inconsistent `X-DNS-Prefetch-Control` values between `middleware.ts` (on) and security policy/memory (off) created ambiguity and potential privacy leaks.
 **Learning:** Redundant configuration (defense in depth) can lead to drift if not synchronized. Automated tests must verify *both* layers (middleware and config) against the source of truth (policy).
