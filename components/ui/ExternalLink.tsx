@@ -1,6 +1,5 @@
-"use client";
-
 import { memo, useMemo } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { isSafeUrl } from "@/lib/security";
 
@@ -18,7 +17,7 @@ interface ExternalLinkProps {
  * Wrapped in React.memo to prevent unnecessary re-renders.
  */
 export const ExternalLink = memo(function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
-  // Optimization: specific check for security only when href changes
+  // Optimization: Memoize safeHref calculation to avoid URL parsing on every render
   const safeHref = useMemo(() => isSafeUrl(href) ? href : "#", [href]);
 
   return (
