@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
+import { BLOCKED_USER_AGENTS, generateCSP } from '@/lib/security';
 
 interface RequestWithIp extends NextRequest {
   ip?: string;
@@ -28,7 +29,20 @@ const CSP_TEMPLATE = `
   .replace(/\s{2,}/g, ' ')
   .trim();
 
-const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
+const BLOCKED_USER_AGENTS = [
+  'sqlmap',
+  'nikto',
+  'nuclei',
+  'wpscan',
+  'masscan',
+  'zgrab',
+  'acunetix',
+  'netsparker',
+  'havij',
+  'muieblackcat',
+  'gobuster',
+  'dirbuster',
+];
 
 export function middleware(request: NextRequest) {
   // Block TRACE and TRACK methods to prevent XST attacks
@@ -52,7 +66,7 @@ export function middleware(request: NextRequest) {
 
   // Generate nonce and CSP for all non-blocked requests
   const nonce = crypto.randomUUID();
-  const contentSecurityPolicyHeaderValue = CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
+  const contentSecurityPolicyHeaderValue = generateCSP(nonce);
 
   let response: NextResponse;
 
@@ -98,7 +112,8 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
   response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
   response.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
-  response.headers.set('X-DNS-Prefetch-Control', 'on');
+  response.headers.set('X-DNS-Prefetch-Control', 'off');
+  response.headers.set('X-Download-Options', 'noopen');
 
   return response;
 }

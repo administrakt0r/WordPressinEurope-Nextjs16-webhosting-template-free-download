@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function BackToTop() {
+// Optimization: Memoized to prevent re-renders when parent updates (e.g. Providers)
+export const BackToTop = memo(function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
   const pathRef = useRef<SVGPathElement>(null);
 
@@ -109,4 +110,4 @@ export function BackToTop() {
       </div>
     </button>
   );
-}
+});
