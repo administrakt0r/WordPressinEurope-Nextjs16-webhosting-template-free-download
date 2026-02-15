@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isSafeUrl, safeJsonLd } from '../lib/security';
+import { isSafeUrl, safeJsonLd, generateCSP, BLOCKED_USER_AGENTS } from '../lib/security';
 
 describe('lib/security', () => {
   describe('isSafeUrl', () => {
@@ -84,6 +84,36 @@ describe('lib/security', () => {
       expect(serialized).toContain('\\u0027'); // Single quote
       expect(serialized).toContain('\\u2028'); // Line separator
       expect(serialized).not.toContain("It's");
+    });
+  });
+
+  describe('generateCSP', () => {
+    it('should generate CSP with the provided nonce', () => {
+      const nonce = 'test-nonce-123';
+      const csp = generateCSP(nonce);
+      expect(csp).toContain(`'nonce-${nonce}'`);
+    });
+
+    it('should contain default-src self', () => {
+      const csp = generateCSP('nonce');
+      expect(csp).toContain("default-src 'self'");
+    });
+
+    it('should not contain duplicate spaces', () => {
+      const csp = generateCSP('nonce');
+      expect(csp).not.toMatch(/\s{2,}/);
+    });
+  });
+
+  describe('BLOCKED_USER_AGENTS', () => {
+    it('should be an array of strings', () => {
+      expect(Array.isArray(BLOCKED_USER_AGENTS)).toBe(true);
+      expect(BLOCKED_USER_AGENTS.every(ua => typeof ua === 'string')).toBe(true);
+    });
+
+    it('should contain known malicious bots', () => {
+      expect(BLOCKED_USER_AGENTS).toContain('sqlmap');
+      expect(BLOCKED_USER_AGENTS).toContain('wpscan');
     });
   });
 });

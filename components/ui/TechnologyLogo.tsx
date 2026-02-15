@@ -17,16 +17,22 @@ export interface TechnologyLogoProps {
 
 export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, height, priority, sizes = "(max-width: 768px) 200px, 300px" }: TechnologyLogoProps) {
     return (
-        <div className="group flex items-center justify-center" title={name}>
+        <div
+            className="group flex items-center justify-center"
+            role="img"
+            aria-label={name}
+            title={name}
+        >
             {logo && width && height ? (
                 <div
                     className="relative h-10 md:h-12 w-auto"
                     // ⚡ Performance: Enforce aspect ratio to prevent CLS while image loads
                     style={{ aspectRatio: `${width} / ${height}` }}
+                    aria-hidden="true"
                 >
                     <Image
                         src={logo}
-                        alt={name}
+                        alt=""
                         width={width}
                         height={height}
                         priority={priority}
@@ -39,7 +45,7 @@ export const TechnologyLogo = memo(function TechnologyLogo({ name, logo, width, 
                     />
                 </div>
             ) : (
-                <span className="text-lg md:text-xl font-bold text-slate-400 hover:text-primary transition-colors cursor-default">
+                <span className="text-lg md:text-xl font-bold text-slate-400 hover:text-primary transition-colors cursor-default" aria-hidden="true">
                     {name}
                 </span>
             )}

@@ -1,14 +1,8 @@
 "use client";
 
-import { useState, memo, useCallback, type CSSProperties } from "react";
-import { createPortal } from "react-dom";
-import Link from "next/link";
+import { useState, memo, useCallback } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, Server } from "lucide-react";
-import { EXTERNAL_LINKS } from "@/lib/links";
-import { NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
-import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useScroll } from "@/hooks/useScroll";
 import { useScrollLock } from "@/hooks/useScrollLock";
 import { useFocusTrap } from "@/hooks/useFocusTrap";

@@ -38,7 +38,7 @@ export function Features() {
                 <div className="mb-20">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold font-heading text-foreground mb-4">
-                            Unlock Peak Performance
+                            High Performance WordPress Hosting Features
                         </h2>
                         <p className="text-lg text-muted-foreground">
                             Our WordPress hosting is engineered for excellence. From ironclad security to lightning-fast speeds and effortless scalability.
@@ -78,7 +78,7 @@ export function Features() {
                     <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 className="text-3xl md:text-4xl font-bold font-heading mb-6">
-                                The WPinEU Advantage: Engineered for Your Success
+                                Technical Advantages & Infrastructure
                             </h2>
                             <ul className="space-y-6">
                                 <li className="flex gap-4">
@@ -86,7 +86,7 @@ export function Features() {
                                         <Zap size={24} className="text-yellow-400" aria-hidden="true" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold mb-2">Unleash Peak Performance</h3>
+                                        <h3 className="text-xl font-bold mb-2">Optimized Server Architecture</h3>
                                         <p className="text-blue-100 leading-relaxed">
                                             Our European servers are meticulously optimized for WordPress. Paired with cutting-edge SSD NVMe disks, your site will achieve lightning-fast load times.
                                         </p>
