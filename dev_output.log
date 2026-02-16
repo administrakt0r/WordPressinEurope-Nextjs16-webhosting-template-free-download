@@ -11,6 +11,7 @@
 
  ✓ Starting...
  ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
- ✓ Ready in 1542ms
+ ✓ Ready in 1409ms
  ○ Compiling / ...
- GET / 200 in 11.1s (compile: 8.3s, proxy.ts: 155ms, render: 2.6s)
+ GET / 200 in 7.9s (compile: 5.7s, proxy.ts: 104ms, render: 2.1s)
+ GET / 200 in 335ms (compile: 7ms, proxy.ts: 4ms, render: 323ms)

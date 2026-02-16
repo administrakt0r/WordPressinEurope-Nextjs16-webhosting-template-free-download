@@ -72,3 +72,8 @@
 **Vulnerability:** The application implicitly allowed all HTTP methods. `TRACE` and `TRACK` methods can be used for Cross-Site Tracing (XST) attacks to steal cookies or credentials, bypassing HttpOnly flags.
 **Learning:** Even if modern browsers block TRACE via XHR, blocking it at the server level is a standard hardening practice ("Defense in Depth").
 **Prevention:** Explicitly block `TRACE` and `TRACK` methods in `middleware.ts` with a 405 Method Not Allowed response.
+
+## 2025-05-25 - Regex URL Validation Vulnerability
+**Vulnerability:** The `isSafeUrl` function relied on a regex (`/^(\/|\?|#|https?:|mailto:|tel:)/`) which failed to correctly identify relative URLs containing colons in query parameters (e.g., `?q=foo:bar`) as safe, while potentially being too permissive or fragile for complex schemes.
+**Learning:** Regex-based URL validation is prone to false positives and negatives. The standard `URL` constructor, when used with a dummy base (e.g., `http://dummy.com`), provides a robust parsing mechanism that correctly handles relative paths and query parameters while allowing strict protocol whitelisting.
+**Prevention:** Use `new URL(url, 'http://d')` to parse potential URLs. If it throws, check if it's a relative path. If it succeeds, validate the `protocol` property against a strict allowlist.

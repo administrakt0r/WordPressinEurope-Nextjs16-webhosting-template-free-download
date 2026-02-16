@@ -38,13 +38,17 @@ export function isSafeUrl(url: string): boolean {
     const parsed = new URL(url);
     return SAFE_PROTOCOLS.includes(parsed.protocol);
   } catch {
-    // If URL parsing fails, checks for potential dangerous schemes that might have bypassed parsing
-    // If it contains a colon, treat it as suspicious (could be a scheme)
-    if (url.indexOf(':') > -1) {
+    // If URL parsing fails, it might be a relative URL.
+    // Try parsing with a dummy base to check if it's a valid relative URL
+    try {
+      const parsed = new URL(url, 'http://dummy.com');
+      // Ensure the protocol hasn't changed to something dangerous (e.g. javascript:)
+      // relative URLs should inherit the http protocol from the base
+      return parsed.protocol === 'http:';
+    } catch {
+      // Still invalid even with base? Then it's not a valid URL.
       return false;
     }
-    // Treat as relative path
-    return true;
   }
 }
 
@@ -70,7 +74,20 @@ const CSP_TEMPLATE = `
   .replace(/\s{2,}/g, ' ')
   .trim();
 
-export const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
+export const BLOCKED_USER_AGENTS = [
+  'sqlmap',
+  'nikto',
+  'nuclei',
+  'wpscan',
+  'masscan',
+  'zgrab',
+  'acunetix',
+  'netsparker',
+  'havij',
+  'muieblackcat',
+  'gobuster',
+  'dirbuster',
+];
 
 export function generateCSP(nonce: string): string {
   return CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
