@@ -6,11 +6,16 @@ import { FAQAccordion } from "./FAQAccordion";
 import { FAQS } from "@/lib/data";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 
-export function FAQ() {
+interface FAQProps {
+    sectionId?: string;
+    headingId?: string;
+}
+
+export function FAQ({ sectionId = "faq", headingId = "faq-heading" }: FAQProps) {
     return (
         <section
-            id="faq"
-            aria-labelledby="faq-heading"
+            id={sectionId}
+            aria-labelledby={headingId}
             className="py-20 bg-slate-900"
             // ⚡ Performance: content-visibility skips rendering work when off-screen
             style={getOffscreenOptimizations("600px")}
@@ -18,7 +23,7 @@ export function FAQ() {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h2
-                        id="faq-heading"
+                        id={headingId}
                         className="text-3xl md:text-4xl font-bold font-heading text-foreground mb-4"
                     >
                         Your Questions, Answered

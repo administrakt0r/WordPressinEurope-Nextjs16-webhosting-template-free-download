@@ -35,7 +35,7 @@ export function Footer() {
                             <ObfuscatedMailto
                                 email="support@wpineu.com"
                                 aria-label="Email Support"
-                                className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm"
+                                className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-sm"
                             />
                             <CopyButton text="support@wpineu.com" ariaLabel="Copy support email" />
                         </div>
@@ -47,7 +47,7 @@ export function Footer() {
                         <ul className="space-y-2">
                             {HOSTING_SERVICES.map((item) => (
                                 <li key={item.label}>
-                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:text-primary focus-visible:underline rounded-sm">
+                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-sm">
                                         {item.label}
                                     </Link>
                                 </li>
@@ -63,7 +63,7 @@ export function Footer() {
                                 <li key={item.label}>
                                     <ExternalLink
                                         href={item.href}
-                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-sm"
                                     >
                                         {item.label}
                                     </ExternalLink>
@@ -80,7 +80,7 @@ export function Footer() {
                                 <li key={item.label}>
                                     <ExternalLink
                                         href={item.href}
-                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-sm"
                                     >
                                         {item.label}
                                     </ExternalLink>

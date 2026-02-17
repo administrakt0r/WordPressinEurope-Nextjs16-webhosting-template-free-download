@@ -10,25 +10,29 @@ interface ServiceDescriptionProps {
     features: ServiceFeature[];
     techLogos?: { name: string; logo: string; width?: number; height?: number }[];
     cols?: 3 | 4;
+    id?: string;
 }
 
-export function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4 }: ServiceDescriptionProps) {
+export function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4, id }: ServiceDescriptionProps) {
     const gridColsClass = clsx("grid md:grid-cols-2 gap-6 mb-16", {
         "lg:grid-cols-4": cols === 4,
         "lg:grid-cols-3": cols === 3,
     });
 
+    // Generate a unique ID for the heading if not provided
+    const headingId = id || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + "-heading";
+
     return (
         <section
             className="py-20 bg-white dark:bg-slate-900 transition-colors duration-300"
             style={getOffscreenOptimizations("800px")}
-            aria-labelledby="service-description-heading"
+            aria-labelledby={headingId}
         >
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header */}
                 <div className="max-w-3xl mx-auto text-center mb-16">
                     <h2
-                        id="service-description-heading"
+                        id={headingId}
                         className="text-3xl md:text-4xl font-bold font-heading mb-4 text-foreground"
                     >
                         {title}
