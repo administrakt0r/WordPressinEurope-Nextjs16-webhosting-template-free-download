@@ -72,3 +72,8 @@
 **Vulnerability:** The application implicitly allowed all HTTP methods. `TRACE` and `TRACK` methods can be used for Cross-Site Tracing (XST) attacks to steal cookies or credentials, bypassing HttpOnly flags.
 **Learning:** Even if modern browsers block TRACE via XHR, blocking it at the server level is a standard hardening practice ("Defense in Depth").
 **Prevention:** Explicitly block `TRACE` and `TRACK` methods in `middleware.ts` with a 405 Method Not Allowed response.
+
+## 2025-05-25 - Security Configuration Duplication
+**Vulnerability:** Duplicate definition of `BLOCKED_USER_AGENTS` in `middleware.ts` and `lib/security.ts` led to variable shadowing and potential inconsistency where one list could be updated while the other remained stale, potentially allowing malicious agents.
+**Learning:** Security configurations (blocklists, headers, allowlists) must have a Single Source of Truth (SSoT) to prevent "drift" and shadowing bugs.
+**Prevention:** Define all security constants in `lib/security.ts` and import them. Never redefine them locally.

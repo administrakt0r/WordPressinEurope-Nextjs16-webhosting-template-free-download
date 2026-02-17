@@ -70,7 +70,20 @@ const CSP_TEMPLATE = `
   .replace(/\s{2,}/g, ' ')
   .trim();
 
-export const BLOCKED_USER_AGENTS = ['sqlmap', 'nikto', 'nuclei', 'wpscan'];
+export const BLOCKED_USER_AGENTS = [
+  'sqlmap',
+  'nikto',
+  'nuclei',
+  'wpscan',
+  'masscan',
+  'zgrab',
+  'acunetix',
+  'netsparker',
+  'havij',
+  'muieblackcat',
+  'gobuster',
+  'dirbuster',
+];
 
 export function generateCSP(nonce: string): string {
   return CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
