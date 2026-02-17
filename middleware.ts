@@ -39,7 +39,7 @@ export function middleware(request: NextRequest) {
   const ip = (request as RequestWithIp).ip ||
              (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
 
-  // Generate nonce and CSP for all non-blocked requests
+  // Generate nonce for CSP
   const nonce = crypto.randomUUID();
   const contentSecurityPolicyHeaderValue = generateCSP(nonce);
 
@@ -53,7 +53,9 @@ export function middleware(request: NextRequest) {
         'Content-Type': 'text/plain',
       },
     });
-  } else {
+  }
+  // 4. Valid Request
+  else {
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set('x-nonce', nonce);
     requestHeaders.set(
@@ -68,7 +70,7 @@ export function middleware(request: NextRequest) {
     });
   }
 
-  // Apply Security Headers to all responses (including 429)
+  // Apply Security Headers to all responses
   response.headers.set(
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue
