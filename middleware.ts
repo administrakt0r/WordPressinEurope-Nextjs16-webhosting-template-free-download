@@ -8,9 +8,32 @@ interface RequestWithIp extends NextRequest {
 }
 
 export function middleware(request: NextRequest) {
+  // Block TRACE and TRACK methods to prevent XST attacks
+  if (['TRACE', 'TRACK'].includes(request.method)) {
+    return new NextResponse('Method Not Allowed', {
+      status: 405,
+      headers: {
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY',
+      },
+    });
+  }
+
   const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
 
-  // Rate limiting IP logic
+  // Block malicious User-Agents
+  if (BLOCKED_USER_AGENTS.some((agent) => userAgent.includes(agent))) {
+    return new NextResponse('Forbidden', {
+      status: 403,
+      headers: {
+        'Content-Type': 'text/plain',
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY',
+      },
+    });
+  }
+
+  // Rate limiting
   // Prioritize request.ip (trusted platform IP) to prevent spoofing via X-Forwarded-For
   const forwardedFor = request.headers.get('x-forwarded-for');
   const ip = (request as RequestWithIp).ip ||
@@ -22,21 +45,7 @@ export function middleware(request: NextRequest) {
 
   let response: NextResponse;
 
-  // 1. Block TRACE and TRACK methods to prevent XST attacks
-  if (['TRACE', 'TRACK'].includes(request.method)) {
-    response = new NextResponse('Method Not Allowed', { status: 405 });
-  }
-  // 2. Block malicious User-Agents
-  else if (BLOCKED_USER_AGENTS.some((agent) => userAgent.includes(agent))) {
-    response = new NextResponse('Forbidden', {
-      status: 403,
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-    });
-  }
-  // 3. Rate limiting
-  else if (!ratelimit.check(100, ip)) {
+  if (!ratelimit.check(100, ip)) {
     response = new NextResponse('Too Many Requests', {
       status: 429,
       headers: {
