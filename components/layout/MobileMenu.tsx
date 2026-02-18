@@ -1,4 +1,4 @@
-import { memo, type CSSProperties } from "react";
+import { memo, type CSSProperties, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { EXTERNAL_LINKS } from "@/lib/links";
@@ -21,14 +21,81 @@ export const MobileMenu = memo(function MobileMenu({
     isScrolled,
     onClose
 }: MobileMenuProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // UX: Focus Trap & Keyboard Navigation
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const container = containerRef.current;
+        if (!container) return;
+
+        // Helper to get focusable elements
+        const getFocusableElements = () =>
+            container.querySelectorAll<HTMLElement>(
+                'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), details, [tabindex]:not([tabindex="-1"])'
+            );
+
+        // Focus the first element when opened
+        // Small timeout ensures the DOM is ready and prevents conflict with the trigger click
+        const timer = setTimeout(() => {
+            const elements = getFocusableElements();
+            if (elements.length > 0) {
+                elements[0].focus();
+            }
+        }, 10);
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            // Close on Escape
+            if (e.key === 'Escape') {
+                onClose();
+                return;
+            }
+
+            // Trap Tab
+            if (e.key === 'Tab') {
+                const elements = getFocusableElements();
+                if (elements.length === 0) return;
+
+                const firstElement = elements[0];
+                const lastElement = elements[elements.length - 1];
+
+                if (e.shiftKey) { // Shift + Tab
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else { // Tab
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        };
+
+        container.addEventListener('keydown', handleKeyDown);
+
+        // Prevent scrolling of body content underneath
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            container.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = '';
+            clearTimeout(timer);
+        };
+    }, [isOpen, onClose]);
+
     // Only render if open and on client (document exists)
     if (!isOpen || typeof document === 'undefined') return null;
 
     return createPortal(
         <div
+            ref={containerRef}
             id="mobile-menu"
             className="md:hidden fixed inset-0 top-[var(--navbar-height,72px)] bg-slate-950 z-40 overflow-y-auto"
-            role="navigation"
+            role="dialog"
+            aria-modal="true"
             aria-label="Mobile navigation"
             style={{
                 '--navbar-height': isScrolled ? '72px' : '88px',

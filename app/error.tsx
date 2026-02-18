@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { AlertTriangle, RefreshCcw } from "lucide-react";
+import Link from "next/link";
+import { AlertTriangle, RefreshCcw, Home } from "lucide-react";
 import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 
 export default function Error({
@@ -32,13 +33,24 @@ export default function Error({
         <p className="text-muted-foreground mb-8 leading-relaxed">
             We apologize for the inconvenience. An unexpected error has occurred while loading this page.
         </p>
-        <button
-            onClick={() => reset()}
-            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        >
-            <RefreshCcw size={18} aria-hidden="true" />
-            Try again
-        </button>
+
+        <div className="flex flex-col gap-3">
+            <button
+                onClick={() => reset()}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+                <RefreshCcw size={18} aria-hidden="true" />
+                Try again
+            </button>
+
+            <Link
+                href="/"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+                <Home size={18} aria-hidden="true" />
+                Go to Home
+            </Link>
+        </div>
       </div>
     </div>
   );

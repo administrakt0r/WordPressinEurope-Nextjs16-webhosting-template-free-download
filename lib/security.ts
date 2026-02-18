@@ -85,6 +85,10 @@ export const BLOCKED_USER_AGENTS = [
   'dirbuster',
 ];
 
+// Pre-compiled regex for faster matching (O(1) vs O(N))
+// Matches any of the blocked user agents (case-insensitive)
+export const BLOCKED_UA_REGEX = new RegExp(BLOCKED_USER_AGENTS.join('|'), 'i');
+
 export function generateCSP(nonce: string): string {
   return CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
 }
