@@ -6,6 +6,10 @@
 [2026-01-20] [UX] Improve accessibility in `FAQ.tsx` with optional ID props.
 [2026-01-20] [UX] Enhance focus styles in `Footer.tsx` with high-contrast rings.
 [2026-01-20] [FIX] Refactor `Navbar.tsx` to correctly import and use memoized sub-components.
+[2026-01-20] [PERF] Optimized user-agent blocking in `middleware.ts` using regex.
+[2026-01-20] [UX] Implemented focus trap in mobile menu for better accessibility.
+[2026-01-20] [UX] Added 'Go to Home' button to global error boundary.
+[2026-01-20] [UX] Added `aria-current="page"` to navbar logo when active.
 
 ## In Progress
 

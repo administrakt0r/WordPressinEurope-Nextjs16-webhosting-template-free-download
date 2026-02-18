@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
-import { BLOCKED_USER_AGENTS, generateCSP } from '@/lib/security';
+import { BLOCKED_UA_REGEX, generateCSP } from '@/lib/security';
 
 interface RequestWithIp extends NextRequest {
   ip?: string;
@@ -21,7 +21,7 @@ export function middleware(request: NextRequest) {
     response = new NextResponse('Method Not Allowed', { status: 405 });
   }
   // 2. Block malicious User-Agents
-  else if (BLOCKED_USER_AGENTS.some((agent) => userAgent.includes(agent))) {
+  else if (BLOCKED_UA_REGEX.test(userAgent)) {
     response = new NextResponse('Forbidden', { status: 403 });
   }
   else {
