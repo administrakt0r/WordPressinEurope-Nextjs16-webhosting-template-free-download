@@ -8,7 +8,7 @@ describe('Middleware Security Headers', () => {
     vi.restoreAllMocks();
   });
 
-  it('should set security headers', () => {
+  it('should set security headers on valid requests', () => {
     // Ensure rate limit passes for this test
     vi.spyOn(ratelimit, 'check').mockReturnValue(true);
 
@@ -49,7 +49,7 @@ describe('Middleware Security Headers', () => {
     expect(response.headers.get('Cross-Origin-Opener-Policy')).toBe('same-origin');
   });
 
-  it('should block TRACE and TRACK methods with 405 status', () => {
+  it('should block TRACE and TRACK methods with 405 status AND security headers', () => {
     ['TRACE', 'TRACK'].forEach((method) => {
       // Mock NextRequest to bypass constructor validation for unsupported methods
       const request = {
@@ -61,7 +61,29 @@ describe('Middleware Security Headers', () => {
 
       const response = middleware(request);
       expect(response.status).toBe(405);
+
+      // Verify security headers
+      expect(response.headers.get('Content-Security-Policy')).toBeDefined();
+      expect(response.headers.get('X-Frame-Options')).toBe('DENY');
+      expect(response.headers.get('Strict-Transport-Security')).toBeDefined();
+      expect(response.headers.get('Permissions-Policy')).toBeDefined();
     });
+  });
+
+  it('should block malicious User-Agents with 403 status AND security headers', () => {
+    const maliciousUA = 'sqlmap';
+    const request = new NextRequest(new URL('https://wpineu.com/'), {
+      headers: { 'user-agent': maliciousUA },
+    });
+
+    const response = middleware(request);
+    expect(response.status).toBe(403);
+
+    // Verify security headers
+    expect(response.headers.get('Content-Security-Policy')).toBeDefined();
+    expect(response.headers.get('X-Frame-Options')).toBe('DENY');
+    expect(response.headers.get('Strict-Transport-Security')).toBeDefined();
+    expect(response.headers.get('Permissions-Policy')).toBeDefined();
   });
 
   it('should allow GET, POST, HEAD, OPTIONS methods', () => {

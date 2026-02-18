@@ -8,69 +8,57 @@ interface RequestWithIp extends NextRequest {
 }
 
 export function middleware(request: NextRequest) {
-  // Block TRACE and TRACK methods to prevent XST attacks
-  if (['TRACE', 'TRACK'].includes(request.method)) {
-    return new NextResponse('Method Not Allowed', {
-      status: 405,
-      headers: {
-        'X-Content-Type-Options': 'nosniff',
-        'X-Frame-Options': 'DENY',
-      },
-    });
-  }
-
-  const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
-
-  // Block malicious User-Agents
-  if (BLOCKED_USER_AGENTS.some((agent) => userAgent.includes(agent))) {
-    return new NextResponse('Forbidden', {
-      status: 403,
-      headers: {
-        'Content-Type': 'text/plain',
-        'X-Content-Type-Options': 'nosniff',
-        'X-Frame-Options': 'DENY',
-      },
-    });
-  }
-
-  // Rate limiting
-  // Prioritize request.ip (trusted platform IP) to prevent spoofing via X-Forwarded-For
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  const ip = (request as RequestWithIp).ip ||
-             (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
-
   // Generate nonce for CSP
   const nonce = crypto.randomUUID();
   const contentSecurityPolicyHeaderValue = generateCSP(nonce);
 
   let response: NextResponse;
 
-  if (!ratelimit.check(100, ip)) {
-    response = new NextResponse('Too Many Requests', {
-      status: 429,
-      headers: {
-        'Retry-After': '60',
-        'Content-Type': 'text/plain',
-      },
-    });
+  const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
+
+  // 1. Block TRACE and TRACK methods to prevent XST attacks
+  if (['TRACE', 'TRACK'].includes(request.method)) {
+    response = new NextResponse('Method Not Allowed', { status: 405 });
   }
-  // 4. Valid Request
+  // 2. Block malicious User-Agents
+  else if (BLOCKED_USER_AGENTS.some((agent) => userAgent.includes(agent))) {
+    response = new NextResponse('Forbidden', { status: 403 });
+  }
   else {
-    const requestHeaders = new Headers(request.headers);
-    requestHeaders.set('x-nonce', nonce);
-    requestHeaders.set(
-      'Content-Security-Policy',
-      contentSecurityPolicyHeaderValue
-    );
+    // 3. Rate limiting
+    // Prioritize request.ip (trusted platform IP) to prevent spoofing via X-Forwarded-For
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    const ip = (request as RequestWithIp).ip ||
+               (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
 
-    response = NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    });
+    if (!ratelimit.check(100, ip)) {
+      response = new NextResponse('Too Many Requests', {
+        status: 429,
+        headers: {
+          'Retry-After': '60',
+          'Content-Type': 'text/plain',
+        },
+      });
+    }
+    // 4. Valid Request
+    else {
+      const requestHeaders = new Headers(request.headers);
+      requestHeaders.set('x-nonce', nonce);
+      requestHeaders.set(
+        'Content-Security-Policy',
+        contentSecurityPolicyHeaderValue
+      );
+
+      response = NextResponse.next({
+        request: {
+          headers: requestHeaders,
+        },
+      });
+    }
   }
 
-  // Apply Security Headers to all responses
+  // Apply Security Headers to all responses (including 403, 405, 429)
+  // This ensures consistent security posture even for blocked requests
   response.headers.set(
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue
