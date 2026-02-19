@@ -1,12 +1,12 @@
 "use client";
 
-import { memo } from "react";
+import { memo, type ReactNode } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 
 interface FAQItemProps {
     question: string;
-    answer: string;
+    answer: ReactNode;
     isOpen: boolean;
     onToggle: (index: number) => void;
     accordionId: string;
