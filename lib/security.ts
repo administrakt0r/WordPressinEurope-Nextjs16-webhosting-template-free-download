@@ -83,11 +83,34 @@ export const BLOCKED_USER_AGENTS = [
   'muieblackcat',
   'gobuster',
   'dirbuster',
+  'nmap',
+  'nessus',
+  'qualys',
+  'openvas',
+  'whatweb',
+  'buster',
+  'censys',
+  'shodan',
 ];
+
+/**
+ * Escapes special characters in a string for use in a regular expression.
+ * Prevents ReDoS and ensures literal matching of characters like . or *.
+ *
+ * @param string The string to escape.
+ * @returns The escaped string.
+ */
+export function escapeRegExp(string: string): string {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 // Pre-compiled regex for faster matching (O(1) vs O(N))
 // Matches any of the blocked user agents (case-insensitive)
-export const BLOCKED_UA_REGEX = new RegExp(BLOCKED_USER_AGENTS.join('|'), 'i');
+// Uses escapeRegExp to ensure safety against special characters in the list
+export const BLOCKED_UA_REGEX = new RegExp(
+  BLOCKED_USER_AGENTS.map(escapeRegExp).join('|'),
+  'i'
+);
 
 export function generateCSP(nonce: string): string {
   return CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
