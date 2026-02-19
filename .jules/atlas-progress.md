@@ -10,6 +10,9 @@
 [2026-01-20] [UX] Implemented focus trap in mobile menu for better accessibility.
 [2026-01-20] [UX] Added 'Go to Home' button to global error boundary.
 [2026-01-20] [UX] Added `aria-current="page"` to navbar logo when active.
+[2026-01-23] [UX] Enhanced `FAQAccordion` and `FAQItem` to support rich content.
+[2026-01-23] [UX] Refactored `app/support/page.tsx` to use `FAQAccordion` for better consistency.
+[2026-01-23] [UX] Added `role="status"` and `aria-label` to `Skeleton` component for better accessibility.
 
 ## In Progress
 

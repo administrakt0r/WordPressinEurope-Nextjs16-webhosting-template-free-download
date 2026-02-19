@@ -7,6 +7,8 @@ function Skeleton({
   return (
     <div
       className={cn("animate-pulse rounded-md bg-slate-800", className)}
+      role="status"
+      aria-label="Loading..."
       {...props}
     />
   );

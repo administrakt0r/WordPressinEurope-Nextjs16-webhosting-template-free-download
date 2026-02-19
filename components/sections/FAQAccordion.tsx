@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useId, useCallback } from "react";
+import { useState, useId, useCallback, type ReactNode } from "react";
 import { FAQItem } from "./FAQItem";
 
 interface FAQItemData {
     question: string;
-    answer: string;
+    answer: ReactNode;
 }
 
 interface FAQAccordionProps {

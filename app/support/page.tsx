@@ -4,6 +4,7 @@ import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { FAQAccordion } from "@/components/sections/FAQAccordion";
 
 export const metadata: Metadata = {
     title: "Support & Contact",
@@ -138,41 +139,40 @@ export default function SupportPage() {
             {/* FAQ Section */}
             <section className="py-20 bg-slate-950">
                 <div className="container mx-auto px-4 md:px-6">
-                    <div className="max-w-3xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
-                            Common Questions
-                        </h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
+                        Common Questions
+                    </h2>
 
-                        <div className="space-y-6">
-                            <div className="bg-background rounded-xl p-6 border border-muted">
-                                <h3 className="text-xl font-bold text-foreground mb-3">How do I get started?</h3>
-                                <p className="text-muted-foreground">
+                    <FAQAccordion faqs={[
+                        {
+                            question: "How do I get started?",
+                            answer: (
+                                <>
                                     Visit our <ExternalLink href={EXTERNAL_LINKS.ORDER_FREE_HOSTING} className="text-blue-400 hover:text-blue-300">order page</ExternalLink> to create your free hosting account. The setup is instant and requires no credit card.
-                                </p>
-                            </div>
-
-                            <div className="bg-background rounded-xl p-6 border border-muted">
-                                <h3 className="text-xl font-bold text-foreground mb-3">Is it really free?</h3>
-                                <p className="text-muted-foreground">
-                                    Yes! Our free hosting plan includes 1GB SSD storage, 100GB bandwidth, cPanel, LiteSpeed, and more. No hidden fees, no credit card required.
-                                </p>
-                            </div>
-
-                            <div className="bg-background rounded-xl p-6 border border-muted">
-                                <h3 className="text-xl font-bold text-foreground mb-3">How can I upgrade my plan?</h3>
-                                <p className="text-muted-foreground">
+                                </>
+                            )
+                        },
+                        {
+                            question: "Is it really free?",
+                            answer: "Yes! Our free hosting plan includes 1GB SSD storage, 100GB bandwidth, cPanel, LiteSpeed, and more. No hidden fees, no credit card required."
+                        },
+                        {
+                            question: "How can I upgrade my plan?",
+                            answer: (
+                                <>
                                     Log in to your <ExternalLink href={EXTERNAL_LINKS.CLIENT_PORTAL} className="text-blue-400 hover:text-blue-300">client area</ExternalLink> to view available upgrade options and manage your services.
-                                </p>
-                            </div>
-
-                            <div className="bg-background rounded-xl p-6 border border-muted">
-                                <h3 className="text-xl font-bold text-foreground mb-3">What if I need help with WordPress?</h3>
-                                <p className="text-muted-foreground">
+                                </>
+                            )
+                        },
+                        {
+                            question: "What if I need help with WordPress?",
+                            answer: (
+                                <>
                                     Contact us at <ObfuscatedMailto email={EXTERNAL_LINKS.SUPPORT_EMAIL} className="text-blue-400 hover:text-blue-300" /> with your questions. We&apos;re here to help you succeed with your WordPress site.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                                </>
+                            )
+                        }
+                    ]} />
                 </div>
             </section>
 
