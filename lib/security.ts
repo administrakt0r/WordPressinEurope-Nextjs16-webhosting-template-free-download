@@ -31,20 +31,13 @@ export function isSafeUrl(url: string): boolean {
   // Prevent protocol-relative URLs (open redirect risk)
   if (url.startsWith('//')) return false;
 
-  // Allow relative URLs (starting with / or #)
-  if (url.startsWith('/') || url.startsWith('#')) return true;
-
   try {
-    const parsed = new URL(url);
+    // Use a dummy base to allow parsing of relative URLs
+    // This catches schemes like javascript: even if they are not at the start (though URL constructor handles that)
+    const parsed = new URL(url, 'http://dummy.com');
     return SAFE_PROTOCOLS.includes(parsed.protocol);
   } catch {
-    // If URL parsing fails, checks for potential dangerous schemes that might have bypassed parsing
-    // If it contains a colon, treat it as suspicious (could be a scheme)
-    if (url.indexOf(':') > -1) {
-      return false;
-    }
-    // Treat as relative path
-    return true;
+    return false;
   }
 }
 
