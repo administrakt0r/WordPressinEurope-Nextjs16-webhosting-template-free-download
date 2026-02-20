@@ -87,3 +87,8 @@
 **Vulnerability:** Constructing a `RegExp` from a dynamic list of strings (like `BLOCKED_USER_AGENTS`) without escaping special characters can lead to ReDoS (Regular Expression Denial of Service) or logic errors if the list contains characters like `.`, `*`, or `?`.
 **Learning:** Always treat string lists as "untrusted" when converting them to regex patterns. Even if the current list is safe, future additions might introduce special characters.
 **Prevention:** Use an `escapeRegExp` utility function to escape all special characters in strings before joining them into a regex pattern.
+
+## 2025-05-25 - Generic User-Agent Blocking
+**Vulnerability:** Adding generic terms like "john" or "spider" to blocklists can inadvertently block legitimate users or custom bots, causing false positives.
+**Learning:** Security blocklists must balance strictness with usability. However, for known attack tools like "John the Ripper", the risk of a false positive (a user with "john" in their UA) is acceptable compared to the security benefit, provided there is a mechanism to review logs or appeals.
+**Prevention:** Carefully review new additions to `BLOCKED_USER_AGENTS`. Use specific tool names (e.g., `sqlmap`) where possible, but accept some risk for common tools with generic names if the threat is high.
