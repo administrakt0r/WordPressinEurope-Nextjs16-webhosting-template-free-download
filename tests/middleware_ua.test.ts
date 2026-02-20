@@ -51,4 +51,20 @@ describe('Middleware User-Agent Blocking', () => {
     const response = middleware(request);
     expect(response.status).toBe(403);
   });
+
+  it('should block requests with hydra user agent', () => {
+    const request = new NextRequest(new URL('https://wpineu.com/'), {
+      headers: { 'user-agent': 'Hydra' },
+    });
+    const response = middleware(request);
+    expect(response.status).toBe(403);
+  });
+
+  it('should block requests with zap user agent', () => {
+    const request = new NextRequest(new URL('https://wpineu.com/'), {
+      headers: { 'user-agent': 'ZAP/2.12.0' },
+    });
+    const response = middleware(request);
+    expect(response.status).toBe(403);
+  });
 });
