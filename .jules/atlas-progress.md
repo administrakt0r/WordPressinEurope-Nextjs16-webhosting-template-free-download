@@ -13,6 +13,10 @@
 [2026-01-23] [UX] Enhanced `FAQAccordion` and `FAQItem` to support rich content.
 [2026-01-23] [UX] Refactored `app/support/page.tsx` to use `FAQAccordion` for better consistency.
 [2026-01-23] [UX] Added `role="status"` and `aria-label` to `Skeleton` component for better accessibility.
+[2026-01-26] [SEC] Enhanced `isSafeUrl` to correctly validate relative URLs and prevent bypasses.
+[2026-01-26] [SEC] Added `X-Download-Options: noopen` to `next.config.ts`.
+[2026-01-26] [PERF] Optimized `AnimatedSection` by memoizing `variants`.
+[2026-01-26] [QUALITY] Extracted reusable `useFocusTrap` hook and refactored `MobileMenu`.
 
 ## In Progress
 

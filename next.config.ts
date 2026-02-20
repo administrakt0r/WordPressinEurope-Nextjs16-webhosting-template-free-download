@@ -124,6 +124,10 @@ const nextConfig: NextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'off',
           },
+          {
+            key: 'X-Download-Options',
+            value: 'noopen',
+          },
         ],
       },
     ];

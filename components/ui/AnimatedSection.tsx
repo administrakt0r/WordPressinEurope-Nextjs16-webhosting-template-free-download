@@ -1,7 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 
 interface AnimatedSectionProps {
     children: React.ReactNode;
@@ -20,7 +20,7 @@ interface AnimatedSectionProps {
 export const AnimatedSection = memo(function AnimatedSection({ children, direction = "up", delay = 0, className = "" }: AnimatedSectionProps) {
     const offset = 15; // Reduced from 20 for smoother feel
 
-    const variants = {
+    const variants = useMemo(() => ({
         hidden: {
             opacity: 0,
             x: direction === "left" ? -offset : direction === "right" ? offset : 0,
@@ -36,7 +36,7 @@ export const AnimatedSection = memo(function AnimatedSection({ children, directi
                 ease: "easeOut" as const,
             },
         },
-    };
+    }), [direction, delay]);
 
     return (
         <m.div
