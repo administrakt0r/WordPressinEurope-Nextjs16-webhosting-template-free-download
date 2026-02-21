@@ -27,14 +27,15 @@ export function safeJsonLd(data: Record<string, unknown>): string {
  */
 export function isSafeUrl(url: string): boolean {
   if (!url) return false;
+  const trimmedUrl = url.trim();
 
   // Prevent protocol-relative URLs (open redirect risk)
-  if (url.startsWith('//')) return false;
+  if (trimmedUrl.startsWith('//')) return false;
 
   try {
     // Use a dummy base to allow parsing of relative URLs
     // This catches schemes like javascript: even if they are not at the start (though URL constructor handles that)
-    const parsed = new URL(url, 'http://dummy.com');
+    const parsed = new URL(trimmedUrl, 'http://dummy.com');
     return SAFE_PROTOCOLS.includes(parsed.protocol);
   } catch {
     return false;

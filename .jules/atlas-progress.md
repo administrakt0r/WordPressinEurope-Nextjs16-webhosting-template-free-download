@@ -19,6 +19,11 @@
 [2026-01-26] [QUALITY] Extracted reusable `useFocusTrap` hook and refactored `MobileMenu`.
 [2026-01-27] [SEC] Refined User-Agent blocking regex to use word boundaries and prevent false positives.
 [2026-01-27] [SEC] Upgraded Next.js to 16.1.6 to fix high severity vulnerabilities.
+[2026-02-21] [PERF] Memoized `Skeleton` component to prevent unnecessary re-renders.
+[2026-02-21] [PERF] Memoized `CopyButton` component.
+[2026-02-21] [PERF] Memoized `ObfuscatedMailto` component.
+[2026-02-21] [SEC] Hardened `isSafeUrl` to trim whitespace and prevent open redirect bypasses.
+[2026-02-21] [UX] Improved `SkipLink` to handle hash links efficiently without URL parsing.
 
 ## In Progress
 

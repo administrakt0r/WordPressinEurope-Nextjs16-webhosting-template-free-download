@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore, useMemo } from "react";
+import { useSyncExternalStore, useMemo, memo } from "react";
 import { cn } from "@/lib/utils";
 
 interface ObfuscatedMailtoProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
@@ -17,7 +17,7 @@ interface ObfuscatedMailtoProps extends Omit<React.AnchorHTMLAttributes<HTMLAnch
  * A component that obfuscates the mailto link to prevent email scraping.
  * The href is only set after hydration, protecting the address from simple bots.
  */
-export function ObfuscatedMailto({
+export const ObfuscatedMailto = memo(function ObfuscatedMailto({
   email,
   headers,
   className,
@@ -57,4 +57,4 @@ export function ObfuscatedMailto({
       {children || email}
     </a>
   );
-}
+});
