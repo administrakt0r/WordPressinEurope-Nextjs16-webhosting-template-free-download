@@ -98,7 +98,6 @@ export const BLOCKED_USER_AGENTS = [
   'grendel-scan',
   'hydra',
   'jbrofuzz',
-  'john',
   'medusa',
   'metis',
   'morfeus',
@@ -124,8 +123,9 @@ export function escapeRegExp(string: string): string {
 // Pre-compiled regex for faster matching (O(1) vs O(N))
 // Matches any of the blocked user agents (case-insensitive)
 // Uses escapeRegExp to ensure safety against special characters in the list
+// Wrapped in \b to prevent partial matches (false positives)
 export const BLOCKED_UA_REGEX = new RegExp(
-  BLOCKED_USER_AGENTS.map(escapeRegExp).join('|'),
+  BLOCKED_USER_AGENTS.map(ua => `\\b${escapeRegExp(ua)}\\b`).join('|'),
   'i'
 );
 
