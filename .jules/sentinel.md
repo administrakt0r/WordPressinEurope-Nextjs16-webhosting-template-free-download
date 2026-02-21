@@ -92,3 +92,8 @@
 **Vulnerability:** Adding generic terms like "john" or "spider" to blocklists can inadvertently block legitimate users or custom bots, causing false positives.
 **Learning:** Security blocklists must balance strictness with usability. However, for known attack tools like "John the Ripper", the risk of a false positive (a user with "john" in their UA) is acceptable compared to the security benefit, provided there is a mechanism to review logs or appeals.
 **Prevention:** Carefully review new additions to `BLOCKED_USER_AGENTS`. Use specific tool names (e.g., `sqlmap`) where possible, but accept some risk for common tools with generic names if the threat is high.
+
+## 2026-01-27 - False Positives in User-Agent Blocking
+**Vulnerability:** The `BLOCKED_UA_REGEX` matched substrings anywhere in the User-Agent string, causing denial of service for legitimate users whose device names contained blocked terms (e.g., "John's MacBook Pro" blocked by "john").
+**Learning:** Security controls must be precise. Substring matching without word boundaries (\`\\b\`) is too aggressive for common terms. Also, some terms like "john" are too generic to be safely blocked without more context (like "John/").
+**Prevention:** Use word boundaries (\`\\b\`) when constructing regexes from blocklists. Remove or refine terms that are common words or names unless they are unique to the attack tool.

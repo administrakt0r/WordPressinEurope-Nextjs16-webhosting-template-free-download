@@ -67,4 +67,23 @@ describe('Middleware User-Agent Blocking', () => {
     const response = middleware(request);
     expect(response.status).toBe(403);
   });
+
+  it('should allow legitimate user agents that contain substrings of blocked terms', () => {
+    // "john" was removed, but let's test a word boundary case.
+    // "fuzz" is in the blocklist. "FuzzyBrowser" should NOT be blocked.
+    const request = new NextRequest(new URL('https://wpineu.com/'), {
+      headers: { 'user-agent': 'Mozilla/5.0 (compatible; FuzzyBrowser/1.0)' },
+    });
+    const response = middleware(request);
+    expect(response.status).toBe(200);
+  });
+
+  it('should allow legitimate words containing blocked terms', () => {
+    // "buster" is in blocklist. "Ghostbuster" should NOT be blocked.
+    const request = new NextRequest(new URL('https://wpineu.com/'), {
+      headers: { 'user-agent': 'Ghostbuster/1.0' },
+    });
+    const response = middleware(request);
+    expect(response.status).toBe(200);
+  });
 });

@@ -17,6 +17,8 @@
 [2026-01-26] [SEC] Added `X-Download-Options: noopen` to `next.config.ts`.
 [2026-01-26] [PERF] Optimized `AnimatedSection` by memoizing `variants`.
 [2026-01-26] [QUALITY] Extracted reusable `useFocusTrap` hook and refactored `MobileMenu`.
+[2026-01-27] [SEC] Refined User-Agent blocking regex to use word boundaries and prevent false positives.
+[2026-01-27] [SEC] Upgraded Next.js to 16.1.6 to fix high severity vulnerabilities.
 
 ## In Progress
 
