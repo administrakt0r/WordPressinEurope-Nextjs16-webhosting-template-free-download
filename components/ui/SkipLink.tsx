@@ -7,7 +7,9 @@ interface SkipLinkProps {
 }
 
 export function SkipLink({ href = "#main-content", className }: SkipLinkProps) {
-  const safe = isSafeUrl(href);
+  // Optimization: Allow hash links directly without parsing
+  const isAnchor = href.startsWith("#");
+  const safe = isAnchor || isSafeUrl(href);
   const safeHref = safe ? href : "#main-content";
 
   return (
