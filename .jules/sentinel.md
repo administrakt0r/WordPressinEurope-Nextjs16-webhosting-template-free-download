@@ -97,3 +97,8 @@
 **Vulnerability:** The `BLOCKED_UA_REGEX` matched substrings anywhere in the User-Agent string, causing denial of service for legitimate users whose device names contained blocked terms (e.g., "John's MacBook Pro" blocked by "john").
 **Learning:** Security controls must be precise. Substring matching without word boundaries (\`\\b\`) is too aggressive for common terms. Also, some terms like "john" are too generic to be safely blocked without more context (like "John/").
 **Prevention:** Use word boundaries (\`\\b\`) when constructing regexes from blocklists. Remove or refine terms that are common words or names unless they are unique to the attack tool.
+
+## 2026-05-26 - Centralized Permissions-Policy
+**Vulnerability:** Redundant and potentially inconsistent `Permissions-Policy` definitions in `middleware.ts` and `next.config.ts` increased maintenance burden and risk of configuration drift, potentially leaving sensitive features enabled in some contexts.
+**Learning:** Security headers should be defined as a Single Source of Truth (SSoT) to ensure consistent application across all response types (static, dynamic, edge). Centralizing these definitions in a shared utility module prevents discrepancies.
+**Prevention:** Define the `PERMISSIONS_POLICY` string in `lib/security.ts` and import it into both `middleware.ts` and `next.config.ts`.

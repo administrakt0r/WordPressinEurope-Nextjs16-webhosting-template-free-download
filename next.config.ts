@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { PERMISSIONS_POLICY } from "./lib/security";
 
 const nextConfig: NextConfig = {
   // Disable X-Powered-By header
@@ -102,7 +103,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(), browsing-topics=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), sync-xhr=(), autoplay=(), fullscreen=(), picture-in-picture=(), display-capture=(), screen-wake-lock=(), bluetooth=(), serial=(), hid=(), battery=()',
+            value: PERMISSIONS_POLICY,
           },
           {
             key: 'Strict-Transport-Security',

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
-import { BLOCKED_UA_REGEX, generateCSP } from '@/lib/security';
+import { BLOCKED_UA_REGEX, generateCSP, PERMISSIONS_POLICY } from '@/lib/security';
 
 interface RequestWithIp extends NextRequest {
   ip?: string;
@@ -68,7 +68,7 @@ export function middleware(request: NextRequest) {
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set(
     'Permissions-Policy',
-    'camera=(), microphone=(), geolocation=(), browsing-topics=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=(), midi=(), sync-xhr=(), autoplay=(), fullscreen=(), picture-in-picture=(), display-capture=(), screen-wake-lock=(), bluetooth=(), serial=(), hid=(), battery=()'
+    PERMISSIONS_POLICY
   );
   response.headers.set(
     'Strict-Transport-Security',
