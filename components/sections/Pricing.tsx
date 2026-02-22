@@ -1,6 +1,7 @@
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { PricingCard } from "./PricingCard";
 import { SupportCard } from "./SupportCard";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
 export function Pricing() {
     return (
@@ -29,12 +30,14 @@ export function Pricing() {
                     <div className="hidden lg:block"></div>
 
                     {/* Pricing Card */}
-                    <PricingCard />
+                    <AnimatedSection>
+                        <PricingCard />
+                    </AnimatedSection>
 
                     {/* Support / Donate Section */}
-                    <div className="lg:pt-12">
+                    <AnimatedSection delay={0.1} className="lg:pt-12">
                         <SupportCard />
-                    </div>
+                    </AnimatedSection>
                 </div>
             </div>
         </section>
