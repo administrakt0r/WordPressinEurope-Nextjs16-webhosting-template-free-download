@@ -24,6 +24,10 @@
 [2026-02-21] [PERF] Memoized `ObfuscatedMailto` component.
 [2026-02-21] [SEC] Hardened `isSafeUrl` to trim whitespace and prevent open redirect bypasses.
 [2026-02-21] [UX] Improved `SkipLink` to handle hash links efficiently without URL parsing.
+[2026-03-01] [QUALITY] Added `use client` to `ExternalLink` to fix Server Component hook usage.
+[2026-03-01] [PERF] Memoized `SkeletonList` and improved accessibility to reduce screen reader noise.
+[2026-03-01] [QUALITY] Refactored `Features` and `Pricing` sections to use consistent `AnimatedSection`.
+[2026-03-01] [UX] Added `aria-label` to "View Features" link in `Hero` section.
 
 ## In Progress
 

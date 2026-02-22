@@ -2,6 +2,7 @@ import { getOffscreenOptimizations } from "@/lib/styles";
 import { FeatureCard } from "./FeatureCard";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { AdvantageSection } from "./AdvantageSection";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { FEATURES_LIST, TECHNOLOGIES_LIST } from "@/lib/content";
 
 export function Features() {
@@ -47,19 +48,14 @@ export function Features() {
 
                     <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {FEATURES_LIST.map((feature, index) => (
-                            <li
-                                key={feature.title}
-                                className="animate-slide-up will-animate"
-                                style={{
-                                    animationDelay: `${index * 100}ms`,
-                                    animationFillMode: 'both' // Ensures opacity: 0 before animation starts
-                                }}
-                            >
-                                <FeatureCard
-                                    icon={feature.icon}
-                                    title={feature.title}
-                                    description={feature.description}
-                                />
+                            <li key={feature.title}>
+                                <AnimatedSection delay={index * 0.1} className="h-full">
+                                    <FeatureCard
+                                        icon={feature.icon}
+                                        title={feature.title}
+                                        description={feature.description}
+                                    />
+                                </AnimatedSection>
                             </li>
                         ))}
                     </ul>
