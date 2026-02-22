@@ -38,6 +38,13 @@ describe('Security Headers', () => {
         expect(permissionsHeader.value).toContain('serial=()');
         expect(permissionsHeader.value).toContain('hid=()');
         expect(permissionsHeader.value).toContain('battery=()');
+        expect(permissionsHeader.value).toContain('attribution-reporting=()');
+        expect(permissionsHeader.value).toContain('run-ad-auction=()');
+        expect(permissionsHeader.value).toContain('join-ad-interest-group=()');
+        expect(permissionsHeader.value).toContain('encrypted-media=()');
+        expect(permissionsHeader.value).toContain('gamepad=()');
+        expect(permissionsHeader.value).toContain('shared-autofill=()');
+        expect(permissionsHeader.value).toContain('otp-credentials=()');
     }
   });
 

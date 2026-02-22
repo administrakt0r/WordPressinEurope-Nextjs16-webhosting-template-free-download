@@ -133,3 +133,35 @@ export const BLOCKED_UA_REGEX = new RegExp(
 export function generateCSP(nonce: string): string {
   return CSP_TEMPLATE.replace('NONCE_PLACEHOLDER', nonce);
 }
+
+// Strict Permissions-Policy to enhance privacy and security
+// Prevents usage of sensitive browser features and tracking APIs
+export const PERMISSIONS_POLICY = [
+  'camera=()',
+  'microphone=()',
+  'geolocation=()',
+  'browsing-topics=()',
+  'payment=()',
+  'usb=()',
+  'accelerometer=()',
+  'gyroscope=()',
+  'magnetometer=()',
+  'midi=()',
+  'sync-xhr=()',
+  'autoplay=()',
+  'fullscreen=()',
+  'picture-in-picture=()',
+  'display-capture=()',
+  'screen-wake-lock=()',
+  'bluetooth=()',
+  'serial=()',
+  'hid=()',
+  'battery=()',
+  'attribution-reporting=()',
+  'run-ad-auction=()',
+  'join-ad-interest-group=()',
+  'encrypted-media=()',
+  'gamepad=()',
+  'shared-autofill=()',
+  'otp-credentials=()',
+].join(', ');
