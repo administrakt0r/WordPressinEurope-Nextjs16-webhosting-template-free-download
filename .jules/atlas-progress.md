@@ -28,6 +28,10 @@
 [2026-03-01] [PERF] Memoized `SkeletonList` and improved accessibility to reduce screen reader noise.
 [2026-03-01] [QUALITY] Refactored `Features` and `Pricing` sections to use consistent `AnimatedSection`.
 [2026-03-01] [UX] Added `aria-label` to "View Features" link in `Hero` section.
+[2026-03-05] [PERF] Refactored `RateLimiter` logic for better safety and clarity.
+[2026-03-05] [UX] Optimized `BackToTop` animation performance with `.will-animate`.
+[2026-03-05] [PERF] Added `.will-animate` to `FeatureCard` and `PricingCard` hover effects.
+[2026-03-05] [SEC] Hardened `isSafeUrl` to reject control characters and added comprehensive tests.
 
 ## In Progress
 
