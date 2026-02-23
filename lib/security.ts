@@ -36,6 +36,10 @@ export function isSafeUrl(url: string): boolean {
 
   const trimmedUrl = url.trim();
 
+  // Prevent control characters which can bypass filters (e.g. \n, \t, \r)
+  // ASCII 0-31 (control) and 127 (delete)
+  if (/[\x00-\x1F\x7F]/.test(trimmedUrl)) return false;
+
   // Prevent protocol-relative URLs (open redirect risk)
   if (trimmedUrl.startsWith('//')) return false;
 
