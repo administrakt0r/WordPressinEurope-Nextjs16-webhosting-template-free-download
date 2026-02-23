@@ -102,3 +102,13 @@
 **Vulnerability:** Redundant and potentially inconsistent `Permissions-Policy` definitions in `middleware.ts` and `next.config.ts` increased maintenance burden and risk of configuration drift, potentially leaving sensitive features enabled in some contexts.
 **Learning:** Security headers should be defined as a Single Source of Truth (SSoT) to ensure consistent application across all response types (static, dynamic, edge). Centralizing these definitions in a shared utility module prevents discrepancies.
 **Prevention:** Define the `PERMISSIONS_POLICY` string in `lib/security.ts` and import it into both `middleware.ts` and `next.config.ts`.
+
+## 2026-05-27 - JSON-LD Serialization Crash
+**Vulnerability:** `JSON.stringify` inside `safeJsonLd` could crash the application if passed circular references or huge objects, leading to Denial of Service for the affected page.
+**Learning:** Utility functions used in critical rendering paths (like `head` or `layout`) must never throw. Always wrap potentially unsafe operations (like serialization) in try-catch blocks and return a safe fallback.
+**Prevention:** Wrapped `JSON.stringify` in `try-catch` within `safeJsonLd` to return `"{}"` on error.
+
+## 2026-05-27 - URL Validation DoS
+**Vulnerability:** `isSafeUrl` could be exploited for DoS via extremely long strings because `new URL()` parsing can be expensive on massive inputs.
+**Learning:** Input validation libraries must enforce reasonable limits on input size before processing to prevent resource exhaustion attacks.
+**Prevention:** Added a 2048 character limit to `isSafeUrl`.

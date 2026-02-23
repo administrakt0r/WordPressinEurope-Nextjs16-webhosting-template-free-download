@@ -9,13 +9,17 @@ const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:', 'tel:'];
  * @returns A string containing the serialized JSON with escaped characters.
  */
 export function safeJsonLd(data: Record<string, unknown>): string {
-  const json = JSON.stringify(data);
-  return json.replace(/</g, '\\u003c')
-             .replace(/>/g, '\\u003e')
-             .replace(/&/g, '\\u0026')
-             .replace(/'/g, '\\u0027')
-             .replace(/\u2028/g, '\\u2028')
-             .replace(/\u2029/g, '\\u2029');
+  try {
+    const json = JSON.stringify(data);
+    return json.replace(/</g, '\\u003c')
+               .replace(/>/g, '\\u003e')
+               .replace(/&/g, '\\u0026')
+               .replace(/'/g, '\\u0027')
+               .replace(/\u2028/g, '\\u2028')
+               .replace(/\u2029/g, '\\u2029');
+  } catch {
+    return '{}';
+  }
 }
 
 /**
@@ -27,6 +31,9 @@ export function safeJsonLd(data: Record<string, unknown>): string {
  */
 export function isSafeUrl(url: string): boolean {
   if (!url) return false;
+  // Prevent DoS via extremely long URLs
+  if (url.length > 2048) return false;
+
   const trimmedUrl = url.trim();
 
   // Prevent protocol-relative URLs (open redirect risk)
@@ -108,6 +115,8 @@ export const BLOCKED_USER_AGENTS = [
   'webinspect',
   'webslayer',
   'zap',
+  'burp',
+  'metasploit',
 ];
 
 /**
