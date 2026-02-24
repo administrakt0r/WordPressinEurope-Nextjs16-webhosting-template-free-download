@@ -112,3 +112,13 @@
 **Vulnerability:** `isSafeUrl` could be exploited for DoS via extremely long strings because `new URL()` parsing can be expensive on massive inputs.
 **Learning:** Input validation libraries must enforce reasonable limits on input size before processing to prevent resource exhaustion attacks.
 **Prevention:** Added a 2048 character limit to `isSafeUrl`.
+
+## 2026-05-28 - Middleware IP Spoofing
+**Vulnerability:** The rate limiting logic in `middleware.ts` prioritized the first IP in `X-Forwarded-For` over `request.ip`, allowing attackers to bypass limits by spoofing the header.
+**Learning:** `X-Forwarded-For` is user-controlled and can be forged unless the upstream proxy strictly sanitizes it. Next.js `request.ip` is populated from trusted platform headers (like `x-real-ip` or `cf-connecting-ip`) and should be the source of truth.
+**Prevention:** Always prioritize `request.ip` for security controls. Remove insecure fallback logic that blindly trusts `X-Forwarded-For`.
+
+## 2026-05-28 - User-Agent ReDoS Protection
+**Vulnerability:** The `User-Agent` string was passed to a complex regex (`BLOCKED_UA_REGEX`) without length limits, exposing the application to potential ReDoS or CPU exhaustion attacks with extremely long inputs.
+**Learning:** Regular expressions, especially those with many alternations, can be computationally expensive. Input validation (length limits) should always precede regex matching for untrusted inputs.
+**Prevention:** Enforce a strict length limit (e.g., 2048 characters) on `User-Agent` headers before processing them with regex.
