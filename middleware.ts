@@ -20,16 +20,20 @@ export function middleware(request: NextRequest) {
   if (['TRACE', 'TRACK'].includes(request.method)) {
     response = new NextResponse('Method Not Allowed', { status: 405 });
   }
-  // 2. Block malicious User-Agents
+  // 2. Block excessively long User-Agents to prevent ReDoS/DoS
+  else if (userAgent.length > 2048) {
+    response = new NextResponse('Forbidden', { status: 403 });
+  }
+  // 3. Block malicious User-Agents
   else if (BLOCKED_UA_REGEX.test(userAgent)) {
     response = new NextResponse('Forbidden', { status: 403 });
   }
   else {
-    // 3. Rate limiting
-    // Prioritize request.ip (trusted platform IP) to prevent spoofing via X-Forwarded-For
-    const forwardedFor = request.headers.get('x-forwarded-for');
-    const ip = (request as RequestWithIp).ip ||
-               (forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1');
+    // 4. Rate limiting
+    // Securely obtain IP from Next.js request.ip
+    // Fallback to '127.0.0.1' if undefined (safe fail-over) to prevent spoofing via X-Forwarded-For
+    // Using X-Forwarded-For[0] blindly allows attackers to bypass rate limits by injecting a fake IP.
+    const ip = (request as RequestWithIp).ip || '127.0.0.1';
 
     if (!ratelimit.check(100, ip)) {
       response = new NextResponse('Too Many Requests', {
@@ -40,7 +44,7 @@ export function middleware(request: NextRequest) {
         },
       });
     }
-    // 4. Valid Request
+    // 5. Valid Request
     else {
       const requestHeaders = new Headers(request.headers);
       requestHeaders.set('x-nonce', nonce);
