@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, memo, useCallback } from "react";
+import { useState, memo, useCallback, useId } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useScroll } from "@/hooks/useScroll";
@@ -15,6 +15,7 @@ export const Navbar = memo(function Navbar() {
     const pathname = usePathname();
     const isScrolled = useScroll(20);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const mobileMenuId = useId();
 
     // UX: Lock body scroll when mobile menu is open
     useScrollLock(isMobileMenuOpen);
@@ -49,7 +50,11 @@ export const Navbar = memo(function Navbar() {
                 <NavbarCTAs />
 
                 {/* Mobile Menu Button & Theme Toggle */}
-                <MobileMenuToggle isOpen={isMobileMenuOpen} onToggle={toggleMenu} />
+                <MobileMenuToggle
+                    isOpen={isMobileMenuOpen}
+                    onToggle={toggleMenu}
+                    ariaControls={mobileMenuId}
+                />
             </div>
 
             {/* Mobile Menu - No animation, instant show/hide */}
@@ -58,6 +63,7 @@ export const Navbar = memo(function Navbar() {
                 pathname={pathname}
                 isScrolled={isScrolled}
                 onClose={handleCloseMobileMenu}
+                id={mobileMenuId}
             />
         </nav>
     );
