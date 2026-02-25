@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 import { PERMISSIONS_POLICY } from "./lib/security";
 
 const nextConfig: NextConfig = {
+  // Enable React Strict Mode
+  reactStrictMode: true,
+
   // Disable X-Powered-By header
   poweredByHeader: false,
 

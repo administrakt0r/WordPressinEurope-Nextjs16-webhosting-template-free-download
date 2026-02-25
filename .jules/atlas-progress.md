@@ -32,12 +32,15 @@
 [2026-03-05] [UX] Optimized `BackToTop` animation performance with `.will-animate`.
 [2026-03-05] [PERF] Added `.will-animate` to `FeatureCard` and `PricingCard` hover effects.
 [2026-03-05] [SEC] Hardened `isSafeUrl` to reject control characters and added comprehensive tests.
+[2026-03-08] [PERF] Replaced expensive `blur-3xl` filter with `radial-gradient` in `About` section.
+[2026-03-08] [UX] Implemented `useId` in `Navbar` for accessible and stable Mobile Menu IDs.
+[2026-03-08] [QUALITY] Enabled `reactStrictMode` in `next.config.ts`.
 
 ## In Progress
 
 ## Backlog
 [SEC][HIGH] Migrate `middleware.ts` to `proxy.ts` (deprecated in Next.js 16).
-[PERF][MEDIUM] Implement `useId` in Client Components for better accessibility stability.
+[PERF][MEDIUM] Refactor `Footer.tsx` to use memoized FooterColumn components.
 
 ## Won't Fix
 <!-- With reason -->

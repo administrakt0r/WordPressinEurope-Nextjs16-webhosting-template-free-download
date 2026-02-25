@@ -12,6 +12,7 @@ interface MobileMenuProps {
     pathname: string | null;
     isScrolled: boolean;
     onClose: () => void;
+    id: string;
 }
 
 // Optimization: Memoized Mobile Menu
@@ -20,7 +21,8 @@ export const MobileMenu = memo(function MobileMenu({
     isOpen,
     pathname,
     isScrolled,
-    onClose
+    onClose,
+    id
 }: MobileMenuProps) {
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +36,7 @@ export const MobileMenu = memo(function MobileMenu({
     return createPortal(
         <div
             ref={containerRef}
-            id="mobile-menu"
+            id={id}
             className="md:hidden fixed inset-0 top-[var(--navbar-height,72px)] bg-slate-950 z-40 overflow-y-auto"
             role="dialog"
             aria-modal="true"

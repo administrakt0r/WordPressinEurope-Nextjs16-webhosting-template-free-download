@@ -6,12 +6,14 @@ import { ExternalLink } from "@/components/ui/ExternalLink";
 interface MobileMenuToggleProps {
     isOpen: boolean;
     onToggle: () => void;
+    ariaControls: string;
 }
 
 // Optimization: Memoized Mobile Menu Toggle
 export const MobileMenuToggle = memo(function MobileMenuToggle({
     isOpen,
-    onToggle
+    onToggle,
+    ariaControls
 }: MobileMenuToggleProps) {
     return (
         <div className="flex items-center gap-4 md:hidden">
@@ -27,7 +29,7 @@ export const MobileMenuToggle = memo(function MobileMenuToggle({
                 onClick={onToggle}
                 aria-label={isOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isOpen}
-                aria-controls="mobile-menu"
+                aria-controls={ariaControls}
             >
                 {isOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
             </button>
