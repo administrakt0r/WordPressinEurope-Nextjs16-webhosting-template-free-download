@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
-import { BLOCKED_UA_REGEX, generateCSP, PERMISSIONS_POLICY } from '@/lib/security';
+import {
+  BLOCKED_PATHS,
+  BLOCKED_UA_REGEX,
+  generateCSP,
+  PERMISSIONS_POLICY,
+} from '@/lib/security';
 
 interface RequestWithIp extends NextRequest {
   ip?: string;
@@ -28,7 +33,12 @@ export function middleware(request: NextRequest) {
   else if (BLOCKED_UA_REGEX.test(userAgent)) {
     response = new NextResponse('Forbidden', { status: 403 });
   }
-  else {
+  // 4. Block sensitive paths/files
+  else if (
+    BLOCKED_PATHS.some((path) => request.nextUrl.pathname.includes(path))
+  ) {
+    response = new NextResponse('Forbidden', { status: 403 });
+  } else {
     // 4. Rate limiting
     // Securely obtain IP from Next.js request.ip
     // Fallback to '127.0.0.1' if undefined (safe fail-over) to prevent spoofing via X-Forwarded-For
@@ -83,6 +93,17 @@ export function middleware(request: NextRequest) {
   response.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
   response.headers.set('X-DNS-Prefetch-Control', 'off');
   response.headers.set('X-Download-Options', 'noopen');
+
+  // Enhanced security headers for error responses to prevent cache poisoning
+  if (response.status === 403 || response.status === 405 || response.status === 429) {
+    response.headers.set(
+      'Cache-Control',
+      'no-store, no-cache, must-revalidate, proxy-revalidate'
+    );
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
+    response.headers.set('Vary', 'User-Agent');
+  }
 
   return response;
 }

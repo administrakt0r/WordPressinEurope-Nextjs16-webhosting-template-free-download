@@ -1,3 +1,5 @@
+# Sentinel's Journal
+
 ## 2025-02-14 - Build Error with Exported Constants in Route Handlers
 **Vulnerability:** Not a security vulnerability, but a build stability issue. Exporting variables assigned from constants (e.g., `export const revalidate = CONSTANT`) in `robots.ts` and `sitemap.ts` caused `Invalid segment configuration export detected` during `next build`.
 **Learning:** Next.js static analysis for segment configuration seems to require literal values or direct assignment in these specific files (Route Handlers/Metadata files) in this version/configuration.
@@ -122,3 +124,16 @@
 **Vulnerability:** The `User-Agent` string was passed to a complex regex (`BLOCKED_UA_REGEX`) without length limits, exposing the application to potential ReDoS or CPU exhaustion attacks with extremely long inputs.
 **Learning:** Regular expressions, especially those with many alternations, can be computationally expensive. Input validation (length limits) should always precede regex matching for untrusted inputs.
 **Prevention:** Enforce a strict length limit (e.g., 2048 characters) on `User-Agent` headers before processing them with regex.
+
+## 2026-02-25 - Middleware Security Headers and Sensitive Path Blocking
+**Vulnerability:**
+1.  **Sensitive Path Exposure:** Common sensitive files (e.g., `.env`, `.git`, `wp-config.php`) were not explicitly blocked at the edge, relying on the application routing or file system to handle them (potentially exposing 404s or source code if misconfigured).
+2.  **Missing Security Headers on Errors:** 403 (Forbidden), 405 (Method Not Allowed), and 429 (Too Many Requests) responses lacked `Cache-Control` and `Vary` headers, creating a risk of cache poisoning where a blocked response for a malicious user could be served to legitimate users by intermediate caches.
+
+**Learning:**
+-   **Defense in Depth:** Blocking known sensitive paths at the middleware level (edge) is more efficient and secure than letting requests reach the application logic.
+-   **Cache Poisoning:** Security blocks (403/429) often depend on request attributes like User-Agent or IP. If these responses are cached without `Vary: User-Agent` or `Cache-Control: no-store`, a shared cache (CDN/Proxy) might serve the block to all users.
+
+**Prevention:**
+-   Implemented a `BLOCKED_PATHS` check in `middleware.ts` to reject requests for sensitive files immediately.
+-   Enhanced `middleware.ts` to add `Cache-Control: no-store`, `Pragma: no-cache`, `Expires: 0`, and `Vary: User-Agent` to all 403, 405, and 429 responses.

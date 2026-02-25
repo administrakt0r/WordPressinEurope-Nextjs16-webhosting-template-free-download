@@ -178,3 +178,14 @@ export const PERMISSIONS_POLICY = [
   'shared-autofill=()',
   'otp-credentials=()',
 ].join(', ');
+
+// Sensitive paths and files to block at the edge
+export const BLOCKED_PATHS = [
+  '.env',
+  '.git',
+  'wp-config.php',
+  '.htaccess',
+  '.htpasswd',
+  'xmlrpc.php',
+  'phpinfo.php',
+];
