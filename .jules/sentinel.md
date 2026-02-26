@@ -137,3 +137,8 @@
 **Prevention:**
 -   Implemented a `BLOCKED_PATHS` check in `middleware.ts` to reject requests for sensitive files immediately.
 -   Enhanced `middleware.ts` to add `Cache-Control: no-store`, `Pragma: no-cache`, `Expires: 0`, and `Vary: User-Agent` to all 403, 405, and 429 responses.
+
+## 2026-05-29 - Overly Broad Blocked Paths Logic
+**Vulnerability:** The use of `String.prototype.includes()` for checking blocked paths in middleware caused false positives, blocking legitimate content that contained blocked terms as substrings (e.g., `/blog/using-.env-files`).
+**Learning:** Security controls based on string matching must be precise. Using `includes()` is too broad for path blocking. Regex with boundary checks or path segment analysis is required to avoid collateral damage.
+**Prevention:** Implemented `isBlockedPath` using a precise regex `(?:^|/)${escaped_item}(?:$|/|\.)` to match blocked items only as full path segments or filenames.

@@ -189,3 +189,23 @@ export const BLOCKED_PATHS = [
   'xmlrpc.php',
   'phpinfo.php',
 ];
+
+// Pre-compiled regex for blocked paths to improve performance and precision
+// Matches the blocked path as a full segment or followed by a dot (extension/suffix)
+// Ensures it's not a partial match of another word (e.g., 'env' in 'environment')
+export const BLOCKED_PATH_REGEX = BLOCKED_PATHS.length > 0
+  ? new RegExp(
+      BLOCKED_PATHS.map((path) => `(?:^|/)${escapeRegExp(path)}(?:$|/|\\.)`).join('|'),
+      'i'
+    )
+  : /$^/; // Matches nothing if the list is empty
+
+/**
+ * Checks if the given pathname contains a blocked path segment.
+ *
+ * @param pathname The URL pathname to check.
+ * @returns True if the pathname is blocked, false otherwise.
+ */
+export function isBlockedPath(pathname: string): boolean {
+  return BLOCKED_PATH_REGEX.test(pathname);
+}
