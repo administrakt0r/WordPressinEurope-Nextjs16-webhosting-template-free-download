@@ -2,6 +2,7 @@
 
 import { m } from "framer-motion";
 import { memo, useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 interface AnimatedSectionProps {
     children: React.ReactNode;
@@ -17,7 +18,7 @@ interface AnimatedSectionProps {
  * ⚡ Performance: Expects a parent <LazyMotion> provider to be present in the tree.
  * Do not use this component without wrapping it (or a parent) in LazyMotion.
  */
-export const AnimatedSection = memo(function AnimatedSection({ children, direction = "up", delay = 0, className = "" }: AnimatedSectionProps) {
+export const AnimatedSection = memo(function AnimatedSection({ children, direction = "up", delay = 0, className }: AnimatedSectionProps) {
     const offset = 15; // Reduced from 20 for smoother feel
 
     const variants = useMemo(() => ({
@@ -45,7 +46,8 @@ export const AnimatedSection = memo(function AnimatedSection({ children, directi
             viewport={{ once: true, margin: "-50px" }}
             variants={variants}
             // ⚡ Performance: will-animate hints browser to optimize compositing layer
-            className={`${className} will-animate`}
+            // Optimization: use cn for better class merging
+            className={cn("will-animate", className)}
         >
             {children}
         </m.div>
