@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useMemo } from "react";
+import { memo, useMemo, useId } from "react";
 import { cn } from "@/lib/utils";
 import { isSafeUrl } from "@/lib/security";
 
@@ -21,6 +21,9 @@ export const ExternalLink = memo(function ExternalLink({ href, children, classNa
   // Optimization: Memoize safeHref calculation to avoid URL parsing on every render
   const safeHref = useMemo(() => isSafeUrl(href) ? href : "#", [href]);
 
+  // Accessibility: Generate unique ID for the description to link it properly
+  const descriptionId = useId();
+
   return (
     <a
       href={safeHref}
@@ -28,10 +31,11 @@ export const ExternalLink = memo(function ExternalLink({ href, children, classNa
       rel="noopener noreferrer"
       className={cn(className)}
       aria-label={ariaLabel}
+      aria-describedby={ariaLabel ? descriptionId : undefined}
       onClick={onClick}
     >
       {children}
-      <span className="sr-only">(opens in a new tab)</span>
+      <span id={descriptionId} className="sr-only">(opens in a new tab)</span>
     </a>
   );
 });

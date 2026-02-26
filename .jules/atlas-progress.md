@@ -35,12 +35,15 @@
 [2026-03-08] [PERF] Replaced expensive `blur-3xl` filter with `radial-gradient` in `About` section.
 [2026-03-08] [UX] Implemented `useId` in `Navbar` for accessible and stable Mobile Menu IDs.
 [2026-03-08] [QUALITY] Enabled `reactStrictMode` in `next.config.ts`.
+[2026-03-12] [PERF] Refactored `Footer.tsx` to use memoized `FooterColumn` component.
+[2026-03-12] [UX] Improved `ExternalLink.tsx` accessibility with `aria-describedby` for "new tab" announcement.
+[2026-03-12] [QUALITY] Fixed `AnimatedSection.tsx` class merging with `cn`.
+[2026-03-12] [QUALITY] Improved `CopyButton.tsx` robustness with `useRef` for mounted state.
 
 ## In Progress
 
 ## Backlog
 [SEC][HIGH] Migrate `middleware.ts` to `proxy.ts` (deprecated in Next.js 16).
-[PERF][MEDIUM] Refactor `Footer.tsx` to use memoized FooterColumn components.
 
 ## Won't Fix
 <!-- With reason -->

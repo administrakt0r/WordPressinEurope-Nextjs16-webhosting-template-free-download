@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Server, Mail, Heart } from "lucide-react";
-import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { HOSTING_SERVICES, RESOURCES, LEGAL_LINKS } from "@/lib/navigation";
 import { getOffscreenOptimizations } from "@/lib/styles";
+import { FooterColumn } from "./FooterColumn";
 
 export function Footer() {
     return (
@@ -42,52 +42,24 @@ export function Footer() {
                     </div>
 
                     {/* Hosting Services */}
-                    <div>
-                        <h3 className="font-bold font-heading text-foreground mb-4">Hosting Services</h3>
-                        <ul className="space-y-2">
-                            {HOSTING_SERVICES.map((item) => (
-                                <li key={item.label}>
-                                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-sm">
-                                        {item.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <FooterColumn
+                        title="Hosting Services"
+                        items={HOSTING_SERVICES}
+                    />
 
                     {/* Resources & Support */}
-                    <div>
-                        <h3 className="font-bold font-heading text-foreground mb-4">Resources & Support</h3>
-                        <ul className="space-y-2">
-                            {RESOURCES.map((item) => (
-                                <li key={item.label}>
-                                    <ExternalLink
-                                        href={item.href}
-                                        className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-sm"
-                                    >
-                                        {item.label}
-                                    </ExternalLink>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <FooterColumn
+                        title="Resources & Support"
+                        items={RESOURCES}
+                        isExternal
+                    />
 
                     {/* Legal & Policies */}
-                    <div>
-                        <h3 className="font-bold font-heading text-foreground mb-4">Legal & Policies</h3>
-                        <ul className="space-y-2">
-                            {LEGAL_LINKS.map((item) => (
-                                <li key={item.label}>
-                                    <ExternalLink
-                                        href={item.href}
-                                        className="text-sm text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-sm"
-                                    >
-                                        {item.label}
-                                    </ExternalLink>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <FooterColumn
+                        title="Legal & Policies"
+                        items={LEGAL_LINKS}
+                        isExternal
+                    />
                 </div>
 
                 <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">

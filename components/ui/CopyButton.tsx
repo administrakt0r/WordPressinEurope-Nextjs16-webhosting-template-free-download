@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, memo } from "react";
+import { useState, memo, useRef, useEffect } from "react";
 import { Copy, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -12,12 +12,26 @@ interface CopyButtonProps {
 
 export const CopyButton = memo(function CopyButton({ text, className, ariaLabel = "Copy to clipboard" }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      if (isMounted.current) {
+        setCopied(true);
+        setTimeout(() => {
+          if (isMounted.current) {
+            setCopied(false);
+          }
+        }, 2000);
+      }
     } catch {
       // Failed to copy
     }
