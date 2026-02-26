@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
 import {
-  BLOCKED_PATHS,
+  isBlockedPath,
   BLOCKED_UA_REGEX,
   generateCSP,
   PERMISSIONS_POLICY,
@@ -34,9 +34,7 @@ export function middleware(request: NextRequest) {
     response = new NextResponse('Forbidden', { status: 403 });
   }
   // 4. Block sensitive paths/files
-  else if (
-    BLOCKED_PATHS.some((path) => request.nextUrl.pathname.includes(path))
-  ) {
+  else if (isBlockedPath(request.nextUrl.pathname)) {
     response = new NextResponse('Forbidden', { status: 403 });
   } else {
     // 4. Rate limiting
