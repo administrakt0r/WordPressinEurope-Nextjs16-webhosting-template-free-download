@@ -32,11 +32,13 @@
 [2026-03-05] [UX] Optimized `BackToTop` animation performance with `.will-animate`.
 [2026-03-05] [PERF] Added `.will-animate` to `FeatureCard` and `PricingCard` hover effects.
 [2026-03-05] [SEC] Hardened `isSafeUrl` to reject control characters and added comprehensive tests.
+[2026-03-05] [SEC] Migrated `middleware.ts` to `proxy.ts` (Next.js 16 convention).
+[2026-03-05] [UX] Added visual feedback ("Copied!") to `CopyButton` component.
+[2026-03-05] [UX] Improved accessibility in `HostingHero` with proper ARIA labeling for rating.
 
 ## In Progress
 
 ## Backlog
-[SEC][HIGH] Migrate `middleware.ts` to `proxy.ts` (deprecated in Next.js 16).
 [PERF][MEDIUM] Implement `useId` in Client Components for better accessibility stability.
 
 ## Won't Fix
