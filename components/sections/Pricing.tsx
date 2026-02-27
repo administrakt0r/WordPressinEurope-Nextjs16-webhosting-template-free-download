@@ -1,16 +1,15 @@
-import { getOffscreenOptimizations } from "@/lib/styles";
 import { PricingCard } from "./PricingCard";
 import { SupportCard } from "./SupportCard";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { Section } from "@/components/ui/Section";
 
 export function Pricing() {
     return (
-        <section
+        <Section
             id="pricing"
-            aria-labelledby="pricing-heading"
-            className="py-20 bg-slate-900"
-            // ⚡ Performance: content-visibility skips rendering work when off-screen
-            style={getOffscreenOptimizations("800px")}
+            headingId="pricing-heading"
+            className="bg-slate-900"
+            estimatedHeight="800px"
         >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center max-w-3xl mx-auto mb-16">
@@ -40,6 +39,6 @@ export function Pricing() {
                     </AnimatedSection>
                 </div>
             </div>
-        </section>
+        </Section>
     );
 }
