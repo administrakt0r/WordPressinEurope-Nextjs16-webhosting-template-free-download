@@ -1,18 +1,17 @@
-import { getOffscreenOptimizations } from "@/lib/styles";
 import { FeatureCard } from "./FeatureCard";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { AdvantageSection } from "./AdvantageSection";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { Section } from "@/components/ui/Section";
 import { FEATURES_LIST, TECHNOLOGIES_LIST } from "@/lib/content";
 
 export function Features() {
     return (
-        <section
+        <Section
             id="features"
-            aria-label="Features and Technologies"
-            className="py-20 bg-slate-950"
-            // ⚡ Performance: content-visibility skips rendering work when off-screen
-            style={getOffscreenOptimizations("1200px")}
+            ariaLabel="Features and Technologies"
+            className="bg-slate-950"
+            estimatedHeight="1200px"
         >
             <div className="container mx-auto px-4 md:px-6">
 
@@ -64,6 +63,6 @@ export function Features() {
                 {/* Advantage Section */}
                 <AdvantageSection />
             </div>
-        </section>
+        </Section>
     );
 }

@@ -39,6 +39,9 @@
 [2026-03-12] [UX] Improved `ExternalLink.tsx` accessibility with `aria-describedby` for "new tab" announcement.
 [2026-03-12] [QUALITY] Fixed `AnimatedSection.tsx` class merging with `cn`.
 [2026-03-12] [QUALITY] Improved `CopyButton.tsx` robustness with `useRef` for mounted state.
+[2026-03-15] [PERF] Dynamically imported `Footer` and `MobileMenu` to reduce initial bundle size.
+[2026-03-15] [QUALITY] Created reusable `Section` component with performance optimizations and accessibility features.
+[2026-03-15] [QUALITY] Refactored `Features` and `Pricing` to use the new `Section` component.
 
 ## In Progress
 

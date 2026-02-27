@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, memo, useCallback, useId } from "react";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useScroll } from "@/hooks/useScroll";
@@ -8,8 +9,12 @@ import { useScrollLock } from "@/hooks/useScrollLock";
 import { NavbarLogo } from "./NavbarLogo";
 import { NavbarCTAs } from "./NavbarCTAs";
 import { DesktopNavLinks } from "./DesktopNavLinks";
-import { MobileMenu } from "./MobileMenu";
 import { MobileMenuToggle } from "./MobileMenuToggle";
+
+// Optimization: Dynamically import MobileMenu to reduce initial bundle size for desktop users
+const MobileMenu = dynamic(() => import("./MobileMenu").then(mod => mod.MobileMenu), {
+    ssr: false // No need for SSR as it's a client-side portal and hidden initially
+});
 
 export const Navbar = memo(function Navbar() {
     const pathname = usePathname();
@@ -58,13 +63,16 @@ export const Navbar = memo(function Navbar() {
             </div>
 
             {/* Mobile Menu - No animation, instant show/hide */}
-            <MobileMenu
-                isOpen={isMobileMenuOpen}
-                pathname={pathname}
-                isScrolled={isScrolled}
-                onClose={handleCloseMobileMenu}
-                id={mobileMenuId}
-            />
+            {/* Conditional rendering for dynamic import optimization */}
+            {isMobileMenuOpen && (
+                <MobileMenu
+                    isOpen={isMobileMenuOpen}
+                    pathname={pathname}
+                    isScrolled={isScrolled}
+                    onClose={handleCloseMobileMenu}
+                    id={mobileMenuId}
+                />
+            )}
         </nav>
     );
 });

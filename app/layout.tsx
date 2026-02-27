@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import dynamic from "next/dynamic";
 import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/Providers";
 import { JsonLd } from "@/components/JsonLd";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { ORGANIZATION_JSON_LD } from "@/lib/json-ld";
 import { inter, outfit } from "@/lib/fonts";
 import "./globals.css";
+
+// Optimization: Load Footer dynamically as it's below the fold
+const Footer = dynamic(() => import("@/components/layout/Footer").then(mod => mod.Footer), {
+  ssr: true // Keep SSR for SEO links in footer, but allows code splitting
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wpineu.com'),
