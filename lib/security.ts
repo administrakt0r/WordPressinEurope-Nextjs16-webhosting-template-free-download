@@ -188,6 +188,15 @@ export const BLOCKED_PATHS = [
   '.htpasswd',
   'xmlrpc.php',
   'phpinfo.php',
+  'package.json',
+  'package-lock.json',
+  'pnpm-lock.yaml',
+  'yarn.lock',
+  'composer.json',
+  'composer.lock',
+  'npm-debug.log',
+  'yarn-error.log',
+  'pnpm-debug.log',
 ];
 
 // Pre-compiled regex for blocked paths to improve performance and precision
