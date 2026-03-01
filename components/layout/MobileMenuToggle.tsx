@@ -25,6 +25,7 @@ export const MobileMenuToggle = memo(function MobileMenuToggle({
                 Get Started
             </ExternalLink>
             <button
+                type="button"
                 className="p-2 text-foreground rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 onClick={onToggle}
                 aria-label={isOpen ? "Close menu" : "Open menu"}

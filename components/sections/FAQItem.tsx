@@ -30,6 +30,7 @@ const FAQItem = memo(function FAQItem({
         <div className="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
             <h3 className="m-0 p-0 text-base font-normal">
                 <button
+                    type="button"
                     id={headerId}
                     aria-controls={panelId}
                     aria-expanded={isOpen}
