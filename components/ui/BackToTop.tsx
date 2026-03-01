@@ -67,6 +67,7 @@ export const BackToTop = memo(function BackToTop() {
 
   return (
     <button
+      type="button"
       onClick={scrollToTop}
       tabIndex={isVisible ? 0 : -1}
       aria-hidden={!isVisible}

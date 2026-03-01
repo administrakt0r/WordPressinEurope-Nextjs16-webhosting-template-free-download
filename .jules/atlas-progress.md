@@ -46,7 +46,6 @@
 ## In Progress
 
 ## Backlog
-[SEC][HIGH] Migrate `middleware.ts` to `proxy.ts` (deprecated in Next.js 16).
 
 ## Won't Fix
-<!-- With reason -->
+[2026-03-24] [SEC] Migrate `middleware.ts` to `proxy.ts` - Rejected. Next.js still uses `middleware.ts`. Renaming it drops all security logic.
