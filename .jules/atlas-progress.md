@@ -42,6 +42,9 @@
 [2026-03-15] [PERF] Dynamically imported `Footer` and `MobileMenu` to reduce initial bundle size.
 [2026-03-15] [QUALITY] Created reusable `Section` component with performance optimizations and accessibility features.
 [2026-03-15] [QUALITY] Refactored `Features` and `Pricing` to use the new `Section` component.
+[2026-03-24] [UX] Add hard page reload Go to Home button to `app/global-error.tsx`.
+[2026-03-24] [UX] Use `disabled` attribute to manage `BackToTop` focusability.
+[2026-03-24] [PERF] Add `React.memo` to `Breadcrumbs` component to prevent unnecessary re-renders.
 
 ## In Progress
 
