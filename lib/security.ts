@@ -218,3 +218,41 @@ export const BLOCKED_PATH_REGEX = BLOCKED_PATHS.length > 0
 export function isBlockedPath(pathname: string): boolean {
   return BLOCKED_PATH_REGEX.test(pathname);
 }
+
+// Common attack signatures for SQLi, XSS, and LFI
+export const MALICIOUS_QUERY_SIGNATURES = [
+  '<script',
+  'javascript:',
+  'vbscript:',
+  'data:text/html',
+  'onload=',
+  'onerror=',
+  'union select',
+  'union all select',
+  'base64_decode',
+  '../',
+  '..\\',
+  '/etc/passwd',
+  'c:\\windows'
+];
+
+// Pre-compiled regex for malicious query parameters
+export const MALICIOUS_QUERY_REGEX = new RegExp(
+  MALICIOUS_QUERY_SIGNATURES.map(sig => escapeRegExp(sig)).join('|'),
+  'i'
+);
+
+/**
+ * Checks if the given URL search parameters contain common attack signatures.
+ *
+ * @param searchParams The URL search parameters object to check.
+ * @returns True if malicious query is detected, false otherwise.
+ */
+export function isMaliciousQuery(searchParams: URLSearchParams): boolean {
+  for (const [key, value] of searchParams.entries()) {
+    if (MALICIOUS_QUERY_REGEX.test(key) || MALICIOUS_QUERY_REGEX.test(value)) {
+      return true;
+    }
+  }
+  return false;
+}

@@ -3,6 +3,7 @@ import type { NextRequest } from 'next/server';
 import { ratelimit } from '@/lib/ratelimit';
 import {
   isBlockedPath,
+  isMaliciousQuery,
   BLOCKED_UA_REGEX,
   generateCSP,
   PERMISSIONS_POLICY,
@@ -36,8 +37,12 @@ export function middleware(request: NextRequest) {
   // 4. Block sensitive paths/files
   else if (isBlockedPath(request.nextUrl.pathname)) {
     response = new NextResponse('Forbidden', { status: 403 });
+  }
+  // 5. Block malicious query parameters (Lightweight WAF)
+  else if (isMaliciousQuery(request.nextUrl.searchParams)) {
+    response = new NextResponse('Forbidden', { status: 403 });
   } else {
-    // 4. Rate limiting
+    // 6. Rate limiting
     // Securely obtain IP from Next.js request.ip
     // Fallback to '127.0.0.1' if undefined (safe fail-over) to prevent spoofing via X-Forwarded-For
     // Using X-Forwarded-For[0] blindly allows attackers to bypass rate limits by injecting a fake IP.
