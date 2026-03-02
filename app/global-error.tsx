@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { AlertTriangle, RotateCcw } from 'lucide-react';
+import { AlertTriangle, RotateCcw, Home } from 'lucide-react';
 import { inter, outfit } from "@/lib/fonts";
 import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 import "./globals.css";
@@ -53,6 +53,14 @@ export default function GlobalError({
               >
                 Reload Page
               </button>
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+              <a
+                href="/"
+                className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 cursor-pointer"
+              >
+                <Home size={20} aria-hidden="true" />
+                Go to Home
+              </a>
             </div>
           </div>
         </div>

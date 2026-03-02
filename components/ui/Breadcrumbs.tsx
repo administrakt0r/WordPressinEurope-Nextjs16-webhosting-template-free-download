@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -12,7 +13,7 @@ interface BreadcrumbsProps {
   className?: string;
 }
 
-export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
+export const Breadcrumbs = memo(function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   if (!items || items.length === 0) return null;
 
   return (
@@ -52,4 +53,4 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
       </ol>
     </nav>
   );
-}
+});
