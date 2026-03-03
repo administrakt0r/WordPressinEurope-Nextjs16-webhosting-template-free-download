@@ -45,6 +45,9 @@
 [2026-03-24] [UX] Add hard page reload Go to Home button to `app/global-error.tsx`.
 [2026-03-24] [UX] Use `disabled` attribute to manage `BackToTop` focusability.
 [2026-03-24] [PERF] Add `React.memo` to `Breadcrumbs` component to prevent unnecessary re-renders.
+[2026-04-02] [QUALITY] Fixed state update warnings in `tests/copy_button.test.tsx` using `act()` and `waitFor()`.
+[2026-04-02] [UX] Replaced empty fallbacks with `Skeleton` and `SkeletonList` in `HostingLanding.tsx`.
+[2026-04-02] [UX] Added active link styling and `aria-current="page"` to `FooterColumn.tsx`.
 
 ## In Progress
 

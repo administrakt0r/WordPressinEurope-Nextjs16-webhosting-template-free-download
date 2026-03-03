@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { CopyButton } from '@/components/ui/CopyButton';
 
 describe('CopyButton Component', () => {
@@ -32,7 +32,9 @@ describe('CopyButton Component', () => {
     render(<CopyButton text="Test text" />);
     const button = screen.getByRole('button');
 
-    await fireEvent.click(button);
+    await act(async () => {
+      await fireEvent.click(button);
+    });
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith('Test text');
   });
@@ -44,7 +46,9 @@ describe('CopyButton Component', () => {
     // Initial state
     expect(screen.getByLabelText('Copy to clipboard')).toBeInTheDocument();
 
-    await fireEvent.click(button);
+    await act(async () => {
+      await fireEvent.click(button);
+    });
 
     // Copied state (Mock state update might be async or immediate depending on React 19)
     // We can use findByLabelText to wait for the update
@@ -62,7 +66,9 @@ describe('CopyButton Component', () => {
 
     expect(status).toHaveTextContent('');
 
-    await fireEvent.click(button);
+    await act(async () => {
+      await fireEvent.click(button);
+    });
 
     await waitFor(() => {
         expect(status).toHaveTextContent('Copied to clipboard');
