@@ -1,7 +1,8 @@
-import { getOffscreenOptimizations } from "@/lib/styles";
+import { memo } from "react";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
 import { ServiceFeatureCard, type ServiceFeature } from "@/components/sections/ServiceFeatureCard";
 import { clsx } from "clsx";
+import { Section } from "@/components/ui/Section";
 
 interface ServiceDescriptionProps {
     title: string;
@@ -13,7 +14,7 @@ interface ServiceDescriptionProps {
     id?: string;
 }
 
-export function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4, id }: ServiceDescriptionProps) {
+export const ServiceDescription = memo(function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4, id }: ServiceDescriptionProps) {
     const gridColsClass = clsx("grid md:grid-cols-2 gap-6 mb-16", {
         "lg:grid-cols-4": cols === 4,
         "lg:grid-cols-3": cols === 3,
@@ -21,12 +22,14 @@ export function ServiceDescription({ title, subtitle, description, features, tec
 
     // Generate a unique ID for the heading if not provided
     const headingId = id || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + "-heading";
+    const sectionId = headingId.replace('-heading', '');
 
     return (
-        <section
-            className="py-20 bg-white dark:bg-slate-900 transition-colors duration-300"
-            style={getOffscreenOptimizations("800px")}
-            aria-labelledby={headingId}
+        <Section
+            id={sectionId}
+            headingId={headingId}
+            className="bg-white dark:bg-slate-900 transition-colors duration-300"
+            estimatedHeight="800px"
         >
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header */}
@@ -73,6 +76,6 @@ export function ServiceDescription({ title, subtitle, description, features, tec
                     </div>
                 )}
             </div>
-        </section>
+        </Section>
     );
-}
+});

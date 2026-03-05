@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
-import { getOffscreenOptimizations } from "@/lib/styles";
 import { FAQAccordion } from "./FAQAccordion";
 import { FAQS } from "@/lib/data";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { Section } from "@/components/ui/Section";
 
 interface FAQProps {
     sectionId?: string;
@@ -13,12 +13,11 @@ interface FAQProps {
 
 export function FAQ({ sectionId = "faq", headingId = "faq-heading" }: FAQProps) {
     return (
-        <section
+        <Section
             id={sectionId}
-            aria-labelledby={headingId}
-            className="py-20 bg-slate-900"
-            // ⚡ Performance: content-visibility skips rendering work when off-screen
-            style={getOffscreenOptimizations("600px")}
+            headingId={headingId}
+            className="bg-slate-900"
+            estimatedHeight="600px"
         >
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center max-w-3xl mx-auto mb-16">
@@ -65,6 +64,6 @@ export function FAQ({ sectionId = "faq", headingId = "faq-heading" }: FAQProps) 
                     </div>
                 </div>
             </div>
-        </section>
+        </Section>
     );
 }

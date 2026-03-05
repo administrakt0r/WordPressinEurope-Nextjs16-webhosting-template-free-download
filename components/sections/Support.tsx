@@ -3,7 +3,7 @@ import { Mail, ArrowUpRight, Code2 } from "lucide-react";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 import { CopyButton } from "@/components/ui/CopyButton";
-import { getOffscreenOptimizations } from "@/lib/styles";
+import { Section } from "@/components/ui/Section";
 
 const resources = [
     { name: "compressi.us", url: "https://compressi.us" },
@@ -14,13 +14,11 @@ const resources = [
 
 export function Support() {
     return (
-        <section
+        <Section
             id="support"
-            aria-label="Support and Resources"
-            className="py-20 bg-slate-950"
-            // ⚡ Performance: content-visibility skips rendering work when off-screen
-            // contain-intrinsic-size prevents scrollbar jumps (estimated height)
-            style={getOffscreenOptimizations("600px")}
+            ariaLabel="Support and Resources"
+            className="bg-slate-950"
+            estimatedHeight="600px"
         >
             <div className="container mx-auto px-4 md:px-6">
 
@@ -86,6 +84,6 @@ export function Support() {
                     </ul>
                 </div>
             </div>
-        </section>
+        </Section>
     );
 }
