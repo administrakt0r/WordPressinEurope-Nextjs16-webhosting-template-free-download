@@ -26,23 +26,30 @@ export function middleware(request: NextRequest) {
   if (['TRACE', 'TRACK'].includes(request.method)) {
     response = new NextResponse('Method Not Allowed', { status: 405 });
   }
-  // 2. Block excessively long User-Agents to prevent ReDoS/DoS
+  // 2. Block excessively long URLs to prevent DoS attacks
+  else if (
+    request.nextUrl.pathname.length > 2048 ||
+    request.nextUrl.search.length > 2048
+  ) {
+    response = new NextResponse('Request URI Too Long', { status: 414 });
+  }
+  // 3. Block excessively long User-Agents to prevent ReDoS/DoS
   else if (userAgent.length > 2048) {
     response = new NextResponse('Forbidden', { status: 403 });
   }
-  // 3. Block malicious User-Agents
+  // 4. Block malicious User-Agents
   else if (BLOCKED_UA_REGEX.test(userAgent)) {
     response = new NextResponse('Forbidden', { status: 403 });
   }
-  // 4. Block sensitive paths/files
+  // 5. Block sensitive paths/files
   else if (isBlockedPath(request.nextUrl.pathname)) {
     response = new NextResponse('Forbidden', { status: 403 });
   }
-  // 5. Block malicious query parameters (Lightweight WAF)
+  // 6. Block malicious query parameters (Lightweight WAF)
   else if (isMaliciousQuery(request.nextUrl.searchParams)) {
     response = new NextResponse('Forbidden', { status: 403 });
   } else {
-    // 6. Rate limiting
+    // 7. Rate limiting
     // Securely obtain IP from Next.js request.ip
     // Fallback to '127.0.0.1' if undefined (safe fail-over) to prevent spoofing via X-Forwarded-For
     // Using X-Forwarded-For[0] blindly allows attackers to bypass rate limits by injecting a fake IP.
@@ -57,7 +64,7 @@ export function middleware(request: NextRequest) {
         },
       });
     }
-    // 5. Valid Request
+    // 8. Valid Request
     else {
       const requestHeaders = new Headers(request.headers);
       requestHeaders.set('x-nonce', nonce);
@@ -98,7 +105,7 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-Download-Options', 'noopen');
 
   // Enhanced security headers for error responses to prevent cache poisoning
-  if (response.status === 403 || response.status === 405 || response.status === 429) {
+  if (response.status === 403 || response.status === 405 || response.status === 414 || response.status === 429) {
     response.headers.set(
       'Cache-Control',
       'no-store, no-cache, must-revalidate, proxy-revalidate'
