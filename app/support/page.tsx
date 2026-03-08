@@ -1,10 +1,14 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Mail, MessageSquare, ExternalLink as ExternalLinkIcon, Clock, MapPin } from "lucide-react";
 import { EXTERNAL_LINKS } from "@/lib/links";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { ObfuscatedMailto } from "@/components/ui/ObfuscatedMailto";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { FAQAccordion } from "@/components/sections/FAQAccordion";
+
+const FAQAccordion = dynamic(() => import("@/components/sections/FAQAccordion").then(mod => mod.FAQAccordion), {
+    ssr: true // Keep SSR for SEO since FAQs are important content
+});
 
 export const metadata: Metadata = {
     title: "Support & Contact",
@@ -57,7 +61,7 @@ export default function SupportPage() {
                         {/* Email Support */}
                         <div className="bg-background rounded-2xl p-8 border border-muted hover:border-blue-500/50 transition-all group">
                             <div className="w-14 h-14 rounded-xl bg-blue-900/30 text-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <Mail size={28} />
+                                <Mail size={28} aria-hidden="true" />
                             </div>
                             <h3 className="text-2xl font-bold text-foreground mb-3">Email Support</h3>
                             <p className="text-muted-foreground mb-6">
@@ -68,14 +72,14 @@ export default function SupportPage() {
                                 className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
                             >
                                 {EXTERNAL_LINKS.SUPPORT_EMAIL}
-                                <ExternalLinkIcon size={16} />
+                                <ExternalLinkIcon size={16} aria-hidden="true" />
                             </ObfuscatedMailto>
                         </div>
 
                         {/* Client Area */}
                         <div className="bg-background rounded-2xl p-8 border border-muted hover:border-blue-500/50 transition-all group">
                             <div className="w-14 h-14 rounded-xl bg-blue-900/30 text-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <MessageSquare size={28} />
+                                <MessageSquare size={28} aria-hidden="true" />
                             </div>
                             <h3 className="text-2xl font-bold text-foreground mb-3">Client Area</h3>
                             <p className="text-muted-foreground mb-6">
@@ -86,7 +90,7 @@ export default function SupportPage() {
                                 className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
                             >
                                 clients.wpineu.com
-                                <ExternalLinkIcon size={16} />
+                                <ExternalLinkIcon size={16} aria-hidden="true" />
                             </ExternalLink>
                         </div>
                     </div>
@@ -106,7 +110,7 @@ export default function SupportPage() {
                             <div className="flex gap-4">
                                 <div className="flex-shrink-0">
                                     <div className="w-12 h-12 rounded-lg bg-blue-900/30 text-blue-400 flex items-center justify-center">
-                                        <Clock size={24} />
+                                        <Clock size={24} aria-hidden="true" />
                                     </div>
                                 </div>
                                 <div>
@@ -121,7 +125,7 @@ export default function SupportPage() {
                             <div className="flex gap-4">
                                 <div className="flex-shrink-0">
                                     <div className="w-12 h-12 rounded-lg bg-blue-900/30 text-blue-400 flex items-center justify-center">
-                                        <MapPin size={24} />
+                                        <MapPin size={24} aria-hidden="true" />
                                     </div>
                                 </div>
                                 <div>
@@ -191,7 +195,7 @@ export default function SupportPage() {
                             className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all hover:shadow-lg hover:-translate-y-1"
                         >
                             Get Started Free
-                            <ExternalLinkIcon size={20} />
+                            <ExternalLinkIcon size={20} aria-hidden="true" />
                         </ExternalLink>
                     </div>
                 </div>
