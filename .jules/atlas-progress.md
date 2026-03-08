@@ -1,6 +1,9 @@
 # Atlas Progress Tracker
 
 ## Completed
+[2026-10-25] [UX] Add `role="alert"` and `aria-live="polite"` to `app/not-found.tsx` to ensure screen readers announce the 404 error state properly.
+[2026-10-25] [PERF] Dynamically import `FAQAccordion` in `app/support/page.tsx` to reduce initial bundle size.
+[2026-10-25] [UX] Add `aria-hidden="true"` to decorative icons in `app/support/page.tsx` for better screen reader experience.
 [2026-03-05] [QUALITY] Refactored `About`, `FAQ`, `Support`, and `ServiceDescription` sections to use consistent `Section` component.
 [2026-03-05] [PERF] Wrapped `ServiceDescription` in `React.memo` to optimize rendering.
 [2026-01-20] [FIX] Refactor `middleware.ts` to remove duplicate variable declarations and logic.
@@ -54,6 +57,8 @@
 ## In Progress
 
 ## Backlog
+[PERF][MEDIUM] Implement pagination or infinite scrolling for long lists if any are added in the future.
+[UX][LOW] Add specific required field indicators if contact forms are implemented.
 
 ## Won't Fix
 [2026-03-24] [SEC] Migrate `middleware.ts` to `proxy.ts` - Rejected. Next.js still uses `middleware.ts`. Renaming it drops all security logic.

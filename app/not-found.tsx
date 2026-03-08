@@ -7,7 +7,7 @@ export default function NotFound() {
     <div className="relative flex flex-col items-center justify-center min-h-[70vh] px-4 text-center overflow-hidden">
       <BackgroundEffects variant="not-found" />
 
-      <div className="relative z-10">
+      <div className="relative z-10" role="alert" aria-live="polite">
         <h1
           className="text-9xl font-bold font-heading text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-yellow-400 mb-8 select-none"
           aria-label="Error 404"
