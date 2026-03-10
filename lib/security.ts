@@ -243,6 +243,26 @@ export const MALICIOUS_QUERY_REGEX = new RegExp(
 );
 
 /**
+ * Decodes a URI component repeatedly until it stops changing to prevent double-encoding bypasses.
+ *
+ * @param component The URI component to decode.
+ * @returns The fully decoded component, or the original component if decoding fails.
+ */
+function fullyDecodeURIComponent(component: string): string {
+  let decoded = component;
+  try {
+    let prev;
+    do {
+      prev = decoded;
+      decoded = decodeURIComponent(decoded);
+    } while (prev !== decoded);
+  } catch {
+    // If decoding fails (e.g. malformed URI), return the last successfully decoded state
+  }
+  return decoded;
+}
+
+/**
  * Checks if the given URL search parameters contain common attack signatures.
  *
  * @param searchParams The URL search parameters object to check.
@@ -250,7 +270,10 @@ export const MALICIOUS_QUERY_REGEX = new RegExp(
  */
 export function isMaliciousQuery(searchParams: URLSearchParams): boolean {
   for (const [key, value] of searchParams.entries()) {
-    if (MALICIOUS_QUERY_REGEX.test(key) || MALICIOUS_QUERY_REGEX.test(value)) {
+    const decodedKey = fullyDecodeURIComponent(key);
+    const decodedValue = fullyDecodeURIComponent(value);
+
+    if (MALICIOUS_QUERY_REGEX.test(decodedKey) || MALICIOUS_QUERY_REGEX.test(decodedValue)) {
       return true;
     }
   }

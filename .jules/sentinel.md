@@ -6,3 +6,12 @@
 **Vulnerability:** The application was vulnerable to Denial of Service (DoS) attacks via excessively long URIs and query parameters because the Next.js routing/parsing layer could be overwhelmed before custom WAF rules were evaluated.
 **Learning:** Checking the `User-Agent` length was not enough. Attackers could send extremely long `pathname` or `search` values, consuming server resources during URL resolution or regex evaluation further down the middleware chain.
 **Prevention:** Added explicit length limits (2048 characters) for `request.nextUrl.pathname` and `request.nextUrl.search` early in `middleware.ts`, immediately returning a 414 URI Too Long status. Additionally, applied the same cache-busting headers to 414 responses as 403/429s.
+## 2025-05-30 - WAF Double URL Encoding Bypass Prevention
+**Vulnerability:** The Lightweight WAF implemented in `isMaliciousQuery` decoded URL parameters only once before checking against malicious signatures. Attackers could theoretically bypass the WAF filter by double-encoding or triple-encoding their malicious payloads (e.g. replacing `<script` with `%253Cscript`).
+**Learning:** Security filters evaluating URL inputs must consider encoding bypass vectors. Decoding only once is insufficient when attackers can artificially construct recursively encoded payloads to hide signatures from edge security layers.
+**Prevention:** Implement recursive `decodeURIComponent` inside a loop that breaks when the decoded output matches the input (indicating complete decoding) before checking values against regex rules.
+
+## 2025-05-30 - Production Information Leakage via Error Boundaries
+**Vulnerability:** Both `app/error.tsx` and `app/global-error.tsx` called `console.error(error)` directly on the client side without checking the environment. This exposed internal error details and potential stack traces in production if unhandled exceptions leaked to the client browser console.
+**Learning:** Next.js error boundaries run on the client side, and passing un-sanitized error objects to standard output streams presents an information leakage risk to users casually inspecting the developer console.
+**Prevention:** Always wrap un-sanitized diagnostic logging calls like `console.error(error)` in environment condition blocks (`if (process.env.NODE_ENV !== 'production')`) when placed in client-facing components.

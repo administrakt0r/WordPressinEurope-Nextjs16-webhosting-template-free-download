@@ -14,7 +14,9 @@ export default function Error({
 }) {
   useEffect(() => {
     // In a real production app, you would log this to Sentry or similar
-    console.error(error);
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(error);
+    }
   }, [error]);
 
   return (
