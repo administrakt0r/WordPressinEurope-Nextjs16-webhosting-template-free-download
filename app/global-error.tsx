@@ -43,6 +43,7 @@ export default function GlobalError({
               <button
                 type="button"
                 onClick={() => reset()}
+                aria-label="Try to load the page again"
                 className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 cursor-pointer"
               >
                 <RotateCcw size={20} aria-hidden="true" />
@@ -51,6 +52,7 @@ export default function GlobalError({
               <button
                 type="button"
                 onClick={() => window.location.reload()}
+                aria-label="Reload the current page"
                 className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 border border-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 cursor-pointer"
               >
                 Reload Page

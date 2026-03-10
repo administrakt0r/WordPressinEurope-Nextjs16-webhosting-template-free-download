@@ -1,6 +1,8 @@
 # Atlas Progress Tracker
 
 ## Completed
+[2026-11-06] [UX] Added explicit focus states to `View Features` link in `HostingHero` component.
+[2026-11-06] [UX] Added `aria-label`s to "Try Again" and "Reload Page" buttons in `global-error.tsx`.
 [2026-10-25] [UX] Add `role="alert"` and `aria-live="polite"` to `app/not-found.tsx` to ensure screen readers announce the 404 error state properly.
 [2026-10-25] [PERF] Dynamically import `FAQAccordion` in `app/support/page.tsx` to reduce initial bundle size.
 [2026-10-25] [UX] Add `aria-hidden="true"` to decorative icons in `app/support/page.tsx` for better screen reader experience.

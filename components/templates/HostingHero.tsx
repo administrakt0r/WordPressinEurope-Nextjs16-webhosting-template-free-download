@@ -47,7 +47,7 @@ export function HostingHero({ heroTitle, heroSubtitle, breadcrumbs }: HostingHer
                 </ExternalLink>
                 <Link
                     href="#features"
-                    className="inline-flex items-center justify-center gap-2 bg-slate-900/50 border border-slate-700 hover:border-blue-500/50 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all hover:bg-slate-800 backdrop-blur-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-slate-900/50 border border-slate-700 hover:border-blue-500/50 text-white px-8 py-4 rounded-xl text-lg font-medium transition-all hover:bg-slate-800 backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                     View Features
                 </Link>
