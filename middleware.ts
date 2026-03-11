@@ -22,8 +22,9 @@ export function middleware(request: NextRequest) {
 
   const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
 
-  // 1. Block TRACE and TRACK methods to prevent XST attacks
-  if (['TRACE', 'TRACK'].includes(request.method)) {
+  // 1. Explicitly allowlist HTTP methods to prevent unexpected method usage
+  const ALLOWED_METHODS = ['GET', 'HEAD', 'POST', 'OPTIONS'];
+  if (!ALLOWED_METHODS.includes(request.method)) {
     response = new NextResponse('Method Not Allowed', { status: 405 });
   }
   // 2. Block excessively long URLs to prevent DoS attacks
