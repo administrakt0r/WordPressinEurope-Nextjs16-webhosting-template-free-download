@@ -49,8 +49,8 @@ describe('Middleware Security Headers', () => {
     expect(response.headers.get('Cross-Origin-Opener-Policy')).toBe('same-origin');
   });
 
-  it('should block TRACE and TRACK methods with 405 status AND security headers', () => {
-    ['TRACE', 'TRACK'].forEach((method) => {
+  it('should block unsupported methods with 405 status AND security headers', () => {
+    ['TRACE', 'TRACK', 'PUT', 'DELETE', 'PATCH'].forEach((method) => {
       // Mock NextRequest to bypass constructor validation for unsupported methods
       const request = {
         method,
