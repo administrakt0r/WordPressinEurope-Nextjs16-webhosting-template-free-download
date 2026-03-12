@@ -40,6 +40,7 @@ export default function Error({
             <button
                 type="button"
                 onClick={() => reset()}
+                aria-label="Try to load the page again"
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
                 <RefreshCcw size={18} aria-hidden="true" />
@@ -48,6 +49,7 @@ export default function Error({
 
             <Link
                 href="/"
+                aria-label="Return to the homepage"
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
                 <Home size={18} aria-hidden="true" />

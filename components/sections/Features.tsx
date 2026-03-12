@@ -1,9 +1,15 @@
+import dynamic from "next/dynamic";
 import { FeatureCard } from "./FeatureCard";
 import { TechnologyLogo } from "@/components/ui/TechnologyLogo";
-import { AdvantageSection } from "./AdvantageSection";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Section } from "@/components/ui/Section";
+import { Skeleton } from "@/components/ui/Skeleton";
 import { FEATURES_LIST, TECHNOLOGIES_LIST } from "@/lib/content";
+
+const AdvantageSection = dynamic(() => import("./AdvantageSection").then(mod => ({ default: mod.AdvantageSection })), {
+    loading: () => <Skeleton className="w-full h-[600px] rounded-3xl" />,
+    ssr: true // Keep SSR for initial SEO layout but load interactively
+});
 
 export function Features() {
     return (
