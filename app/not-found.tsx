@@ -1,6 +1,11 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Home, HelpCircle } from 'lucide-react';
 import { BackgroundEffects } from '@/components/ui/BackgroundEffects';
+
+export const metadata: Metadata = {
+  title: 'Page Not Found',
+};
 
 export default function NotFound() {
   return (

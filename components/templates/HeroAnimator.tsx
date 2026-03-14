@@ -1,13 +1,14 @@
 "use client";
 
 import { m } from "framer-motion";
+import { memo } from "react";
 
 interface HeroAnimatorProps {
     textContent: React.ReactNode;
     visualContent: React.ReactNode;
 }
 
-export function HeroAnimator({ textContent, visualContent }: HeroAnimatorProps) {
+export const HeroAnimator = memo(function HeroAnimator({ textContent, visualContent }: HeroAnimatorProps) {
     return (
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             {/* Text Content Animation */}
@@ -31,4 +32,4 @@ export function HeroAnimator({ textContent, visualContent }: HeroAnimatorProps) 
             </m.div>
         </div>
     );
-}
+});
