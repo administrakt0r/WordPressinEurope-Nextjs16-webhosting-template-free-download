@@ -1,6 +1,9 @@
 # Atlas Progress Tracker
 
 ## Completed
+[2026-03-14] [UX] Added empty state to `Support` section resources list.
+[2026-03-14] [PERF] Memoized `HeroAnimator` component to prevent unnecessary re-renders.
+[2026-03-14] [QUALITY] Added `title` metadata to `app/not-found.tsx` for better SEO and UX.
 [2026-04-10] [PERF] Wrapped `FAQAccordion` in `React.memo` and handled empty state gracefully.
 [2026-04-10] [UX] Added `aria-label`s to "Try Again" and "Return Home" buttons in `app/error.tsx`.
 [2026-04-10] [PERF] Dynamically imported `AdvantageSection` in `components/sections/Features.tsx` to reduce bundle size.

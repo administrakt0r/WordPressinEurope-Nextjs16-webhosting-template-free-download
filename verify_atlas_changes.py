@@ -1,26 +1,30 @@
 from playwright.sync_api import sync_playwright
 
-def verify_changes(page):
-    # Go to homepage
-    page.goto("http://localhost:3000/")
+def verify():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
 
-    # Wait for the AdvantageSection to load (dynamically imported)
-    page.wait_for_selector("text=The WPinEU Advantage: Engineered for Your Success")
+        # Test 404 page title
+        print("Testing 404 page title...")
+        page.goto("http://localhost:3000/does-not-exist")
 
-    # Take a screenshot of the Features section
-    page.evaluate("document.getElementById('features').scrollIntoView()")
-    page.wait_for_timeout(1000) # wait for smooth scroll and animations
-    page.screenshot(path="verification_features.png", full_page=True)
+        # Check title
+        title = page.title()
+        assert title == "Page Not Found | WPinEU", f"Expected title 'Page Not Found | WPinEU', got '{title}'"
+        print("✓ Title is correct")
 
-    print("Features screenshot taken.")
+        page.screenshot(path="verification_not_found.png")
+
+        # Test HeroAnimator rendering
+        print("Testing HeroAnimator rendering...")
+        page.goto("http://localhost:3000")
+        page.wait_for_selector("text=Get Started Now")
+        print("✓ Hero rendered successfully")
+
+        page.screenshot(path="verification_hero.png", full_page=False)
+
+        browser.close()
 
 if __name__ == "__main__":
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        try:
-            verify_changes(page)
-        except Exception as e:
-            print(f"Error: {e}")
-        finally:
-            browser.close()
+    verify()

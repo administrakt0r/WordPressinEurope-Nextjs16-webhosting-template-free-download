@@ -66,22 +66,28 @@ export function Support() {
                     <h3 className="text-xl font-bold font-heading text-foreground mb-8">
                         More Free Resources
                     </h3>
-                    <ul className="flex flex-wrap justify-center gap-4 md:gap-8">
-                        {resources.map((resource) => (
-                            <li key={resource.name}>
-                                <ExternalLink
-                                    href={resource.url}
-                                    className="group flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 border border-slate-800 hover:border-primary/50 hover:shadow-sm transition-all"
-                                >
-                                    <span className="font-medium text-muted-foreground group-hover:text-primary transition-colors">
-                                        {resource.name}
-                                    </span>
-                                    {/* ExternalLink component already adds sr-only text */}
-                                    <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
-                                </ExternalLink>
-                            </li>
-                        ))}
-                    </ul>
+                    {resources.length === 0 ? (
+                        <div className="py-8 bg-slate-900/50 rounded-2xl border border-slate-800 border-dashed max-w-2xl mx-auto">
+                            <p className="text-muted-foreground">More free resources are coming soon.</p>
+                        </div>
+                    ) : (
+                        <ul className="flex flex-wrap justify-center gap-4 md:gap-8">
+                            {resources.map((resource) => (
+                                <li key={resource.name}>
+                                    <ExternalLink
+                                        href={resource.url}
+                                        className="group flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 border border-slate-800 hover:border-primary/50 hover:shadow-sm transition-all"
+                                    >
+                                        <span className="font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                                            {resource.name}
+                                        </span>
+                                        {/* ExternalLink component already adds sr-only text */}
+                                        <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
+                                    </ExternalLink>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
         </Section>
