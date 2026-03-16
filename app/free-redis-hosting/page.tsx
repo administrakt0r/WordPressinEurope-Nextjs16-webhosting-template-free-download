@@ -62,6 +62,10 @@ const techLogos = [
     TECH_LOGO_CLOUDLINUX,
 ];
 
+const REDIS_BREADCRUMBS = [
+    { label: "Free Redis Hosting", href: "/free-redis-hosting" }
+];
+
 export default function FreeRedisHosting() {
     return (
         <>
@@ -73,9 +77,7 @@ export default function FreeRedisHosting() {
                     </>
                 }
                 heroSubtitle="Unlock the full potential of your WordPress site with Redis Object Caching. Lightning-fast database queries for free."
-                breadcrumbs={[
-                    { label: "Free Redis Hosting", href: "/free-redis-hosting" }
-                ]}
+                breadcrumbs={REDIS_BREADCRUMBS}
             >
                 <ServiceDescription
                     title="What is Redis Object Caching?"

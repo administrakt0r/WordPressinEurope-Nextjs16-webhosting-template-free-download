@@ -72,6 +72,10 @@ const techLogos = [
     TECH_LOGO_CLOUDLINUX,
 ];
 
+const EUROPE_BREADCRUMBS = [
+    { label: "Free Europe Hosting", href: "/free-europe-hosting" }
+];
+
 export default function FreeEuropeHosting() {
     return (
         <>
@@ -83,9 +87,7 @@ export default function FreeEuropeHosting() {
                     </>
                 }
                 heroSubtitle="Host your site closer to your audience. Our European data centers ensure low latency, high speeds, and full GDPR compliance."
-                breadcrumbs={[
-                    { label: "Free Europe Hosting", href: "/free-europe-hosting" }
-                ]}
+                breadcrumbs={EUROPE_BREADCRUMBS}
             >
                 <ServiceDescription
                     title="Hosted Locally, Served Globally"

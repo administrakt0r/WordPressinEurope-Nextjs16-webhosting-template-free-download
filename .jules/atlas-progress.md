@@ -61,6 +61,10 @@
 [2026-04-02] [QUALITY] Fixed state update warnings in `tests/copy_button.test.tsx` using `act()` and `waitFor()`.
 [2026-04-02] [UX] Replaced empty fallbacks with `Skeleton` and `SkeletonList` in `HostingLanding.tsx`.
 [2026-04-02] [UX] Added active link styling and `aria-current="page"` to `FooterColumn.tsx`.
+[2026-05-18] [UX] Improved A11y of `app/not-found.tsx` 404 header and updated metadata to prevent indexing.
+[2026-05-18] [PERF] Added `gpu-accelerated` to `error` and `not-found` variants in `BackgroundEffects`.
+[2026-05-18] [PERF] Set `prefetch={false}` on below-fold and error links in `app/not-found.tsx`.
+[2026-05-18] [PERF] Extracted inline breadcrumbs arrays to constants in `app/support/page.tsx` and all service pages to prevent breaking `React.memo`.
 
 ## In Progress
 
