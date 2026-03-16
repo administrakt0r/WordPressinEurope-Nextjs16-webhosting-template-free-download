@@ -10,6 +10,8 @@ const FAQAccordion = dynamic(() => import("@/components/sections/FAQAccordion").
     ssr: true // Keep SSR for SEO since FAQs are important content
 });
 
+const SUPPORT_BREADCRUMBS = [{ label: 'Support', href: '/support' }];
+
 export const metadata: Metadata = {
     title: "Support & Contact",
     description: "Get help with your WPinEU hosting. Contact our support team via email or client area for assistance with your free WordPress hosting.",
@@ -40,7 +42,7 @@ export default function SupportPage() {
                     <div className="text-center max-w-3xl mx-auto">
                         <div className="flex justify-center">
                             <Breadcrumbs
-                                items={[{ label: 'Support', href: '/support' }]}
+                                items={SUPPORT_BREADCRUMBS}
                                 className="mb-8"
                             />
                         </div>

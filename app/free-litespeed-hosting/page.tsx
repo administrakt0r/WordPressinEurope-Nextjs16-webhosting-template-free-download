@@ -64,6 +64,10 @@ const techLogos = [
     TECH_LOGO_CLOUDLINUX,
 ];
 
+const LITESPEED_BREADCRUMBS = [
+    { label: "Free LiteSpeed Hosting", href: "/free-litespeed-hosting" }
+];
+
 export default function FreeLiteSpeedHosting() {
     return (
         <>
@@ -75,9 +79,7 @@ export default function FreeLiteSpeedHosting() {
                     </>
                 }
                 heroSubtitle="Don't settle for slow Apache servers. Get the speed of LiteSpeed Web Server and LSCache, optimized for WordPress."
-                breadcrumbs={[
-                    { label: "Free LiteSpeed Hosting", href: "/free-litespeed-hosting" }
-                ]}
+                breadcrumbs={LITESPEED_BREADCRUMBS}
             >
                 <ServiceDescription
                     title="Why LiteSpeed is Superior"

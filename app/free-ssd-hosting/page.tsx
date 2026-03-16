@@ -62,6 +62,10 @@ const techLogos = [
     TECH_LOGO_CLOUDLINUX,
 ];
 
+const SSD_HOSTING_BREADCRUMBS = [
+    { label: "Free SSD Hosting", href: "/free-ssd-hosting" }
+];
+
 export default function FreeSSDHosting() {
     return (
         <>
@@ -73,9 +77,7 @@ export default function FreeSSDHosting() {
                     </>
                 }
                 heroSubtitle="Experience superior performance with our enterprise-grade NVMe SSD storage. Your website deserves the best speed, completely free."
-                breadcrumbs={[
-                    { label: "Free SSD Hosting", href: "/free-ssd-hosting" }
-                ]}
+                breadcrumbs={SSD_HOSTING_BREADCRUMBS}
             >
                 <ServiceDescription
                     title="Why NVMe SSD Storage Matters"

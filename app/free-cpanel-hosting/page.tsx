@@ -64,6 +64,10 @@ const techLogos = [
     TECH_LOGO_CLOUDLINUX,
 ];
 
+const CPANEL_BREADCRUMBS = [
+    { label: "Free cPanel Hosting", href: "/free-cpanel-hosting" }
+];
+
 export default function FreeCpanelHosting() {
     return (
         <>
@@ -75,9 +79,7 @@ export default function FreeCpanelHosting() {
                     </>
                 }
                 heroSubtitle="Get the world's most popular hosting control panel completely free. Manage your website with ease using cPanel's powerful features."
-                breadcrumbs={[
-                    { label: "Free cPanel Hosting", href: "/free-cpanel-hosting" }
-                ]}
+                breadcrumbs={CPANEL_BREADCRUMBS}
             >
                 <ServiceDescription
                     title="Why cPanel is the Industry Standard"
