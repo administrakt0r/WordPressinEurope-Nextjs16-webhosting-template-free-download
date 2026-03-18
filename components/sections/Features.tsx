@@ -15,7 +15,7 @@ export function Features() {
     return (
         <Section
             id="features"
-            ariaLabel="Features and Technologies"
+            aria-label="Features and Technologies"
             className="bg-slate-950"
             estimatedHeight="1200px"
         >

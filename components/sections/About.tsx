@@ -100,7 +100,7 @@ export function About() {
 
                             {/* Decorative background - Optimized: using radial-gradient instead of expensive blur filter */}
                             <div
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] -z-10 gpu-accelerated"
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] -z-10 transform-gpu"
                                 style={{ background: 'radial-gradient(closest-side, rgba(59, 130, 246, 0.1), transparent)' }}
                             />
                         </AnimatedSection>

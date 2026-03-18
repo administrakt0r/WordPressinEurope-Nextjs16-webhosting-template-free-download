@@ -37,7 +37,7 @@ export function Footer() {
                                 aria-label="Email Support"
                                 className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-sm"
                             />
-                            <CopyButton text="support@wpineu.com" ariaLabel="Copy support email" />
+                            <CopyButton text="support@wpineu.com" aria-label="Copy support email" />
                         </div>
                     </div>
 

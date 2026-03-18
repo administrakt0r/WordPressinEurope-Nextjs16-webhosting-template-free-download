@@ -12,11 +12,11 @@ export const BackgroundEffects = memo(function BackgroundEffects({ className, va
             {variant === 'not-found' && (
                 <>
                     <div
-                        className="absolute top-[20%] left-[20%] w-[40%] h-[40%] gpu-accelerated"
+                        className="absolute top-[20%] left-[20%] w-[40%] h-[40%] transform-gpu"
                         style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.1), transparent)' }}
                     />
                     <div
-                        className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%] gpu-accelerated"
+                        className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%] transform-gpu"
                         style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.05), transparent)' }}
                     />
                 </>
@@ -24,7 +24,7 @@ export const BackgroundEffects = memo(function BackgroundEffects({ className, va
 
             {variant === 'error' && (
                 <div
-                    className="absolute top-[20%] right-[20%] w-[40%] h-[40%] gpu-accelerated"
+                    className="absolute top-[20%] right-[20%] w-[40%] h-[40%] transform-gpu"
                     style={{ background: 'radial-gradient(closest-side, rgba(220, 38, 38, 0.05), transparent)' }}
                 />
             )}
@@ -32,11 +32,11 @@ export const BackgroundEffects = memo(function BackgroundEffects({ className, va
             {variant === 'default' && (
                  <>
                     <div
-                        className="absolute top-[20%] left-[20%] w-[40%] h-[40%] gpu-accelerated"
+                        className="absolute top-[20%] left-[20%] w-[40%] h-[40%] transform-gpu"
                         style={{ background: 'radial-gradient(closest-side, rgba(220, 38, 38, 0.1), transparent)' }}
                     />
                     <div
-                        className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%] gpu-accelerated"
+                        className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%] transform-gpu"
                         style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.05), transparent)' }}
                     />
                  </>

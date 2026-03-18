@@ -19,7 +19,7 @@ interface SectionProps {
     /**
      * Accessibility label if no visible heading is available to link via aria-labelledby.
      */
-    ariaLabel?: string;
+    'aria-label'?: string;
 }
 
 /**
@@ -33,7 +33,7 @@ export function Section({
     className,
     estimatedHeight = "800px",
     style,
-    ariaLabel,
+    'aria-label': ariaLabel,
 }: SectionProps) {
     const optimizations = getOffscreenOptimizations(estimatedHeight);
 

@@ -14,19 +14,19 @@ export function Hero() {
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Gradient Orbs - Optimized: Replaced expensive CSS blurs with radial gradients for performance */}
                 <div
-                    className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] gpu-accelerated bg-[radial-gradient(closest-side,rgba(37,99,235,0.2),transparent)]"
+                    className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] transform-gpu bg-[radial-gradient(closest-side,rgba(37,99,235,0.2),transparent)]"
                 />
                 <div
-                    className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] gpu-accelerated bg-[radial-gradient(closest-side,rgba(234,179,8,0.1),transparent)]"
+                    className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] transform-gpu bg-[radial-gradient(closest-side,rgba(234,179,8,0.1),transparent)]"
                 />
                 <div
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] gpu-accelerated bg-[radial-gradient(closest-side,rgba(30,58,138,0.2),transparent)]"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[40%] transform-gpu bg-[radial-gradient(closest-side,rgba(30,58,138,0.2),transparent)]"
                 />
 
                 {/* Grid Pattern */}
                 {/* Localized noise.svg to reduce external network requests and improve reliability */}
-                <div className="absolute inset-0 bg-noise opacity-20 gpu-accelerated" />
-                <div className="absolute inset-0 bg-grid-pattern gpu-accelerated" />
+                <div className="absolute inset-0 bg-noise opacity-20 transform-gpu" />
+                <div className="absolute inset-0 bg-grid-pattern transform-gpu" />
             </div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -53,7 +53,7 @@ export function Hero() {
                         <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mb-12">
                             <ExternalLink
                                 href={EXTERNAL_LINKS.ORDER_FREE_HOSTING}
-                                ariaLabel="Get started with free WordPress hosting"
+                                aria-label="Get started with free WordPress hosting"
                                 className="group relative inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 hover:shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                             >
                                 <span className="relative z-10">Get Started Now</span>
