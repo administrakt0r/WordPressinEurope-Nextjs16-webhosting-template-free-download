@@ -49,7 +49,7 @@ describe('ExternalLink Component', () => {
 
   it('passes through other props like aria-label', () => {
     render(
-      <ExternalLink href="https://example.com" ariaLabel="Custom Label">
+      <ExternalLink href="https://example.com" aria-label="Custom Label">
         Click me
       </ExternalLink>
     );

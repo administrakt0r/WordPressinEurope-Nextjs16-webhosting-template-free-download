@@ -1,6 +1,9 @@
 # Atlas Progress Tracker
 
 ## Completed
+[2026-05-18] [SEC] Hardened `MALICIOUS_QUERY_SIGNATURES` in `lib/security.ts` with XSS vectors.
+[2026-05-18] [UX] Globally refactored `ariaLabel` prop to standard `aria-label` across all components (`ExternalLink`, `CopyButton`, `Section`) and their usages to fix runtime warnings and improve accessibility.
+[2026-05-18] [PERF] Globally replaced expensive CSS `blur` filters and hallucinated `gpu-accelerated` classes with `radial-gradient` and `transform-gpu` to optimize rendering performance across pages (e.g., `app/support/page.tsx`, `About.tsx`, `Hero.tsx`).
 [2026-03-14] [UX] Added empty state to `Support` section resources list.
 [2026-03-14] [PERF] Memoized `HeroAnimator` component to prevent unnecessary re-renders.
 [2026-03-14] [QUALITY] Added `title` metadata to `app/not-found.tsx` for better SEO and UX.

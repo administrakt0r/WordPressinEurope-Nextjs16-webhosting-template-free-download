@@ -56,7 +56,8 @@ export function FAQ({ sectionId = "faq", headingId = "faq-heading" }: FAQProps) 
                         </p>
                         <ExternalLink
                             href={EXTERNAL_LINKS.LEARNING_PORTAL}
-                            className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1"
+                            aria-label="Start learning at our educational portal"
+                            className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 px-8 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-700"
                         >
                             Start Learning
                             <ArrowRight size={18} aria-hidden="true" />

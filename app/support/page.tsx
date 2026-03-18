@@ -33,8 +33,8 @@ export default function SupportPage() {
             <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
                 {/* Background */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] bg-blue-600/20 rounded-full blur-[120px]" />
-                    <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] bg-yellow-500/10 rounded-full blur-[100px]" />
+                    <div className="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] transform-gpu" style={{ background: 'radial-gradient(closest-side, rgba(37, 99, 235, 0.2), transparent)' }} />
+                    <div className="absolute top-[20%] -left-[10%] w-[60%] h-[60%] transform-gpu" style={{ background: 'radial-gradient(closest-side, rgba(234, 179, 8, 0.1), transparent)' }} />
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
                 </div>
 

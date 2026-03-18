@@ -222,6 +222,9 @@ export function isBlockedPath(pathname: string): boolean {
 // Common attack signatures for SQLi, XSS, and LFI
 export const MALICIOUS_QUERY_SIGNATURES = [
   '<script',
+  '<iframe',
+  '<object',
+  '<embed',
   'javascript:',
   'vbscript:',
   'data:text/html',

@@ -16,7 +16,7 @@ export function Support() {
     return (
         <Section
             id="support"
-            ariaLabel="Support and Resources"
+            aria-label="Support and Resources"
             className="bg-slate-950"
             estimatedHeight="600px"
         >
@@ -54,7 +54,7 @@ export function Support() {
                             </ObfuscatedMailto>
                             <CopyButton
                                 text="support@wpineu.com"
-                                ariaLabel="Copy support email address"
+                                aria-label="Copy support email address"
                                 className="bg-slate-800 text-white p-4 rounded-full hover:bg-slate-700 border border-slate-700 transition-colors focus-visible:ring-offset-slate-900"
                             />
                         </div>

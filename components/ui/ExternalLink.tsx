@@ -8,7 +8,7 @@ interface ExternalLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
-  ariaLabel?: string;
+  'aria-label'?: string;
   onClick?: () => void;
 }
 
@@ -17,7 +17,7 @@ interface ExternalLinkProps {
  * Automatically adds target="_blank", rel="noopener noreferrer", and screen-reader only text.
  * Wrapped in React.memo to prevent unnecessary re-renders.
  */
-export const ExternalLink = memo(function ExternalLink({ href, children, className, ariaLabel, onClick }: ExternalLinkProps) {
+export const ExternalLink = memo(function ExternalLink({ href, children, className, 'aria-label': ariaLabel, onClick }: ExternalLinkProps) {
   // Optimization: Memoize safeHref calculation to avoid URL parsing on every render
   const safeHref = useMemo(() => isSafeUrl(href) ? href : "#", [href]);
 

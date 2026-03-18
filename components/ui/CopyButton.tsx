@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils";
 interface CopyButtonProps {
   text: string;
   className?: string;
-  ariaLabel?: string;
+  'aria-label'?: string;
 }
 
-export const CopyButton = memo(function CopyButton({ text, className, ariaLabel = "Copy to clipboard" }: CopyButtonProps) {
+export const CopyButton = memo(function CopyButton({ text, className, 'aria-label': ariaLabel = "Copy to clipboard" }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
   const isMounted = useRef(false);
 
