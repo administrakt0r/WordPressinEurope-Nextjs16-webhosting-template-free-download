@@ -6,7 +6,7 @@ import { HOSTING_SERVICES, RESOURCES, LEGAL_LINKS } from "@/lib/navigation";
 import { getOffscreenOptimizations } from "@/lib/styles";
 import { FooterColumn } from "./FooterColumn";
 
-export function Footer() {
+export function FooterComponent() {
     return (
         <footer
             className="bg-slate-900 border-t border-slate-800 pt-16 pb-8"
@@ -87,3 +87,5 @@ export function Footer() {
         </footer>
     );
 }
+
+export { FooterComponent as Footer };

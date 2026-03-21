@@ -14,7 +14,7 @@ interface ServiceDescriptionProps {
     id?: string;
 }
 
-export const ServiceDescription = memo(function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4, id }: ServiceDescriptionProps) {
+const ServiceDescriptionComponent = memo(function ServiceDescription({ title, subtitle, description, features, techLogos, cols = 4, id }: ServiceDescriptionProps) {
     const gridColsClass = clsx("grid md:grid-cols-2 gap-6 mb-16", {
         "lg:grid-cols-4": cols === 4,
         "lg:grid-cols-3": cols === 3,
@@ -79,3 +79,5 @@ export const ServiceDescription = memo(function ServiceDescription({ title, subt
         </Section>
     );
 });
+
+export { ServiceDescriptionComponent as ServiceDescription };
