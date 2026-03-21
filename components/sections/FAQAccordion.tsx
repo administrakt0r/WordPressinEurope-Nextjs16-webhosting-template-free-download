@@ -12,7 +12,7 @@ interface FAQAccordionProps {
     faqs: FAQItemData[];
 }
 
-export const FAQAccordion = memo(function FAQAccordion({ faqs }: FAQAccordionProps) {
+const FAQAccordionComponent = memo(function FAQAccordion({ faqs }: FAQAccordionProps) {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
     const accordionId = useId();
 
@@ -47,3 +47,5 @@ export const FAQAccordion = memo(function FAQAccordion({ faqs }: FAQAccordionPro
         </div>
     );
 });
+
+export { FAQAccordionComponent as FAQAccordion };

@@ -52,6 +52,8 @@ export const ObfuscatedMailto = memo(function ObfuscatedMailto({
       href={href}
       className={cn(className)}
       onClick={onClick}
+      target="_blank"
+      rel="noopener noreferrer"
       {...props}
     >
       {children || email}

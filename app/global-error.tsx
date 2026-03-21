@@ -57,14 +57,15 @@ export default function GlobalError({
               >
                 Reload Page
               </button>
-              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-              <a
-                href="/"
+              <button
+                type="button"
+                onClick={() => window.location.href = '/'}
+                aria-label="Return to the homepage"
                 className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-xl font-bold transition-all hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 cursor-pointer"
               >
                 <Home size={20} aria-hidden="true" />
                 Go to Home
-              </a>
+              </button>
             </div>
           </div>
         </div>

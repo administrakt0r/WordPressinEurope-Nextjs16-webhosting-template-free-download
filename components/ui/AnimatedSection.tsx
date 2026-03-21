@@ -18,26 +18,28 @@ interface AnimatedSectionProps {
  * ⚡ Performance: Expects a parent <LazyMotion> provider to be present in the tree.
  * Do not use this component without wrapping it (or a parent) in LazyMotion.
  */
-export const AnimatedSection = memo(function AnimatedSection({ children, direction = "up", delay = 0, className }: AnimatedSectionProps) {
-    const offset = 15; // Reduced from 20 for smoother feel
+const offset = 15; // Reduced from 20 for smoother feel
 
-    const variants = useMemo(() => ({
-        hidden: {
-            opacity: 0,
-            x: direction === "left" ? -offset : direction === "right" ? offset : 0,
-            y: direction === "up" ? offset : direction === "down" ? -offset : 0,
+const getVariants = (direction: NonNullable<AnimatedSectionProps["direction"]>, delay: number) => ({
+    hidden: {
+        opacity: 0,
+        x: direction === "left" ? -offset : direction === "right" ? offset : 0,
+        y: direction === "up" ? offset : direction === "down" ? -offset : 0,
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        transition: {
+            duration: 0.4,
+            delay: delay,
+            ease: "easeOut" as const,
         },
-        visible: {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            transition: {
-                duration: 0.4,
-                delay: delay,
-                ease: "easeOut" as const,
-            },
-        },
-    }), [direction, delay]);
+    },
+});
+
+export const AnimatedSection = memo(function AnimatedSection({ children, direction = "up", delay = 0, className }: AnimatedSectionProps) {
+    const variants = useMemo(() => getVariants(direction, delay), [direction, delay]);
 
     return (
         <m.div

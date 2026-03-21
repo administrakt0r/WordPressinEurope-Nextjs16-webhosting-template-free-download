@@ -68,6 +68,8 @@
 [2026-05-18] [PERF] Added `gpu-accelerated` to `error` and `not-found` variants in `BackgroundEffects`.
 [2026-05-18] [PERF] Set `prefetch={false}` on below-fold and error links in `app/not-found.tsx`.
 [2026-05-18] [PERF] Extracted inline breadcrumbs arrays to constants in `app/support/page.tsx` and all service pages to prevent breaking `React.memo`.
+[2026-05-18] [SEC] Added `target="_blank"` and `rel="noopener noreferrer"` to `ObfuscatedMailto` links to prevent CSRF and tabnabbing.
+[2026-05-18] [PERF] Extracted `SUPPORT_FAQS` array from `app/support/page.tsx` render function to prevent `FAQItem` and `FAQAccordion` memoization from breaking on every render.
 
 ## In Progress
 

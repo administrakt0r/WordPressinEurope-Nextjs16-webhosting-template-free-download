@@ -12,6 +12,37 @@ const FAQAccordion = dynamic(() => import("@/components/sections/FAQAccordion").
 
 const SUPPORT_BREADCRUMBS = [{ label: 'Support', href: '/support' }];
 
+const SUPPORT_FAQS = [
+    {
+        question: "How do I get started?",
+        answer: (
+            <>
+                Visit our <ExternalLink href={EXTERNAL_LINKS.ORDER_FREE_HOSTING} className="text-blue-400 hover:text-blue-300">order page</ExternalLink> to create your free hosting account. The setup is instant and requires no credit card.
+            </>
+        )
+    },
+    {
+        question: "Is it really free?",
+        answer: "Yes! Our free hosting plan includes 1GB SSD storage, 100GB bandwidth, cPanel, LiteSpeed, and more. No hidden fees, no credit card required."
+    },
+    {
+        question: "How can I upgrade my plan?",
+        answer: (
+            <>
+                Log in to your <ExternalLink href={EXTERNAL_LINKS.CLIENT_PORTAL} className="text-blue-400 hover:text-blue-300">client area</ExternalLink> to view available upgrade options and manage your services.
+            </>
+        )
+    },
+    {
+        question: "What if I need help with WordPress?",
+        answer: (
+            <>
+                Contact us at <ObfuscatedMailto email={EXTERNAL_LINKS.SUPPORT_EMAIL} className="text-blue-400 hover:text-blue-300" /> with your questions. We&apos;re here to help you succeed with your WordPress site.
+            </>
+        )
+    }
+];
+
 export const metadata: Metadata = {
     title: "Support & Contact",
     description: "Get help with your WPinEU hosting. Contact our support team via email or client area for assistance with your free WordPress hosting.",
@@ -149,36 +180,7 @@ export default function SupportPage() {
                         Common Questions
                     </h2>
 
-                    <FAQAccordion faqs={[
-                        {
-                            question: "How do I get started?",
-                            answer: (
-                                <>
-                                    Visit our <ExternalLink href={EXTERNAL_LINKS.ORDER_FREE_HOSTING} className="text-blue-400 hover:text-blue-300">order page</ExternalLink> to create your free hosting account. The setup is instant and requires no credit card.
-                                </>
-                            )
-                        },
-                        {
-                            question: "Is it really free?",
-                            answer: "Yes! Our free hosting plan includes 1GB SSD storage, 100GB bandwidth, cPanel, LiteSpeed, and more. No hidden fees, no credit card required."
-                        },
-                        {
-                            question: "How can I upgrade my plan?",
-                            answer: (
-                                <>
-                                    Log in to your <ExternalLink href={EXTERNAL_LINKS.CLIENT_PORTAL} className="text-blue-400 hover:text-blue-300">client area</ExternalLink> to view available upgrade options and manage your services.
-                                </>
-                            )
-                        },
-                        {
-                            question: "What if I need help with WordPress?",
-                            answer: (
-                                <>
-                                    Contact us at <ObfuscatedMailto email={EXTERNAL_LINKS.SUPPORT_EMAIL} className="text-blue-400 hover:text-blue-300" /> with your questions. We&apos;re here to help you succeed with your WordPress site.
-                                </>
-                            )
-                        }
-                    ]} />
+                    <FAQAccordion faqs={SUPPORT_FAQS} />
                 </div>
             </section>
 
